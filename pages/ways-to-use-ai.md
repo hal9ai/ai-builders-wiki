@@ -2,7 +2,7 @@
 title: "Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs"
 description: "The surfaces through which people and programs use models, and what each one is for."
 category: Foundations
-tags: [chat-apps, coding-agents, ide, api, agent-sdk, tools]
+tags: [agents, coding-agents, api, tools]
 checked: 2026-10-28
 ---
 

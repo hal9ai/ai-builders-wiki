@@ -1,8 +1,8 @@
 ---
 title: "What an AI agent is"
 description: "How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy."
-category: Concepts
-tags: [agents, tools, workflows, autonomy]
+category: Agents
+tags: [agents, tools, autonomy]
 checked: 2026-10-28
 ---
 

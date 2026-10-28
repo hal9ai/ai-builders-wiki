@@ -2,7 +2,7 @@
 title: "Security for AI apps and agents"
 description: "The risks that are specific to apps that call models and to agents that act: prompt injection, secrets, scopes, tool permissions, supply chain, runaway costs."
 category: Operations
-tags: [security, prompt-injection, secrets, agents, mcp, supply-chain]
+tags: [security, agents, mcp, secrets, prompt-injection]
 checked: 2026-10-28
 ---
 

@@ -2,7 +2,7 @@
 title: "From idea to deployed AI app: a typical workflow"
 description: "One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates."
 category: Guides
-tags: [workflow, deploy, secrets, logs, costs, coding-agents]
+tags: [deploy, hosting, secrets, costs, coding-agents]
 checked: 2026-10-28
 ---
 

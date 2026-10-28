@@ -2,7 +2,7 @@
 title: "Glossary: the basic words"
 description: "The core terms a newcomer meets, each defined in plain words, with links to the pages that go deeper."
 category: Foundations
-tags: [glossary, basics]
+tags: [glossary]
 checked: 2026-10-28
 ---
 

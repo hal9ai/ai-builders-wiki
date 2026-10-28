@@ -2,7 +2,7 @@
 title: "The cloud, for AI apps"
 description: "Three different jobs: hosting your app, calling a model, running a model on GPUs. And serverless vs containers vs VMs."
 category: Foundations
-tags: [cloud, hosting, gpu, serverless, containers, streaming]
+tags: [cloud, hosting, gpu, serverless, streaming]
 checked: 2026-10-28
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "Do AI agents work with each other? How?"
 description: "Multi-agent patterns, handoffs, MCP and A2A, and what the evidence says works."
-category: Concepts
-tags: [agents, multi-agent, mcp, a2a, protocols]
+category: Agents
+tags: [agents, multi-agent, mcp, a2a]
 checked: 2026-10-28
 ---
 

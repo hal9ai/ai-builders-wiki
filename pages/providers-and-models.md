@@ -2,7 +2,7 @@
 title: "AI providers and models: who makes what, and how to choose"
 description: "The main model makers as of October 2026, open-weight vs closed, how model names and versions work, and how to pick one."
 category: Foundations
-tags: [providers, models, open-weight, versioning, costs]
+tags: [providers, models, open-weight, costs]
 checked: 2026-10-28
 ---
 

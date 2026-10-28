@@ -2,7 +2,7 @@
 title: "What generative AI is, and why people build with it"
 description: "What the models do, what developers and founders use them for, where they fail, and how the bill works."
 category: Foundations
-tags: [generative-ai, llm, tokens, costs, limits]
+tags: [generative-ai, llm, tokens, costs]
 checked: 2026-10-28
 ---
 
