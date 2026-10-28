@@ -113,4 +113,4 @@ All checked on 2026-10-28. Vendor pages are listed in the tables and paragraphs 
 
 ---
 
-Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Model line-ups change often: if a name here is out of date, please [open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).
+First version written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Model line-ups change often: if a name here is out of date, please [fix it or open an issue](CONTRIBUTING.md). Text licensed under [CC BY 4.0](LICENSE).
