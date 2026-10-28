@@ -1,32 +1,21 @@
 ---
-title: "Data protection: what AI vendors do with your data"
-description: "Training by default, retention, consumer vs business terms, opt-outs, zero data retention and data location, compared vendor by vendor."
-category: Operations
-tags: [data-protection, providers, eu, retention]
+title: "Data protection by vendor"
+description: "Training defaults, opt-outs, retention, zero data retention and data location for each major AI vendor, every cell sourced."
+category: Security and data
+tags: [privacy, providers]
+order: 3
 checked: 2026-10-28
 ---
 
-# Data protection: what AI vendors do with your data
+<!-- NAV:START -->
+[Home](README.md) › [Security and data](Category-Security-and-data.md) · Tags: [privacy](Tag-privacy.md), [providers](Tag-providers.md)
+<!-- NAV:END -->
 
-**What happens to the text you send an AI model depends less on the vendor than on the plan: consumer chat apps often train on your conversations unless you opt out, while business and API terms usually do not, and keep data for a limited time.** The table below compares the main vendors, with every answer linked to the vendor's own page, as checked on 2026-10-28.
+# Data protection by vendor
+
+**This page compares what the main AI vendors do with your data, plan by plan, with every answer linked to the vendor's own page as checked on 2026-10-28.** For what the questions mean and what to do about them, start with [Data protection when you use AI](Data-protection.md).
 
 **This is not legal advice.** It summarizes public vendor pages to help you ask the right questions. Policies change often, your contract may say something different, and laws such as the GDPR put obligations on *you* as the app maker. For a real decision, read the current terms and ask a lawyer or your data protection officer.
-
-## The questions that matter
-
-Before you send personal or confidential data to a model, ask five questions, for the exact plan you use:
-
-1. **Training.** Does the vendor use my prompts and answers to train its models by default?
-2. **Opt-out.** If yes, can I turn it off, and how?
-3. **Retention.** How long does it keep my data, including after I delete it, and when content is flagged for abuse review?
-4. **Zero data retention (ZDR).** Can I arrange for nothing to be stored, and who qualifies?
-5. **Location.** Where is the data processed and stored? Can I keep it in the EU?
-
-## Consumer vs business terms
-
-**The same vendor usually has two sets of rules: consumer terms for individual chat-app plans, and commercial terms for business plans and the API.** Anthropic, for example, says its 2025 consumer-terms update applies "to users on our Claude Free, Pro, and Max plans" and does "not apply to services under our Commercial Terms", which cover Claude for Work, the API and access through Amazon Bedrock and Google Cloud ([Anthropic, Updates to our consumer terms](https://www.anthropic.com/news/updates-to-our-consumer-terms), checked 2026-10-28).
-
-In practice: if your employees paste customer data into a personal chat-app account, the consumer rules apply, whatever your company's API contract says.
 
 ## Comparison table
 
@@ -60,7 +49,7 @@ All pages checked on 2026-10-28. † = page refused automated access; manual che
 
 - **Consumer training is a choice.** The update gives "users the choice to allow their data to be used to improve Claude"; "You're always in control of this setting"; new users "can select your preference in the signup process" ([news](https://www.anthropic.com/news/updates-to-our-consumer-terms)). The page does not say which way the switch starts.
 - **Consumer retention.** If you allow training, retention is extended "to five years"; otherwise the "30-day data retention period" applies (same page). For conversations flagged by safety systems: "We retain inputs and outputs for up to 2 years and trust and safety classification scores for up to 7 years" ([help](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data)).
-- **Commercial.** "By default, we will not use your inputs or outputs from our commercial products" to train ([help](https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training)). For the API, "we automatically delete inputs and outputs on our backend within 30 days of receipt or generation", with exceptions such as ZDR agreements and the Files API ([help](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data)).
+- **Commercial.** "By default, we will not use your inputs or outputs from our commercial products" to train ([help](https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training)). For the [API](Glossary.md#api), "we automatically delete inputs and outputs on our backend within 30 days of receipt or generation", with exceptions such as [ZDR](Glossary.md#zero-data-retention-zdr) agreements and the Files API ([help](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data)).
 - **Location.** "Inference geo: Only `"us"` and `"global"` are available", and "Workspace geo: Only `"us"` is currently available" ([data residency](https://platform.claude.com/docs/en/manage-claude/data-residency)). Through Amazon Bedrock or Google Cloud, those platforms' own regional options apply instead.
 
 ### OpenAI
@@ -77,7 +66,7 @@ All pages checked on 2026-10-28. † = page refused automated access; manual che
 
 ### Microsoft (Azure OpenAI in Microsoft Foundry)
 
-- Prompts and completions "are NOT available to OpenAI" and "are NOT used to train any generative AI foundation models without your permission or instruction"; data is "processed within the customer-specified geography (unless you are using a Global or DataZone deployment type)" ([data privacy](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy)).
+- [Prompts](Glossary.md#prompt) and completions "are NOT available to OpenAI" and "are NOT used to train any generative AI foundation models without your permission or instruction"; data is "processed within the customer-specified geography (unless you are using a Global or DataZone deployment type)" ([data privacy](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy)).
 - Customers "who meet additional Limited Access eligibility criteria" can "apply to modify abuse monitoring" ([abuse monitoring](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/abuse-monitoring)).
 
 ### Mistral
@@ -90,31 +79,26 @@ All pages checked on 2026-10-28. † = page refused automated access; manual che
 
 - "Meta uses your interactions with AIs to improve AI at Meta" ([Meta help](https://www.meta.com/help/artificial-intelligence/)). In the EU, interactions with Meta AI "will also be used to train and improve our models", with "a link to a form where people can object" ([Meta newsroom](https://about.fb.com/news/2025/04/making-ai-work-harder-for-europeans/)).
 - Since December 2025, Meta says it will "use your interactions with AI at Meta to personalize the content and ads you see" ([Meta newsroom](https://about.fb.com/news/2025/10/improving-your-recommendations-apps-ai-meta/)).
-- Meta's generative AI privacy pages on facebook.com could not be loaded on 2026-10-28, so retention and location are not covered here.
-- Llama models are open-weight: if you run them yourself, Meta receives nothing.
+- Meta's [generative AI](Glossary.md#generative-ai) privacy pages on facebook.com could not be loaded on 2026-10-28, so retention and location are not covered here.
+- Llama [models](Glossary.md#model) are open-weight: if you run them yourself, Meta receives nothing.
 
 ### DeepSeek
 
 - The app may "use Inputs and Outputs to provide, maintain, operate, develop or improve the Services", subject to de-identification, and you "can opt out by turning off "Improve the model for everyone"" ([terms of use](https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html)).
 - "we directly collect, process and store your Personal Data in People's Republic of China"; data is kept "for as long as you have an account" ([privacy policy](https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html)).
-- The API terms we found do not address training, retention or location ([open platform terms](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html)). DeepSeek's models are also open-weight, and other providers serve them under their own terms.
-
-## What this means for your app
-
-- **Use business or API terms for anything involving other people's data**, not a personal chat-app account.
-- **Check the default, not just the option.** "You can opt out" is different from "off by default".
-- **Retention is not zero just because training is off.** Most APIs keep data for abuse monitoring, often around 30 days, unless you have a ZDR arrangement.
-- **Location is a setting, and sometimes a contract.** EU processing usually means choosing a region or endpoint, and sometimes an approval.
-- **Same model, different terms.** A model through a cloud platform (Bedrock, Vertex AI, Foundry) follows that platform's terms. See [providers and models](providers-and-models.md#where-you-can-get-them).
-- **Tell your users.** Your privacy notice should say which AI providers receive their data and why.
-- **Send less.** Strip names, emails and IDs before the model call when the task does not need them, and do not log full inputs ([logs](idea-to-deployed-app.md#5-read-the-logs)).
+- The API terms we found do not address training, retention or location ([open platform terms](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html)). DeepSeek's models are also open-weight, and other [providers](Glossary.md#provider) serve them under their own terms.
 
 ## Related pages
 
-- [Security](security.md)
-- [Providers and models](providers-and-models.md)
-- [Ways to use AI](ways-to-use-ai.md): chat apps vs API
-- [Glossary](glossary.md#zero-data-retention-zdr)
+- [Data protection when you use AI](Data-protection.md)
+- [Security for AI apps](Security-for-AI-apps.md)
+- [AI providers and models](AI-providers-and-models.md#where-you-can-get-them)
+
+## See also
+
+<!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [API](Glossary.md#api), [Cloud](Glossary.md#cloud), [Generative AI](Glossary.md#generative-ai), [Inference](Glossary.md#inference), [Logs](Glossary.md#logs), [Model](Glossary.md#model), [Open-weight model](Glossary.md#open-weight-model), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [Zero data retention (ZDR)](Glossary.md#zero-data-retention-zdr).
+<!-- SEEALSO:END -->
 
 ## Sources
 
@@ -122,4 +106,8 @@ All vendor pages are linked in the table and in the details above, and were chec
 
 ---
 
-Written with AI assistance and checked against the vendor pages linked above, listed under [sources](#sources), on 2026-10-28. Not legal advice. Found a mistake or a policy change? [Open an issue](../CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](../LICENSE).
+Written with AI assistance and checked against the vendor pages linked above, listed under [sources](#sources), on 2026-10-28. Not legal advice. Found a mistake or a policy change? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).
+
+---
+
+Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Not legal advice. Found a mistake? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).

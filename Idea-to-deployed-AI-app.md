@@ -2,21 +2,26 @@
 title: "From idea to deployed AI app: a typical workflow"
 description: "One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates."
 category: Guides
-tags: [deploy, hosting, secrets, costs, coding-agents]
+tags: [hosting, secrets, costs, coding-agents]
+order: 1
 checked: 2026-10-28
 ---
 
+<!-- NAV:START -->
+[Home](README.md) › [Guides](Category-Guides.md) · Tags: [hosting](Tag-hosting.md), [secrets](Tag-secrets.md), [costs](Tag-costs.md), [coding-agents](Tag-coding-agents.md)
+<!-- NAV:END -->
+
 # From idea to deployed AI app: a typical workflow
 
-**A typical AI app goes through seven steps: scope it, build it with an assistant, keep the API key secret, test it locally, deploy it to a host, read its logs, and watch its costs, then repeat for every update.** This page walks through one concrete example. The tools are interchangeable; the steps are not.
+**A typical AI app goes through seven steps: scope it, build it with an assistant, keep the [API](Glossary.md#api) key [secret](Glossary.md#secret), test it locally, [deploy](Glossary.md#deploy) it to a [host](Glossary.md#host), read its [logs](Glossary.md#logs), and watch its costs, then repeat for every update.** This page walks through one concrete example. The [tools](Glossary.md#tool) are interchangeable; the steps are not.
 
 *Disclosure: this wiki is made by Hal9, which also runs Cloudish, one of the hosts used as an example below.*
 
-**The example:** a small web app where a team pastes meeting notes and gets back a summary with action items. A Python backend calls a model API; a single HTML page is the front end.
+**The example:** a small web app where a team pastes meeting notes and gets back a summary with action items. A Python backend calls a [model](Glossary.md#model) API; a single HTML page is the front end.
 
 ## 1. Scope the idea and build it with an assistant
 
-**Write down, in a few lines, what the app does, what it must never do, and how you will know it works, before you ask an assistant to write code.** That text becomes the first prompt, and later the project's instruction file.
+**Write down, in a few lines, what the app does, what it must never do, and how you will know it works, before you ask an assistant to write code.** That text becomes the first [prompt](Glossary.md#prompt), and later the project's instruction file.
 
 ```text
 Build a small web app:
@@ -29,17 +34,17 @@ Build a small web app:
 - The app listens on the port given in the PORT environment variable (default 8000).
 ```
 
-Which assistant: a chat app for a first prototype, a [coding agent](ways-to-use-ai.md#coding-agents-in-the-terminal) or [IDE integration](ways-to-use-ai.md#ide-integrations-and-extensions) for anything you will maintain. Keep the project in Git from the first commit so every change the assistant makes can be reviewed and undone.
+Which assistant: a chat app for a first prototype, a [coding agent](Ways-to-use-AI.md#coding-agents-in-the-terminal) or [IDE integration](Ways-to-use-AI.md#ide-integrations-and-extensions) for anything you will maintain. Keep the project in Git from the first commit so every change the assistant makes can be reviewed and undone.
 
 What to check in what it produced:
 
-- **Where the model is called.** It must be the backend, not the browser. If the key appears in any file sent to the browser, stop and fix it. See [security](security.md#secrets-and-api-keys).
-- **New dependencies.** Make sure each package exists and is the one you meant ([slopsquatting](security.md#supply-chain)).
-- **The model ID.** Take it from the provider's models page, and put it in configuration ([how versions work](providers-and-models.md#how-model-names-and-versions-work)).
+- **Where the model is called.** It must be the backend, not the browser. If the key appears in any file sent to the browser, stop and fix it. See [security](Security-for-AI-apps.md#secrets-and-api-keys).
+- **New dependencies.** Make sure each package exists and is the one you meant ([slopsquatting](Security-for-AI-apps.md#supply-chain)).
+- **The model ID.** Take it from the [provider](Glossary.md#provider)'s models page, and put it in configuration ([how versions work](Model-names-and-versions.md)).
 
 ## 2. Keys and secrets
 
-**Create one API key for this app, store it as an environment variable locally and as a secret on the host, and never commit it.** This follows the Twelve-Factor rule that an app "stores config in environment variables", and its test: the code "could be made open source at any moment, without compromising any credentials" ([The Twelve-Factor App, Config](https://12factor.net/config), checked 2026-10-28).
+**Create one [API key](Glossary.md#api-key) for this app, store it as an [environment variable](Glossary.md#environment-variable) locally and as a secret on the host, and never commit it.** This follows the Twelve-Factor rule that an app "stores config in environment variables", and its test: the code "could be made open source at any moment, without compromising any credentials" ([The Twelve-Factor App, Config](https://12factor.net/config), checked 2026-10-28).
 
 Locally:
 
@@ -57,7 +62,7 @@ Anthropic's guidance says the same and adds that you should "prefer encypted [si
 
 On the host, set the same names in its secrets or environment settings (web dashboard, CLI or API). The app reads them the same way in both places.
 
-If a coding agent does the deploy for you, give it a token scoped to this one app, not your account password. See [over-scoped tokens](security.md#over-scoped-tokens).
+If a coding [agent](Glossary.md#agent) does the deploy for you, give it a [token](Glossary.md#token) scoped to this one app, not your account password. See [over-scoped tokens](Security-for-AI-apps.md#over-scoped-tokens).
 
 ## 3. Run and test it locally
 
@@ -72,12 +77,12 @@ docker run --env-file .env -e PORT=8000 -p 8000:8000 meeting-notes
 Checks that save time later:
 
 - The app reads its port from `PORT` and listens on `0.0.0.0`, not only `localhost`. Many hosts set the port for you.
-- A test checks the *shape* of the answer (a summary and a list), not the exact words. Model output is not repeatable ([why](generative-ai.md#where-it-fails)).
+- A test checks the *shape* of the answer (a summary and a list), not the exact words. Model output is not repeatable ([why](Generative-AI.md#where-it-fails)).
 - A very long input is rejected with a clear message, not sent to the model.
 
 ## 4. Deploy
 
-**Pick a host that fits the app's shape, push the code or the container image, set the secrets, and open the public URL.** For this app, a request takes a few seconds and the answer can be streamed, so a container host or a serverless function with a long enough time limit both work ([which shape](cloud-for-ai-apps.md#serverless-containers-or-vms), [time limits](cloud-for-ai-apps.md#time-limits-and-streaming)).
+**Pick a host that fits the app's shape, push the code or the [container](Glossary.md#container) image, set the secrets, and open the public URL.** For this app, a request takes a few seconds and the answer can be streamed, so a container host or a [serverless](Glossary.md#serverless) function with a long enough time limit both work ([which shape](Cloud-for-AI-apps.md#serverless-containers-or-vms), [time limits](Cloud-for-AI-apps.md#time-limits-and-streaming)).
 
 The steps are similar everywhere:
 
@@ -89,7 +94,7 @@ The steps are similar everywhere:
 
 *A disclosed example.* On Cloudish, the host run by Hal9, one API call "creates the project and starts the build", and the same call updates it later, so "a redeploy script can always call this unconditionally"; secrets are set through a separate endpoint and are "encrypted at rest, and merged into the container's environment automatically" ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Other hosts use a Git push, a CLI command or a dashboard button for the same steps.
 
-Before sharing the link more widely: add a simple sign-in or a shared password if the app should not be public, and a per-user rate limit, because every request costs model tokens.
+Before sharing the link more widely: add a simple sign-in or a shared password if the app should not be public, and a per-user [rate limit](Glossary.md#rate-limit), because every request costs model tokens.
 
 ## 5. Read the logs
 
@@ -99,7 +104,7 @@ What to log for an AI app:
 
 - one line per request: time, input length, model ID, tokens used, duration, success or error
 - the provider's error code and message when a call fails (rate limit, invalid key, overloaded)
-- **never** the API key, and think twice before logging users' full inputs: they may contain personal data ([data protection](data-protection.md))
+- **never** the API key, and think twice before logging users' full inputs: they may contain personal data ([data protection](Data-protection.md))
 
 Most hosts show logs in their dashboard and through a CLI or API. Cloudish, for example, can "Fetch the running container's own stdout/stderr on demand" and does not store logs on its side ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28), so anything you need to keep should go to your own log store. Check your host's retention before relying on its logs for later.
 
@@ -118,7 +123,7 @@ Common first-deploy errors and their usual cause:
 
 - **Model usage.** Set a spend limit at the provider. Anthropic: "Spend limits set a maximum monthly cost an organization can incur for API usage", and you can set your own below your tier's cap ([Anthropic, Rate limits](https://platform.claude.com/docs/en/api/rate-limits), checked 2026-10-28). OpenAI's page mentions hard limits that "stop affected API traffic when tracked spend reaches the limit" ([OpenAI, Rate limits](https://developers.openai.com/api/docs/guides/rate-limits), checked 2026-10-28).
 - **Hosting.** Know whether you pay while the app is idle. Some hosts charge for an always-on instance; others let the app sleep and wake on the next request. Some bill against prepaid credit: Cloudish's credits are "prepaid, like a gift card" and "spend never exceeds the key's balance" ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Others bill a card at the end of the month, so set a budget alert there.
-- **Estimate before launch.** Tokens per request × requests per day × price, as in the [worked example](generative-ai.md#what-it-costs). Then compare with the provider's usage page after the first week.
+- **Estimate before launch.** Tokens per request × requests per day × price, as in the [worked example](Generative-AI.md#what-it-costs). Then compare with the provider's usage page after the first week.
 
 Your logged token counts (step 5) are the cheapest early warning: a sudden jump means a loop, a bug or abuse.
 
@@ -127,7 +132,7 @@ Your logged token counts (step 5) are the cheapest early warning: a sudden jump 
 **Every change goes through the same loop: change in a branch, test locally, deploy, check the logs, and keep the previous version ready to roll back.**
 
 - **Code changes.** Ask the assistant for the change, review the diff, run the tests, then redeploy.
-- **Model changes.** Changing `MODEL_ID` is a real change: run your 20 to 50 test inputs on the new model first. Plan for retirement dates; providers publish them on their deprecation pages ([retirement](providers-and-models.md#how-model-names-and-versions-work)).
+- **Model changes.** Changing `MODEL_ID` is a real change: run your 20 to 50 test inputs on the new model first. Plan for retirement dates; providers publish them on their deprecation pages ([retirement](Model-names-and-versions.md)).
 - **Dependency updates.** Update regularly, read what changed, and keep a lockfile.
 - **Key rotation.** Create a new key, set it on the host, redeploy, then revoke the old one.
 - **Rollback.** Know how to go back: redeploy the previous image or Git commit. Try it once before you need it.
@@ -146,11 +151,17 @@ Your logged token counts (step 5) are the cheapest early warning: a sudden jump 
 
 ## Related pages
 
-- [The cloud, for AI apps](cloud-for-ai-apps.md)
-- [Security](security.md)
-- [Data protection](data-protection.md)
-- [Ways to use AI](ways-to-use-ai.md)
-- [Glossary](glossary.md)
+- [The cloud, for AI apps](Cloud-for-AI-apps.md)
+- [Security](Security-for-AI-apps.md)
+- [Data protection](Data-protection.md)
+- [Ways to use AI](Ways-to-use-AI.md)
+- [Glossary](Glossary.md)
+
+## See also
+
+<!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [API](Glossary.md#api), [API key](Glossary.md#api-key), [Coding agent](Glossary.md#coding-agent), [Container](Glossary.md#container), [Deploy](Glossary.md#deploy), [Environment variable](Glossary.md#environment-variable), [Host](Glossary.md#host), [Logs](Glossary.md#logs), [Model](Glossary.md#model), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [Rate limit](Glossary.md#rate-limit), [Secret](Glossary.md#secret), [Serverless](Glossary.md#serverless), [Token](Glossary.md#token), [Tool](Glossary.md#tool), [Workflow](Glossary.md#workflow).
+<!-- SEEALSO:END -->
 
 ## Sources
 
@@ -163,4 +174,4 @@ All checked on 2026-10-28.
 
 ---
 
-Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](../CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](../LICENSE).
+Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).

@@ -2,15 +2,20 @@
 title: "What an AI agent is"
 description: "How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy."
 category: Agents
-tags: [agents, tools, autonomy]
+tags: [agents, basics]
+order: 1
 checked: 2026-10-28
 ---
 
+<!-- NAV:START -->
+[Home](README.md) › [Agents](Category-Agents.md) · Tags: [agents](Tag-agents.md), [basics](Tag-basics.md)
+<!-- NAV:END -->
+
 # What an AI agent is
 
-**An AI agent is a program in which a language model decides, step by step, which actions to take with the tools it has been given, and keeps going until the task is done or it is stopped.** A chatbot only answers; an agent acts.
+**An AI [agent](Glossary.md#agent) is a program in which a language [model](Glossary.md#model) decides, step by step, which actions to take with the tools it has been given, and keeps going until the task is done or it is stopped.** A [chatbot](Glossary.md#chatbot) only answers; an agent acts.
 
-Definitions vary between vendors, but they agree on the core. OpenAI: "Agents are systems that independently accomplish tasks on your behalf" ([OpenAI, A practical guide to building agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf), p. 4, checked 2026-10-28). Anthropic's Agent SDK docs: "An agent is an application that completes a task by planning its own steps and calling tools that read files, run commands, or edit code" ([Claude Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview), checked 2026-10-28).
+Definitions vary between vendors, but they agree on the core. OpenAI: "Agents are systems that independently accomplish tasks on your behalf" ([OpenAI, A practical guide to building agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf), p. 4, checked 2026-10-28). Anthropic's [Agent SDK](Glossary.md#agent-sdk) docs: "An agent is an application that completes a task by planning its own steps and calling tools that read files, run commands, or edit code" ([Claude Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview), checked 2026-10-28).
 
 ## Chatbot, workflow, agent
 
@@ -24,7 +29,7 @@ Definitions vary between vendors, but they agree on the core. OpenAI: "Agents ar
 | Example | "Rewrite this email more politely" | Every new invoice: extract fields → check totals → save to the database | "This test fails; find out why and fix it" |
 | Main risk | A wrong answer | A wrong answer at one step | Wrong actions, repeated, at your expense |
 
-Anthropic draws the same line. Workflows are "systems where LLMs and tools are orchestrated through predefined code paths"; agents are "systems where LLMs dynamically direct their own processes and tool usage" ([Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents), December 2024, checked 2026-10-28). OpenAI says that "simple chatbots, single-turn LLMs, or sentiment classifiers—are not agents" ([OpenAI guide](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf), p. 4).
+Anthropic draws the same line. [Workflows](Glossary.md#workflow) are "systems where LLMs and tools are orchestrated through predefined code paths"; agents are "systems where LLMs dynamically direct their own processes and tool usage" ([Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents), December 2024, checked 2026-10-28). OpenAI says that "simple chatbots, single-turn LLMs, or sentiment classifiers—are not agents" ([OpenAI guide](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf), p. 4).
 
 Both vendors advise starting with the simplest option. Anthropic recommends "finding the simplest solution possible, and only increasing complexity when needed" ([Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)). Microsoft is blunter: "If you can write a function to handle the task, do that instead of using an AI agent" ([Microsoft Agent Framework overview](https://learn.microsoft.com/en-us/agent-framework/overview/), checked 2026-10-28).
 
@@ -32,9 +37,9 @@ Both vendors advise starting with the simplest option. Anthropic recommends "fin
 
 **Every agent is a model, a set of tools, and instructions.** OpenAI's guide names exactly these three components (p. 7).
 
-- **Model:** the LLM that reads the situation and picks the next action. See [providers and models](providers-and-models.md).
-- **Tools:** functions the model may call: search the web, read a file, run a shell command, query a database, send an email. The model does not run them itself. It asks for a call ("run `pytest`"), your program runs it, and the result goes back to the model. This mechanism is called [tool use](glossary.md#tool) or function calling. [MCP](multi-agent-systems.md#mcp-connecting-agents-to-tools) is a common standard for plugging tools in.
-- **Instructions:** the system prompt and project files that say what the agent is for, what it may do, and when to stop. Coding agents often read a file in the repository, such as `AGENTS.md` or `CLAUDE.md`, for project rules.
+- **Model:** the [LLM](Glossary.md#llm) that reads the situation and picks the next action. See [providers and models](AI-providers-and-models.md).
+- **Tools:** functions the model may call: search the web, read a file, run a shell command, query a database, send an email. The model does not run them itself. It asks for a call ("run `pytest`"), your program runs it, and the result goes back to the model. This mechanism is called [tool use](Glossary.md#tool) or function calling. [MCP](Agent-protocols-MCP-and-A2A.md#mcp-connecting-agents-to-tools) is a common standard for plugging tools in.
+- **Instructions:** the system [prompt](Glossary.md#prompt) and project files that say what the agent is for, what it may do, and when to stop. [Coding agents](Glossary.md#coding-agent) often read a file in the repository, such as `AGENTS.md` or `CLAUDE.md`, for project rules.
 
 ## The loop
 
@@ -48,7 +53,7 @@ A concrete run of a coding agent asked to fix a failing test:
 4. Model: "Run the tests again." → all pass.
 5. Model: "Done. Here is what I changed and why." → loop ends.
 
-Exit conditions are usually: the model says it is done, a step or cost limit is reached, an error occurs, or a person stops it. Without limits, a confused agent can loop for a long time, and every turn costs tokens. Anthropic measured that its agents "typically use about 4× more tokens than chat interactions" ([Anthropic, multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system), June 2025, checked 2026-10-28).
+Exit conditions are usually: the model says it is done, a step or cost limit is reached, an error occurs, or a person stops it. Without limits, a confused agent can loop for a long time, and every turn costs [tokens](Glossary.md#token). Anthropic measured that its agents "typically use about 4× more tokens than chat interactions" ([Anthropic, multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system), June 2025, checked 2026-10-28).
 
 ## Levels of autonomy
 
@@ -64,7 +69,7 @@ In practice, coding agents expose this as permission settings. A simplified ladd
 | Autonomous in a sandbox | Anything inside an isolated container or VM, no access to your real accounts | Cloud agents, CI runners |
 | Autonomous with real credentials | Deploy, pay, email, change production | Only with tight scopes and spend limits |
 
-The ladder is our summary, not a standard. Each step up saves human time and raises the cost of a mistake, so the right level depends on what the tools can reach. The [security page](security.md#tool-permissions) covers how to set it.
+The ladder is our summary, not a standard. Each step up saves human time and raises the cost of a mistake, so the right level depends on what the tools can reach. The [security page](Security-for-AI-apps.md#tool-permissions) covers how to set it.
 
 ## When an agent is the wrong tool
 
@@ -75,10 +80,16 @@ The ladder is our summary, not a standard. Each step up saves human time and rai
 
 ## Related pages
 
-- [Do agents talk to each other?](multi-agent-systems.md): multi-agent patterns, MCP, A2A
-- [Ways to use AI](ways-to-use-ai.md): where you meet agents (coding CLIs, IDEs, SDKs)
-- [Security](security.md): prompt injection and tool permissions
-- [Glossary](glossary.md)
+- [Do agents talk to each other?](Multi-agent-systems.md): multi-agent patterns, MCP, A2A
+- [Ways to use AI](Ways-to-use-AI.md): where you meet agents (coding CLIs, IDEs, SDKs)
+- [Security](Security-for-AI-apps.md): prompt injection and tool permissions
+- [Glossary](Glossary.md)
+
+## See also
+
+<!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [Agent SDK](Glossary.md#agent-sdk), [Chatbot](Glossary.md#chatbot), [Cloud](Glossary.md#cloud), [Coding agent](Glossary.md#coding-agent), [Container](Glossary.md#container), [Deploy](Glossary.md#deploy), [LLM](Glossary.md#llm), [MCP (Model Context Protocol)](Glossary.md#mcp-model-context-protocol), [Model](Glossary.md#model), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [System prompt](Glossary.md#system-prompt), [Token](Glossary.md#token), [Tool](Glossary.md#tool), [Workflow](Glossary.md#workflow).
+<!-- SEEALSO:END -->
 
 ## Sources
 
@@ -93,4 +104,4 @@ All checked on 2026-10-28.
 
 ---
 
-Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](../CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](../LICENSE).
+Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).

@@ -1,14 +1,19 @@
 ---
 title: "AI providers and models: who makes what, and how to choose"
-description: "The main model makers as of October 2026, open-weight vs closed, how model names and versions work, and how to pick one."
-category: Foundations
-tags: [providers, models, open-weight, costs]
+description: "The main model makers as of October 2026, open-weight vs closed, where to get them, and how to pick one."
+category: Models and providers
+tags: [models, providers]
+order: 1
 checked: 2026-10-28
 ---
 
+<!-- NAV:START -->
+[Home](README.md) › [Models and providers](Category-Models-and-providers.md) · Tags: [models](Tag-models.md), [providers](Tag-providers.md)
+<!-- NAV:END -->
+
 # AI providers and models: who makes what, and how to choose
 
-**A handful of companies train the leading models; you can reach most of them through their own API, through the big cloud platforms, or, for open-weight models, by downloading and running them yourself.** Line-ups change every few months, so every fact below carries the date it was checked: 2026-10-28. Treat the names as a snapshot and confirm on the linked page before you build.
+**A handful of companies train the leading [models](Glossary.md#model); you can reach most of them through their own [API](Glossary.md#api), through the big [cloud](Glossary.md#cloud) platforms, or, for [open-weight models](Glossary.md#open-weight-model), by downloading and running them yourself.** Line-ups change every few months, so every fact below carries the date it was checked: 2026-10-28. Treat the names as a [snapshot](Glossary.md#snapshot) and confirm on the linked page before you build.
 
 ## Who makes what (snapshot, 2026-10-28)
 
@@ -34,17 +39,17 @@ Two families are hard to place in one row:
 
 ## Closed vs open-weight models
 
-**A closed model runs only on its maker's servers (or a cloud partner's) and you pay per token; an open-weight model you can download and run wherever you like, paying for the hardware instead.**
+**A closed model runs only on its maker's servers (or a cloud partner's) and you pay per [token](Glossary.md#token); an open-weight model you can download and run wherever you like, paying for the hardware instead.**
 
 | | Closed (API) | Open-weight |
 |---|---|---|
 | Access | API key, per token | Download, for example from the [Hugging Face Hub](https://huggingface.co/docs/hub/models-the-hub) |
-| Where data goes | To the provider (see [data protection](data-protection.md)) | Wherever you run it, including your own servers |
-| Effort | None beyond the API call | You host it, on GPUs for larger models (see [the cloud](cloud-for-ai-apps.md#3-running-a-model-yourself-on-gpus)) |
+| Where data goes | To the provider (see [data protection](Data-protection.md)) | Wherever you run it, including your own servers |
+| Effort | None beyond the API call | You host it, on GPUs for larger models (see [the cloud](Cloud-for-AI-apps.md#3-running-a-model-yourself-on-gpus)) |
 | Customizing | Prompts; fine-tuning only where offered | Fine-tuning and modification, within the licence |
 | Who else serves it | The maker and its cloud partners | Many hosts offer open models by API too |
 
-You can also use open-weight models without running them: many providers and cloud platforms serve them by API. Mistral's own platform, for example, lists third-party models such as DeepSeek V4.1 Flash alongside its own ([Mistral models](https://docs.mistral.ai/getting-started/models/models_overview/), checked 2026-10-28).
+You can also use open-weight models without running them: many [providers](Glossary.md#provider) and cloud platforms serve them by API. Mistral's own platform, for example, lists third-party models such as DeepSeek V4.1 Flash alongside its own ([Mistral models](https://docs.mistral.ai/getting-started/models/models_overview/), checked 2026-10-28).
 
 ## Where you can get them
 
@@ -54,41 +59,14 @@ The same model on two platforms can differ in price, regions, features, data ter
 
 ## How model names and versions work
 
-**A model name usually has three parts: a family (Claude, GPT, Gemini), a generation number, and a size or speed tier; the exact ID you send in code may also pin a dated snapshot.**
+**A model name usually combines a family, a generation number and a tier; in production, send a fixed model ID and upgrade on purpose.** Tiers, snapshots, aliases and retirement dates are explained on [Model names and versions](Model-names-and-versions.md).
 
-**Tiers.** Each vendor sells bigger, slower, pricier models and smaller, faster, cheaper ones under its own names (all from the models pages above, checked 2026-10-28):
-
-| Vendor | Tier names, most capable to fastest |
-|---|---|
-| Anthropic | Fable, Opus, Sonnet, Haiku |
-| OpenAI | Astra, Sol, Terra, Luna |
-| Google Gemini | Pro, Flash, Flash-Lite (where Gemini 4 Argon fits is not stated on the page) |
-| Alibaba Qwen | Max, Plus, Flash |
-
-**Snapshots and aliases.** In code you send a model ID. Some IDs are fixed snapshots; others are aliases that move to newer versions:
-
-- **Anthropic:** "Starting with the Claude 4.6 generation, model IDs use a dateless format", and such an ID "is not an alias. It is the snapshot." Older models use dated IDs such as `claude-sonnet-4-5-20250929` ([Model IDs and versioning](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions)).
-- **OpenAI:** "Snapshots let you lock in a specific version of the model so that performance and behavior remain consistent"; older snapshots carry dates such as `gpt-4.1-2025-04-14` ([OpenAI models](https://developers.openai.com/api/docs/models)).
-- **Google Gemini:** a *stable* name "Points to a specific stable model. Stable models usually don't change"; *preview* "may be used for production"; *latest* points to the newest release and changes over time; *experimental* models are not for production ([Gemini models](https://ai.google.dev/gemini-api/docs/models)).
-- **Mistral:** IDs follow "a model-name-major-minor format, for example mistral-medium-3-5", and `-latest` aliases exist, with a warning: "Using an alias may expose you to silent updates in model behavior and pricing" ([Mistral model lifecycle](https://docs.mistral.ai/inference/model-lifecycle)).
-- **xAI:** a bare model name is "aliased to the latest stable version", `-latest` to the latest version, and a dated name "will not be updated" ([xAI models](https://docs.x.ai/docs/models)).
-
-All checked 2026-10-28. **In production, pin a fixed ID** and upgrade on purpose, after testing.
-
-**Retirement.** Models are retired on a schedule, and calls to a retired ID fail. Published notice periods (checked 2026-10-28):
-
-- Anthropic: "at least 60 days' notice before model retirement for publicly released models" ([deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations)).
-- Mistral: 6 months for generally available models, 1 month for Labs, preview and third-party models; after retirement, "requests to its identifiers fail with a 404 error" ([model lifecycle](https://docs.mistral.ai/inference/model-lifecycle)).
-- Google Vertex AI: "gives you at least 45 days to migrate" ([model versions](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)).
-- OpenAI publishes its notice periods and shutdown dates on its [deprecations page](https://developers.openai.com/api/docs/deprecations).
-
-Put the model ID in configuration, not scattered through code, and subscribe to your provider's deprecation notices.
 
 ## How to choose
 
 **Start from your task and your constraints, test two or three candidates on your own examples, and pick the cheapest one that passes.** Public rankings help you shortlist; only your own tests tell you which is good enough for you.
 
-1. **Constraints first.** Must the data stay in the EU, or on your servers? Does your company already buy from one cloud? Do you need an open licence? These can eliminate most options before any test. See [data protection](data-protection.md).
+1. **Constraints first.** Must the data stay in the EU, or on your servers? Does your company already buy from one cloud? Do you need an open licence? These can eliminate most options before any test. See [data protection](Data-protection.md).
 2. **Shortlist by tier, not brand.** For classification and extraction, try the small fast tiers first. For long agentic coding or hard reasoning, the large tiers. Anthropic's own page, for instance, recommends its smallest current model "For high-volume, latency-sensitive tasks such as classification, extraction, and routing" ([models overview](https://platform.claude.com/docs/en/models/overview)).
 3. **Test on 20 to 50 real examples** from your app, with a clear pass/fail check.
 4. **Compare cost per task, not per token.** A cheaper model that needs two retries may cost more. Prices are on each vendor's pricing page ([Anthropic](https://platform.claude.com/docs/en/about-claude/pricing), [OpenAI](https://developers.openai.com/api/docs/pricing), [Google](https://ai.google.dev/gemini-api/docs/pricing), [Mistral](https://docs.mistral.ai/inference/pricing)).
@@ -103,10 +81,17 @@ Put the model ID in configuration, not scattered through code, and subscribe to 
 
 ## Related pages
 
-- [What generative AI is](generative-ai.md): tokens and costs
-- [Ways to use AI](ways-to-use-ai.md): API, chat app, coding agent
-- [Data protection](data-protection.md): vendor terms compared
-- [Glossary](glossary.md)
+- [What generative AI is](Generative-AI.md): tokens and costs
+- [Ways to use AI](Ways-to-use-AI.md): API, chat app, coding agent
+- [Model names and versions](Model-names-and-versions.md)
+- [Data protection by vendor](Data-protection-by-vendor.md): vendor terms compared
+- [Glossary](Glossary.md)
+
+## See also
+
+<!-- SEEALSO:START -->
+Glossary terms used on this page: [API](Glossary.md#api), [API key](Glossary.md#api-key), [Cloud](Glossary.md#cloud), [Fine-tuning](Glossary.md#fine-tuning), [GPU](Glossary.md#gpu), [Host](Glossary.md#host), [Model](Glossary.md#model), [Open-weight model](Glossary.md#open-weight-model), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [Snapshot](Glossary.md#snapshot), [Token](Glossary.md#token).
+<!-- SEEALSO:END -->
 
 ## Sources
 
@@ -128,4 +113,4 @@ All checked on 2026-10-28. Vendor pages are listed in the tables and paragraphs 
 
 ---
 
-Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Model line-ups change often: if a name here is out of date, please [open an issue](../CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](../LICENSE).
+Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Model line-ups change often: if a name here is out of date, please [open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).

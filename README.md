@@ -1,78 +1,68 @@
-# Deploying AI apps
+# AI Builders Wiki
 
-**A practical, sourced, vendor-neutral wiki about building and running apps that use AI: what the pieces are, how agents work, which providers exist, what they do with your data, and how to get an AI app online safely.** It is written for developers and for founders who build with AI without being full-time programmers.
-
-Each page answers one question in its first sentence, then gives context, examples and caveats. Every claim about a vendor or product links to that vendor's own page, with the date it was checked.
+**A practical, sourced, vendor-neutral wiki for people who build with AI: what the pieces are, how agents work, who makes the models, what vendors do with your data, and how to get an AI app online safely.** It is written for developers, and for founders who build with AI without being full-time programmers.
 
 **Who makes it.** This wiki is made by [Hal9](https://hal9.com). Hal9 also runs [Cloudish](https://cloudish.ai), a cloud host where AI agents deploy apps. Cloudish appears on a few pages as a disclosed example, next to other hosts; it is never a recommendation. If you think a page favours anyone unfairly, please [open an issue](CONTRIBUTING.md#report-a-mistake).
 
-**How it is written.** Pages are drafted with AI assistance, then checked against their sources; each page says when. Facts in this field change monthly, model names especially. Nothing here is legal or security advice.
+**How it is written.** Pages are drafted with AI assistance, then checked against their sources; each page says when. Every claim about a vendor links to that vendor's own page, with the date checked. Facts in this field change monthly, model names especially. Nothing here is legal or security advice.
 
 ## Start here
 
-New to the subject? Read in this order: [Glossary](pages/glossary.md) → [What generative AI is](pages/generative-ai.md) → [What an AI agent is](pages/ai-agents.md) → [From idea to deployed AI app](pages/idea-to-deployed-app.md).
+New to the subject? Read in this order:
+
+1. [Glossary](Glossary.md): the basic words
+2. [What generative AI is](Generative-AI.md)
+3. [What an AI agent is](AI-agent.md)
+4. [From idea to deployed AI app](Idea-to-deployed-AI-app.md)
+
+## All pages
+
+Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 
 <!-- INDEX:START -->
 
-## Pages by category
+### [Foundations](Category-Foundations.md)
 
-### Agents
+- [Glossary: the basic words](Glossary.md): The core terms a newcomer meets, each defined in plain words, with links to the pages that go deeper.
+- [What generative AI is, and why people build with it](Generative-AI.md): What the models do, what developers and founders use them for, where they fail, and how the bill works.
+- [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md): The surfaces through which people and programs use models, and what each one is for.
+- [The cloud, for AI apps](Cloud-for-AI-apps.md): Three different jobs: hosting your app, calling a model, running a model on GPUs. And serverless vs containers vs VMs.
 
-- [What an AI agent is](pages/ai-agents.md): How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy.
-- [Do AI agents work with each other? How?](pages/multi-agent-systems.md): Multi-agent patterns, handoffs, MCP and A2A, and what the evidence says works.
+### [Agents](Category-Agents.md)
 
-### Foundations
+- [What an AI agent is](AI-agent.md): How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy.
+- [Multi-agent systems: do AI agents work with each other?](Multi-agent-systems.md): Manager and helpers, handoffs, cross-organization agents, frameworks, and what the evidence says works.
+- [Agent protocols: MCP and A2A](Agent-protocols-MCP-and-A2A.md): What the Model Context Protocol and the Agent2Agent protocol are, how they differ, and their status as of October 2026.
 
-- [The cloud, for AI apps](pages/cloud-for-ai-apps.md): Three different jobs: hosting your app, calling a model, running a model on GPUs. And serverless vs containers vs VMs.
-- [What generative AI is, and why people build with it](pages/generative-ai.md): What the models do, what developers and founders use them for, where they fail, and how the bill works.
-- [Glossary: the basic words](pages/glossary.md): The core terms a newcomer meets, each defined in plain words, with links to the pages that go deeper.
-- [AI providers and models: who makes what, and how to choose](pages/providers-and-models.md): The main model makers as of October 2026, open-weight vs closed, how model names and versions work, and how to pick one.
-- [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](pages/ways-to-use-ai.md): The surfaces through which people and programs use models, and what each one is for.
+### [Models and providers](Category-Models-and-providers.md)
 
-### Guides
+- [AI providers and models: who makes what, and how to choose](AI-providers-and-models.md): The main model makers as of October 2026, open-weight vs closed, where to get them, and how to pick one.
+- [Model names and versions](Model-names-and-versions.md): How model families, tiers, snapshots, aliases and retirement dates work, vendor by vendor.
 
-- [From idea to deployed AI app: a typical workflow](pages/idea-to-deployed-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+### [Security and data](Category-Security-and-data.md)
 
-### Operations
+- [Security for AI apps and agents](Security-for-AI-apps.md): The risks that are specific to apps that call models and to agents that act: prompt injection, secrets, scopes, tool permissions, supply chain, runaway costs.
+- [Data protection when you use AI](Data-protection.md): The five questions to ask any AI vendor, consumer vs business terms, and what to do in your own app.
+- [Data protection by vendor](Data-protection-by-vendor.md): Training defaults, opt-outs, retention, zero data retention and data location for each major AI vendor, every cell sourced.
 
-- [Data protection: what AI vendors do with your data](pages/data-protection.md): Training by default, retention, consumer vs business terms, opt-outs, zero data retention and data location, compared vendor by vendor.
-- [Security for AI apps and agents](pages/security.md): The risks that are specific to apps that call models and to agents that act: prompt injection, secrets, scopes, tool permissions, supply chain, runaway costs.
+### [Guides](Category-Guides.md)
 
-## Tags
+- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 
-- **a2a**: [Do AI agents work with each other? How?](pages/multi-agent-systems.md)
-- **agents**: [What an AI agent is](pages/ai-agents.md), [Do AI agents work with each other? How?](pages/multi-agent-systems.md), [Security for AI apps and agents](pages/security.md), [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](pages/ways-to-use-ai.md)
-- **api**: [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](pages/ways-to-use-ai.md)
-- **autonomy**: [What an AI agent is](pages/ai-agents.md)
-- **cloud**: [The cloud, for AI apps](pages/cloud-for-ai-apps.md)
-- **coding-agents**: [From idea to deployed AI app: a typical workflow](pages/idea-to-deployed-app.md), [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](pages/ways-to-use-ai.md)
-- **costs**: [What generative AI is, and why people build with it](pages/generative-ai.md), [From idea to deployed AI app: a typical workflow](pages/idea-to-deployed-app.md), [AI providers and models: who makes what, and how to choose](pages/providers-and-models.md)
-- **data-protection**: [Data protection: what AI vendors do with your data](pages/data-protection.md)
-- **deploy**: [From idea to deployed AI app: a typical workflow](pages/idea-to-deployed-app.md)
-- **eu**: [Data protection: what AI vendors do with your data](pages/data-protection.md)
-- **generative-ai**: [What generative AI is, and why people build with it](pages/generative-ai.md)
-- **glossary**: [Glossary: the basic words](pages/glossary.md)
-- **gpu**: [The cloud, for AI apps](pages/cloud-for-ai-apps.md)
-- **hosting**: [The cloud, for AI apps](pages/cloud-for-ai-apps.md), [From idea to deployed AI app: a typical workflow](pages/idea-to-deployed-app.md)
-- **llm**: [What generative AI is, and why people build with it](pages/generative-ai.md)
-- **mcp**: [Do AI agents work with each other? How?](pages/multi-agent-systems.md), [Security for AI apps and agents](pages/security.md)
-- **models**: [AI providers and models: who makes what, and how to choose](pages/providers-and-models.md)
-- **multi-agent**: [Do AI agents work with each other? How?](pages/multi-agent-systems.md)
-- **open-weight**: [AI providers and models: who makes what, and how to choose](pages/providers-and-models.md)
-- **prompt-injection**: [Security for AI apps and agents](pages/security.md)
-- **providers**: [Data protection: what AI vendors do with your data](pages/data-protection.md), [AI providers and models: who makes what, and how to choose](pages/providers-and-models.md)
-- **retention**: [Data protection: what AI vendors do with your data](pages/data-protection.md)
-- **secrets**: [From idea to deployed AI app: a typical workflow](pages/idea-to-deployed-app.md), [Security for AI apps and agents](pages/security.md)
-- **security**: [Security for AI apps and agents](pages/security.md)
-- **serverless**: [The cloud, for AI apps](pages/cloud-for-ai-apps.md)
-- **streaming**: [The cloud, for AI apps](pages/cloud-for-ai-apps.md)
-- **tokens**: [What generative AI is, and why people build with it](pages/generative-ai.md)
-- **tools**: [What an AI agent is](pages/ai-agents.md), [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](pages/ways-to-use-ai.md)
+### Tags
+
+[agents](Tag-agents.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md)
 
 <!-- INDEX:END -->
 
+## How this wiki works
+
+- **Pages** are Markdown files at the top level of the repository, named in wiki style (`AI-agent.md`). Each starts with a breadcrumb, answers its question in the first sentence, and ends with *Related pages*, *See also*, *Sources* and a footer.
+- **Categories and tags** live in each page's front matter. They were chosen from the pages as they were written, and will change.
+- **Navigation** (this index, the sidebar, the category and tag pages, the breadcrumbs and the glossary links under *See also*) is generated by `python3 scripts/build_wiki.py`, which also checks that every internal link resolves.
+
 ## Contributing and licence
 
-Corrections are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). The index above is generated from each page's front matter by `python3 scripts/build_index.py`, which also checks that every internal link resolves.
+Corrections are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Text is licensed under [CC BY 4.0](LICENSE). The index script is under the MIT licence.
+Text is licensed under [CC BY 4.0](LICENSE). The build script is under the MIT licence.

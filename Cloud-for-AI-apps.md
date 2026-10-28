@@ -2,19 +2,24 @@
 title: "The cloud, for AI apps"
 description: "Three different jobs: hosting your app, calling a model, running a model on GPUs. And serverless vs containers vs VMs."
 category: Foundations
-tags: [cloud, hosting, gpu, serverless, streaming]
+tags: [hosting, costs]
+order: 4
 checked: 2026-10-28
 ---
 
+<!-- NAV:START -->
+[Home](README.md) › [Foundations](Category-Foundations.md) · Tags: [hosting](Tag-hosting.md), [costs](Tag-costs.md)
+<!-- NAV:END -->
+
 # The cloud, for AI apps
 
-**For an AI app, "the cloud" usually means three separate things: a place that runs your app, a provider that runs the model your app calls, and, only sometimes, GPUs where you run a model yourself.** Most small AI apps need the first two and never touch a GPU.
+**For an AI app, "the cloud" usually means three separate things: a place that runs your app, a [provider](Glossary.md#provider) that runs the [model](Glossary.md#model) your app calls, and, only sometimes, [GPUs](Glossary.md#gpu) where you run a model yourself.** Most small AI apps need the first two and never touch a GPU.
 
 *Disclosure: this wiki is made by Hal9, which also runs Cloudish, one of the hosts used as an example below.*
 
 ## What the cloud is
 
-**Cloud computing is renting computers, storage and software over the internet, on demand, instead of owning them.** The standard definition, from NIST: "a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources" ([NIST SP 800-145](https://csrc.nist.gov/pubs/sp/800/145/final), 2011, checked 2026-10-28).
+**[Cloud](Glossary.md#cloud) computing is renting computers, storage and software over the internet, on demand, instead of owning them.** The standard definition, from NIST: "a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources" ([NIST SP 800-145](https://csrc.nist.gov/pubs/sp/800/145/final), 2011, checked 2026-10-28).
 
 NIST names three service models, still the common vocabulary:
 
@@ -24,7 +29,7 @@ NIST names three service models, still the common vocabulary:
 | PaaS (platform as a service) | A place to deploy your code | Your code and its settings | A host that runs your container or function |
 | IaaS (infrastructure as a service) | Raw virtual machines, disks, networks | Almost everything, including the operating system | A VM with a GPU where you install a model server |
 
-A model API (you send text, you get text back, you pay per [token](glossary.md#token)) sits between these: you use it like SaaS from your code. Vendors call it "model as a service" or simply "the API".
+A model [API](Glossary.md#api) (you send text, you get text back, you pay per [token](Glossary.md#token)) sits between these: you use it like SaaS from your code. Vendors call it "model as a service" or simply "the API".
 
 ## Three jobs, three bills
 
@@ -32,7 +37,7 @@ A model API (you send text, you get text back, you pay per [token](glossary.md#t
 
 ### 1. Hosting the app
 
-Your code (the web page, the backend that holds your API key, the bot, the [MCP server](multi-agent-systems.md#mcp-connecting-agents-to-tools)) has to run somewhere with a public address. This is ordinary web hosting. You choose between the shapes in [serverless, containers or VMs](#serverless-containers-or-vms) below.
+Your code (the web page, the backend that holds your [API key](Glossary.md#api-key), the bot, the [MCP server](Agent-protocols-MCP-and-A2A.md#mcp-connecting-agents-to-tools)) has to run somewhere with a public address. This is ordinary web hosting. You choose between the shapes in [serverless, containers or VMs](#serverless-containers-or-vms) below.
 
 ### 2. Calling a model
 
@@ -42,22 +47,22 @@ Your backend sends requests to a model provider's API: Anthropic, OpenAI, Google
 - **Microsoft Foundry** (formerly Azure AI Foundry): "unifies agents, models, and tools under a single management grouping" ([Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry)).
 - **Google Cloud**: its AI platform docs, at the former Vertex AI address, now present "Gemini Enterprise Agent Platform" ([Google Cloud docs](https://docs.cloud.google.com/vertex-ai/docs)).
 
-Teams use these when they already have a contract, data-location requirements or billing with that cloud. See [providers and models](providers-and-models.md) and [data protection](data-protection.md).
+Teams use these when they already have a contract, data-location requirements or billing with that cloud. See [providers and models](AI-providers-and-models.md) and [data protection](Data-protection.md).
 
 ### 3. Running a model yourself, on GPUs
 
-You only need this if you run an [open-weight model](glossary.md#open-weight-model) yourself: for privacy, cost at high volume, a fine-tuned model, or a model no API offers. Options range from managed to raw (descriptions are the vendors' own, checked 2026-10-28):
+You only need this if you run an [open-weight model](Glossary.md#open-weight-model) yourself: for privacy, cost at high volume, a fine-tuned model, or a model no API offers. Options range from managed to raw (descriptions are the vendors' own, checked 2026-10-28):
 
 - **Managed model endpoints:** Hugging Face Inference Endpoints, "a managed service to deploy your AI model to production" ([docs](https://huggingface.co/docs/inference-endpoints/index)).
 - **GPU demo apps:** a Hugging Face Space can be upgraded "to use a GPU accelerator", billed "by the minute" ([docs](https://huggingface.co/docs/hub/spaces-gpus)).
-- **Serverless GPU:** for example Modal ([docs](https://modal.com/docs/guide)) or Runpod Serverless, "Pay-as-you-go compute for AI models and compute-intensive workloads" ([docs](https://docs.runpod.io/serverless/overview)). You pay while a request runs; the first request after idle can be slow while the model loads.
+- **[Serverless](Glossary.md#serverless) GPU:** for example Modal ([docs](https://modal.com/docs/guide)) or Runpod Serverless, "Pay-as-you-go compute for AI models and compute-intensive workloads" ([docs](https://docs.runpod.io/serverless/overview)). You pay while a request runs; the first request after idle can be slow while the model loads.
 - **GPU virtual machines** from any large cloud: most control, most work, and you pay while the machine is on, used or not.
 
 GPUs are the expensive part of AI infrastructure. Before renting one, check whether a hosted API for the same or a similar model would do.
 
 ## Serverless, containers or VMs
 
-**The shape of your app decides where it can run: short request-and-response code fits serverless functions; anything that streams for long, runs all day or keeps files fits containers or VMs better.**
+**The shape of your app decides where it can run: short request-and-response code fits serverless functions; anything that streams for long, runs all day or keeps files fits [containers](Glossary.md#container) or VMs better.**
 
 | Shape | What you deploy | Runs | Good for | Watch out for |
 |---|---|---|---|---|
@@ -67,7 +72,7 @@ GPUs are the expensive part of AI infrastructure. Before renting one, check whet
 
 ### Time limits and streaming
 
-**AI responses are slow and are usually streamed, so check your host's maximum request time before you choose it.** Both Anthropic and OpenAI stream answers with server-sent events (SSE): Anthropic lets you "set `"stream": true` to incrementally stream the response using server-sent events (SSE)" ([Anthropic, Streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)); OpenAI's guide covers "HTTP streaming (`stream=true`) over server-sent events (SSE)" ([OpenAI, Streaming](https://developers.openai.com/api/docs/guides/streaming-responses)). An agent that works for several minutes needs the connection, or a background job, to last that long.
+**AI responses are slow and are usually streamed, so check your [host](Glossary.md#host)'s maximum request time before you choose it.** Both Anthropic and OpenAI stream answers with server-sent events (SSE): Anthropic lets you "set `"stream": true` to incrementally stream the response using server-sent events (SSE)" ([Anthropic, Streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)); OpenAI's guide covers "HTTP streaming (`stream=true`) over server-sent events (SSE)" ([OpenAI, Streaming](https://developers.openai.com/api/docs/guides/streaming-responses)). An [agent](Glossary.md#agent) that works for several minutes needs the connection, or a background job, to last that long.
 
 Some published limits, checked 2026-10-28:
 
@@ -81,7 +86,7 @@ Limits change and have exceptions (plans, beta options, async invocations): read
 
 ### A disclosed example: a long-lived container
 
-Hosts that run containers without a per-request limit suit bots, agents and MCP servers that hold connections open. Cloudish, the host run by Hal9, works this way: "Cloudish deploys apps as long-lived containers with a public URL", and apps can stay on or sleep when idle and wake on the next request ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Many other hosts offer containers too; the point is the shape, not the vendor.
+Hosts that run containers without a per-request limit suit bots, agents and [MCP](Glossary.md#mcp-model-context-protocol) servers that hold connections open. Cloudish, the host run by Hal9, works this way: "Cloudish deploys apps as long-lived containers with a public URL", and apps can stay on or sleep when idle and wake on the next request ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Many other hosts offer containers too; the point is the shape, not the vendor.
 
 ## Which setup for which app
 
@@ -96,11 +101,17 @@ Hosts that run containers without a per-request limit suit bots, agents and MCP 
 
 ## Related pages
 
-- [From idea to deployed AI app](idea-to-deployed-app.md): the concrete steps
-- [Security](security.md): keys, tokens, permissions
-- [Data protection](data-protection.md): where your users' data goes
-- [Providers and models](providers-and-models.md)
-- [Glossary](glossary.md)
+- [From idea to deployed AI app](Idea-to-deployed-AI-app.md): the concrete steps
+- [Security](Security-for-AI-apps.md): keys, tokens, permissions
+- [Data protection](Data-protection.md): where your users' data goes
+- [Providers and models](AI-providers-and-models.md)
+- [Glossary](Glossary.md)
+
+## See also
+
+<!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [API](Glossary.md#api), [API key](Glossary.md#api-key), [Chatbot](Glossary.md#chatbot), [Cloud](Glossary.md#cloud), [Container](Glossary.md#container), [Deploy](Glossary.md#deploy), [GPU](Glossary.md#gpu), [Host](Glossary.md#host), [Inference](Glossary.md#inference), [MCP (Model Context Protocol)](Glossary.md#mcp-model-context-protocol), [Model](Glossary.md#model), [Open-weight model](Glossary.md#open-weight-model), [Provider](Glossary.md#provider), [Serverless](Glossary.md#serverless), [Streaming](Glossary.md#streaming), [Token](Glossary.md#token), [Tool](Glossary.md#tool).
+<!-- SEEALSO:END -->
 
 ## Sources
 
@@ -120,4 +131,4 @@ All checked on 2026-10-28.
 
 ---
 
-Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](../CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](../LICENSE).
+Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).
