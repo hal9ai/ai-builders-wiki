@@ -33,6 +33,7 @@ On every pull request, a check runs `scripts/build_wiki.py` and fails if a link 
 - **Sources for vendor facts.** Every claim about a vendor or product links to that vendor's own page, with the date it was checked (`checked YYYY-MM-DD`). No source, no claim.
 - **No invented numbers.** If a number is not on a source page, leave it out.
 - **Vendor-neutral.** Cloudish (made by Hal9, which started this wiki) may appear as a disclosed example where relevant, never as a recommendation.
+- **AI help is fine, checking is yours.** You may draft with an AI assistant, but you check every claim against its source yourself. Say so in the pull request. When you check a page against its sources, add to its footer: `Last checked against the sources on YYYY-MM-DD.`
 - **Nothing personal.** No names of individual people at Hal9 or elsewhere, except authors of cited work.
 
 ## Page template
@@ -66,7 +67,7 @@ checked: 2026-10-28
 <!-- SEEALSO:END -->
 ## Sources
 ---
-(footer: AI help and date with the sources link, how to report a mistake, licence)
+(footer: how the page was written and when it was last checked against the sources, how to fix it, licence)
 ```
 
 Categories and tags are descriptive and will change. Reuse an existing one when it fits; add a new one when it does not. `order` sets the position within the category.

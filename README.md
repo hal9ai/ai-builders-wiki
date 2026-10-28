@@ -2,7 +2,7 @@
 
 **A practical, sourced, vendor-neutral wiki for people who build with AI: what the pieces are, how agents work, who makes the models, what vendors do with your data, and how to get an AI app online safely.** It is written for developers, and for founders who build with AI without being full-time programmers.
 
-**How it is written.** Pages are drafted with AI assistance, then checked against their sources; each page says when. Every claim about a vendor links to that vendor's own page, with the date checked. Facts in this field change monthly, model names especially. Nothing here is legal or security advice.
+**How it is written.** Anyone can write here, with or without AI help. Every claim about a vendor links to that vendor's own page, with the date it was checked, and each page's footer says how it was written and when it was last checked. Facts in this field change monthly, model names especially. Nothing here is legal or security advice.
 
 ## Start here
 

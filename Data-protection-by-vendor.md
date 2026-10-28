@@ -106,4 +106,4 @@ All vendor pages are linked in the table and in the details above, and were chec
 
 ---
 
-Written with AI assistance and checked against the vendor pages linked above, listed under [sources](#sources), on 2026-10-28. Not legal advice. Found a mistake or a policy change? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).
+First version written with AI assistance and checked against the vendor pages listed under [sources](#sources) on 2026-10-28. Not legal advice. Found a mistake or a policy change? [Fix it or open an issue](CONTRIBUTING.md). Text licensed under [CC BY 4.0](LICENSE).

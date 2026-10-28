@@ -111,4 +111,4 @@ All checked on 2026-10-28.
 
 ---
 
-Written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Open an issue](CONTRIBUTING.md#report-a-mistake). Text licensed under [CC BY 4.0](LICENSE).
+First version written with AI assistance and checked against the [sources](#sources) on 2026-10-28. Found a mistake? [Fix it or open an issue](CONTRIBUTING.md). Text licensed under [CC BY 4.0](LICENSE).
