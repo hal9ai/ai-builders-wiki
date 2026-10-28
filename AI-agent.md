@@ -88,7 +88,7 @@ The ladder is our summary, not a standard. Each step up saves human time and rai
 ## See also
 
 <!-- SEEALSO:START -->
-Glossary terms used on this page: [Agent](Glossary.md#agent), [Agent SDK](Glossary.md#agent-sdk), [Chatbot](Glossary.md#chatbot), [Cloud](Glossary.md#cloud), [Coding agent](Glossary.md#coding-agent), [Container](Glossary.md#container), [Deploy](Glossary.md#deploy), [LLM](Glossary.md#llm), [MCP (Model Context Protocol)](Glossary.md#mcp-model-context-protocol), [Model](Glossary.md#model), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [System prompt](Glossary.md#system-prompt), [Token](Glossary.md#token), [Tool](Glossary.md#tool), [Workflow](Glossary.md#workflow).
+Glossary terms used on this page: [Agent](Glossary.md#agent), [Agent SDK](Glossary.md#agent-sdk), [Chatbot](Glossary.md#chatbot), [Cloud](Glossary.md#cloud), [Coding agent](Glossary.md#coding-agent), [Container](Glossary.md#container), [Deploy](Glossary.md#deploy), [LLM](Glossary.md#llm), [MCP (Model Context Protocol)](Glossary.md#mcp-model-context-protocol), [Model](Glossary.md#model), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [Token](Glossary.md#token), [Tool](Glossary.md#tool), [Workflow](Glossary.md#workflow).
 <!-- SEEALSO:END -->
 
 ## Sources

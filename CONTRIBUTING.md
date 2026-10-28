@@ -25,25 +25,50 @@ Pull requests are welcome for small fixes. For a new page or a large rewrite, op
 - **Vendor-neutral.** Cloudish (run by Hal9, which makes this wiki) may appear as a disclosed example where relevant, never as a recommendation.
 - **Nothing personal.** No names of individual people at Hal9 or elsewhere, except authors of cited work.
 
-## Front matter
+## Page template
 
-Each page in `pages/` starts with:
+Pages are Markdown files at the top level, named in wiki style: words separated by hyphens, first letter capital (`AI-agent.md`, `Data-protection-by-vendor.md`). Keep pages short and focused; when a topic grows, split it into linked pages.
 
-```yaml
+Every page follows the same template:
+
+```markdown
 ---
 title: "What an AI agent is"
-category: Concepts
-tags: [agents, tools]
+description: "One line for the index."
+category: Agents
+tags: [agents, basics]
+order: 1
 checked: 2026-10-28
 ---
+
+<!-- NAV:START -->
+<!-- NAV:END -->
+
+# What an AI agent is
+
+**One sentence that answers the question.** Context and caveats after.
+
+(body)
+
+## Related pages
+## See also
+<!-- SEEALSO:START -->
+<!-- SEEALSO:END -->
+## Sources
+---
+(footer: AI help and date with the sources link, how to report a mistake, licence)
 ```
 
-Categories and tags are descriptive and will change. Reuse an existing one when it fits; add a new one when it does not. After changing front matter, regenerate the index:
+Categories and tags are descriptive and will change. Reuse an existing one when it fits; add a new one when it does not. `order` sets the position within the category.
+
+Link the first use of a glossary term to its entry in [Glossary.md](Glossary.md). After adding a page or changing front matter, rebuild the navigation (Home index, `_Sidebar.md`, category and tag pages, breadcrumbs, *See also*) and check links:
 
 ```sh
-python3 scripts/build_index.py
+python3 scripts/build_wiki.py
 ```
+
+`python3 scripts/build_wiki.py --link-terms` also links the first plain use of each glossary term; review its diff before committing.
 
 ## Licence
 
-By contributing, you agree that your text is released under [CC BY 4.0](LICENSE). The index script is under the MIT licence (see its header).
+By contributing, you agree that your text is released under [CC BY 4.0](LICENSE). The build script is under the MIT licence (see its header).
