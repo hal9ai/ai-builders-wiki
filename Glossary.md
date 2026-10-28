@@ -193,7 +193,7 @@ All checked on 2026-10-28.
 
 - Anthropic, [Glossary](https://platform.claude.com/docs/en/about-claude/glossary)
 - OpenAI, [Key concepts](https://developers.openai.com/api/docs/concepts)
-- Facts about A2A and MCP: see the [sources of the agents page](Multi-agent-systems.md#sources)
+- Facts about A2A and MCP: see the [sources of the protocols page](Agent-protocols-MCP-and-A2A.md#sources)
 
 ---
 

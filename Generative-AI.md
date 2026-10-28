@@ -30,7 +30,7 @@ Two consequences follow from this design:
 
 ## What developers and entrepreneurs use it for
 
-**The most common use is writing and checking code.** In the 2025 Stack Overflow Developer Survey, "84% of respondents are using or planning to use AI tools in their development process" ([survey, 2025](https://survey.stackoverflow.co/2025/ai), checked 2026-10-28). In the 2026 edition, 73% of respondents who use coding assistants and [agents](Glossary.md#agent) use them daily ([survey, 2026](https://survey.stackoverflow.co/2026/ai), checked 2026-10-28).
+**The most common use is writing and checking code.** In the 2025 Stack Overflow Developer Survey, "84% of respondents are using or planning to use AI tools in their development process" ([survey, 2025](https://survey.stackoverflow.co/2025/ai), checked 2026-10-28). In the 2026 edition, 73% of respondents use coding assistants and [agents](Glossary.md#agent) daily ([survey, 2026](https://survey.stackoverflow.co/2026/ai), checked 2026-10-28).
 
 Beyond code, the uses that hold up well in practice share one trait: a person or a program can check the result.
 
