@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for helping. This wiki is only useful if it is correct, so corrections are the most valuable contribution.
+Thank you for helping. Anyone can contribute: corrections, updates, new pages and translations. The wiki was started by the team behind Cloudish, at Hal9, who review pull requests; it gets better the more people write in it. Because it is only useful if it is correct, corrections always come first.
 
 ## Report a mistake
 
@@ -14,7 +14,7 @@ If you are not sure something is wrong, open the issue anyway and say so.
 
 ## Propose a change
 
-Pull requests are welcome for small fixes. For a new page or a large rewrite, open an issue first so we can agree on scope.
+Pull requests are welcome: fixes, updated facts, new pages and translations. For a new page, check the index first so each question has one page; for a large rewrite, open an issue first so we can agree on scope.
 
 ## Rules for pages
 
@@ -22,7 +22,7 @@ Pull requests are welcome for small fixes. For a new page or a large rewrite, op
 - **Plain words.** Short paragraphs, examples, and the English tech terms people actually use (token, API key, logs, deploy).
 - **Sources for vendor facts.** Every claim about a vendor or product links to that vendor's own page, with the date it was checked (`checked YYYY-MM-DD`). No source, no claim.
 - **No invented numbers.** If a number is not on a source page, leave it out.
-- **Vendor-neutral.** Cloudish (run by Hal9, which makes this wiki) may appear as a disclosed example where relevant, never as a recommendation.
+- **Vendor-neutral.** Cloudish (made by Hal9, which started this wiki) may appear as a disclosed example where relevant, never as a recommendation.
 - **Nothing personal.** No names of individual people at Hal9 or elsewhere, except authors of cited work.
 
 ## Page template

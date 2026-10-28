@@ -15,8 +15,6 @@ checked: 2026-10-28
 
 **For an AI app, "the cloud" usually means three separate things: a place that runs your app, a [provider](Glossary.md#provider) that runs the [model](Glossary.md#model) your app calls, and, only sometimes, [GPUs](Glossary.md#gpu) where you run a model yourself.** Most small AI apps need the first two and never touch a GPU.
 
-*Disclosure: this wiki is made by Hal9, which also runs Cloudish, one of the hosts used as an example below.*
-
 ## What the cloud is
 
 **[Cloud](Glossary.md#cloud) computing is renting computers, storage and software over the internet, on demand, instead of owning them.** The standard definition, from NIST: "a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources" ([NIST SP 800-145](https://csrc.nist.gov/pubs/sp/800/145/final), 2011, checked 2026-10-28).
@@ -86,7 +84,7 @@ Limits change and have exceptions (plans, beta options, async invocations): read
 
 ### A disclosed example: a long-lived container
 
-Hosts that run containers without a per-request limit suit bots, agents and [MCP](Glossary.md#mcp-model-context-protocol) servers that hold connections open. Cloudish, the host run by Hal9, works this way: "Cloudish deploys apps as long-lived containers with a public URL", and apps can stay on or sleep when idle and wake on the next request ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Many other hosts offer containers too; the point is the shape, not the vendor.
+Hosts that run containers without a per-request limit suit bots, agents and [MCP](Glossary.md#mcp-model-context-protocol) servers that hold connections open. Cloudish (made by Hal9, which started this wiki) works this way: "Cloudish deploys apps as long-lived containers with a public URL", and apps can stay on or sleep when idle and wake on the next request ([Cloudish skill.md](https://cloudish.ai/skill.md?ref=cc-wiki), checked 2026-10-28). Many other hosts offer containers too; the point is the shape, not the vendor.
 
 ## Which setup for which app
 
@@ -127,7 +125,7 @@ All checked on 2026-10-28.
 - Runpod, [Serverless overview](https://docs.runpod.io/serverless/overview)
 - Anthropic, [Streaming messages](https://platform.claude.com/docs/en/build-with-claude/streaming)
 - OpenAI, [Streaming API responses](https://developers.openai.com/api/docs/guides/streaming-responses)
-- Cloudish, [skill.md](https://cloudish.ai/skill.md)
+- Cloudish, [skill.md](https://cloudish.ai/skill.md?ref=cc-wiki)
 
 ---
 

@@ -15,8 +15,6 @@ checked: 2026-10-28
 
 **A typical AI app goes through seven steps: scope it, build it with an assistant, keep the [API](Glossary.md#api) key [secret](Glossary.md#secret), test it locally, [deploy](Glossary.md#deploy) it to a [host](Glossary.md#host), read its [logs](Glossary.md#logs), and watch its costs, then repeat for every update.** This page walks through one concrete example. The [tools](Glossary.md#tool) are interchangeable; the steps are not.
 
-*Disclosure: this wiki is made by Hal9, which also runs Cloudish, one of the hosts used as an example below.*
-
 **The example:** a small web app where a team pastes meeting notes and gets back a summary with action items. A Python backend calls a [model](Glossary.md#model) API; a single HTML page is the front end.
 
 ## 1. Scope the idea and build it with an assistant
@@ -92,7 +90,7 @@ The steps are similar everywhere:
 4. Deploy, and wait for the build to finish.
 5. Open the URL and run the same 3 or 4 inputs as locally.
 
-*A disclosed example.* On Cloudish, the host run by Hal9, one API call creates the project, or updates it if it already exists, so "a redeploy script can always call this unconditionally"; secrets are set through a separate endpoint and are "encrypted at rest, and merged into the container's environment automatically" ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Other hosts use a Git push, a CLI command or a dashboard button for the same steps.
+*A disclosed example.* On Cloudish (made by Hal9, which started this wiki), one API call creates the project, or updates it if it already exists, so "a redeploy script can always call this unconditionally"; secrets are set through a separate endpoint and "merged into the container's environment automatically" ([Cloudish skill.md](https://cloudish.ai/skill.md?ref=cc-wiki), checked 2026-10-28). Other hosts use a Git push, a CLI command or a dashboard button for the same steps.
 
 Before sharing the link more widely: add a simple sign-in or a shared password if the app should not be public, and a per-user [rate limit](Glossary.md#rate-limit), because every request costs model tokens.
 
@@ -106,7 +104,7 @@ What to log for an AI app:
 - the provider's error code and message when a call fails (rate limit, invalid key, overloaded)
 - **never** the API key, and think twice before logging users' full inputs: they may contain personal data ([data protection](Data-protection.md))
 
-Most hosts show logs in their dashboard and through a CLI or API. Cloudish, for example, can "Fetch the running container's own stdout/stderr on demand" and does not store logs on its side ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28), so anything you need to keep should go to your own log store. Check your host's retention before relying on its logs for later.
+Most hosts show logs in their dashboard and through a CLI or API. Cloudish, for example, can "Fetch the running container's own stdout/stderr on demand" and does not store logs on its side ([Cloudish skill.md](https://cloudish.ai/skill.md?ref=cc-wiki), checked 2026-10-28), so anything you need to keep should go to your own log store. Check your host's retention before relying on its logs for later.
 
 Common first-deploy errors and their usual cause:
 
@@ -122,7 +120,7 @@ Common first-deploy errors and their usual cause:
 **An AI app has at least two bills, hosting and model usage, and you should cap both before strangers can reach the app.**
 
 - **Model usage.** Set a spend limit at the provider. Anthropic: "Spend limits set a maximum monthly cost an organization can incur for API usage", and you can set your own below your tier's cap ([Anthropic, Rate limits](https://platform.claude.com/docs/en/api/rate-limits), checked 2026-10-28). On OpenAI, once a hard spend limit is reached, "Affected API requests return a 429 error" ([OpenAI, Rate limits](https://developers.openai.com/api/docs/guides/rate-limits), checked 2026-10-28).
-- **Hosting.** Know whether you pay while the app is idle. Some hosts charge for an always-on instance; others let the app sleep and wake on the next request. Some bill against prepaid credit: for example, Cloudish says its "credits are prepaid and metered per second, so spend never exceeds the key's balance" ([Cloudish skill.md](https://cloudish.ai/skill.md), checked 2026-10-28). Others bill a card at the end of the month, so set a budget alert there.
+- **Hosting.** Know whether you pay while the app is idle. Some hosts charge for an always-on instance; others let the app sleep and wake on the next request. Some bill against prepaid credit: for example, Cloudish says its "credits are prepaid and metered per second, so spend never exceeds the key's balance" ([Cloudish skill.md](https://cloudish.ai/skill.md?ref=cc-wiki), checked 2026-10-28). Others bill a card at the end of the month, so set a budget alert there.
 - **Estimate before launch.** Tokens per request × requests per day × price, as in the [worked example](Generative-AI.md#what-it-costs). Then compare with the provider's usage page after the first week.
 
 Your logged token counts (step 5) are the cheapest early warning: a sudden jump means a loop, a bug or abuse.
@@ -170,7 +168,7 @@ All checked on 2026-10-28.
 - The Twelve-Factor App, [Config](https://12factor.net/config)
 - Anthropic, [API key best practices](https://support.claude.com/en/articles/9767949-api-key-best-practices-keeping-your-keys-safe-and-secure); [Rate limits](https://platform.claude.com/docs/en/api/rate-limits)
 - OpenAI, [Production best practices](https://developers.openai.com/api/docs/guides/production-best-practices); [Rate limits](https://developers.openai.com/api/docs/guides/rate-limits)
-- Cloudish, [skill.md](https://cloudish.ai/skill.md)
+- Cloudish, [skill.md](https://cloudish.ai/skill.md?ref=cc-wiki)
 
 ---
 
