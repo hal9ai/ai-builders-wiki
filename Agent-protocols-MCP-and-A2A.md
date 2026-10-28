@@ -39,7 +39,7 @@ One MCP server can itself call a model, so an "agent behind a tool" is possible.
 - **Agent Card.** Each agent publishes "A JSON metadata document … describing its identity, capabilities, skills, service endpoint" so others can find out what it does and how to call it ([A2A specification](https://a2a-protocol.org/latest/specification/), checked 2026-10-28).
 - **Task.** "The fundamental unit of work managed by A2A, identified by a unique ID." Tasks have a lifecycle (submitted, working, completed and so on), so long jobs can report progress.
 - **Version.** The specification page lists 1.0.0 as the latest released version (checked 2026-10-28).
-- **Consolidation.** IBM's Agent Communication Protocol (ACP) "is officially merging with the A2A under the Linux Foundation umbrella" ([LF AI & Data, August 2025](https://lfaidata.foundation/communityblog/2025/08/29/acp-joins-forces-with-a2a-under-the-linux-foundations-lf-ai-data/), checked 2026-10-28).
+- **Consolidation.** IBM's Agent Communication Protocol (ACP) "is officially merging with the A2A under the Linux Foundation […] umbrella" ([LF AI & Data, August 2025](https://lfaidata.foundation/communityblog/2025/08/29/acp-joins-forces-with-a2a-under-the-linux-foundations-lf-ai-data/), checked 2026-10-28).
 
 **MCP and A2A are complementary:** MCP is how an agent uses tools; A2A is how an agent asks another agent, which may use its own tools, to do a job.
 
