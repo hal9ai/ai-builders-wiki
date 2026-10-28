@@ -1,0 +1,11 @@
+name: check
+on: [pull_request, push]
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild navigation and check links
+        run: python3 scripts/build_wiki.py
+      - name: Navigation is up to date
+        run: git diff --exit-code || (echo "Run python3 scripts/build_wiki.py and commit the result." && exit 1)

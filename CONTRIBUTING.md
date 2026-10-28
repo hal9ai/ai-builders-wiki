@@ -16,6 +16,16 @@ If you are not sure something is wrong, open the issue anyway and say so.
 
 Pull requests are welcome: fixes, updated facts, new pages and translations. For a new page, check the index first so each question has one page; for a large rewrite, open an issue first so we can agree on scope.
 
+## Work locally
+
+1. Fork the repository on GitHub, clone your fork, and make a branch: `git switch -c fix-data-protection-table`.
+2. Edit or add pages. Any Markdown editor works; links between pages are relative (`AI-agent.md`), so they also work in your editor's preview.
+3. Rebuild the navigation and check every link: `python3 scripts/build_wiki.py` (Python 3, nothing to install).
+4. Optional: see the wiki as a site, with the sidebar: `scripts/preview.sh`, then open `_preview/index.html` in a browser (needs [pandoc](https://pandoc.org/installing.html)).
+5. Commit, push to your fork, and open a pull request. Say in it what you checked and where (links to the sources).
+
+On every pull request, a check runs `scripts/build_wiki.py` and fails if a link is broken or the navigation wasn't rebuilt. A maintainer then reviews the facts against the sources and merges.
+
 ## Rules for pages
 
 - **Main point first.** The first sentence of a page or section answers its question. Context and caveats come after.
