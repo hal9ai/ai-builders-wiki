@@ -23,18 +23,18 @@ checked: 2026-10-28
 |---|---|---|---|
 | Anthropic | Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5, Claude Haiku 5.5 | Closed (API only) | [Models overview](https://platform.claude.com/docs/en/models/overview) |
 | OpenAI | GPT-6 Astra, GPT-6.1 Sol, GPT-6.1 Terra, GPT-6 Luna; also gpt-oss open-weight models | Closed API models; gpt-oss under Apache 2.0 ([Hugging Face](https://huggingface.co/openai/gpt-oss-120b)) | [Models](https://developers.openai.com/api/docs/models) |
-| Google | Gemini 4 Argon, Gemini 3.8 Flash and other Flash / Flash-Lite models; Gemma open models | Gemini closed; Gemma 4 under Apache 2.0 on [Hugging Face](https://huggingface.co/google) | [Gemini models](https://ai.google.dev/gemini-api/docs/models), [Gemma](https://ai.google.dev/gemma/docs) |
-| Mistral | Mistral Large 4, Mistral Medium 3.5, Mistral Small 4, Ministral 3; plus closed "Premier" models such as Codestral | Mixed: several open-weight (Apache 2.0, Modified MIT), some closed | [Models overview](https://docs.mistral.ai/getting-started/models/models_overview/) |
-| Meta | Llama 4 (open weights); a newer Muse line, mostly API-only | Llama under the Llama 4 License; Muse mostly closed | [Llama](https://dev.meta.ai/llama/), [Muse overview](https://dev.meta.ai/docs/overview) |
-| DeepSeek | DeepSeek V4.1 Flash, DeepSeek V4 Pro | Open weights, MIT License ([Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017)) | [API docs](https://api-docs.deepseek.com/quick_start/pricing) |
-| Alibaba (Qwen) | Qwen3.8-Max, Qwen3.7-Plus, Qwen3.8-Flash (API); open Qwen3.x models | Mixed: API tiers closed, many open models under Apache 2.0 | [Model Studio models](https://www.alibabacloud.com/help/en/model-studio/models) |
-| xAI | Grok 4.7 and earlier Grok 4.x | Current models closed; older Grok 1 and 2 weights released | [Models](https://docs.x.ai/docs/models) |
+| Google | Gemini 4 Argon, Gemini 3.8 Flash and other Flash / Flash-Lite models; Gemma open models | Gemini closed; Gemma open-weight, licence on each model card ([Gemma docs](https://ai.google.dev/gemma/docs)) | [Gemini models](https://ai.google.dev/gemini-api/docs/models), [Gemma](https://ai.google.dev/gemma/docs) |
+| Mistral | Mistral Large 4, Mistral Medium 3.5, Mistral Small 4, Ministral 3; plus closed "Premier" models such as Codestral | Mixed: Small 4 and Ministral 3 under Apache 2.0, Medium 3.5 under Modified MIT, Large 4 listed as "Open"; Premier models closed | [Models overview](https://docs.mistral.ai/getting-started/models/models_overview/) |
+| Meta | Llama 4 (open weights); a newer Muse line, mostly hosted | Llama under the Llama 4 License; most Muse models hosted only, with Muse Spark Open and Muse Glimmer (Apache 2.0) open-weight | [Llama](https://dev.meta.ai/llama/), [Muse overview](https://dev.meta.ai/docs/overview) |
+| DeepSeek | DeepSeek V4.1 Flash, DeepSeek V4 Pro | Open weights; V4.1 Flash under the MIT License ([Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017)) | [API docs](https://api-docs.deepseek.com/quick_start/pricing) |
+| Alibaba (Qwen) | Qwen3.8-Max, Qwen3.7-Plus, Qwen3.8-Flash (API); open Qwen3.x models | Mixed: API tiers closed; open Qwen models published on [Hugging Face](https://huggingface.co/Qwen), licence per model card | [Model Studio models](https://www.alibabacloud.com/help/en/model-studio/models) |
+| xAI | Grok 4.7 and earlier Grok 4.x | Current models closed; older weights published: [Grok 1](https://huggingface.co/xai-org/grok-1), [Grok 2](https://huggingface.co/xai-org/grok-2) (Grok 2 Community License) | [Models](https://docs.x.ai/docs/models) |
 | Cohere | Command A+, Command A, Embed, Rerank | Mostly closed | [Models](https://docs.cohere.com/docs/models) |
-| Moonshot (Kimi) | Kimi K3.1 Pro, Kimi K3, Kimi K2.x | Some open weights, under their own licences | [Models](https://platform.kimi.ai/docs/models.md) |
+| Moonshot (Kimi) | Kimi K3.1 Pro, Kimi K3, Kimi K2.x | Some open weights: the page calls Kimi K3 an "open-source 3T-class model" | [Models](https://platform.kimi.ai/docs/models.md) |
 
 Two families are hard to place in one row:
 
-- **Licences differ by model, not by company.** Google's Gemma 3 uses a separate Gemma licence while Gemma 4 models are listed as Apache 2.0; Meta's Llama licences are Meta's own, not a standard open-source licence. Read the licence of the exact model you plan to use, on its model card.
+- **Licences differ by model, not by company.** Mistral uses Apache 2.0 for some models and a Modified MIT licence for others; Meta's Llama licences are Meta's own, not a standard open-source licence. Read the licence of the exact model you plan to use, on its model card.
 - **"Open" means open weights, not open training data.** You can download and run the model; you usually cannot see or reproduce how it was trained.
 
 ## Closed vs open-weight models
@@ -53,7 +53,7 @@ You can also use open-weight models without running them: many [providers](Gloss
 
 ## Where you can get them
 
-**Most leading models are available both from their maker and from at least one large cloud platform, which matters if your company already buys from that cloud.** For example, Anthropic's models page lists IDs for the Claude API, Amazon Bedrock, Claude Models on Google Cloud, Microsoft Foundry and Claude Platform on AWS ([Anthropic models overview](https://platform.claude.com/docs/en/models/overview), checked 2026-10-28). Amazon Bedrock offers "access to hundreds of top foundation models" from several makers ([Bedrock models at a glance](https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html), checked 2026-10-28). Microsoft lists models "sold directly by Azure", including OpenAI's ([Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure), checked 2026-10-28).
+**Most leading models are available both from their maker and from at least one large cloud platform, which matters if your company already buys from that cloud.** For example, Anthropic's models page lists IDs for the Claude API, Amazon Bedrock, Claude Models on Google Cloud, Microsoft Foundry and Claude Platform on AWS ([Anthropic models overview](https://platform.claude.com/docs/en/models/overview), checked 2026-10-28). Amazon Bedrock offers "access to hundreds of top foundation models" from several makers ([Bedrock models at a glance](https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html), checked 2026-10-28). Microsoft lists "Foundry Models sold by Azure", including OpenAI's ([Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure), checked 2026-10-28).
 
 The same model on two platforms can differ in price, regions, features, data terms and retirement dates. Anthropic notes that partner platforms "set their own retirement schedules" ([Anthropic model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations), checked 2026-10-28).
 
@@ -75,7 +75,7 @@ The same model on two platforms can differ in price, regions, features, data ter
 
 **Public comparisons** (useful for shortlisting, each measuring something different):
 
-- [Arena](https://arena.ai/faq) (formerly LMArena) ranks models from blind human votes between two anonymous answers; "Only votes made while the models are anonymous count toward official rankings" (checked 2026-10-28).
+- [Arena](https://arena.ai/faq) ranks models from blind human votes between two anonymous answers; "Only votes made while the models are anonymous count toward official rankings" (checked 2026-10-28).
 - [Artificial Analysis](https://artificialanalysis.ai/methodology) benchmarks "intelligence, quality, performance, and price", including speed and latency (checked 2026-10-28).
 - The [Hugging Face Hub](https://huggingface.co/docs/hub/models-the-hub) is where most open-weight models are published, with their model cards and licences.
 
@@ -104,11 +104,11 @@ All checked on 2026-10-28. Vendor pages are listed in the tables and paragraphs 
 - Meta: [Llama](https://dev.meta.ai/llama/), [Muse overview](https://dev.meta.ai/docs/overview)
 - DeepSeek: [Models and pricing](https://api-docs.deepseek.com/quick_start/pricing), [DeepSeek-V4.1-Flash-1017 model card](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017)
 - Alibaba Cloud: [Model Studio models](https://www.alibabacloud.com/help/en/model-studio/models)
-- xAI: [Models](https://docs.x.ai/docs/models)
+- xAI: [Models](https://docs.x.ai/docs/models), [Grok 1](https://huggingface.co/xai-org/grok-1) and [Grok 2](https://huggingface.co/xai-org/grok-2) model cards
 - Cohere: [Models](https://docs.cohere.com/docs/models)
 - Moonshot: [Kimi models](https://platform.kimi.ai/docs/models.md)
 - AWS: [Bedrock models at a glance](https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html)
-- Microsoft: [Models sold directly by Azure](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure)
+- Microsoft: [Foundry Models sold by Azure](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure)
 - Arena, [FAQ](https://arena.ai/faq); Artificial Analysis, [Methodology](https://artificialanalysis.ai/methodology); Hugging Face, [The Model Hub](https://huggingface.co/docs/hub/models-the-hub)
 
 ---

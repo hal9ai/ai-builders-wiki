@@ -31,7 +31,7 @@ checked: 2026-10-28
  In code you send a model ID. Some IDs are fixed snapshots; others are aliases that move to newer versions:
 
 - **Anthropic:** "Starting with the Claude 4.6 generation, model IDs use a dateless format", and such an ID "is not an alias. It is the snapshot." Older models use dated IDs such as `claude-sonnet-4-5-20250929` ([Model IDs and versioning](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions)).
-- **OpenAI:** "Snapshots let you lock in a specific version of the model so that performance and behavior remain consistent"; older snapshots carry dates such as `gpt-4.1-2025-04-14` ([OpenAI models](https://developers.openai.com/api/docs/models)).
+- **OpenAI:** older snapshots carry a date in the ID, such as `gpt-4.1-2025-04-14`, which OpenAI's deprecations page lists for shutdown on January 14, 2027 ([OpenAI deprecations](https://developers.openai.com/api/docs/deprecations)).
 - **Google Gemini:** a *stable* name "Points to a specific stable model. Stable models usually don't change"; *preview* "may be used for production"; *latest* points to the newest release and changes over time; *experimental* models are not for production ([Gemini models](https://ai.google.dev/gemini-api/docs/models)).
 - **Mistral:** IDs follow "a model-name-major-minor format, for example mistral-medium-3-5", and `-latest` aliases exist, with a warning: "Using an alias may expose you to silent updates in model behavior and pricing" ([Mistral model lifecycle](https://docs.mistral.ai/inference/model-lifecycle)).
 - **xAI:** a bare model name is "aliased to the latest stable version", `-latest` to the latest version, and a dated name "will not be updated" ([xAI models](https://docs.x.ai/docs/models)).
@@ -45,7 +45,7 @@ All checked 2026-10-28. **In production, pin a fixed ID** and upgrade on purpose
 - Anthropic: "at least 60 days' notice before model retirement for publicly released models" ([deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations)).
 - Mistral: 6 months for generally available models, 1 month for Labs, preview and third-party models; after retirement, "requests to its identifiers fail with a 404 error" ([model lifecycle](https://docs.mistral.ai/inference/model-lifecycle)).
 - Google Vertex AI: "gives you at least 45 days to migrate" ([model versions](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)).
-- OpenAI publishes its notice periods and shutdown dates on its [deprecations page](https://developers.openai.com/api/docs/deprecations).
+- OpenAI: "At least 6 months" for generally available models, "At least 3 months" for specialized variants, and possibly "much shorter notice, such as 2 weeks" for previews ([deprecations](https://developers.openai.com/api/docs/deprecations)).
 
 Put the model ID in configuration, not scattered through code, and subscribe to your [provider](Glossary.md#provider)'s deprecation notices.
 
