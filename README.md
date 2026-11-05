@@ -46,6 +46,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 ### [Guides](Category-Guides.md)
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
 
 ### Tags
 
