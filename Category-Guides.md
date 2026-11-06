@@ -4,9 +4,10 @@
 
 # Category: Guides
 
-**1 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md).
+**2 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md): One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages.
 
 ---
 

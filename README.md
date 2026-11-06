@@ -46,6 +46,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 ### [Guides](Category-Guides.md)
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md): One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages.
 
 ### Tags
 
