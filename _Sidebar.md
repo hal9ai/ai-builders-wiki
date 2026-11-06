@@ -29,3 +29,4 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md)
