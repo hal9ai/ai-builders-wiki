@@ -46,10 +46,11 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 ### [Guides](Category-Guides.md)
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 
 ### Tags
 
-[agents](Tag-agents.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md)
+[agents](Tag-agents.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md)
 
 <!-- INDEX:END -->
 
