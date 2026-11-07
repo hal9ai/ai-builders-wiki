@@ -29,3 +29,4 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [A login that loops between your app and the sign-in provider](A-login-that-loops.md)

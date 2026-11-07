@@ -4,9 +4,10 @@
 
 # Category: Guides
 
-**1 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md).
+**2 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 
 ---
 

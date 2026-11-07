@@ -7,6 +7,7 @@
 Tags describe what a page touches on, across categories. They are added as pages are written, so the list will change.
 
 - [agents](Tag-agents.md) (5)
+- [auth](Tag-auth.md) (1)
 - [basics](Tag-basics.md) (4)
 - [coding-agents](Tag-coding-agents.md) (2)
 - [costs](Tag-costs.md) (3)
