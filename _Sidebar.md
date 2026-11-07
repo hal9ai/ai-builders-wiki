@@ -29,3 +29,4 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md)
