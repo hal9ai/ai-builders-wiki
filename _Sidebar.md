@@ -29,3 +29,4 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [How small can a container image be?](Container-image-size.md)

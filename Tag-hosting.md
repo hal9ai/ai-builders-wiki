@@ -5,4 +5,5 @@
 # Tag: hosting
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (Guides)
+- [How small can a container image be?](Container-image-size.md) (Guides)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)

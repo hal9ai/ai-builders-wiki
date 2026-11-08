@@ -46,6 +46,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 ### [Guides](Category-Guides.md)
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [How small can a container image be?](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
 
 ### Tags
 

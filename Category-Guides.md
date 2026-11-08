@@ -4,9 +4,10 @@
 
 # Category: Guides
 
-**1 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md).
+**2 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
+- [How small can a container image be?](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
 
 ---
 
