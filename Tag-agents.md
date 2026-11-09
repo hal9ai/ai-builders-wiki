@@ -9,3 +9,4 @@
 - [Multi-agent systems: do AI agents work with each other?](Multi-agent-systems.md) (Agents)
 - [Agent protocols: MCP and A2A](Agent-protocols-MCP-and-A2A.md) (Agents)
 - [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md) (Foundations)
+- [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md) (Guides)

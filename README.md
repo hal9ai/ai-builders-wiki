@@ -50,10 +50,11 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md): One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages.
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md): The page painted but no JavaScript ran: how to spot a script request that the server answered with an HTML page, and how to fix the rule that caused it.
+- [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
 
 ### Tags
 
-[agents](Tag-agents.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md)
+[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md)
 
 <!-- INDEX:END -->
 
