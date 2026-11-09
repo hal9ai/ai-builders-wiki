@@ -5,4 +5,5 @@
 # Tag: privacy
 
 - [Data protection when you use AI](Data-protection.md) (Security and data)
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Guides)
 - [Data protection by vendor](Data-protection-by-vendor.md) (Security and data)
