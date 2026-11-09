@@ -5,4 +5,5 @@
 # Tag: hosting
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (Guides)
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Guides)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
