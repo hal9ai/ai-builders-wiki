@@ -29,4 +29,6 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [How to check a web app an AI built](Checking-an-AI-built-web-app.md)
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md)
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md)
