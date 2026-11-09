@@ -4,7 +4,7 @@
 
 # Category: Agents
 
-**3 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Guides](Category-Guides.md).
+**3 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [What an AI agent is](AI-agent.md): How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy.
 - [Multi-agent systems: do AI agents work with each other?](Multi-agent-systems.md): Manager and helpers, handoffs, cross-organization agents, frameworks, and what the evidence says works.

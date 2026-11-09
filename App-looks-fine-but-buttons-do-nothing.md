@@ -1,14 +1,14 @@
 ---
 title: "An app that looks fine but its buttons do nothing"
 description: "The page painted but no JavaScript ran: how to spot a script request that the server answered with an HTML page, and how to fix the rule that caused it."
-category: Guides
+category: Problems & solutions
 tags: [hosting]
-order: 3
+order: 1
 checked: 2026-11-06
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [hosting](Tag-hosting.md)
+[Home](README.md) › [Problems & solutions](Category-Problems-solutions.md) · Tags: [hosting](Tag-hosting.md)
 <!-- NAV:END -->
 
 # An app that looks fine but its buttons do nothing

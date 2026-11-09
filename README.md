@@ -42,16 +42,19 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [Security for AI apps and agents](Security-for-AI-apps.md): The risks that are specific to apps that call models and to agents that act: prompt injection, secrets, scopes, tool permissions, supply chain, runaway costs.
 - [Data protection when you use AI](Data-protection.md): The five questions to ask any AI vendor, consumer vs business terms, and what to do in your own app.
 - [Data protection by vendor](Data-protection-by-vendor.md): Training defaults, opt-outs, retention, zero data retention and data location for each major AI vendor, every cell sourced.
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md): One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages.
 
-### [Guides](Category-Guides.md)
+### [How-to](Category-How-to.md)
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
-- [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
-- [How small can a container image be?](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
-- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md): One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages.
-- [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md): The page painted but no JavaScript ran: how to spot a script request that the server answered with an HTML page, and how to fix the rule that caused it.
+- [How to shrink a container image](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
+
+### [Problems & solutions](Category-Problems-solutions.md)
+
+- [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md): The page painted but no JavaScript ran: how to spot a script request that the server answered with an HTML page, and how to fix the rule that caused it.
+- [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 
 ### Tags
 

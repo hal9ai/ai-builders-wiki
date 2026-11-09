@@ -4,5 +4,5 @@
 
 # Tag: secrets
 
-- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (Guides)
+- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
 - [Security for AI apps and agents](Security-for-AI-apps.md) (Security and data)

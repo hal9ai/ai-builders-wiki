@@ -1,14 +1,14 @@
 ---
 title: "Where your keys come from: attribution for AI apps"
 description: "When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day."
-category: Guides
+category: How-to
 tags: [agents, analytics]
-order: 3
+order: 4
 checked: 2026-11-06
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [agents](Tag-agents.md), [analytics](Tag-analytics.md)
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [agents](Tag-agents.md), [analytics](Tag-analytics.md)
 <!-- NAV:END -->
 
 # Where your keys come from: attribution for AI apps

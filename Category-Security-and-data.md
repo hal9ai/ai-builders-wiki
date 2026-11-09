@@ -4,11 +4,12 @@
 
 # Category: Security and data
 
-**3 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Guides](Category-Guides.md).
+**4 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [Security for AI apps and agents](Security-for-AI-apps.md): The risks that are specific to apps that call models and to agents that act: prompt injection, secrets, scopes, tool permissions, supply chain, runaway costs.
 - [Data protection when you use AI](Data-protection.md): The five questions to ask any AI vendor, consumer vs business terms, and what to do in your own app.
 - [Data protection by vendor](Data-protection-by-vendor.md): Training defaults, opt-outs, retention, zero data retention and data location for each major AI vendor, every cell sourced.
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md): One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages.
 
 ---
 

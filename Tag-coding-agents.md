@@ -4,6 +4,6 @@
 
 # Tag: coding-agents
 
-- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (Guides)
-- [How to check a web app an AI built](Checking-an-AI-built-web-app.md) (Guides)
+- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
+- [How to check a web app an AI built](Checking-an-AI-built-web-app.md) (How-to)
 - [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md) (Foundations)

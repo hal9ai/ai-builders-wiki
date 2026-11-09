@@ -1,14 +1,14 @@
 ---
 title: "Where an AI app's terms of service and privacy policy should live"
 description: "One canonical copy of each legal document, rendered as it is served: HTML for people and search, Markdown for agents, a last-known-good copy for outages."
-category: Guides
+category: Security and data
 tags: [privacy, hosting]
-order: 2
+order: 4
 checked: 2026-11-06
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [privacy](Tag-privacy.md), [hosting](Tag-hosting.md)
+[Home](README.md) › [Security and data](Category-Security-and-data.md) · Tags: [privacy](Tag-privacy.md), [hosting](Tag-hosting.md)
 <!-- NAV:END -->
 
 # Where an AI app's terms of service and privacy policy should live

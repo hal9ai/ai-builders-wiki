@@ -4,4 +4,4 @@
 
 # Tag: analytics
 
-- [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md) (Guides)
+- [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md) (How-to)

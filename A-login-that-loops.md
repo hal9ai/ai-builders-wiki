@@ -1,14 +1,14 @@
 ---
 title: "A login that loops between your app and the sign-in provider"
 description: "The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it."
-category: Guides
+category: Problems & solutions
 tags: [auth]
 order: 2
 checked: 2026-11-06
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [auth](Tag-auth.md)
+[Home](README.md) › [Problems & solutions](Category-Problems-solutions.md) · Tags: [auth](Tag-auth.md)
 <!-- NAV:END -->
 
 # A login that loops between your app and the sign-in provider

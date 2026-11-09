@@ -1,17 +1,17 @@
 ---
-title: "How small can a container image be?"
+title: "How to shrink a container image"
 description: "A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size."
-category: Guides
+category: How-to
 tags: [hosting, costs]
-order: 2
+order: 3
 checked: 2026-11-08
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [hosting](Tag-hosting.md), [costs](Tag-costs.md)
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [costs](Tag-costs.md)
 <!-- NAV:END -->
 
-# How small can a container image be?
+# How to shrink a container image
 
 **A working container image can be a few kilobytes: build a statically linked server binary, copy it into an empty `scratch` image, and skip the operating system entirely.** In a test on 2026-11-08, a tiny C web server built this way measured 5,174 bytes in a registry with a static [musl](https://musl.libc.org/) build, and 2,361 bytes with a freestanding binary that calls Linux syscalls directly. Both images served a page.
 

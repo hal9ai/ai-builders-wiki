@@ -1,14 +1,14 @@
 ---
 title: "How to check a web app an AI built"
 description: "Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence."
-category: Guides
+category: How-to
 tags: [coding-agents]
 order: 2
 checked: 2026-11-05
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [coding-agents](Tag-coding-agents.md)
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [coding-agents](Tag-coding-agents.md)
 <!-- NAV:END -->
 
 # How to check a web app an AI built

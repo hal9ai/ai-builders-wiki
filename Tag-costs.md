@@ -4,7 +4,7 @@
 
 # Tag: costs
 
-- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (Guides)
-- [How small can a container image be?](Container-image-size.md) (Guides)
+- [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
 - [What generative AI is, and why people build with it](Generative-AI.md) (Foundations)
+- [How to shrink a container image](Container-image-size.md) (How-to)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)

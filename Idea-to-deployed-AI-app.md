@@ -1,14 +1,14 @@
 ---
 title: "From idea to deployed AI app: a typical workflow"
 description: "One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates."
-category: Guides
+category: How-to
 tags: [hosting, secrets, costs, coding-agents]
 order: 1
 checked: 2026-10-28
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [hosting](Tag-hosting.md), [secrets](Tag-secrets.md), [costs](Tag-costs.md), [coding-agents](Tag-coding-agents.md)
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [secrets](Tag-secrets.md), [costs](Tag-costs.md), [coding-agents](Tag-coding-agents.md)
 <!-- NAV:END -->
 
 # From idea to deployed AI app: a typical workflow

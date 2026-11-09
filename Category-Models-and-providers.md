@@ -4,7 +4,7 @@
 
 # Category: Models and providers
 
-**2 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Security and data](Category-Security-and-data.md), [Guides](Category-Guides.md).
+**2 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [AI providers and models: who makes what, and how to choose](AI-providers-and-models.md): The main model makers as of October 2026, open-weight vs closed, where to get them, and how to pick one.
 - [Model names and versions](Model-names-and-versions.md): How model families, tiers, snapshots, aliases and retirement dates work, vendor by vendor.

@@ -4,4 +4,4 @@
 
 # Tag: auth
 
-- [A login that loops between your app and the sign-in provider](A-login-that-loops.md) (Guides)
+- [A login that loops between your app and the sign-in provider](A-login-that-loops.md) (Problems & solutions)

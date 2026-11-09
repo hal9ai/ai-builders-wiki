@@ -4,7 +4,7 @@
 
 # Category: Foundations
 
-**4 pages in this category.** Other categories: [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Guides](Category-Guides.md).
+**4 pages in this category.** Other categories: [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [Glossary: the basic words](Glossary.md): The core terms a newcomer meets, each defined in plain words, with links to the pages that go deeper.
 - [What generative AI is, and why people build with it](Generative-AI.md): What the models do, what developers and founders use them for, where they fail, and how the bill works.
