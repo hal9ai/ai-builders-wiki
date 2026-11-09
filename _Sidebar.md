@@ -29,4 +29,9 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [A login that loops between your app and the sign-in provider](A-login-that-loops.md)
 - [How small can a container image be?](Container-image-size.md)
+- [How to check a web app an AI built](Checking-an-AI-built-web-app.md)
+- [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md)
+- [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md)
+- [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md)
