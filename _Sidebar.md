@@ -29,3 +29,4 @@
 **[Guides](Category-Guides.md)**
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
+- [How to check a web app an AI built](Checking-an-AI-built-web-app.md)
