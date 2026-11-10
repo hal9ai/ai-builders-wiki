@@ -8,3 +8,4 @@
 - [What an AI agent is](AI-agent.md) (Agents)
 - [What generative AI is, and why people build with it](Generative-AI.md) (Foundations)
 - [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md) (Foundations)
+- [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)

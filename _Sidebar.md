@@ -38,3 +38,4 @@
 
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md)
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md)
+- [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md)

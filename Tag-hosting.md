@@ -7,5 +7,6 @@
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md) (Problems & solutions)
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
 - [How to shrink a container image](Container-image-size.md) (How-to)
+- [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Security and data)
