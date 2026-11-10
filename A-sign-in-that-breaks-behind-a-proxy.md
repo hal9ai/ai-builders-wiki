@@ -1,7 +1,7 @@
 ---
 title: "A sign-in that breaks behind a proxy: the redirect URI"
 description: "The provider says the redirect URI does not match, or the callback address comes out as 'https,http://example.com': why a forwarded header can carry a list of values, and how to build the address safely."
-category: Guides
+category: Problems & solutions
 tags: [auth, hosting]
 order: 3
 checked: 2026-11-09
