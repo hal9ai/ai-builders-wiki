@@ -33,6 +33,7 @@
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md)
 - [How to shrink a container image](Container-image-size.md)
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md)
+- [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md)
 
 **[Problems & solutions](Category-Problems-solutions.md)**
 
