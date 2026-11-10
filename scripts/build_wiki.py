@@ -157,6 +157,13 @@ def main():
             meta["file"] = p.name
             pages.append(meta)
 
+    known = set(CATEGORY_ORDER)
+    bad = [(m["file"], m["category"]) for m in pages if m["category"] not in known]
+    if bad:
+        for f, c in bad:
+            print(f"unknown category '{c}' in {f}; known categories: {', '.join(CATEGORY_ORDER)}", file=sys.stderr)
+        sys.exit(1)
+
     pages.sort(key=lambda m: (int(m.get("order", 99)), m["title"]))
     by_cat, by_tag = defaultdict(list), defaultdict(list)
     for m in pages:
