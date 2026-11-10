@@ -8,6 +8,7 @@ checked: 2026-11-10
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [storage](Tag-storage.md), [costs](Tag-costs.md)
 <!-- NAV:END -->
 
 # Persistent storage for many AI sandboxes
@@ -100,6 +101,7 @@ On bare-metal Kubernetes, the default `local-path` provisioner creates node dire
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [Cloud](Glossary.md#cloud), [Coding agent](Glossary.md#coding-agent), [Container](Glossary.md#container), [Host](Glossary.md#host), [Snapshot](Glossary.md#snapshot).
 <!-- SEEALSO:END -->
 
 ## Sources

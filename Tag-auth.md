@@ -5,3 +5,4 @@
 # Tag: auth
 
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md) (Problems & solutions)
+- [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md) (Problems & solutions)

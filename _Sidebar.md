@@ -14,6 +14,7 @@
 - [What an AI agent is](AI-agent.md)
 - [Multi-agent systems: do AI agents work with each other?](Multi-agent-systems.md)
 - [Agent protocols: MCP and A2A](Agent-protocols-MCP-and-A2A.md)
+- [How an agent finds a tool you wrote](How-an-agent-finds-a-tool.md)
 
 **[Models and providers](Category-Models-and-providers.md)**
 
@@ -32,12 +33,16 @@
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md)
 - [How to shrink a container image](Container-image-size.md)
+- [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md)
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md)
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md)
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md)
+- [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md)
+- [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md)
 
 **[Problems & solutions](Category-Problems-solutions.md)**
 
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md)
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md)
+- [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md)
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md)

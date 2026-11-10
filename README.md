@@ -31,6 +31,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [What an AI agent is](AI-agent.md): How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy.
 - [Multi-agent systems: do AI agents work with each other?](Multi-agent-systems.md): Manager and helpers, handoffs, cross-organization agents, frameworks, and what the evidence says works.
 - [Agent protocols: MCP and A2A](Agent-protocols-MCP-and-A2A.md): What the Model Context Protocol and the Agent2Agent protocol are, how they differ, and their status as of October 2026.
+- [How an agent finds a tool you wrote](How-an-agent-finds-a-tool.md): An agent finds a tool through a skill file it reads — a folder with a SKILL.md whose name and one-line description it sees first and whose body it opens only when the job matches — so write the description for the match.
 
 ### [Models and providers](Category-Models-and-providers.md)
 
@@ -49,19 +50,23 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
 - [How to shrink a container image](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
+- [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md): Read Common Crawl's Parquet index and hyperlink graph directly from a small container with DuckDB, without copying the data — and without the big join that runs a 256 MB container out of memory.
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md): Point one wildcard DNS record at your app's server so every app subdomain resolves without its own record, and one wildcard certificate covers them for HTTPS.
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md): The deploy call returning is not the app running: wait for the build, check the port and read the logs before you believe it.
+- [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md): A block volume per sandbox stops scaling at the host's per-machine limit: give each sandbox a directory on a shared filesystem, and plan isolation, quotas and snapshots.
+- [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 
 ### [Problems & solutions](Category-Problems-solutions.md)
 
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md): The page painted but no JavaScript ran: how to spot a script request that the server answered with an HTML page, and how to fix the rule that caused it.
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
+- [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md): The provider says the redirect URI does not match, or the callback address comes out as 'https,http://example.com': why a forwarded header can carry a list of values, and how to build the address safely.
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md): A new HTML page paired with an old cached CSS or JS file: how to spot it, and how to give assets a URL that changes when they do.
 
 ### Tags
 
-[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md)
+[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [data](Tag-data.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md) · [skills](Tag-skills.md) · [storage](Tag-storage.md)
 
 <!-- INDEX:END -->
 

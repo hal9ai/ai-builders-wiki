@@ -6,16 +6,19 @@
 
 Tags describe what a page touches on, across categories. They are added as pages are written, so the list will change.
 
-- [agents](Tag-agents.md) (6)
+- [agents](Tag-agents.md) (7)
 - [analytics](Tag-analytics.md) (1)
-- [auth](Tag-auth.md) (1)
+- [auth](Tag-auth.md) (2)
 - [basics](Tag-basics.md) (6)
 - [coding-agents](Tag-coding-agents.md) (3)
-- [costs](Tag-costs.md) (4)
-- [hosting](Tag-hosting.md) (8)
+- [costs](Tag-costs.md) (5)
+- [data](Tag-data.md) (1)
+- [hosting](Tag-hosting.md) (12)
 - [mcp](Tag-mcp.md) (2)
 - [models](Tag-models.md) (2)
 - [privacy](Tag-privacy.md) (3)
 - [providers](Tag-providers.md) (3)
 - [secrets](Tag-secrets.md) (2)
 - [security](Tag-security.md) (2)
+- [skills](Tag-skills.md) (1)
+- [storage](Tag-storage.md) (2)

@@ -8,7 +8,7 @@ checked: 2026-11-09
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [auth](Tag-auth.md), [hosting](Tag-hosting.md)
+[Home](README.md) › [Problems & solutions](Category-Problems-solutions.md) · Tags: [auth](Tag-auth.md), [hosting](Tag-hosting.md)
 <!-- NAV:END -->
 
 # A sign-in that breaks behind a proxy: the redirect URI

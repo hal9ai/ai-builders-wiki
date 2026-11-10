@@ -8,6 +8,7 @@ checked: 2026-11-10
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [storage](Tag-storage.md)
 <!-- NAV:END -->
 
 # Where an AI-built app keeps its data
@@ -75,6 +76,7 @@ Cloudish is made by Hal9, which started this wiki, so it appears here as an exam
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [API](Glossary.md#api), [Container](Glossary.md#container), [Deploy](Glossary.md#deploy), [Host](Glossary.md#host), [Tool](Glossary.md#tool).
 <!-- SEEALSO:END -->
 
 ## Sources

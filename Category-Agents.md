@@ -4,11 +4,12 @@
 
 # Category: Agents
 
-**3 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
+**4 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [What an AI agent is](AI-agent.md): How an agent differs from a chatbot and from a workflow: tools, the loop, and levels of autonomy.
 - [Multi-agent systems: do AI agents work with each other?](Multi-agent-systems.md): Manager and helpers, handoffs, cross-organization agents, frameworks, and what the evidence says works.
 - [Agent protocols: MCP and A2A](Agent-protocols-MCP-and-A2A.md): What the Model Context Protocol and the Agent2Agent protocol are, how they differ, and their status as of October 2026.
+- [How an agent finds a tool you wrote](How-an-agent-finds-a-tool.md): An agent finds a tool through a skill file it reads — a folder with a SKILL.md whose name and one-line description it sees first and whose body it opens only when the job matches — so write the description for the match.
 
 ---
 

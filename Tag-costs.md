@@ -8,3 +8,4 @@
 - [What generative AI is, and why people build with it](Generative-AI.md) (Foundations)
 - [How to shrink a container image](Container-image-size.md) (How-to)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
+- [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md) (How-to)

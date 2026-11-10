@@ -8,7 +8,7 @@ checked: 2026-11-09
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [Guides](Category-Guides.md) · Tags: [hosting](Tag-hosting.md), [data](Tag-data.md)
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [data](Tag-data.md)
 <!-- NAV:END -->
 
 # Querying a web crawl from a small app
