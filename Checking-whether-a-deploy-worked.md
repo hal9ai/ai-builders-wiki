@@ -73,6 +73,8 @@ Other hosts use different endpoints and field names for the same three facts: a 
 
 **An agent that deploys should report success only after these checks, because the deploy call's answer is the easiest thing to mistake for a result.** The instruction to the agent is one sentence: do not say a deploy succeeded until the build reached success, the logs show the app started and is listening, and the URL was tried where it can be tried. An agent that stops at the create response reports a failure as a success, and the next person to look has to start from the build log anyway.
 
+**Check the field names against a live response, not against your own wrapper.** A test with the HTTP layer stubbed proves the request your client builds; it cannot prove the service returns the fields your instructions tell the agent to read. A wrapper written from an API reference can pass every test and still send an agent looking for a top-level `url` where the service nests it under `project.subdomain`. Make one real call with a throwaway key, read the JSON that came back, and fix the instructions to match it. Then delete the test app so it is not billed.
+
 ## Related pages
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
