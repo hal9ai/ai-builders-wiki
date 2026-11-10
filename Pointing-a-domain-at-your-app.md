@@ -8,6 +8,7 @@ checked: 2026-11-10
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [basics](Tag-basics.md)
 <!-- NAV:END -->
 
 # How to point a domain at your app, with one record for every subdomain
@@ -84,6 +85,7 @@ Each name should return the server's IP address, and `www` should show its CNAME
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [API](Glossary.md#api), [Deploy](Glossary.md#deploy), [Host](Glossary.md#host), [Provider](Glossary.md#provider), [Token](Glossary.md#token), [Tool](Glossary.md#tool).
 <!-- SEEALSO:END -->
 
 ## Sources

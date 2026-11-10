@@ -50,6 +50,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
 - [How to shrink a container image](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
+- [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md): Point one wildcard DNS record at your app's server so every app subdomain resolves without its own record, and one wildcard certificate covers them for HTTPS.
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md): The deploy call returning is not the app running: wait for the build, check the port and read the logs before you believe it.
 
 ### [Problems & solutions](Category-Problems-solutions.md)

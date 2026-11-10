@@ -9,3 +9,4 @@
 - [What generative AI is, and why people build with it](Generative-AI.md) (Foundations)
 - [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md) (Foundations)
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)
+- [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)

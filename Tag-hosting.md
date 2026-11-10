@@ -10,4 +10,5 @@
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Security and data)
+- [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md) (How-to)
