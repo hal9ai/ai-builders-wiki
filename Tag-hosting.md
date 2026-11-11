@@ -14,5 +14,6 @@
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Security and data)
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md) (How-to)
+- [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md) (How-to)
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md) (How-to)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md) (How-to)

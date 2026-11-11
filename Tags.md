@@ -13,7 +13,7 @@ Tags describe what a page touches on, across categories. They are added as pages
 - [coding-agents](Tag-coding-agents.md) (3)
 - [costs](Tag-costs.md) (5)
 - [data](Tag-data.md) (1)
-- [hosting](Tag-hosting.md) (12)
+- [hosting](Tag-hosting.md) (13)
 - [mcp](Tag-mcp.md) (2)
 - [models](Tag-models.md) (2)
 - [privacy](Tag-privacy.md) (3)

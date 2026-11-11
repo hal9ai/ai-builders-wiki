@@ -4,7 +4,7 @@
 
 # Category: How-to
 
-**9 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
+**10 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
@@ -13,6 +13,7 @@
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md): Point one wildcard DNS record at your app's server so every app subdomain resolves without its own record, and one wildcard certificate covers them for HTTPS.
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md): The deploy call returning is not the app running: wait for the build, check the port and read the logs before you believe it.
+- [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md): One hostname for an app that runs in several datacenters: point the domain at one entry point that looks up which datacenter holds each name, and forward the rest with the Host header kept.
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md): A block volume per sandbox stops scaling at the host's per-machine limit: give each sandbox a directory on a shared filesystem, and plan isolation, quotas and snapshots.
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 
