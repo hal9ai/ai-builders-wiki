@@ -1,1 +1,4 @@
 _preview/
+_site/
+__pycache__/
+*.pyc
