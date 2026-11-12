@@ -40,6 +40,7 @@
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md)
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md)
+- [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md)
 
 **[Problems & solutions](Category-Problems-solutions.md)**
 

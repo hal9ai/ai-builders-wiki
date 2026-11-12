@@ -8,7 +8,7 @@ Tags describe what a page touches on, across categories. They are added as pages
 
 - [agents](Tag-agents.md) (7)
 - [analytics](Tag-analytics.md) (1)
-- [auth](Tag-auth.md) (3)
+- [auth](Tag-auth.md) (4)
 - [basics](Tag-basics.md) (6)
 - [coding-agents](Tag-coding-agents.md) (3)
 - [costs](Tag-costs.md) (5)

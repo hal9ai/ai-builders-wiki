@@ -57,6 +57,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md): One hostname for an app that runs in several datacenters: point the domain at one entry point that looks up which datacenter holds each name, and forward the rest with the Host header kept.
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md): A block volume per sandbox stops scaling at the host's per-machine limit: give each sandbox a directory on a shared filesystem, and plan isolation, quotas and snapshots.
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
+- [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md): When sign-in cannot finish on http://localhost, sign the session cookie yourself with the app's own secret, on loopback only, to preview the signed-in page.
 
 ### [Problems & solutions](Category-Problems-solutions.md)
 

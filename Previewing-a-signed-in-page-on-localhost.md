@@ -8,6 +8,7 @@ checked: 2026-11-11
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [auth](Tag-auth.md)
 <!-- NAV:END -->
 
 # Previewing a signed-in page on localhost
@@ -94,6 +95,7 @@ Treat a broken real sign-in as a separate problem; the pages on [login loops](A-
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [Deploy](Glossary.md#deploy), [Environment variable](Glossary.md#environment-variable), [Provider](Glossary.md#provider), [Secret](Glossary.md#secret), [Token](Glossary.md#token).
 <!-- SEEALSO:END -->
 
 ## Sources
