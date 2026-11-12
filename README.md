@@ -64,6 +64,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md): The provider says the redirect URI does not match, or the callback address comes out as 'https,http://example.com': why a forwarded header can carry a list of values, and how to build the address safely.
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md): A new HTML page paired with an old cached CSS or JS file: how to spot it, and how to give assets a URL that changes when they do.
+- [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md): The user is signed in, yet the account is empty: their identity follows them across regions, the account row does not, so create it on first use instead of only reading it.
 
 ### Tags
 

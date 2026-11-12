@@ -8,6 +8,7 @@ checked: 2026-11-11
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [Problems & solutions](Category-Problems-solutions.md) · Tags: [auth](Tag-auth.md), [hosting](Tag-hosting.md)
 <!-- NAV:END -->
 
 # A signed-in user with no account on another region
@@ -72,6 +73,7 @@ Two tabs arriving at once are what catches a read-then-insert without a constrai
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [Host](Glossary.md#host), [Logs](Glossary.md#logs), [Prompt](Glossary.md#prompt), [Provider](Glossary.md#provider), [Token](Glossary.md#token).
 <!-- SEEALSO:END -->
 
 ## Sources

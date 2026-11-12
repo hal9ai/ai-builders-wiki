@@ -12,6 +12,7 @@
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md) (How-to)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Security and data)
+- [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md) (Problems & solutions)
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md) (How-to)
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md) (How-to)
