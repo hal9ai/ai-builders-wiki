@@ -6,3 +6,4 @@
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
 - [Security for AI apps and agents](Security-for-AI-apps.md) (Security and data)
+- [How to deploy your app on every push](Deploy-on-every-push.md) (How-to)

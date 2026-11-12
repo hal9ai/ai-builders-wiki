@@ -16,5 +16,6 @@
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md) (How-to)
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md) (How-to)
+- [How to deploy your app on every push](Deploy-on-every-push.md) (How-to)
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md) (How-to)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md) (How-to)
