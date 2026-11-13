@@ -42,6 +42,7 @@
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md)
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md)
+- [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md)
 
 **[Problems & solutions](Category-Problems-solutions.md)**
 
@@ -49,4 +50,5 @@
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md)
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md)
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md)
+- [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md)
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md)

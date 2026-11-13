@@ -6,3 +6,4 @@
 
 - [Security for AI apps and agents](Security-for-AI-apps.md) (Security and data)
 - [Data protection when you use AI](Data-protection.md) (Security and data)
+- [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md) (Problems & solutions)

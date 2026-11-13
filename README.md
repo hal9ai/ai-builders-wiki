@@ -59,6 +59,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md): A block volume per sandbox stops scaling at the host's per-machine limit: give each sandbox a directory on a shared filesystem, and plan isolation, quotas and snapshots.
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md): When sign-in cannot finish on http://localhost, sign the session cookie yourself with the app's own secret, on loopback only, to preview the signed-in page.
+- [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md): Run the official image as one container with a volume at the app's storage path, keep its secret keys outside the image, and finish the first-run setup once.
 
 ### [Problems & solutions](Category-Problems-solutions.md)
 
@@ -66,6 +67,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md): The provider says the redirect URI does not match, or the callback address comes out as 'https,http://example.com': why a forwarded header can carry a list of values, and how to build the address safely.
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md): A new HTML page paired with an old cached CSS or JS file: how to spot it, and how to give assets a URL that changes when they do.
+- [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md): A browser only lets a page read another origin's JSON when that server allows it with Access-Control-Allow-Origin; otherwise fetch the data on your own server and serve it from your own domain.
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md): The user is signed in, yet the account is empty: their identity follows them across regions, the account row does not, so create it on first use instead of only reading it.
 
 ### Tags

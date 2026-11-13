@@ -4,7 +4,7 @@
 
 # Category: How-to
 
-**12 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
+**13 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
@@ -18,6 +18,7 @@
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md): A block volume per sandbox stops scaling at the host's per-machine limit: give each sandbox a directory on a shared filesystem, and plan isolation, quotas and snapshots.
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md): When sign-in cannot finish on http://localhost, sign the session cookie yourself with the app's own secret, on loopback only, to preview the signed-in page.
+- [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md): Run the official image as one container with a volume at the app's storage path, keep its secret keys outside the image, and finish the first-run setup once.
 
 ---
 

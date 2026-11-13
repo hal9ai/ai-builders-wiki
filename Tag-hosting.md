@@ -12,6 +12,7 @@
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md) (How-to)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Security and data)
+- [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md) (Problems & solutions)
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md) (Problems & solutions)
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)
 - [How to tell whether a deploy actually worked](Checking-whether-a-deploy-worked.md) (How-to)
@@ -19,3 +20,4 @@
 - [How to deploy your app on every push](Deploy-on-every-push.md) (How-to)
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md) (How-to)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md) (How-to)
+- [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md) (How-to)
