@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From idea to deployed AI app: a typical workflow · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a href="Tag-secrets.html">secrets</a>,
+<a href="Tag-costs.html">costs</a>, <a
+href="Tag-coding-agents.html">coding-agents</a></p>
+<!-- NAV:END -->
+
+<h1 id="from-idea-to-deployed-ai-app-a-typical-workflow">From idea to
+deployed AI app: a typical workflow</h1>
+<p><strong>A typical AI app goes through seven steps: scope it, build it
+with an assistant, keep the <a href="Glossary.html#api">API</a> key <a
+href="Glossary.html#secret">secret</a>, test it locally, <a
+href="Glossary.html#deploy">deploy</a> it to a <a
+href="Glossary.html#host">host</a>, read its <a
+href="Glossary.html#logs">logs</a>, and watch its costs, then repeat for
+every update.</strong> This page walks through one concrete example. The
+<a href="Glossary.html#tool">tools</a> are interchangeable; the steps are
+not.</p>
+<p><strong>The example:</strong> a small web app where a team pastes
+meeting notes and gets back a summary with action items. A Python
+backend calls a <a href="Glossary.html#model">model</a> API; a single HTML
+page is the front end.</p>
+<h2 id="1-scope-the-idea-and-build-it-with-an-assistant">1. Scope the
+idea and build it with an assistant</h2>
+<p><strong>Write down, in a few lines, what the app does, what it must
+never do, and how you will know it works, before you ask an assistant to
+write code.</strong> That text becomes the first <a
+href="Glossary.html#prompt">prompt</a>, and later the project's
+instruction file.</p>
+<pre class="text"><code>Build a small web app:
+- One page with a text box and a &quot;Summarize&quot; button.
+- A Python (FastAPI) backend with POST /summarize that sends the text to a model API
+  and returns: a 3-sentence summary and a list of action items with owners.
+- The API key comes from the environment variable MODEL_API_KEY. Never put it in the page.
+- Reject inputs over 20,000 characters.
+- Include a Dockerfile, a requirements.txt, a .gitignore that excludes .env, and a test.
+- The app listens on the port given in the PORT environment variable (default 8000).</code></pre>
+<p>Which assistant: a chat app for a first prototype, a <a
+href="Ways-to-use-AI.html#coding-agents-in-the-terminal">coding agent</a>
+or <a href="Ways-to-use-AI.html#ide-integrations-and-extensions">IDE
+integration</a> for anything you will maintain. Keep the project in Git
+from the first commit so every change the assistant makes can be
+reviewed and undone.</p>
+<p>What to check in what it produced:</p>
+<ul>
+<li><strong>Where the model is called.</strong> It must be the backend,
+not the browser. If the key appears in any file sent to the browser,
+stop and fix it. See <a
+href="Security-for-AI-apps.html#secrets-and-api-keys">security</a>.</li>
+<li><strong>New dependencies.</strong> Make sure each package exists and
+is the one you meant (<a
+href="Security-for-AI-apps.html#supply-chain">slopsquatting</a>).</li>
+<li><strong>The model ID.</strong> Take it from the <a
+href="Glossary.html#provider">provider</a>'s models page, and put it in
+configuration (<a href="Model-names-and-versions.html">how versions
+work</a>).</li>
+</ul>
+<h2 id="2-keys-and-secrets">2. Keys and secrets</h2>
+<p><strong>Create one <a href="Glossary.html#api-key">API key</a> for this
+app, store it as an <a
+href="Glossary.html#environment-variable">environment variable</a> locally
+and as a secret on the host, and never commit it.</strong> This follows
+the Twelve-Factor rule that an app "stores config in environment
+variables", and its test: the code "could be made open source at any
+moment, without compromising any credentials" (<a
+href="https://12factor.net/config">The Twelve-Factor App, Config</a>,
+checked 2026-10-28).</p>
+<p>Locally:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .env  (listed in .gitignore, never committed)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">MODEL_API_KEY</span><span class="op">=</span>sk-...</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">MODEL_ID</span><span class="op">=</span>the-model-id-from-the-provider-page</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;.env&quot;</span> <span class="op">&gt;&gt;</span> .gitignore</span></code></pre></div>
+<p>Anthropic's guidance says the same and adds that you should "prefer
+encypted [sic] secret storage instead of dotenv files" (<a
+href="https://support.claude.com/en/articles/9767949-api-key-best-practices-keeping-your-keys-safe-and-secure">Anthropic,
+API key best practices</a>, checked 2026-10-28). OpenAI recommends
+"separate projects for your staging and production environments" (<a
+href="https://developers.openai.com/api/docs/guides/production-best-practices">OpenAI,
+Production best practices</a>, checked 2026-10-28), so a test key can be
+revoked without touching production.</p>
+<p>On the host, set the same names in its secrets or environment
+settings (web dashboard, CLI or API). The app reads them the same way in
+both places.</p>
+<p>If a coding <a href="Glossary.html#agent">agent</a> does the deploy for
+you, give it a <a href="Glossary.html#token">token</a> scoped to this one
+app, not your account password. See <a
+href="Security-for-AI-apps.html#over-scoped-tokens">over-scoped
+tokens</a>.</p>
+<h2 id="3-run-and-test-it-locally">3. Run and test it locally</h2>
+<p><strong>Run the app on your machine with the real key and a few real
+inputs before deploying, because most deploy failures are local failures
+that nobody noticed.</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> meeting-notes .</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--env-file</span> .env <span class="at">-e</span> PORT=8000 <span class="at">-p</span> 8000:8000 meeting-notes</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then open http://localhost:8000 and try 3 or 4 real meeting notes</span></span></code></pre></div>
+<p>Checks that save time later:</p>
+<ul>
+<li>The app reads its port from <code>PORT</code> and listens on
+<code>0.0.0.0</code>, not only <code>localhost</code>. Many hosts set
+the port for you.</li>
+<li>A test checks the <em>shape</em> of the answer (a summary and a
+list), not the exact words. Model output is not repeatable (<a
+href="Generative-AI.html#where-it-fails">why</a>).</li>
+<li>A very long input is rejected with a clear message, not sent to the
+model.</li>
+</ul>
+<h2 id="4-deploy">4. Deploy</h2>
+<p><strong>Pick a host that fits the app's shape, push the code or the
+<a href="Glossary.html#container">container</a> image, set the secrets,
+and open the public URL.</strong> For this app, a request takes a few
+seconds and the answer can be streamed, so a container host or a <a
+href="Glossary.html#serverless">serverless</a> function with a long enough
+time limit both work (<a
+href="Cloud-for-AI-apps.html#serverless-containers-or-vms">which
+shape</a>, <a href="Cloud-for-AI-apps.html#time-limits-and-streaming">time
+limits</a>).</p>
+<p>The steps are similar everywhere:</p>
+<ol type="1">
+<li>Create the app on the host (dashboard, CLI or API).</li>
+<li>Give it the code: connect the Git repository, upload the build
+context, or point to an image.</li>
+<li>Set <code>MODEL_API_KEY</code> and <code>MODEL_ID</code> as secrets
+or environment variables.</li>
+<li>Deploy, and wait for the build to finish.</li>
+<li>Open the URL and run the same 3 or 4 inputs as locally.</li>
+</ol>
+<p><em>A disclosed example.</em> On Cloudish (made by Hal9, which
+started this wiki), one API call creates the project, or updates it if
+it already exists, so "a redeploy script can always call this
+unconditionally"; secrets are set through a separate endpoint and
+"merged into the container's environment automatically" (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish skill.md</a>,
+checked 2026-10-28). Other hosts use a Git push, a CLI command or a
+dashboard button for the same steps.</p>
+<p>Before sharing the link more widely: add a simple sign-in or a shared
+password if the app should not be public, and a per-user <a
+href="Glossary.html#rate-limit">rate limit</a>, because every request
+costs model tokens.</p>
+<h2 id="5-read-the-logs">5. Read the logs</h2>
+<p><strong>Logs are what the app prints while it runs; read them after
+every deploy and whenever something fails.</strong> They answer "did it
+start?", "which request failed?" and "what did the model provider
+return?".</p>
+<p>What to log for an AI app:</p>
+<ul>
+<li>one line per request: time, input length, model ID, tokens used,
+duration, success or error</li>
+<li>the provider's error code and message when a call fails (rate limit,
+invalid key, overloaded)</li>
+<li><strong>never</strong> the API key, and think twice before logging
+users' full inputs: they may contain personal data (<a
+href="Data-protection.html">data protection</a>)</li>
+</ul>
+<p>Most hosts show logs in their dashboard and through a CLI or API.
+Cloudish, for example, can "Fetch the running container's own
+stdout/stderr on demand" and does not store logs on its side (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish skill.md</a>,
+checked 2026-10-28), so anything you need to keep should go to your own
+log store. Check your host's retention before relying on its logs for
+later.</p>
+<p>Common first-deploy errors and their usual cause:</p>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Usual cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build succeeds, app never becomes ready</td>
+<td>App listens on the wrong port or only on <code>localhost</code></td>
+</tr>
+<tr>
+<td><code>401</code> or "invalid API key" from the provider</td>
+<td>Secret not set on the host, or set under another name</td>
+</tr>
+<tr>
+<td><code>429</code> from the provider</td>
+<td>Rate limit reached: add retries with back-off, or request a higher
+limit</td>
+</tr>
+<tr>
+<td>Request cut off after a fixed time</td>
+<td>The host's request time limit; stream the answer or move the work to
+a background job</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-watch-costs">6. Watch costs</h2>
+<p><strong>An AI app has at least two bills, hosting and model usage,
+and you should cap both before strangers can reach the app.</strong></p>
+<ul>
+<li><strong>Model usage.</strong> Set a spend limit at the provider.
+Anthropic: "Spend limits set a maximum monthly cost an organization can
+incur for API usage", and you can set your own below your tier's cap (<a
+href="https://platform.claude.com/docs/en/api/rate-limits">Anthropic,
+Rate limits</a>, checked 2026-10-28). On OpenAI, once a hard spend limit
+is reached, "Affected API requests return a 429 error" (<a
+href="https://developers.openai.com/api/docs/guides/rate-limits">OpenAI,
+Rate limits</a>, checked 2026-10-28).</li>
+<li><strong>Hosting.</strong> Know whether you pay while the app is
+idle. Some hosts charge for an always-on instance; others let the app
+sleep and wake on the next request. Some bill against prepaid credit:
+for example, Cloudish says its "credits are prepaid and metered per
+second, so spend never exceeds the key's balance" (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish skill.md</a>,
+checked 2026-10-28). Others bill a card at the end of the month, so set
+a budget alert there.</li>
+<li><strong>Estimate before launch.</strong> Tokens per request ×
+requests per day × price, as in the <a
+href="Generative-AI.html#what-it-costs">worked example</a>. Then compare
+with the provider's usage page after the first week.</li>
+</ul>
+<p>Your logged token counts (step 5) are the cheapest early warning: a
+sudden jump means a loop, a bug or abuse.</p>
+<h2 id="7-updates">7. Updates</h2>
+<p><strong>Every change goes through the same loop: change in a branch,
+test locally, deploy, check the logs, and keep the previous version
+ready to roll back.</strong></p>
+<ul>
+<li><strong>Code changes.</strong> Ask the assistant for the change,
+review the diff, run the tests, then redeploy.</li>
+<li><strong>Model changes.</strong> Changing <code>MODEL_ID</code> is a
+real change: run your 20 to 50 test inputs on the new model first. Plan
+for retirement dates; providers publish them on their deprecation pages
+(<a href="Model-names-and-versions.html">retirement</a>).</li>
+<li><strong>Dependency updates.</strong> Update regularly, read what
+changed, and keep a lockfile.</li>
+<li><strong>Key rotation.</strong> Create a new key, set it on the host,
+redeploy, then revoke the old one.</li>
+<li><strong>Rollback.</strong> Know how to go back: redeploy the
+previous image or Git commit. Try it once before you need it.</li>
+</ul>
+<h2 id="the-whole-path-on-one-screen">The whole path on one screen</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Do</th>
+<th>Do not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Scope and build</td>
+<td>Write the spec first; use Git from the start</td>
+<td>Accept code that calls the model from the browser</td>
+</tr>
+<tr>
+<td>2. Keys and secrets</td>
+<td>One key per app and environment; env vars; secrets on the host</td>
+<td>Commit <code>.env</code>; give an agent your account login</td>
+</tr>
+<tr>
+<td>3. Test locally</td>
+<td>Real inputs; check answer shape</td>
+<td>Deploy what you never ran</td>
+</tr>
+<tr>
+<td>4. Deploy</td>
+<td>Match the host to the app's shape; add rate limits</td>
+<td>Share the URL before limits are set</td>
+</tr>
+<tr>
+<td>5. Logs</td>
+<td>One line per request with tokens and errors</td>
+<td>Log keys or full personal data</td>
+</tr>
+<tr>
+<td>6. Costs</td>
+<td>Spend limit at the provider; budget alert at the host</td>
+<td>Discover the bill at month end</td>
+</tr>
+<tr>
+<td>7. Updates</td>
+<td>Test model changes on real examples; practise rollback</td>
+<td>Switch models silently in production</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+<li><a href="Security-for-AI-apps.html">Security</a></li>
+<li><a href="Data-protection.html">Data protection</a></li>
+<li><a href="Ways-to-use-AI.html">Ways to use AI</a></li>
+<li><a href="Glossary.html">Glossary</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#api-key">API key</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#rate-limit">Rate limit</a>, <a
+href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#serverless">Serverless</a>, <a
+href="Glossary.html#token">Token</a>, <a href="Glossary.html#tool">Tool</a>,
+<a href="Glossary.html#workflow">Workflow</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>The Twelve-Factor App, <a
+href="https://12factor.net/config">Config</a></li>
+<li>Anthropic, <a
+href="https://support.claude.com/en/articles/9767949-api-key-best-practices-keeping-your-keys-safe-and-secure">API
+key best practices</a>; <a
+href="https://platform.claude.com/docs/en/api/rate-limits">Rate
+limits</a></li>
+<li>OpenAI, <a
+href="https://developers.openai.com/api/docs/guides/production-best-practices">Production
+best practices</a>; <a
+href="https://developers.openai.com/api/docs/guides/rate-limits">Rate
+limits</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

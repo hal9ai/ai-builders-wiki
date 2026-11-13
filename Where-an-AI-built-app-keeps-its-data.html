@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where an AI-built app keeps its data · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a
+href="Tag-storage.html">storage</a></p>
+<!-- NAV:END -->
+
+<h1 id="where-an-ai-built-app-keeps-its-data">Where an AI-built app
+keeps its data</h1>
+<p><strong>Data that must outlive one visit — or one restart, or one
+redeploy — belongs on the server, in a database or files on storage that
+outlives the container; only disposable state belongs in the
+browser.</strong> An app can look finished while keeping its data in the
+wrong place: a todo list in <code>localStorage</code>, a cart in a
+JavaScript variable, a file written inside the container. Each works on
+the machine that built it, then shows the next visitor different data or
+loses everything on the next deploy.</p>
+<h2 id="the-four-places-data-can-live">The four places data can
+live</h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Survives</th>
+<th>Read by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser storage: <code>localStorage</code>,
+<code>sessionStorage</code>, IndexedDB</td>
+<td>A refresh; <code>localStorage</code> even closing the browser, since
+it has no expiration time</td>
+<td>That visitor's browser</td>
+</tr>
+<tr>
+<td>Process memory: a variable or an in-process cache</td>
+<td>Until the process stops</td>
+<td>Requests handled by that process</td>
+</tr>
+<tr>
+<td>The container's own filesystem</td>
+<td>Until the container is replaced</td>
+<td>That container</td>
+</tr>
+<tr>
+<td>A database, or files on a mounted volume, outside the container</td>
+<td>Restarts, redeploys and new containers</td>
+<td>Every copy of the app that can reach it</td>
+</tr>
+</tbody>
+</table>
+<p>The first row is not nothing: saving a draft locally is a real
+feature. The mistake is using it for data that is meant to be shared or
+permanent.</p>
+<h2 id="browser-storage-belongs-to-one-browser">Browser storage belongs
+to one browser</h2>
+<p><strong><code>localStorage</code> is a place in one visitor's
+browser, not on the server.</strong> MDN says it "is partitioned by
+origin only. All documents with the same origin have access to the same
+<code>localStorage</code> area, and it persists even when the browser is
+closed and reopened" (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web
+Storage API</a>, checked 2026-11-10). Another visitor, on another
+browser or device, has a different storage area, and a private window
+deletes its own when it closes (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code>Window.localStorage</code></a>,
+checked 2026-11-10).</p>
+<p>So a page that keeps the list only in <code>localStorage</code> gives
+every visitor their own list. Nothing is shared, because there is no
+copy anywhere but each browser.</p>
+<h2
+id="process-memory-and-the-containers-disk-end-with-the-process">Process
+memory and the container's disk end with the process</h2>
+<p><strong>A variable ends with the process, and a file in the container
+ends with the container.</strong> The <a
+href="https://12factor.net/processes">Twelve-Factor App</a> puts it
+plainly: "Twelve-factor processes are stateless and share-nothing. Any
+data that needs to persist must be stored in a stateful backing service,
+typically a database" (checked 2026-11-10). Docker's storage docs are as
+direct about the filesystem: "Data written to the container layer
+doesn't persist when the container is destroyed" (<a
+href="https://docs.docker.com/engine/storage/">Storage</a>, checked
+2026-11-10).</p>
+<p>A redeploy replaces the container, and a crash restarts the process,
+so neither a variable nor a file written next to the code is
+persistence. Kubernetes makes the same point from the other side: Pods
+are "designed as relatively ephemeral, disposable entities" (<a
+href="https://kubernetes.io/docs/concepts/workloads/pods/">Pods</a>,
+checked 2026-11-10).</p>
+<h2 id="what-to-use-instead">What to use instead</h2>
+<p><strong>Store the data where its life does not depend on the app
+process: a database server, or a database file or other files on storage
+mounted into the container.</strong> A Kubernetes PersistentVolume is
+exactly that: "PVs are volume plugins like Volumes, but have a lifecycle
+independent of any individual Pod that uses the PV" (<a
+href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent
+Volumes</a>, checked 2026-11-10). A redeploy can then swap the container
+while the data stays.</p>
+<p>Two limits come with that:</p>
+<ul>
+<li><strong>A volume is a disk, not a backup.</strong> Deleting it
+deletes the data with it. Take a copy somewhere else if losing the data
+would matter.</li>
+<li><strong>One volume usually means one copy of the app.</strong> On
+hosts that attach a volume to a single container, several replicas
+cannot share it. If the app must run more than one copy, use a database
+server the copies connect to instead of one file on a disk.</li>
+</ul>
+<p>For a small app with one process, a single database file on a volume
+is enough. For several writers, a database server handles the concurrent
+connections.</p>
+<h2 id="check-before-shipping">Check before shipping</h2>
+<p>Ask these about every piece of state, not just the obvious
+database:</p>
+<ol type="1">
+<li><strong>Shared or personal?</strong> Does another visitor need to
+see it? If yes, it cannot live only in the browser.</li>
+<li><strong>Does it survive a restart?</strong> A variable or an
+in-process cache does not.</li>
+<li><strong>Does it survive a redeploy?</strong> A file written inside
+the image does not.</li>
+<li><strong>How many copies of the app will run?</strong> More than one
+rules out a volume that attaches to a single container.</li>
+<li><strong>Can you get it back?</strong> A volume gives persistence,
+not backup.</li>
+</ol>
+<h2 id="example-a-shared-todo-list">Example: a shared todo list</h2>
+<p>A todo list where every visitor sees the same items has two jobs:
+store the list on the server, and store it somewhere that outlives the
+container. The version built alongside this page keeps the todos in a
+small database file on a mounted volume, serves them through a JSON API,
+and tells open pages about each write so they refresh; the page itself
+holds only what it last rendered. The same design works for a guestbook,
+a shared shopping list or a small internal tool.</p>
+<h2 id="cloudish-as-one-disclosed-example">Cloudish, as one disclosed
+example</h2>
+<p>Cloudish is made by Hal9, which started this wiki, so it appears here
+as an example and not as a recommendation. Its app API takes
+<code>volumeEnabled</code>, <code>volumeSizeGb</code> (1, 5 or 20) and
+<code>volumeMountPath</code> (default <code>/data</code>), and mounts
+that volume into the container. The same documentation notes the limit
+above in its own words: "A volume attaches to one container only, so it
+rules out replicas" (<a href="https://cloudish.ai/skill.md">Cloudish
+agent instructions</a>, checked 2026-11-10). The todo app above enables
+the volume and writes its database under <code>/data</code>.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a></li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+<li><a href="Checking-an-AI-built-web-app.html">How to check a web app an
+AI built</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-10.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web
+Storage API</a>; <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code>Window.localStorage</code></a></li>
+<li>The Twelve-Factor App, <a
+href="https://12factor.net/processes">Processes</a></li>
+<li>Docker, <a
+href="https://docs.docker.com/engine/storage/">Storage</a></li>
+<li>Kubernetes, <a
+href="https://kubernetes.io/docs/concepts/workloads/pods/">Pods</a>; <a
+href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent
+Volumes</a></li>
+<li>Cloudish, <a href="https://cloudish.ai/skill.md">agent
+instructions</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance while building a shared todo
+app on 2026-11-10, and checked against the <a
+href="#sources">sources</a> on 2026-11-10. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

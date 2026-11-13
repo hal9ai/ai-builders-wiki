@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The cloud, for AI apps · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Foundations.html">Foundations</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a href="Tag-costs.html">costs</a></p>
+<!-- NAV:END -->
+
+<h1 id="the-cloud-for-ai-apps">The cloud, for AI apps</h1>
+<p><strong>For an AI app, "the cloud" usually means three separate
+things: a place that runs your app, a <a
+href="Glossary.html#provider">provider</a> that runs the <a
+href="Glossary.html#model">model</a> your app calls, and, only sometimes,
+<a href="Glossary.html#gpu">GPUs</a> where you run a model
+yourself.</strong> Most small AI apps need the first two and never touch
+a GPU.</p>
+<h2 id="what-the-cloud-is">What the cloud is</h2>
+<p><strong><a href="Glossary.html#cloud">Cloud</a> computing is renting
+computers, storage and software over the internet, on demand, instead of
+owning them.</strong> The standard definition, from NIST: "a model for
+enabling ubiquitous, convenient, on-demand network access to a shared
+pool of configurable computing resources" (<a
+href="https://csrc.nist.gov/pubs/sp/800/145/final">NIST SP 800-145</a>,
+2011, checked 2026-10-28).</p>
+<p>NIST names three service models, still the common vocabulary:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>You get</th>
+<th>You manage</th>
+<th>Example for an AI app</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SaaS (software as a service)</td>
+<td>A finished application</td>
+<td>Your account and data</td>
+<td>A chat app such as ChatGPT or Claude</td>
+</tr>
+<tr>
+<td>PaaS (platform as a service)</td>
+<td>A place to deploy your code</td>
+<td>Your code and its settings</td>
+<td>A host that runs your container or function</td>
+</tr>
+<tr>
+<td>IaaS (infrastructure as a service)</td>
+<td>Raw virtual machines, disks, networks</td>
+<td>Almost everything, including the operating system</td>
+<td>A VM with a GPU where you install a model server</td>
+</tr>
+</tbody>
+</table>
+<p>A model <a href="Glossary.html#api">API</a> (you send text, you get
+text back, you pay per <a href="Glossary.html#token">token</a>) sits
+between these: you use it like SaaS from your code. Vendors call it
+"model as a service" or simply "the API".</p>
+<h2 id="three-jobs-three-bills">Three jobs, three bills</h2>
+<p><strong>Hosting your app, calling a model and running a model are
+different services, often from different companies, each with its own
+bill.</strong></p>
+<h3 id="1-hosting-the-app">1. Hosting the app</h3>
+<p>Your code (the web page, the backend that holds your <a
+href="Glossary.html#api-key">API key</a>, the bot, the <a
+href="Agent-protocols-MCP-and-A2A.html#mcp-connecting-agents-to-tools">MCP
+server</a>) has to run somewhere with a public address. This is ordinary
+web hosting. You choose between the shapes in <a
+href="#serverless-containers-or-vms">serverless, containers or VMs</a>
+below.</p>
+<h3 id="2-calling-a-model">2. Calling a model</h3>
+<p>Your backend sends requests to a model provider's API: Anthropic,
+OpenAI, Google, Mistral and others, or the same models through a cloud
+platform. Examples of such platforms, in their own words (checked
+2026-10-28):</p>
+<ul>
+<li><strong>Amazon Bedrock</strong>: "a fully managed service that
+provides secure, enterprise-grade access to high-performing foundation
+models from leading AI companies" (<a
+href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html">AWS
+docs</a>).</li>
+<li><strong>Microsoft Foundry</strong> (formerly Azure AI Foundry):
+"unifies agents, models, and tools under a single management grouping"
+(<a
+href="https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry">Microsoft
+Learn</a>).</li>
+<li><strong>Google Cloud</strong>: its AI platform docs, at the former
+Vertex AI address, now present "Gemini Enterprise Agent Platform" (<a
+href="https://docs.cloud.google.com/vertex-ai/docs">Google Cloud
+docs</a>).</li>
+</ul>
+<p>Teams use these when they already have a contract, data-location
+requirements or billing with that cloud. See <a
+href="AI-providers-and-models.html">providers and models</a> and <a
+href="Data-protection.html">data protection</a>.</p>
+<h3 id="3-running-a-model-yourself-on-gpus">3. Running a model yourself,
+on GPUs</h3>
+<p>You only need this if you run an <a
+href="Glossary.html#open-weight-model">open-weight model</a> yourself: for
+privacy, cost at high volume, a fine-tuned model, or a model no API
+offers. Options range from managed to raw (descriptions are the vendors'
+own, checked 2026-10-28):</p>
+<ul>
+<li><strong>Managed model endpoints:</strong> Hugging Face Inference
+Endpoints, "a managed service to deploy your AI model to production" (<a
+href="https://huggingface.co/docs/inference-endpoints/index">docs</a>).</li>
+<li><strong>GPU demo apps:</strong> a Hugging Face Space can be upgraded
+"to use a GPU accelerator", billed "by the minute" (<a
+href="https://huggingface.co/docs/hub/spaces-gpus">docs</a>).</li>
+<li><strong><a href="Glossary.html#serverless">Serverless</a>
+GPU:</strong> for example Modal (<a
+href="https://modal.com/docs/guide">docs</a>) or Runpod Serverless,
+"Pay-as-you-go compute for AI models and compute-intensive workloads"
+(<a href="https://docs.runpod.io/serverless/overview">docs</a>). You pay
+while a request runs; the first request after idle can be slow while the
+model loads.</li>
+<li><strong>GPU virtual machines</strong> from any large cloud: most
+control, most work, and you pay while the machine is on, used or
+not.</li>
+</ul>
+<p>GPUs are the expensive part of AI infrastructure. Before renting one,
+check whether a hosted API for the same or a similar model would do.</p>
+<h2 id="serverless-containers-or-vms">Serverless, containers or VMs</h2>
+<p><strong>The shape of your app decides where it can run: short
+request-and-response code fits serverless functions; anything that
+streams for long, runs all day or keeps files fits <a
+href="Glossary.html#container">containers</a> or VMs better.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>What you deploy</th>
+<th>Runs</th>
+<th>Good for</th>
+<th>Watch out for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serverless functions</td>
+<td>A function</td>
+<td>Only during a request, with a maximum duration</td>
+<td>Webhooks, short API calls, low traffic</td>
+<td>Time limits; no local files that last</td>
+</tr>
+<tr>
+<td>Containers</td>
+<td>A container image (your app plus its dependencies)</td>
+<td>As long as you want, or scaled to zero when idle</td>
+<td>Web apps, bots, agents, MCP servers</td>
+<td>Sleeping apps start slowly; disks only if the host offers
+volumes</td>
+</tr>
+<tr>
+<td>Virtual machines</td>
+<td>A whole server</td>
+<td>Always, until you stop it</td>
+<td>Full control, GPUs, unusual software</td>
+<td>You patch and secure the operating system</td>
+</tr>
+</tbody>
+</table>
+<h3 id="time-limits-and-streaming">Time limits and streaming</h3>
+<p><strong>AI responses are slow and are usually streamed, so check your
+<a href="Glossary.html#host">host</a>'s maximum request time before you
+choose it.</strong> Both Anthropic and OpenAI stream answers with
+server-sent events (SSE): Anthropic lets you "set
+<code>"stream": true</code> to incrementally stream the response using
+server-sent events (SSE)" (<a
+href="https://platform.claude.com/docs/en/build-with-claude/streaming">Anthropic,
+Streaming</a>); OpenAI's guide covers "HTTP streaming
+(<code>stream=true</code>) over server-sent events (SSE)" (<a
+href="https://developers.openai.com/api/docs/guides/streaming-responses">OpenAI,
+Streaming</a>). An <a href="Glossary.html#agent">agent</a> that works for
+several minutes needs the connection, or a background job, to last that
+long.</p>
+<p>Some published limits, checked 2026-10-28:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Limit, as documented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS Lambda</td>
+<td>Default 3 seconds, adjustable "up to a maximum value of 900 seconds
+(15 minutes)" (<a
+href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html">AWS
+docs</a>)</td>
+</tr>
+<tr>
+<td>Google Cloud Run</td>
+<td>Default "5 minutes (300 seconds)", "can be extended up to 60 minutes
+(3600 seconds)" (<a
+href="https://docs.cloud.google.com/run/docs/configuring/request-timeout">Google
+Cloud docs</a>)</td>
+</tr>
+<tr>
+<td>Vercel Functions</td>
+<td>Depends on plan; Pro and Enterprise "can set individual Vercel
+Functions … to run for up to 30 minutes" (<a
+href="https://vercel.com/docs/functions/configuring-functions/duration">Vercel
+docs</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Limits change and have exceptions (plans, beta options, async
+invocations): read the linked page for your case. If your work can take
+longer than the limit, put it in a background job or a queue and let the
+user poll or get notified.</p>
+<h3 id="a-disclosed-example-a-long-lived-container">A disclosed example:
+a long-lived container</h3>
+<p>Hosts that run containers without a per-request limit suit bots,
+agents and <a href="Glossary.html#mcp-model-context-protocol">MCP</a>
+servers that hold connections open. Cloudish (made by Hal9, which
+started this wiki) works this way: "Cloudish deploys apps as long-lived
+containers with a public URL", and apps can stay on or sleep when idle
+and wake on the next request (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish skill.md</a>,
+checked 2026-10-28). Many other hosts offer containers too; the point is
+the shape, not the vendor.</p>
+<h2 id="which-setup-for-which-app">Which setup for which app</h2>
+<table>
+<thead>
+<tr>
+<th>Your app</th>
+<th>Hosting</th>
+<th>Model</th>
+<th>GPU?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A chatbot on your website</td>
+<td>Small container or function with streaming</td>
+<td>Hosted API</td>
+<td>No</td>
+</tr>
+<tr>
+<td>A nightly job that summarizes reports</td>
+<td>Scheduled function or container</td>
+<td>Hosted API, batch mode if offered</td>
+<td>No</td>
+</tr>
+<tr>
+<td>A Slack or Discord bot</td>
+<td>Always-on container</td>
+<td>Hosted API</td>
+<td>No</td>
+</tr>
+<tr>
+<td>A remote MCP server for your team</td>
+<td>Container with HTTPS</td>
+<td>Usually none of its own</td>
+<td>No</td>
+</tr>
+<tr>
+<td>A private document assistant that must not leave your network</td>
+<td>Your own servers or VPC</td>
+<td>Open-weight model you run</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>A demo of a fine-tuned image model</td>
+<td>GPU Space or serverless GPU</td>
+<td>Your model</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a>: the concrete steps</li>
+<li><a href="Security-for-AI-apps.html">Security</a>: keys, tokens,
+permissions</li>
+<li><a href="Data-protection.html">Data protection</a>: where your users'
+data goes</li>
+<li><a href="AI-providers-and-models.html">Providers and models</a></li>
+<li><a href="Glossary.html">Glossary</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#api-key">API key</a>, <a
+href="Glossary.html#chatbot">Chatbot</a>, <a
+href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a href="Glossary.html#gpu">GPU</a>,
+<a href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#inference">Inference</a>, <a
+href="Glossary.html#mcp-model-context-protocol">MCP (Model Context
+Protocol)</a>, <a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#open-weight-model">Open-weight model</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#serverless">Serverless</a>, <a
+href="Glossary.html#streaming">Streaming</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>NIST, <a href="https://csrc.nist.gov/pubs/sp/800/145/final">SP
+800-145, The NIST Definition of Cloud Computing</a> (2011)</li>
+<li>AWS, <a
+href="https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html">What
+is Amazon Bedrock?</a>; <a
+href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html">Lambda
+function timeout</a></li>
+<li>Microsoft, <a
+href="https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry">What
+is Microsoft Foundry?</a></li>
+<li>Google Cloud, <a
+href="https://docs.cloud.google.com/vertex-ai/docs">AI platform
+documentation</a>; <a
+href="https://docs.cloud.google.com/run/docs/configuring/request-timeout">Cloud
+Run request timeout</a></li>
+<li>Vercel, <a
+href="https://vercel.com/docs/functions/configuring-functions/duration">Configuring
+maximum duration</a></li>
+<li>Hugging Face, <a
+href="https://huggingface.co/docs/inference-endpoints/index">Inference
+Endpoints</a>; <a
+href="https://huggingface.co/docs/hub/spaces-gpus">Spaces GPU
+upgrades</a></li>
+<li>Modal, <a href="https://modal.com/docs/guide">Guide</a></li>
+<li>Runpod, <a
+href="https://docs.runpod.io/serverless/overview">Serverless
+overview</a></li>
+<li>Anthropic, <a
+href="https://platform.claude.com/docs/en/build-with-claude/streaming">Streaming
+messages</a></li>
+<li>OpenAI, <a
+href="https://developers.openai.com/api/docs/guides/streaming-responses">Streaming
+API responses</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

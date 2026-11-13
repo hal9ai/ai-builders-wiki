@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Previewing a signed-in page on localhost · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-auth.html">auth</a></p>
+<!-- NAV:END -->
+
+<h1 id="previewing-a-signed-in-page-on-localhost">Previewing a signed-in
+page on localhost</h1>
+<p><strong>When sign-in cannot finish on <code>http://localhost</code>,
+sign the session cookie yourself with the app's own secret and set it
+for that origin: it is a preview of the signed-in page, not a
+sign-in.</strong> The shortcut skips the provider, so it proves nothing
+about the real login flow; test that on an address the provider
+accepts.</p>
+<h2 id="why-sign-in-stops-on-localhost">Why sign-in stops on
+localhost</h2>
+<p><strong>A provider that requires an https redirect URI has nowhere to
+send a local http app back to.</strong> OAuth 2.0 tells authorization
+servers that "The redirection endpoint SHOULD require the use of TLS"
+(<a href="https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.1">RFC
+6749, §3.1.2.1</a>, checked 2026-11-11), and a provider may enforce that
+by refusing to register or use an <code>http://</code> address. The
+request is refused before your app ever sees a code.</p>
+<p>Some providers follow the OAuth 2.0 profile for native apps, which
+makes loopback an exception: "Loopback redirect URIs use the "http"
+scheme" and "The authorization server MUST allow any port to be
+specified at the time of the request for loopback IP redirect URIs" (<a
+href="https://www.rfc-editor.org/rfc/rfc8252#section-7.3">RFC 8252,
+§7.3</a>, checked 2026-11-11). Check the provider's own documentation
+first: if it accepts <code>http://127.0.0.1:PORT</code> as a redirect,
+register that exact address and sign in normally. A temporary https
+tunnel in front of the local port is the other option; it needs a
+registration change and a public name, and it lasts only as long as the
+tunnel.</p>
+<h2 id="find-the-cookie-the-server-verifies">Find the cookie the server
+verifies</h2>
+<p><strong>The shortcut needs three things from the server code: the
+cookie name it reads, the payload shape it verifies, and the <a
+href="Glossary.html#secret">secret</a> it verifies with.</strong> Look for
+the function that reads the session cookie and the code that sets it
+after a successful sign-in. If the app keeps sessions in a database or
+an in-memory map keyed by an opaque id, there is no signed cookie to
+mint; use a development sign-in hook or a seeded test user instead.</p>
+<h2 id="mint-the-cookie">Mint the cookie</h2>
+<p><strong>Build the payload the server expects, sign it with
+HMAC-SHA256 using the same secret, and set
+<code>name=payload.signature</code> for the local origin.</strong> The
+script below is an example, not a drop-in: keep the claim names, the
+cookie name and the signing order your server uses, and read the secret
+from the same <a href="Glossary.html#environment-variable">environment
+variable</a> the server does.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Local preview only. Signs the same session cookie the app would set,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// with the same secret. Never run this against a deployed server.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> crypto <span class="im">from</span> <span class="st">&#39;node:crypto&#39;</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> secret <span class="op">=</span> <span class="bu">process</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">SESSION_SECRET</span><span class="op">;</span> <span class="co">// the value the dev server started with</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> payload <span class="op">=</span> <span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sub</span><span class="op">:</span> <span class="st">&#39;local-dev&#39;</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">email</span><span class="op">:</span> <span class="st">&#39;you@example.com&#39;</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Local Dev&#39;</span><span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">exp</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>() <span class="op">/</span> <span class="dv">1000</span>) <span class="op">+</span> <span class="dv">8</span> <span class="op">*</span> <span class="dv">3600</span><span class="op">,</span> <span class="co">// 8 hours</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}))<span class="op">.</span><span class="fu">toString</span>(<span class="st">&#39;base64url&#39;</span>)<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> signature <span class="op">=</span> crypto<span class="op">.</span><span class="fu">createHmac</span>(<span class="st">&#39;sha256&#39;</span><span class="op">,</span> secret)<span class="op">.</span><span class="fu">update</span>(payload)<span class="op">.</span><span class="fu">digest</span>(<span class="st">&#39;base64url&#39;</span>)<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`session=</span><span class="sc">${</span>payload<span class="sc">}</span><span class="vs">.</span><span class="sc">${</span>signature<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span></code></pre></div>
+<p>Start the local server with a secret made for development, then add
+the printed value under that cookie name in the browser's cookie store
+for <code>localhost</code> — DevTools → Application → Cookies — and
+reload. The cookie panel can store a cookie the server marks <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie">HttpOnly</a>,
+which "Forbids JavaScript from accessing the cookie" (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie">MDN,
+Set-Cookie</a>, checked 2026-11-11); a <code>document.cookie</code>
+assignment is the quicker route only while the browser holds no HttpOnly
+cookie of that name yet.</p>
+<h2 id="skip-the-cookie-panel-with-a-loopback-proxy">Skip the cookie
+panel with a loopback proxy</h2>
+<p><strong>A proxy bound to <code>127.0.0.1</code> that adds the
+<code>Cookie</code> header on every request lets you open the preview
+like any other URL.</strong> Forward each request to the app, replace
+the <code>Cookie</code> header with the minted value, and keep the
+listener on loopback: "Clients should listen on the loopback network
+interface only, in order to avoid interference by other network actors"
+(<a href="https://www.rfc-editor.org/rfc/rfc8252#section-8.3">RFC 8252,
+§8.3</a>, checked 2026-11-11).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// proxy.mjs — forward to the dev server and inject the session cookie.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> http <span class="im">from</span> <span class="st">&#39;node:http&#39;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> cookie <span class="op">=</span> <span class="bu">process</span><span class="op">.</span><span class="at">argv</span>[<span class="dv">2</span>]<span class="op">;</span> <span class="co">// name=payload.signature</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>http<span class="op">.</span><span class="fu">createServer</span>((req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> upstream <span class="op">=</span> http<span class="op">.</span><span class="fu">request</span>({</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">host</span><span class="op">:</span> <span class="st">&#39;127.0.0.1&#39;</span><span class="op">,</span> <span class="dt">port</span><span class="op">:</span> <span class="dv">3000</span><span class="op">,</span> <span class="dt">path</span><span class="op">:</span> req<span class="op">.</span><span class="at">url</span><span class="op">,</span> <span class="dt">method</span><span class="op">:</span> req<span class="op">.</span><span class="at">method</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">headers</span><span class="op">:</span> { <span class="op">...</span>req<span class="op">.</span><span class="at">headers</span><span class="op">,</span> <span class="dt">host</span><span class="op">:</span> <span class="st">&#39;127.0.0.1:3000&#39;</span><span class="op">,</span> cookie }<span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> (up) <span class="kw">=&gt;</span> { res<span class="op">.</span><span class="fu">writeHead</span>(up<span class="op">.</span><span class="at">statusCode</span><span class="op">,</span> up<span class="op">.</span><span class="at">headers</span>)<span class="op">;</span> up<span class="op">.</span><span class="fu">pipe</span>(res)<span class="op">;</span> })<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  upstream<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;error&#39;</span><span class="op">,</span> (error) <span class="kw">=&gt;</span> { res<span class="op">.</span><span class="fu">writeHead</span>(<span class="dv">502</span>)<span class="op">;</span> res<span class="op">.</span><span class="fu">end</span>(error<span class="op">.</span><span class="at">message</span>)<span class="op">;</span> })<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  req<span class="op">.</span><span class="fu">pipe</span>(upstream)<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">.</span><span class="fu">listen</span>(<span class="dv">4000</span><span class="op">,</span> <span class="st">&#39;127.0.0.1&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<p>Start the app with its public origin set to the proxy's address (for
+example <code>http://localhost:4000</code>), run
+<code>node proxy.mjs 'session=…'</code>, and open
+<code>http://localhost:4000</code>. The proxy holds a credential: do not
+bind it to <code>0.0.0.0</code>, and never deploy it.</p>
+<h2 id="what-the-preview-does-not-test">What the preview does not
+test</h2>
+<p><strong>The shortcut proves the signed-in page renders; it does not
+test authentication.</strong> These still need an address the provider
+accepts, usually a staging <a href="Glossary.html#deploy">deploy</a> or an
+https tunnel:</p>
+<ul>
+<li>the provider's redirect and callback, including the
+<code>state</code> and nonce checks;</li>
+<li>the token exchange and the checks on the returned id_token, such as
+issuer, audience and allowed email domain;</li>
+<li>the cookie the server sets for real: its <code>Secure</code>,
+<code>HttpOnly</code> and <code>SameSite</code> attributes, and its
+lifetime;</li>
+<li>sign-out, which clears the session cookie, and what happens when the
+cookie expires or the secret rotates.</li>
+</ul>
+<p>Treat a broken real sign-in as a separate problem; the pages on <a
+href="A-login-that-loops.html">login loops</a> and <a
+href="A-sign-in-that-breaks-behind-a-proxy.html">redirect URIs behind a
+proxy</a> cover the common causes.</p>
+<h2 id="keep-the-shortcut-local">Keep the shortcut local</h2>
+<ul>
+<li>Use a development secret, not the deployed one; keep it in the
+environment and out of the repository.</li>
+<li>The minted cookie is a credential for that origin. Delete it when
+you finish, and do not share it.</li>
+<li>Run the minting script and any proxy on your own machine, on
+loopback only.</li>
+<li>If you change the secret, mint the cookie again; every existing
+session becomes invalid.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="A-login-that-loops.html">A login that loops between your app
+and the sign-in provider</a></li>
+<li><a href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that
+breaks behind a proxy: the redirect URI</a></li>
+<li><a href="Checking-an-AI-built-web-app.html">How to check a web app an
+AI built</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#token">Token</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-11.</p>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.1">RFC
+6749, The OAuth 2.0 Authorization Framework, §3.1.2.1</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8252#section-7.3">RFC
+8252, OAuth 2.0 for Native Apps, §7.3 and §8.3</a></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie">MDN,
+Set-Cookie</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-11. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model names and versions · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Models-and-providers.html">Models and providers</a> · Tags:
+<a href="Tag-models.html">models</a></p>
+<!-- NAV:END -->
+
+<h1 id="model-names-and-versions">Model names and versions</h1>
+<p><strong>A <a href="Glossary.html#model">model</a> name usually has
+three parts: a family (Claude, GPT, Gemini), a generation number, and a
+size or speed tier; the exact ID you send in code may also pin a dated
+<a href="Glossary.html#snapshot">snapshot</a>.</strong> Knowing which kind
+of ID you use tells you whether the model can change under you, and when
+it will stop working.</p>
+<h2 id="tiers">Tiers</h2>
+<p>Each vendor sells bigger, slower, pricier models and smaller, faster,
+cheaper ones under its own names (from each vendor's models page, linked
+on <a
+href="AI-providers-and-models.html#who-makes-what-snapshot-2026-10-28">AI
+providers and models</a>, checked 2026-10-28):</p>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>Tier names, most capable to fastest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anthropic</td>
+<td>Fable, Opus, Sonnet, Haiku</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>Astra, Sol, Terra, Luna</td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td>Pro, Flash, Flash-Lite (where Gemini 4 Argon fits is not stated on
+the page)</td>
+</tr>
+<tr>
+<td>Alibaba Qwen</td>
+<td>Max, Plus, Flash</td>
+</tr>
+</tbody>
+</table>
+<h2 id="snapshots-and-aliases">Snapshots and aliases</h2>
+<p>In code you send a model ID. Some IDs are fixed snapshots; others are
+aliases that move to newer versions:</p>
+<ul>
+<li><strong>Anthropic:</strong> "Starting with the Claude 4.6
+generation, model IDs use a dateless format", and such an ID "is not an
+alias. It is the snapshot." Older models use dated IDs such as
+<code>claude-sonnet-4-5-20250929</code> (<a
+href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions">Model
+IDs and versioning</a>).</li>
+<li><strong>OpenAI:</strong> older snapshots carry a date in the ID,
+such as <code>gpt-4.1-2025-04-14</code>, which OpenAI's deprecations
+page lists for shutdown on January 14, 2027 (<a
+href="https://developers.openai.com/api/docs/deprecations">OpenAI
+deprecations</a>).</li>
+<li><strong>Google Gemini:</strong> a <em>stable</em> name "Points to a
+specific stable model. Stable models usually don't change";
+<em>preview</em> "may be used for production"; <em>latest</em> points to
+the newest release and changes over time; <em>experimental</em> models
+are not for production (<a
+href="https://ai.google.dev/gemini-api/docs/models">Gemini
+models</a>).</li>
+<li><strong>Mistral:</strong> IDs follow "a model-name-major-minor
+format, for example mistral-medium-3-5", and <code>-latest</code>
+aliases exist, with a warning: "Using an alias may expose you to silent
+updates in model behavior and pricing" (<a
+href="https://docs.mistral.ai/inference/model-lifecycle">Mistral model
+lifecycle</a>).</li>
+<li><strong>xAI:</strong> a bare model name is "aliased to the latest
+stable version", <code>-latest</code> to the latest version, and a dated
+name "will not be updated" (<a href="https://docs.x.ai/docs/models">xAI
+models</a>).</li>
+</ul>
+<p>All checked 2026-10-28. <strong>In production, pin a fixed
+ID</strong> and upgrade on purpose, after testing.</p>
+<h2 id="retirement">Retirement</h2>
+<p>Models are retired on a schedule, and calls to a retired ID fail.
+Published notice periods (checked 2026-10-28):</p>
+<ul>
+<li>Anthropic: "at least 60 days' notice before model retirement for
+publicly released models" (<a
+href="https://platform.claude.com/docs/en/about-claude/model-deprecations">deprecations</a>).</li>
+<li>Mistral: 6 months for generally available models, 1 month for Labs,
+preview and third-party models; after retirement, "requests to its
+identifiers fail with a 404 error" (<a
+href="https://docs.mistral.ai/inference/model-lifecycle">model
+lifecycle</a>).</li>
+<li>Google Vertex AI: "gives you at least 45 days to migrate" (<a
+href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions">model
+versions</a>).</li>
+<li>OpenAI: "At least 6 months" for generally available models, "At
+least 3 months" for specialized variants, and possibly "much shorter
+notice, such as 2 weeks" for previews (<a
+href="https://developers.openai.com/api/docs/deprecations">deprecations</a>).</li>
+</ul>
+<p>Put the model ID in configuration, not scattered through code, and
+subscribe to your <a href="Glossary.html#provider">provider</a>'s
+deprecation notices.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="AI-providers-and-models.html">AI providers and models</a>:
+who makes what, and how to choose</li>
+<li><a href="Idea-to-deployed-AI-app.html#7-updates">From idea to deployed
+AI app</a>: changing models safely</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#snapshot">Snapshot</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>Anthropic: <a
+href="https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions">Model
+IDs and versioning</a>, <a
+href="https://platform.claude.com/docs/en/about-claude/model-deprecations">Deprecations</a></li>
+<li>OpenAI: <a
+href="https://developers.openai.com/api/docs/models">Models</a>, <a
+href="https://developers.openai.com/api/docs/deprecations">Deprecations</a></li>
+<li>Google: <a
+href="https://ai.google.dev/gemini-api/docs/models">Gemini models</a>,
+<a
+href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions">Vertex
+AI model versions</a></li>
+<li>Mistral: <a
+href="https://docs.mistral.ai/inference/model-lifecycle">Model
+lifecycle</a></li>
+<li>xAI: <a href="https://docs.x.ai/docs/models">Models</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

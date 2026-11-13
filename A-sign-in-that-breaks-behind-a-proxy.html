@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A sign-in that breaks behind a proxy: the redirect URI · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Problems-solutions.html">Problems &amp; solutions</a> ·
+Tags: <a href="Tag-auth.html">auth</a>, <a
+href="Tag-hosting.html">hosting</a></p>
+<!-- NAV:END -->
+
+<h1 id="a-sign-in-that-breaks-behind-a-proxy-the-redirect-uri">A sign-in
+that breaks behind a proxy: the redirect URI</h1>
+<p><strong>If your app sits behind a proxy and sign-in fails with a
+redirect-URI error, the app is probably computing its public address
+from a forwarded header that can carry more than one value, so the
+callback address comes out as
+<code>https,http://app.example.com/auth/callback</code>.</strong> Build
+the redirect URI from a configured public address instead, or parse the
+header as a comma-separated list and take the first value.</p>
+<h2 id="what-it-looks-like">What it looks like</h2>
+<ul>
+<li>The sign-in provider shows an error such as "redirect_uri mismatch",
+"Invalid redirect_uri" or "Callback URL mismatch".</li>
+<li>The provider's error page shows the address your app sent, with a
+comma in the scheme:
+<code>https,http://app.example.com/auth/callback</code>. In the URL it
+is encoded as
+<code>https%2Chttp%3A%2F%2Fapp.example.com%2Fauth%2Fcallback</code>.</li>
+<li>Sign-in works when you open the app at its local address and fails
+at the public one, or the reverse.</li>
+<li>If the app ignores the provider's error, the sign-in looks like an
+endless bounce: see <a href="A-login-that-loops.html">A login that loops
+between your app and the sign-in provider</a>.</li>
+</ul>
+<h2 id="why-the-address-has-to-be-exactly-right">Why the address has to
+be exactly right</h2>
+<p>In the OAuth authorization code flow the app sends the user to the
+provider and names a redirect URI: where the provider may send the user
+back. The provider only accepts an address it knows. RFC 6749 says "the
+redirection endpoint URI MUST be an absolute URI", and the authorization
+server "MUST compare and match the value received against at least one
+of the registered redirection URIs" (<a
+href="https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2">RFC 6749,
+section 3.1.2</a>, checked 2026-11-09). When a full URI is registered,
+the comparison is "using simple string comparison as defined in
+[RFC3986] Section 6.2.1" (<a
+href="https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.3">RFC 6749,
+section 3.1.2.3</a>, checked 2026-11-09).</p>
+<p>Simple string comparison means small differences count.
+<code>https://app.example.com/auth/callback</code> and
+<code>https://app.example.com/auth/callback/</code> are two different
+strings. So is
+<code>https,http://app.example.com/auth/callback</code>.</p>
+<h2 id="where-the-wrong-scheme-comes-from">Where the wrong scheme comes
+from</h2>
+<p>Your app usually listens on plain HTTP on a private address, such as
+<code>http://localhost:3000</code>. The proxy in front accepts HTTPS
+from the public and forwards the request over HTTP. If the app builds
+links from the request it receives, it sees <code>http</code> and an
+internal host, neither of which is the address the user is on.</p>
+<p>Proxies add headers for exactly this. <code>X-Forwarded-Proto</code>
+carries the original scheme, <code>X-Forwarded-Host</code> the original
+host, and <code>X-Forwarded-For</code> the original address. MDN calls
+<code>X-Forwarded-Proto</code> "a de-facto standard header for
+identifying the protocol (HTTP or HTTPS) that a client used to connect
+to a proxy or load balancer", with the syntax
+<code>X-Forwarded-Proto: &lt;protocol&gt;</code> — a single value (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto">MDN,
+X-Forwarded-Proto</a>, checked 2026-11-09).</p>
+<p>It is "de-facto" because the header was never standardised. RFC 7239
+instead defines a standard header called <code>Forwarded</code>, "an
+HTTP extension header field that allows proxy components to disclose
+information lost in the proxying process", written like
+<code>Forwarded: for=192.0.2.60;proto=http;by=203.0.113.43</code> (<a
+href="https://www.rfc-editor.org/rfc/rfc7239">RFC 7239</a>, checked
+2026-11-09). Most proxies still add the <code>X-Forwarded-*</code>
+headers, and many apps read only those.</p>
+<h2 id="why-the-header-can-hold-a-list">Why the header can hold a
+list</h2>
+<p>A request can pass through more than one proxy: a CDN, then a load
+balancer, then the app's own reverse proxy. Each may append its own
+value to the same header. Microsoft's documentation for ASP.NET Core
+says of <code>X-Forwarded-Proto</code>: "The value might also be a list
+of schemes if the request has traversed multiple proxies" (<a
+href="https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer">Microsoft
+Learn, proxy servers and load balancers</a>, checked 2026-11-09).
+Django's documentation says the same from the other side: the proxy
+should strip <code>X-Forwarded-Proto</code> from incoming requests "even
+when it contains a comma-separated list of protocols" (<a
+href="https://docs.djangoproject.com/en/stable/ref/settings/#secure-proxy-ssl-header">Django
+settings, <code>SECURE_PROXY_SSL_HEADER</code></a>, checked
+2026-11-09).</p>
+<p>So a header like this is not corruption; it is two hops
+reporting:</p>
+<pre><code>X-Forwarded-Proto: https,http</code></pre>
+<p>Values are conventionally appended in the order the request
+travelled, so the first describes the connection nearest the user. The
+standardised <code>Forwarded</code> header says this outright: "The
+first element in this list holds information added by the first proxy
+that implements and uses this header field", and "each subsequent
+element holds information added by each subsequent proxy" (<a
+href="https://www.rfc-editor.org/rfc/rfc7239#section-4">RFC 7239,
+section 4</a>, checked 2026-11-09).</p>
+<p>An app that treats the whole header as one string gets the scheme
+<code>https,http</code>, builds
+<code>https,http://app.example.com/auth/callback</code>, and sends that
+as <code>redirect_uri</code>. The provider sees a URI that is not
+absolute and does not match the registered one, so it refuses. The
+one-time code and PKCE never come into it: the request is rejected
+before the user signs in.</p>
+<h2 id="how-to-confirm-it-in-a-minute">How to confirm it in a
+minute</h2>
+<ul>
+<li>Log the redirect URI your app builds, and the full URL it sends the
+browser to. In the query string, <code>%2C</code> is a comma.</li>
+<li>Ask the app what it sees. Send a request to your own development
+server with a made-up two-value header and see what address comes back:
+<code>curl -H 'X-Forwarded-Proto: https,http' http://localhost:3000/</code>.</li>
+<li>Compare the address sent with the one registered at the provider:
+scheme, host, port, path and trailing slash.</li>
+</ul>
+<p>If the provider's error page names a <code>redirect_uri</code> that
+looks correct, the problem is elsewhere — see <a
+href="A-login-that-loops.html">A login that loops between your app and the
+sign-in provider</a>.</p>
+<h2 id="how-to-fix-it">How to fix it</h2>
+<ol type="1">
+<li><strong>Do not derive the redirect URI from the request.</strong>
+Set the public address once, as an <a
+href="Glossary.html#environment-variable">environment variable</a> such as
+<code>PUBLIC_URL=https://app.example.com</code>, and build the callback
+address from it. The same string goes out on every request, so it can be
+registered once and checked once. It also keeps working when the proxy
+configuration changes or when several proxies disagree.</li>
+<li><strong>If you do read the header, read it as a list.</strong> Split
+on commas, take the first value and trim it, for the scheme and for the
+host. Accept only <code>http</code> or <code>https</code> and reject
+anything else rather than passing it into a URL.</li>
+<li><strong>Trust the header only from your own proxy.</strong> A client
+can send <code>X-Forwarded-Proto: https</code> itself. If the app
+believes it, that client influences the redirect URI and every link the
+app generates. Have your proxy overwrite or strip incoming copies.
+Django's documentation is explicit: "You should only set this setting if
+you control your proxy or have some other guarantee that it sets/strips
+this header appropriately" (<a
+href="https://docs.djangoproject.com/en/stable/ref/settings/#secure-proxy-ssl-header">Django
+settings, <code>SECURE_PROXY_SSL_HEADER</code></a>, checked
+2026-11-09).</li>
+<li><strong>Keep the registered redirect URI exact.</strong> After all
+of the above, the string sent and the string registered must be
+identical. If the provider supports several registered URIs or
+wildcards, prefer exact ones and use one per environment (local,
+staging, production).</li>
+</ol>
+<h2 id="check-that-it-is-fixed">Check that it is fixed</h2>
+<ul>
+<li>Sign in from the public HTTPS address: the provider request carries
+<code>redirect_uri=https%3A%2F%2Fapp.example.com%2Fauth%2Fcallback</code>,
+with no <code>%2C</code>.</li>
+<li>The callback reaches the app, the code is exchanged, and you land
+signed in.</li>
+<li>Send the app a header with two values again: the address it builds
+is the same as before.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="A-login-that-loops.html">A login that loops between your app
+and the sign-in provider</a>: the same redirect, when the app throws the
+code away</li>
+<li><a href="Idea-to-deployed-AI-app.html#4-deploy">From idea to deployed
+AI app</a>: where sign-in and environment settings sit in a deploy</li>
+<li><a href="Cloud-for-AI-apps.html#1-hosting-the-app">The cloud, for AI
+apps</a>: what a host puts in front of your app</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#provider">Provider</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-09.</p>
+<ul>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc6749">RFC 6749: The
+OAuth 2.0 Authorization Framework</a>: section 3.1.2 (redirection
+endpoint) and 3.1.2.3 (registration requirements)</li>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc3986">RFC 3986:
+Uniform Resource Identifier (URI): Generic Syntax</a>: section 6.2.1,
+simple string comparison</li>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc7239">RFC 7239:
+Forwarded HTTP Extension</a>: the <code>Forwarded</code> header field,
+the <code>proto=</code> parameter, and the order of elements in section
+4</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto"><code>X-Forwarded-Proto</code></a>:
+description and syntax</li>
+<li>Microsoft Learn, <a
+href="https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer">Configure
+ASP.NET Core to work with proxy servers and load balancers</a>: the
+forwarded-headers table, including the list-of-schemes sentence</li>
+<li>Django, <a
+href="https://docs.djangoproject.com/en/stable/ref/settings/#secure-proxy-ssl-header">Settings:
+<code>SECURE_PROXY_SSL_HEADER</code></a>: why the header is trusted, and
+the comma-separated case</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a sign-in that failed
+behind a proxy while deploying a web app, and checked against the <a
+href="#sources">sources</a> on 2026-11-09. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

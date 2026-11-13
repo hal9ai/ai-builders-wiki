@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where your keys come from: attribution for AI apps · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-agents.html">agents</a>, <a
+href="Tag-analytics.html">analytics</a></p>
+<!-- NAV:END -->
+
+<h1 id="where-your-keys-come-from-attribution-for-ai-apps">Where your
+keys come from: attribution for AI apps</h1>
+<p><strong>Record three signals on every new key — a short
+<code>ref</code> carried by the link the caller followed, the agent and
+model it reports, and the family of its <code>User-Agent</code> — then
+count them by day; any one can be missing, and together they still say
+where keys come from.</strong> None of them needs a cookie, a landing
+page or a session, which is what makes them usable when the callers are
+programs following a document rather than people following links through
+a browser.</p>
+<h2 id="why-the-signup-funnel-misses-them">Why the signup funnel misses
+them</h2>
+<p>A person signs up through pages. The landing page records the visit,
+a cookie carries it through the next few pages, and campaign parameters
+in the URL, such as Google Analytics' <code>utm_source</code> and
+<code>utm_medium</code>, mark which link they arrived from (<a
+href="https://support.google.com/analytics/answer/1033863">Google
+Analytics Help: campaigns and traffic sources</a>, checked 2026-11-06).
+A form at the end ties the account to the visit.</p>
+<p>An agent can skip all of it. It reads your skill file or README, runs
+a command, and posts to your key endpoint. There may be no page view, no
+cookie, no form, and one single request. Its HTTP client is often
+<code>curl</code>, a Python script or an SDK — not a browser. If you
+only look at the usual signup funnel, most of these keys arrive
+attributed to nothing at all.</p>
+<h2 id="the-signals-that-survive-that-path">The signals that survive
+that path</h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Where it comes from</th>
+<th>What it tells you</th>
+<th>What it cannot tell you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ref</code></td>
+<td>A short label you put on each link you publish
+(<code>/skill.md?ref=hn</code>) and echo into the example request that
+link shows</td>
+<td>Which channel the caller followed — the one signal you control
+yourself</td>
+<td>Anything about a caller that reached the endpoint some other
+way</td>
+</tr>
+<tr>
+<td><code>agent</code>, <code>model</code></td>
+<td>Optional fields in the signup request, filled in by the caller</td>
+<td>Which agent and model are making the key</td>
+<td>Whether that self-report is true</td>
+</tr>
+<tr>
+<td>Client family</td>
+<td>The <code>User-Agent</code> header, folded to a few families</td>
+<td>Whether the caller is <code>curl</code>, <code>python</code>,
+<code>node</code>, <code>go</code>, a browser, or something else</td>
+<td>Which agent is running; an agent with a shell usually signs up with
+<code>curl</code></td>
+</tr>
+<tr>
+<td>Root or child</td>
+<td>How your API models a sub-key</td>
+<td>Whether a key is a new account or one an existing key minted</td>
+<td>Nothing about the source; the child inherits it</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>The key's creation timestamp</td>
+<td>The day a source started or stopped bringing keys in</td>
+<td>Earlier encounters that did not create a key</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-links-ref-is-the-strongest-signal">The link's
+<code>ref</code> is the strongest signal</h3>
+<p>You choose the label, so it is not a guess. Put a short parameter on
+every link you publish — a directory listing, a post, a plugin's README
+— and have the page that link points to echo the value into the example
+signup request it shows. The host behind this wiki, Cloudish, does
+exactly that: its <a href="https://cloudish.ai/skill.md">skill.md</a>
+presents <code>agent</code>, <code>model</code> and <code>ref</code> in
+the example request body and says all three are optional (<a
+href="https://cloudish.ai/skill.md">Cloudish skill.md</a>, checked
+2026-11-06). Cloudish appears here as one example, not a
+recommendation.</p>
+<p>Keep the label a short slug: lowercase letters, digits, dots and
+hyphens. Two reasons:</p>
+<ul>
+<li>It is often echoed into a document that agents follow as
+instructions, so a value containing quotes, line breaks or markdown
+could change that document's meaning.</li>
+<li>A short, fixed vocabulary makes the chart readable. <code>hn</code>,
+<code>producthunt.com</code> and <code>mcp.so</code> are columns; a
+free-form string is a long tail.</li>
+</ul>
+<h3 id="the-callers-own-report-is-second-best">The caller's own report
+is second-best</h3>
+<p>Let the signup body accept an agent name and a model name, and treat
+both as best-effort metadata. Validate them against a short slug pattern
+and drop anything that fails; never fail the signup because attribution
+was malformed. A created key with no attribution is a lost data point; a
+rejected signup is a lost user.</p>
+<p>Do not use these fields for access control or billing decisions. They
+are self-reported, unverified, and easy to copy wrongly: if your example
+shows <code>&lt;agent&gt;</code> as a placeholder, some callers will
+send exactly that string, and the slug check is what keeps it out of
+your data.</p>
+<h3 id="the-user-agent-names-the-client-not-the-agent">The
+<code>User-Agent</code> names the client, not the agent</h3>
+<p>Fold the header into families — <code>curl</code>,
+<code>python</code>, <code>node</code>, <code>go</code>,
+<code>browser</code>, <code>other</code> — rather than storing it raw as
+the only dimension. The RFC that defines the field lists analytics among
+the reasons servers read it: servers use it "for analytics regarding
+browser or operating system use" (<a
+href="https://www.rfc-editor.org/rfc/rfc9110.html#section-10.1.5">RFC
+9110, section 10.1.5</a>, checked 2026-11-06). The same section asks
+senders to keep it coarse, because needlessly fine detail raises "the
+risk of a user being identified against their wishes
+('fingerprinting')".</p>
+<p>Precision is also disappearing on purpose. Chrome's User-Agent
+reduction keeps the traditional string "with sanitized specifics", and
+what remains is about brand, major version, platform and whether it is
+mobile (<a
+href="https://developer.chrome.com/docs/privacy-security/user-agent-client-hints">Chrome
+for Developers: User-Agent reduction</a>, checked 2026-11-06). Do not
+build a report on minor versions or exact browser strings.</p>
+<p>Builders of AI products do publish their own tokens, and those are
+worth recognising: OpenAI documents its crawlers' user agents, including
+<code>GPTBot</code> and <code>ChatGPT-User</code> (<a
+href="https://developers.openai.com/api/docs/bots">OpenAI: bots</a>,
+checked 2026-11-06), and Anthropic lists <code>ClaudeBot</code>,
+<code>Claude-User</code> and <code>Claude-SearchBot</code>, saying it
+"uses different robots to enable website owner transparency and choice"
+(<a
+href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler">Anthropic
+Help Center</a>, checked 2026-11-06). Those tokens identify crawling by
+the vendor. An agent that signs up for your app is not necessarily
+crawling: it may be a coding agent running <code>curl</code>, which is
+why the client family and the self-reported agent are separate
+columns.</p>
+<h3 id="a-child-key-is-not-a-new-signup">A child key is not a new
+signup</h3>
+<p>If your API lets an existing key mint sub-keys — one per project, one
+per sandbox — count those separately from roots. A single agent that
+mints fifty children is one signup, and a chart of all keys would show
+it as a spike with no source.</p>
+<h2 id="keep-it-anonymous">Keep it anonymous</h2>
+<p>Attribution does not need personal data. A few habits keep it that
+way:</p>
+<ul>
+<li>Store what you need from the request's headers, not a full copy of
+them; if header names are useful to tell clients apart, keep the names,
+not the values.</li>
+<li>If you must count distinct callers, keep a keyed hash of the IP
+address and discard the address itself.</li>
+<li>Say what you keep, and for how long, in your privacy policy. The
+questions to ask of any vendor apply to your own app too — see <a
+href="Data-protection.html#what-to-do-in-your-own-app">Data protection
+when you use AI</a>.</li>
+</ul>
+<p>Every field above is optional. Make the key endpoint succeed when all
+of them are missing.</p>
+<h2 id="show-it-as-a-day-by-day-chart">Show it as a day-by-day
+chart</h2>
+<p>A single total answers "how many" and hides the two things worth
+knowing: which channel is growing, and which one stopped.</p>
+<ul>
+<li><strong>One column per day, split by source.</strong> Take the top
+few sources by keys and fold the rest into "Other"; a legend with thirty
+entries is a wall.</li>
+<li><strong>Pick one honest default label per key.</strong> Where-from,
+in order: the <code>ref</code> if present, else the agent, else the
+client family, else <code>unknown</code>. The table can say which signal
+named each source, so <code>hn</code> (a ref) and <code>curl</code> (a
+client) are not confused.</li>
+<li><strong>Put the numbers in a table beside it:</strong> keys, share,
+roots, children, and the last day each source brought one in. A chart is
+a picture of the table, not a replacement for it.</li>
+<li><strong>Fill the quiet days.</strong> A day with no keys is a column
+at zero, not a missing column; otherwise a gap in the chart and a gap in
+the data look the same.</li>
+</ul>
+<h2 id="check-that-it-works">Check that it works</h2>
+<ol type="1">
+<li>Follow one of your published links with a test ref and create a key
+exactly as the example shows. The key appears under that ref for
+today.</li>
+<li>Create a key without any attribution. It is created, and it lands in
+<code>unknown</code>.</li>
+<li>Send a ref containing a space or a quote. The key is still created
+and the ref is dropped — a signup must not fail over analytics.</li>
+<li>Stop publishing one link and watch its column go to zero over the
+next days. That slow stop is what the day-by-day view exists to show; a
+lifetime total would take months to reveal it.</li>
+</ol>
+<p>If most keys land in <code>unknown</code>, read that as a gap in your
+instructions, not as a fact about your users: the page agents copy is
+not carrying, or not telling them to pass, the fields you want.</p>
+<h2 id="limits-worth-stating">Limits worth stating</h2>
+<ul>
+<li>Attribution is per link and per request, never per person. The same
+caller reaching your endpoint through two links records whichever one it
+followed.</li>
+<li>Self-reports are optional and unverified. A caller that copies a
+placeholder literally contributes nothing, which the slug check makes
+visible rather than silently false.</li>
+<li><code>User-Agent</code> is coarse, self-declared, and getting
+coarser. Treat it as a family, never as proof.</li>
+<li>Pick one time zone for the day boundary — UTC is the simplest — and
+make sure the database, the API and the chart use the same one.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html#2-keys-and-secrets">From idea to
+deployed AI app</a>: where keys and secrets sit in a deploy</li>
+<li><a href="Security-for-AI-apps.html#secrets-and-api-keys">Security for
+AI apps and agents</a>: why a key is a secret, and what an agent-facing
+document may safely contain</li>
+<li><a href="Data-protection.html#what-to-do-in-your-own-app">Data
+protection when you use AI</a>: what to keep, what to discard, and what
+to tell people</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#model">Model</a>,
+<a href="Glossary.html#token">Token</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-06.</p>
+<ul>
+<li>IETF, <a
+href="https://www.rfc-editor.org/rfc/rfc9110.html#section-10.1.5">RFC
+9110: HTTP Semantics, section 10.1.5</a>: what the
+<code>User-Agent</code> field is used for, and the guidance to keep it
+coarse</li>
+<li>Google Chrome, <a
+href="https://developer.chrome.com/docs/privacy-security/user-agent-client-hints">User-Agent
+reduction</a>: the reduced string and User-Agent Client Hints</li>
+<li>Google Analytics Help, <a
+href="https://support.google.com/analytics/answer/1033863">Campaigns and
+traffic sources</a>: campaign parameters in URLs</li>
+<li>OpenAI, <a
+href="https://developers.openai.com/api/docs/bots">bots</a>: OpenAI's
+crawler user agents</li>
+<li>Anthropic Help Center, <a
+href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler">Does
+Anthropic crawl data from the web</a>: ClaudeBot, Claude-User and
+Claude-SearchBot</li>
+<li>Cloudish, <a href="https://cloudish.ai/skill.md">skill.md</a>: the
+optional <code>agent</code>, <code>model</code> and <code>ref</code>
+fields in a key-creation request</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from adding a view of where
+new keys come from to an admin dashboard, and checked against the <a
+href="#sources">sources</a> on 2026-11-06. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

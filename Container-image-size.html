@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to shrink a container image · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a href="Tag-costs.html">costs</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-shrink-a-container-image">How to shrink a container
+image</h1>
+<p><strong>A working container image can be a few kilobytes: build a
+statically linked server binary, copy it into an empty
+<code>scratch</code> image, and skip the operating system
+entirely.</strong> In a test on 2026-11-08, a tiny C web server built
+this way measured 5,174 bytes in a registry with a static <a
+href="https://musl.libc.org/">musl</a> build, and 2,361 bytes with a
+freestanding binary that calls Linux syscalls directly. Both images
+served a page.</p>
+<p>That is unusual. A typical <a
+href="Glossary.html#container">container</a> image is dominated by a base
+operating system and a language runtime, not by the app's own files. The
+question is useful because image size affects how fast a <a
+href="Glossary.html#host">host</a> can pull and start an app, and how much
+registry storage repeated <a href="Glossary.html#deploy">deploys</a>
+accumulate.</p>
+<h2 id="what-an-image-is-made-of">What an image is made of</h2>
+<p><strong>An OCI image is a manifest, a config file, and one or more
+layers; the layers hold the filesystem.</strong> The <a
+href="https://github.com/opencontainers/image-spec/blob/main/spec.md">OCI
+Image Specification</a> defines the manifest and config as JSON, and
+each layer as a tar archive, usually gzip-compressed. A registry stores
+the compressed layers plus that metadata (checked 2026-11-08).</p>
+<p>In a normal image, the first and largest layer is the base OS:
+Debian, Ubuntu, Alpine, a Python image, a Node image. Each later layer
+adds changes: your code, installed packages, build output. A multi-stage
+build keeps the compiler and package cache in an earlier stage and
+copies only the result into the final stage, so they never enter the
+last image (<a
+href="https://docs.docker.com/build/building/multi-stage/">Docker,
+multi-stage builds</a>, checked 2026-11-08).</p>
+<p>The floor is the OCI metadata itself: a manifest, a config, and at
+least one layer. This is why the two measurements above do not shrink to
+zero: the 2.36 KB image is mostly that metadata plus a very small
+binary, not an operating system.</p>
+<h2 id="the-recipe">The recipe</h2>
+<p><strong>Use a builder stage to compile a static binary, then copy
+that one file into <code>scratch</code>.</strong> <code>scratch</code>
+is Docker's reserved empty base image: no shell, no libc, no package
+manager, no <code>/etc</code> (<a
+href="https://docs.docker.com/build/building/base-images/">Docker, base
+images</a>, checked 2026-11-08). The program must therefore be
+statically linked and self-contained.</p>
+<p>A portable version, using Alpine's musl toolchain in the builder:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> alpine:3.20 <span class="kw">AS</span> build</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apk</span> add <span class="at">--no-cache</span> gcc musl-dev</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> server.c /server.c</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="fu">cc</span> <span class="at">-Os</span> <span class="at">-static</span> <span class="at">-s</span> <span class="at">-o</span> /server /server.c</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> scratch</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=build</span> /server /server</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">USER</span> 65534:65534</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 8080</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ENTRYPOINT</span> [<span class="st">&quot;/server&quot;</span>]</span></code></pre></div>
+<p>The final image has one layer: <code>/server</code>. <code>-Os</code>
+optimises for size, <code>-static</code> removes the runtime library
+dependency, and <code>-s</code> strips symbols. The server itself must
+listen on the port the <a href="Glossary.html#host">host</a> routes to,
+bind to <code>0.0.0.0</code> rather than <code>127.0.0.1</code>, and
+handle the host's health checks.</p>
+<p>Smaller still is possible by removing the C library as well: a
+freestanding <code>x86_64</code> program can make the
+<code>socket</code>, <code>bind</code>, <code>listen</code>,
+<code>accept</code>, <code>recv</code>, <code>send</code>,
+<code>shutdown</code> and <code>close</code> syscalls directly, with
+<code>-nostdlib -nostartfiles</code>. That is the 2,361-byte version,
+but it is architecture-specific and harder to maintain.</p>
+<h2 id="what-you-give-up">What you give up</h2>
+<p><strong>A <code>scratch</code> image has no operating system to fall
+back on.</strong> There is no shell, so a health check like
+<code>CMD curl -f localhost</code> cannot run; the check must be the
+app's own endpoint, or the host must probe it over HTTP. There are no CA
+certificates, so outbound HTTPS needs a certificate file copied in.
+There is no timezone database, no package manager, and no
+<code>libc</code> for dynamically linked tools. Debugging usually means
+adding a temporary shell stage or reading <a
+href="Glossary.html#logs">logs</a>.</p>
+<p>The image is also fixed at build time. Security updates require
+rebuilding and redeploying, and a static binary must match the host's
+CPU architecture. For a small service that only serves a page or an API,
+these are acceptable trade-offs. For an app that shells out, installs
+packages at runtime, or depends on system libraries, a normal base image
+is the right choice.</p>
+<h2 id="how-to-measure-the-stored-size">How to measure the stored
+size</h2>
+<p><strong>Measure at the registry, in bytes, and say whether the number
+is compressed.</strong> A local <code>docker images</code> figure can
+differ from what the registry stores and what the host pulls. The most
+direct check is the registry's manifest: the manifest lists each layer's
+compressed <code>size</code>, and the config carries the rest. Docker's
+<code>docker buildx imagetools inspect</code> and tools such as
+<code>crane manifest</code> read the same data.</p>
+<p>As a disclosed example, Cloudish (the host made by Hal9, which
+started this wiki) builds an uploaded source tarball server-side and
+pushes the result to its own registry, so there is no local Docker
+daemon to measure (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish, skill.md</a>,
+checked 2026-11-08). Its <code>GET /api/v1/images/registry</code>
+returns one entry per repository with a <code>size</code> field,
+described as the total bytes across all tags (<a
+href="https://cloudish.ai/api/openapi.json?ref=cc-wiki">Cloudish
+OpenAPI</a>, checked 2026-11-08). In the test, that field read 5,174 and
+2,361 bytes; the platform's own image-pull event for each app reported
+the same two numbers.</p>
+<p>One caveat when comparing builds: the <code>size</code> is per
+repository, not per image. Each deploy can add a tag to the same
+repository, so the total grows with every retained build. Deleting old
+tags reclaims the space; the same registry API exposes tag deletion.</p>
+<h2 id="what-it-costs">What it costs</h2>
+<p><strong>Registry storage is charged by bytes, so a kilobyte-scale
+image is negligible; compute time is the real cost.</strong> Cloudish's
+published rates illustrate the split (all checked 2026-11-08): an image
+build runs at the build's own size, with the default 3 CPU / 5 GB
+costing about $0.0023 per minute (<a
+href="https://cloudish.ai/instances.md?ref=cc-wiki">Cloudish,
+instances.md</a>), while the smallest always-awake app size,
+<code>shared</code>, costs $0.010733 per hour. The pricing response
+lists compute and domain rates and has no registry-storage line (<a
+href="https://cloudish.ai/api/v1/pricing?ref=cc-wiki">Cloudish pricing
+API</a>, checked 2026-11-08), so on this rate card the image bytes add
+no separately-priced charge.</p>
+<p>Even if a registry charged per gigabyte-month, the arithmetic is
+small: 1,000 images at 2.4 KB each is about 2.4 MB, and 1,000,000 is
+about 2.4 GB. Build time and running time dominate. The practical reason
+to shrink an image is faster pulls, faster cold starts, and a smaller
+surface to audit, not the storage bill.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a></li>
+<li><a href="Glossary.html">Glossary</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-08.</p>
+<ul>
+<li>Open Container Initiative, <a
+href="https://github.com/opencontainers/image-spec/blob/main/spec.md">Image
+Specification</a></li>
+<li>Docker, <a
+href="https://docs.docker.com/build/building/multi-stage/">Multi-stage
+builds</a>; <a
+href="https://docs.docker.com/build/building/base-images/">Base
+images</a></li>
+<li>musl libc, <a href="https://musl.libc.org/">musl.libc.org</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a>; <a
+href="https://cloudish.ai/instances.md?ref=cc-wiki">instances.md</a>; <a
+href="https://cloudish.ai/api/openapi.json?ref=cc-wiki">OpenAPI</a>; <a
+href="https://cloudish.ai/api/v1/pricing?ref=cc-wiki">pricing
+API</a></li>
+<li>Size measurements: this wiki's test on 2026-11-08, using Cloudish's
+build and registry APIs. The two source images are a statically linked
+musl C server and a freestanding x86_64 no-libc C server, each in a
+<code>scratch</code> image.</li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-08. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

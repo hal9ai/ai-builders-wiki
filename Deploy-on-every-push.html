@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to deploy your app on every push · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a
+href="Tag-secrets.html">secrets</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-deploy-your-app-on-every-push">How to deploy your app on
+every push</h1>
+<p><strong>A push deploys your app when your Git host runs a workflow on
+every push to <code>main</code> that tests the code and then calls the
+deploy script you already run by hand — with the <a
+href="Glossary.html#api-key">API key</a> kept in the repository's <a
+href="Glossary.html#secret">secret</a> store, never in the
+repository.</strong> The workflow is only the trigger; the <a
+href="Glossary.html#deploy">deploy</a> script stays in the repository, so
+the deploy you run locally and the one CI runs are the same code.</p>
+<p>The examples use GitHub Actions. Other Git hosts offer the same parts
+— a trigger, a secret store, and a job that runs commands — under other
+names.</p>
+<h2 id="1-keep-the-deploy-in-a-script-not-in-the-workflow">1. Keep the
+deploy in a script, not in the workflow</h2>
+<p><strong>Put the whole deploy in one script committed next to the
+code, and let the workflow only call it.</strong> Pack the build
+context, create or update the app, set the secrets, wait for the build
+and check the URL in that script. A change to how you deploy is then a
+reviewed diff, and a deploy that works locally runs unchanged in CI.</p>
+<p>CI has no browser, no terminal to answer a prompt, and nobody
+watching, so the script has four jobs it cannot skip:</p>
+<ul>
+<li>exit non-zero when anything fails, so the job turns red instead of
+reporting success;</li>
+<li>read the key from an <a
+href="Glossary.html#environment-variable">environment variable</a>;</li>
+<li>print progress, and never the key;</li>
+<li>wait for the build to finish before it exits (step 5).</li>
+</ul>
+<h2 id="2-store-the-key-as-a-repository-secret">2. Store the key as a
+repository secret</h2>
+<p><strong>The deploy key authenticates to your host's API, so it
+belongs in the Git host's secret store and reaches the job as an
+environment variable.</strong> On GitHub, add it with the
+<code>gh secret set</code> subcommand; the CLI "will prompt you to enter
+a secret value. Alternatively, you can read the value of the secret from
+a file" (<a
+href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets">GitHub,
+Using secrets in GitHub Actions</a>, checked 2026-11-11):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> secret set DEPLOY_API_KEY              <span class="co"># prompts for the value</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> secret set DEPLOY_API_KEY <span class="op">&lt;</span> key.txt    <span class="co"># or reads it from a file</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> secret list                            <span class="co"># names and dates, never values</span></span></code></pre></div>
+<p>Two habits around the value itself:</p>
+<ul>
+<li><strong>Never print it, and do not rely on log masking.</strong>
+GitHub's own guidance says "Because there are multiple ways a secret
+value can be transformed, automatic redaction is not guaranteed" (<a
+href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">GitHub,
+Security hardening for GitHub Actions</a>, checked 2026-11-11). A key
+echoed, split or pasted into an error message can come out unmasked; if
+it reaches a run log, delete the log and rotate the key.</li>
+<li><strong>Pass it as an environment variable, not as a command-line
+argument.</strong> GitHub warns that "Some jobs will use secrets as
+command-line arguments which can be seen by another job running on the
+same runner" (<a
+href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">same
+page</a>, checked 2026-11-11).</li>
+</ul>
+<p><strong>A workflow triggered by a pull request from a fork does not
+get the secret.</strong> GitHub states that, with the exception of
+<code>GITHUB_TOKEN</code>, "secrets are not passed to the runner when a
+workflow is triggered from a forked repository" (<a
+href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets">GitHub,
+Using secrets</a>, checked 2026-11-11). That is the behaviour you want:
+a stranger's pull request can run the tests but cannot deploy your app.
+Do not work around it by pasting the key into the workflow file.</p>
+<h2 id="3-run-the-tests-before-the-deploy-step">3. Run the tests before
+the deploy step</h2>
+<p><strong>Put the test command in its own step above the deploy, so a
+broken change never reaches the deploy step.</strong> Steps run in the
+order they are written: tests first, deploy last, and the deploy step is
+the one that carries the key.</p>
+<h2 id="4-make-the-deploy-call-safe-to-repeat">4. Make the deploy call
+safe to repeat</h2>
+<p><strong>Every push runs the script, including a push that only edits
+the README, so the deploy call must be "create or update", not "create
+and fail if it exists".</strong> A create-only call needs a lookup
+first, and the lookup and the create can race with another deploy.</p>
+<p><em>Disclosed example.</em> On Cloudish (made by Hal9, which started
+this wiki), <code>POST /api/v1/projects</code> "creates the project if
+it doesn't exist yet (or updates it if it does — same call either way,
+so a redeploy script can always call this unconditionally)" (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish skill.md</a>,
+last updated 2026-11-11, checked 2026-11-11).</p>
+<h2 id="5-wait-for-the-build-inside-the-job">5. Wait for the build
+inside the job</h2>
+<p><strong>A deploy that builds from source returns a build that has not
+run yet, so the job must poll until the build ends and then check the
+app answers.</strong> A script that exits when the API call returns
+gives a green job while the previous version is still serving.</p>
+<p>On Cloudish, "Poll only while <code>status</code> is
+<code>"running"</code>: that's the only state a build in progress is in,
+so anything else — <code>"succeeded"</code>, <code>"failed"</code>, or a
+response with no status at all — is the end", and once it has succeeded
+"the project's docker app is already registered and its subdomain
+already provisioned" (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish skill.md</a>,
+checked 2026-11-11). Other hosts use different field names for the same
+fact.</p>
+<p>What to check after the build — the logs, the port, the URL — is a
+page of its own: <a href="Checking-whether-a-deploy-worked.html">How to
+tell whether a deploy actually worked</a>.</p>
+<h2 id="6-let-only-one-deploy-run-at-a-time">6. Let only one deploy run
+at a time</h2>
+<p><strong>Two pushes close together can start two deploys, and the
+older one can finish last, leaving the previous version live.</strong>
+Give the workflow a concurrency group: "there can be at most one running
+job or workflow in a concurrency group at any time" (<a
+href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax">GitHub,
+Workflow syntax</a>, checked 2026-11-11).</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">concurrency</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">group</span><span class="kw">:</span><span class="at"> deploy-production</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel-in-progress</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div>
+<p>With <code>cancel-in-progress: false</code>, a running deploy is
+never interrupted: a newer push waits as <code>pending</code>, replacing
+an earlier waiting one, which is what you want for a deploy. Do not set
+it to <code>true</code> here: a deploy cancelled halfway can leave a
+build that nobody polls and a configuration half applied.</p>
+<h2 id="7-give-the-job-only-what-it-needs-and-a-manual-button">7. Give
+the job only what it needs, and a manual button</h2>
+<p><strong>A checkout needs read access to the repository and nothing
+else; the deploy key does the rest.</strong> Set that once for the whole
+workflow:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span></code></pre></div>
+<p>Once you list any permission this way, every permission you leave out
+is set to <code>none</code> (<a
+href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax">GitHub,
+Workflow syntax</a>, checked 2026-11-11). GitHub calls it good practice
+"to set the default permission for the <code>GITHUB_TOKEN</code> to read
+access only for repository contents" (<a
+href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">GitHub,
+Security hardening</a>, checked 2026-11-11).</p>
+<p>Add <code>on: workflow_dispatch</code> to get a manual "Run workflow"
+button, for redeploying without a commit. One trap: "This trigger only
+receives events when the workflow file is on the default branch" (<a
+href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax">GitHub,
+Workflow syntax</a>, checked 2026-11-11). The button appears only after
+the workflow is merged, so the merge is often the first real run.</p>
+<h2 id="8-rotate-the-key-and-remember-who-can-read-it">8. Rotate the
+key, and remember who can read it</h2>
+<p><strong>Anyone who can push to the repository can read every secret
+in it</strong>, because "Any user with write access to your repository
+has read access to all secrets configured in your repository" (<a
+href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">GitHub,
+Security hardening</a>, checked 2026-11-11). Give the deploy key the
+smallest scope the host offers, and treat it as shared with the whole
+team that can push.</p>
+<p>To rotate: create a new key at the host, set it as the repository
+secret, run the workflow once and check the deploy, then revoke the old
+key. Rotation is cheap; GitHub calls it good practice "to reduce the
+window of time during which a compromised secret is valid" (<a
+href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">same
+page</a>, checked 2026-11-11).</p>
+<h2 id="a-complete-workflow">A complete workflow</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">concurrency</span><span class="kw">:</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">group</span><span class="kw">:</span><span class="at"> deploy-production</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cancel-in-progress</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">timeout-minutes</span><span class="kw">:</span><span class="at"> </span><span class="dv">20</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-node@v4</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">node-version</span><span class="kw">:</span><span class="at"> </span><span class="dv">22</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> npm test</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">DEPLOY_API_KEY</span><span class="kw">:</span><span class="at"> ${{ secrets.DEPLOY_API_KEY }}</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> ./scripts/deploy.sh</span></span></code></pre></div>
+<p>The job timeout matters as much as the steps: without it, a build
+that never finishes holds a runner and a concurrency slot until the
+timeout GitHub applies to every job — "The maximum number of minutes to
+let a job run before GitHub automatically cancels it. Default: 360" (<a
+href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax">GitHub,
+Workflow syntax</a>, checked 2026-11-11).</p>
+<h2 id="when-it-goes-wrong">When it goes wrong</h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Usual cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No run on push</td>
+<td>The <code>branches</code> list does not include the branch, or the
+workflow file is not on the default branch</td>
+</tr>
+<tr>
+<td>The job fails at the deploy step with <code>401</code></td>
+<td>The secret is missing, empty, or named differently from the variable
+in <code>env</code></td>
+</tr>
+<tr>
+<td>The job is green but the site shows the old version</td>
+<td>The script exits when the API answers; poll the build and check the
+URL</td>
+</tr>
+<tr>
+<td>An older version is live after two quick pushes</td>
+<td>Two deploys ran at once; give them one concurrency group</td>
+</tr>
+<tr>
+<td>The key appears in a log</td>
+<td>Redaction is not guaranteed; delete the log and rotate the key</td>
+</tr>
+<tr>
+<td>A pull request from a fork cannot deploy</td>
+<td>Expected: fork-triggered workflows do not receive secrets</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Checking-whether-a-deploy-worked.html">How to tell whether a
+deploy actually worked</a></li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a
+typical workflow</a></li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps and
+agents</a></li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#api-key">API key</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#workflow">Workflow</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-11.</p>
+<ul>
+<li>GitHub, <a
+href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets">Using
+secrets in GitHub Actions</a></li>
+<li>GitHub, <a
+href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax">Workflow
+syntax</a></li>
+<li>GitHub, <a
+href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">Security
+hardening for GitHub Actions</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a>, last
+updated 2026-11-11</li>
+</ul>
+<hr />
+<p>First version written with AI assistance. Last checked against the
+sources on 2026-11-11. Found a mistake? <a href="CONTRIBUTING.html">Fix it
+or open an issue</a>. Text licensed under <a href="LICENSE">CC BY
+4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

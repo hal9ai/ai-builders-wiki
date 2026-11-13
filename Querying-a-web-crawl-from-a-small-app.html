@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Querying a web crawl from a small app · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a href="Tag-data.html">data</a></p>
+<!-- NAV:END -->
+
+<h1 id="querying-a-web-crawl-from-a-small-app">Querying a web crawl from
+a small app</h1>
+<p><strong>You can query Common Crawl from an ordinary small app: DuckDB
+reads the published Parquet and text files over HTTPS, so there is no
+cluster, no data warehouse and no local copy.</strong> The work is
+choosing the right files, keeping the query inside the container's
+memory, and treating a multi-minute scan as a background job rather than
+a web request.</p>
+<p>This page is about a website that searches Common Crawl and then asks
+who links to a result. The same shape applies to any app that wants web
+data for building <a href="Glossary.html#rag">RAG</a> indexes, sampling
+pages, or analysing links.</p>
+<h2 id="what-common-crawl-publishes">What Common Crawl publishes</h2>
+<p><strong>Two separate datasets: a URL index in Parquet, and a
+hyperlink graph in text files.</strong> They are published on
+<code>data.commoncrawl.org</code> and are free to read.</p>
+<p>The <strong>URL index</strong> is "a tabular/columnar index (Parquet
+format) to the Common Crawl archives", partitioned by two columns,
+<code>crawl</code> and <code>subset</code>, where subsets include
+<code>warc</code>, <code>robotstxt</code> and
+<code>crawldiagnostics</code> (<a
+href="https://data.commoncrawl.org/cc-index/table/cc-main/index.html">Common
+Crawl, index table</a>, checked 2026-11-09). It carries the URL, host
+and domain columns, fetch time and status, detected MIME type, language
+fields, and the location of the record inside the WARC file. Common
+Crawl's announcement of the format says "the index table of a single
+monthly crawl has about 300 GB" (<a
+href="https://commoncrawl.org/blog/index-to-warc-files-and-urls-in-columnar-format">Common
+Crawl blog</a>, checked 2026-11-09). You read a few of those gigabytes,
+not all of them.</p>
+<p>The <strong>hyperlink graph</strong> comes in host-level and
+domain-level releases. Hostnames are stored "in reverse domain name
+notation"; all link types are counted, including links to images and
+scripts; and "the domain graph is built by aggregating the host graph at
+the pay-level domain (PLD) level" using the public suffix list (<a
+href="https://commoncrawl.org/web-graphs">Common Crawl, web graphs</a>,
+checked 2026-11-09). The machine-readable list of releases, newest
+first, is <code>https://index.commoncrawl.org/graphinfo.json</code>.</p>
+<p>The graph and each crawl are immutable once published. That matters
+later: it makes every answer cacheable.</p>
+<h2 id="read-it-without-copying-it">Read it without copying it</h2>
+<p><strong>DuckDB's <code>httpfs</code> extension turns an HTTPS URL
+into a readable file, so a query can open a Parquet part without
+downloading it first.</strong> The extension provides "a file system
+that allows reading remote/writing remote files", and for plain HTTP(S)
+"only file reading is supported" (<a
+href="https://duckdb.org/docs/2.0/core_extensions/httpfs/overview.html">DuckDB
+docs, httpfs</a>, checked 2026-11-09). It loads itself on first use.</p>
+<p>Two practical details:</p>
+<ul>
+<li><strong>Pass explicit file paths.</strong> A crawl publishes a
+manifest of its Parquet parts; unzip it, keep the paths you want, and
+hand DuckDB the list. Reading the manifest beats guessing at URL
+patterns, and it is how you find a crawl's files at all.</li>
+<li><strong>Filter on partition columns.</strong>
+<code>WHERE subset = 'warc' AND url_host_registered_domain = $domain</code>
+lets Parquet statistics skip most row groups. Grouping by registered
+domain also means a search for <code>example.com</code> includes its
+subdomains, which is usually what a person means.</li>
+</ul>
+<p>In SQL, the shape is:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> url, fetch_status, content_mime_detected, fetch_time</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> read_parquet($files, hive_partitioning <span class="op">=</span> <span class="kw">true</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> subset <span class="op">=</span> <span class="st">&#39;warc&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> url_host_tld <span class="op">=</span> $tld</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> url_host_registered_domain <span class="op">=</span> $domain</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> $limit;</span></code></pre></div>
+<p>Bind the file list and filters as parameters rather than pasting them
+into the string.</p>
+<h2 id="keep-the-query-inside-a-small-memory-limit">Keep the query
+inside a small memory limit</h2>
+<p><strong>Set <code>memory_limit</code> below the container's memory
+and raise it only when a query needs it.</strong> DuckDB's limit
+defaults to 80% of the machine's RAM, which on a shared host can be far
+more than the container is allowed;
+<code>SET memory_limit = '256MB'</code> makes the database spill or fail
+instead of being killed. <code>threads</code> defaults to the number of
+CPU cores and can be lowered the same way (<a
+href="https://duckdb.org/docs/2.0/configuration/overview.html">DuckDB
+docs, configuration</a>, checked 2026-11-09).</p>
+<p>The failure to recognise is not "the query is slow" but <strong>an
+out-of-memory error on a join</strong>. A query that joins a huge lookup
+table to a filtered result makes DuckDB build a hash table for the whole
+lookup side, even though the answer needs a handful of rows. In this
+project, joining the graph's edge table to its full vertex table
+exhausted a 256 MB limit; the same data fitted once the query stopped
+doing that.</p>
+<p>The fix is a two-step query:</p>
+<ol type="1">
+<li><strong>Aggregate first.</strong> Group the large table down to the
+few identifiers you actually need — for example, the top 200 sites
+linking to one domain — and keep only ids and counts.</li>
+<li><strong>Resolve the small set second.</strong> Look up names for
+just those ids with <code>WHERE id IN (...)</code>, accepting a scan of
+the name table but holding only a couple of hundred rows in memory.</li>
+</ol>
+<p>This "aggregate, then resolve" pattern works whenever the lookup
+table is bigger than the answer: spend one pass counting, then one
+bounded lookup, instead of a hash join over everything.</p>
+<h2 id="make-a-slow-scan-a-job-not-a-request">Make a slow scan a job,
+not a request</h2>
+<p><strong>A remote scan can run for minutes, so start it, return an id,
+and let the page poll for progress.</strong> Browser and proxy timeouts
+are measured in seconds; a DuckDB query over the graph is not. Running
+the query inside the request handler also makes cancelling impossible,
+because nobody is listening.</p>
+<p>A small in-process job manager is enough: one running job at a time,
+a status of <code>running</code>, <code>done</code>, <code>error</code>
+or <code>cancelled</code>, a stage number, a human message, and elapsed
+time. The page polls <code>GET /api/jobs/:id</code> once a second and
+draws a progress bar. For cancellation, keep the DuckDB connection and
+call <code>interrupt()</code>; check the job's cancelled flag between
+stages so a cancel that lands between queries is not lost.</p>
+<p>Say what the wait means. "Scanning the graph edge file. This can take
+several minutes" tells a visitor more than an animated bar with no
+words.</p>
+<h2 id="cache-finished-answers-by-release">Cache finished answers by
+release</h2>
+<p><strong>Because a crawl and a graph release never change, a result
+keyed by release and query stays correct forever.</strong> Write each
+finished answer to its own JSON file, keyed by a hash of
+<code>crawl | domain | limit</code> for searches and
+<code>release | domain</code> for link lookups, and write atomically
+(temporary file, then rename) so a crash cannot leave half a record. On
+a <a href="Glossary.html#host">host</a> with a volume, put that directory
+on the volume so it survives redeploys.</p>
+<p>The first query for a domain pays the scan; every repeat returns
+immediately. A small admin page that lists entries with sizes and can
+delete them is worth the hour it takes, especially when the volume is
+small and an oversized cache should be trimmed rather than
+rediscovered.</p>
+<h2 id="what-to-watch">What to watch</h2>
+<ul>
+<li><strong>The data host is a dependency.</strong> Cold queries depend
+on <code>data.commoncrawl.org</code> being reachable and fast; add
+retries and a timeout, and show a clear error rather than a
+spinner.</li>
+<li><strong>Do not count on ordering or totals.</strong>
+<code>LIMIT</code> caps rows, not distinct URLs, and row order is
+unspecified; a page can appear more than once.</li>
+<li><strong>Check the domain before querying.</strong> Parse the input
+as a URL, reject IP addresses and credentials, and require a real public
+suffix; otherwise a typo becomes a scan.</li>
+<li><strong>State the graph's granularity.</strong> The graph is per
+domain, so "who links here" means links into any page on the site, not
+into the exact URL the visitor clicked.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>:
+containers, volumes, and what the host provides</li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a>: the deploy path this app follows</li>
+<li><a href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in
+one browser but fine in another</a>: the other kind of cache, and why an
+app cache is not a browser cache</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#rag">RAG</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-09.</p>
+<ul>
+<li>Common Crawl, <a
+href="https://data.commoncrawl.org/cc-index/table/cc-main/index.html">CC
+Index Table</a>: Parquet format, the <code>crawl</code> and
+<code>subset</code> partitions, and the column schema</li>
+<li>Common Crawl, <a
+href="https://commoncrawl.org/blog/index-to-warc-files-and-urls-in-columnar-format">Index
+to WARC files and URLs in columnar format</a>: the format's announcement
+and the size of one monthly crawl's table</li>
+<li>Common Crawl, <a href="https://commoncrawl.org/web-graphs">Web
+Graphs</a>: host- and domain-level releases, reverse-domain notation,
+and pay-level-domain aggregation</li>
+<li>Common Crawl, <a
+href="https://index.commoncrawl.org/graphinfo.json">graphinfo.json</a>:
+the machine-readable release list</li>
+<li>DuckDB, <a
+href="https://duckdb.org/docs/2.0/core_extensions/httpfs/overview.html">httpfs
+extension</a>: remote file reading over HTTP(S)</li>
+<li>DuckDB, <a
+href="https://duckdb.org/docs/2.0/configuration/overview.html">Configuration</a>:
+<code>memory_limit</code> and <code>threads</code></li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a session that built a
+Common Crawl search app in a small container, hit the join's
+out-of-memory error, and replaced it with an aggregate-then-resolve
+query, and checked against the <a href="#sources">sources</a> on
+2026-11-09. Found a mistake? <a href="CONTRIBUTING.html">Fix it or open an
+issue</a>. Text licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

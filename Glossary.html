@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary: the basic words · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Foundations.html">Foundations</a> · Tags: <a
+href="Tag-basics.html">basics</a></p>
+<!-- NAV:END -->
+
+<h1 id="glossary-the-basic-words">Glossary: the basic words</h1>
+<p><strong>These are the words you meet first when you build or deploy
+something with AI, each explained using only plain words or other words
+on this page.</strong> Terms are in alphabetical order. A word in
+<em>italics</em> inside a definition has its own entry here.</p>
+<p>Jump to: <a href="#a2a-agent2agent">A</a> · <a href="#chatbot">C</a>
+· <a href="#deploy">D</a> · <a href="#environment-variable">E</a> · <a
+href="#fine-tuning">F</a> · <a href="#generative-ai">G</a> · <a
+href="#hallucination">H</a> · <a href="#inference">I</a> · <a
+href="#llm">L</a> · <a href="#mcp-model-context-protocol">M</a> · <a
+href="#open-weight-model">O</a> · <a href="#prompt">P</a> · <a
+href="#rag">R</a> · <a href="#secret">S</a> · <a
+href="#temperature">T</a> · <a href="#workflow">W</a> · <a
+href="#zero-data-retention-zdr">Z</a></p>
+<h3 id="a2a-agent2agent">A2A (Agent2Agent)</h3>
+<p>An open set of rules for one <em>agent</em> to find another agent,
+give it a task and follow its progress, even when the two are run by
+different companies. It started at Google and is now a Linux Foundation
+project. → <a
+href="Agent-protocols-MCP-and-A2A.html#a2a-agents-talking-to-agents">Agents
+working together</a></p>
+<h3 id="agent">Agent</h3>
+<p>A program in which a <em>model</em> decides, step by step, which
+<em>tools</em> to use to finish a task, and keeps going until it is done
+or stopped. A <em>chatbot</em> answers; an agent acts. → <a
+href="AI-agent.html">What an AI agent is</a></p>
+<h3 id="agent-sdk">Agent SDK</h3>
+<p>A code library that gives you the loop, <em>tool</em> calls and
+memory handling of an <em>agent</em>, so you can build your own agent
+without writing that part. Examples: Claude Agent SDK, OpenAI Agents
+SDK, Google ADK. → <a href="Ways-to-use-AI.html#agent-sdks">Ways to use
+AI</a></p>
+<h3 id="api">API</h3>
+<p>A way for one program to ask another program to do something over the
+internet, by sending a structured request and getting a structured
+answer. A model API lets your app send a <em>prompt</em> and receive the
+model's answer. → <a href="Ways-to-use-AI.html#apis">Ways to use
+AI</a></p>
+<h3 id="api-key">API key</h3>
+<p>A long secret string that identifies your account when your program
+calls an <em>API</em>. Anyone who has it can use, and spend from, your
+account, so it is a <em>secret</em>. → <a
+href="Security-for-AI-apps.html#secrets-and-api-keys">Security</a></p>
+<h3 id="chatbot">Chatbot</h3>
+<p>An app where a person types messages and a <em>model</em> answers,
+one turn at a time. It does not take actions on its own; that is what an
+<em>agent</em> adds.</p>
+<h3 id="cloud">Cloud</h3>
+<p>Computers, storage and software rented over the internet, on demand,
+instead of owned. For AI apps it covers three separate jobs: running
+your app, running the model your app calls, and sometimes running a
+model on your own rented <em>GPUs</em>. → <a
+href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></p>
+<h3 id="coding-agent">Coding agent</h3>
+<p>An <em>agent</em> that works inside a code project: it reads files,
+edits them, runs commands and checks the result. It can run in a
+terminal, an editor or on the vendor's servers. → <a
+href="Ways-to-use-AI.html#coding-agents-in-the-terminal">Ways to use
+AI</a></p>
+<h3 id="container">Container</h3>
+<p>A packaged copy of your app together with everything it needs to run
+(libraries, settings), so it runs the same on your laptop and on a
+<em>host</em>. A <em>Dockerfile</em> is the recipe for building one. →
+<a href="Cloud-for-AI-apps.html#serverless-containers-or-vms">The
+cloud</a></p>
+<h3 id="context-window">Context window</h3>
+<p>The amount of text a <em>model</em> can take into account at once:
+your <em>prompt</em>, earlier messages, documents and its own answer,
+counted in <em>tokens</em>. Anthropic calls it the model's "working
+memory" (<a
+href="https://platform.claude.com/docs/en/about-claude/glossary">Anthropic
+glossary</a>, checked 2026-10-28). What does not fit is not seen.</p>
+<h3 id="deploy">Deploy</h3>
+<p>To put your app on a <em>host</em> so it runs there and others can
+reach it at a web address. Redeploying means replacing the running
+version with a new one. → <a
+href="Idea-to-deployed-AI-app.html#4-deploy">From idea to deployed
+app</a></p>
+<h3 id="dockerfile">Dockerfile</h3>
+<p>A short text file listing the steps to build a <em>container</em>:
+which base system to start from, which files to copy, which command
+starts the app.</p>
+<h3 id="environment-variable">Environment variable</h3>
+<p>A named setting given to a program from outside its code, such as
+<code>PORT=8000</code> or <code>MODEL_API_KEY=...</code>. Keeping
+settings and <em>secrets</em> in environment variables means the same
+code runs everywhere and no key sits in the code. → <a
+href="Idea-to-deployed-AI-app.html#2-keys-and-secrets">Keys and
+secrets</a></p>
+<h3 id="fine-tuning">Fine-tuning</h3>
+<p>Training an existing <em>model</em> further on your own examples, so
+it picks up a style, format or specialty. Many apps never need it: good
+<em>prompts</em> and <em>RAG</em> often do the job.</p>
+<h3 id="generative-ai">Generative AI</h3>
+<p>Software that produces new text, code, images or sound from an
+instruction, using a <em>model</em> trained on large amounts of existing
+data. → <a href="Generative-AI.html">What generative AI is</a></p>
+<h3 id="gpu">GPU</h3>
+<p>A chip built to do very many small calculations at the same time.
+Training and running large <em>models</em> needs GPUs, which is why they
+are the expensive part of AI. You only rent them if you run a model
+yourself. → <a
+href="Cloud-for-AI-apps.html#3-running-a-model-yourself-on-gpus">The
+cloud</a></p>
+<h3 id="hallucination">Hallucination</h3>
+<p>When a <em>model</em> states something false or made up, in the same
+confident tone as true statements. It can be reduced but not removed, so
+important answers need checking. → <a
+href="Generative-AI.html#where-it-fails">Where it fails</a></p>
+<h3 id="host">Host</h3>
+<p>A company or service that runs your app on its computers and gives it
+a web address. Also called a hosting provider or platform. → <a
+href="Cloud-for-AI-apps.html#1-hosting-the-app">The cloud</a></p>
+<h3 id="inference">Inference</h3>
+<p>Running a trained <em>model</em> to get an answer. Each call to a
+model <em>API</em> is an inference; you pay for it in <em>tokens</em>.
+(Training is the separate, earlier step that creates the model.)</p>
+<h3 id="llm">LLM</h3>
+<p>Large language model: a <em>model</em> trained on very large amounts
+of text that reads text and writes text. ChatGPT, Claude, Gemini and Le
+Chat are apps built on LLMs. → <a href="Generative-AI.html">What
+generative AI is</a></p>
+<h3 id="logs">Logs</h3>
+<p>The lines a running app writes about what it is doing: requests,
+errors, warnings. They are the first place to look when something goes
+wrong. → <a href="Idea-to-deployed-AI-app.html#5-read-the-logs">Read the
+logs</a></p>
+<h3 id="mcp-model-context-protocol">MCP (Model Context Protocol)</h3>
+<p>An open set of rules for connecting <em>tools</em> and data to an AI
+app, so one tool server works with many assistants. Created by Anthropic
+in 2024 and donated in 2025 to a foundation under the Linux Foundation.
+→ <a
+href="Agent-protocols-MCP-and-A2A.html#mcp-connecting-agents-to-tools">MCP</a></p>
+<h3 id="model">Model</h3>
+<p>The trained program that turns an input (text, an image) into an
+output (text, an image). Models come in families and sizes, such as a
+large slow one and a small fast one. → <a
+href="AI-providers-and-models.html">Providers and models</a></p>
+<h3 id="open-weight-model">Open-weight model</h3>
+<p>A <em>model</em> whose trained files (the "weights") are published,
+so you can download it and run it on your own computers, under its
+licence. The opposite is a closed model, which you can only use through
+its maker's <em>API</em>. → <a
+href="AI-providers-and-models.html#closed-vs-open-weight-models">Closed vs
+open-weight</a></p>
+<h3 id="prompt">Prompt</h3>
+<p>The text you send to a <em>model</em>: your question or instruction,
+plus any documents or examples. A <em>system prompt</em> is the part
+that sets the rules for a whole conversation.</p>
+<h3 id="prompt-injection">Prompt injection</h3>
+<p>An attack where text the <em>model</em> reads (a web page, an email,
+a file) contains instructions that make it do something its owner did
+not intend. The main new security risk of AI apps. → <a
+href="Security-for-AI-apps.html#prompt-injection">Security</a></p>
+<h3 id="provider">Provider</h3>
+<p>A company that offers <em>models</em> through an <em>API</em>: either
+the maker (Anthropic, OpenAI, Google, Mistral…) or a <em>cloud</em>
+platform that resells many makers' models. → <a
+href="AI-providers-and-models.html">Providers and models</a></p>
+<h3 id="rag">RAG</h3>
+<p>Retrieval-augmented generation: before asking the <em>model</em>,
+your app searches your own documents and puts the most relevant passages
+into the <em>prompt</em>, so the answer is based on them. Used for help
+bots that answer from your docs.</p>
+<h3 id="rate-limit">Rate limit</h3>
+<p>The maximum number of requests or <em>tokens</em> a service accepts
+from you per minute or per day. Above it, the service answers with an
+error (often <code>429</code>) until the next period.</p>
+<h3 id="secret">Secret</h3>
+<p>A value that must stay private, such as an <em>API key</em>, a
+password or a token. Secrets live in a host's secret settings or a
+secret manager, and reach the app as <em>environment variables</em>,
+never in the code. → <a
+href="Security-for-AI-apps.html#secrets-and-api-keys">Security</a></p>
+<h3 id="serverless">Serverless</h3>
+<p>A way of hosting where you give the host a function and it runs it
+only when a request arrives, with a time limit per request. You pay per
+use, but long or always-on work does not fit. → <a
+href="Cloud-for-AI-apps.html#serverless-containers-or-vms">The
+cloud</a></p>
+<h3 id="snapshot">Snapshot</h3>
+<p>A fixed version of a <em>model</em> that does not change behind your
+back, identified by an exact model ID. An alias, by contrast, can move
+to a newer version. → <a href="Model-names-and-versions.html">How versions
+work</a></p>
+<h3 id="streaming">Streaming</h3>
+<p>Sending an answer piece by piece as it is produced, instead of all at
+once at the end. Chat apps stream so you see words appear; this needs a
+connection that stays open, which affects hosting. → <a
+href="Cloud-for-AI-apps.html#time-limits-and-streaming">Time limits and
+streaming</a></p>
+<h3 id="system-prompt">System prompt</h3>
+<p>Instructions given to a <em>model</em> before the conversation
+starts, setting its role, rules and limits ("You are a support assistant
+for…; never…").</p>
+<h3 id="temperature">Temperature</h3>
+<p>A setting that controls how varied a <em>model</em>'s answers are:
+low gives more predictable wording, high more varied. Even at zero,
+answers are not perfectly repeatable.</p>
+<h3 id="token">Token</h3>
+<p>The small piece of text a <em>model</em> reads and writes: a word,
+part of a word or a punctuation mark. Prices and limits are counted in
+tokens. OpenAI's rule of thumb for English: "1 token is approximately 4
+characters or 0.75 words" (<a
+href="https://developers.openai.com/api/docs/concepts">OpenAI docs</a>,
+checked 2026-10-28). → <a href="Generative-AI.html#what-it-costs">What it
+costs</a></p>
+<h3 id="tool">Tool</h3>
+<p>A function an <em>agent</em> is allowed to use, such as "search the
+web", "read a file" or "run a command". The model asks for the tool;
+your program runs it and returns the result. Also called tool use or
+function calling. → <a
+href="AI-agent.html#the-three-parts-model-tools-instructions">What an AI
+agent is</a></p>
+<h3 id="workflow">Workflow</h3>
+<p>A fixed sequence of steps, written in code in advance, in which a
+<em>model</em> may do some steps. Unlike an <em>agent</em>, the model
+does not choose what comes next. → <a
+href="AI-agent.html#chatbot-workflow-agent">Chatbot, workflow,
+agent</a></p>
+<h3 id="zero-data-retention-zdr">Zero data retention (ZDR)</h3>
+<p>An arrangement where a <em>provider</em> does not store your requests
+and answers after it has processed them. Usually only for business
+customers, sometimes only on approval. → <a
+href="Data-protection-by-vendor.html">Data protection by vendor</a></p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Generative-AI.html">What generative AI is</a></li>
+<li><a href="AI-agent.html">What an AI agent is</a></li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a></li>
+<li><a href="_Sidebar.html">All pages by category</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<ul>
+<li><a href="_Sidebar.html">All pages, by category</a></li>
+<li><a href="Tags.html">All tags</a></li>
+</ul>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>Anthropic, <a
+href="https://platform.claude.com/docs/en/about-claude/glossary">Glossary</a></li>
+<li>OpenAI, <a
+href="https://developers.openai.com/api/docs/concepts">Key
+concepts</a></li>
+<li>Facts about A2A and MCP: see the <a
+href="Agent-protocols-MCP-and-A2A.html#sources">sources of the protocols
+page</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake or a missing
+word? <a href="CONTRIBUTING.html">Fix it or open an issue</a>. Text
+licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

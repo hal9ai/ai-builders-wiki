@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Foundations.html">Foundations</a> · Tags: <a
+href="Tag-basics.html">basics</a>, <a
+href="Tag-coding-agents.html">coding-agents</a>, <a
+href="Tag-agents.html">agents</a></p>
+<!-- NAV:END -->
+
+<h1 id="ways-to-use-ai-chat-projects-coding-agents-ides-apis-sdks">Ways
+to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</h1>
+<p><strong>The same <a href="Glossary.html#model">model</a> can be used
+through very different surfaces: a chat app for a person, a coding <a
+href="Glossary.html#agent">agent</a> that edits files, an <a
+href="Glossary.html#api">API</a> that your own app calls, or an SDK to
+build your own agent.</strong> Choosing the surface matters as much as
+choosing the model, because it decides who pays, who controls the data,
+and what the AI is allowed to touch.</p>
+<p>Product names below are examples, checked on 2026-10-28. Many vendors
+offer every surface; see <a href="AI-providers-and-models.html">providers
+and models</a>.</p>
+<h2 id="the-surfaces-at-a-glance">The surfaces at a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Who uses it</th>
+<th>What it is for</th>
+<th>How you pay</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat app</td>
+<td>A person</td>
+<td>Questions, writing, analysis, quick prototypes</td>
+<td>Free tier or subscription</td>
+<td>ChatGPT, Claude, Gemini, Le Chat</td>
+</tr>
+<tr>
+<td>Projects / workspaces</td>
+<td>A person or a team</td>
+<td>Ongoing work with shared files and instructions</td>
+<td>Subscription</td>
+<td>Claude Projects, ChatGPT Projects</td>
+</tr>
+<tr>
+<td>Coding agent (CLI)</td>
+<td>A developer</td>
+<td>Reading, editing, testing and committing code in a repository</td>
+<td>Subscription or API usage</td>
+<td>Claude Code, Codex CLI, Gemini CLI</td>
+</tr>
+<tr>
+<td>IDE integration</td>
+<td>A developer</td>
+<td>Autocomplete, chat and agent inside the editor</td>
+<td>Subscription</td>
+<td>GitHub Copilot, Cursor, editor extensions of the CLIs</td>
+</tr>
+<tr>
+<td>Cloud coding agent</td>
+<td>A developer or team</td>
+<td>Works on an issue in the background and opens a pull request</td>
+<td>Subscription</td>
+<td>Copilot cloud agent, Codex web</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Your program</td>
+<td>Putting a model inside your own product</td>
+<td>Per token</td>
+<td>Any provider's API</td>
+</tr>
+<tr>
+<td>Agent SDK</td>
+<td>Your program</td>
+<td>Building your own agent with a ready-made loop and tools</td>
+<td>Per token, plus your hosting</td>
+<td>Claude Agent SDK, OpenAI Agents SDK, Google ADK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="chat-apps">Chat apps</h2>
+<p><strong>A chat app is the model with a user interface, for one person
+at a time.</strong> It is the fastest way to try an idea, draft text or
+analyse a file. Most chat apps now also search the web, run code and
+connect to other services.</p>
+<p>What it is not: a way to give <em>your</em> users AI. Your users
+cannot share your subscription; for that you use the <a
+href="#apis">API</a>.</p>
+<p>Before pasting company or customer data, check what the vendor keeps
+and trains on for your plan. Consumer and business plans differ: see <a
+href="Data-protection.html">data protection</a>.</p>
+<h2 id="projects-and-workspaces">Projects and workspaces</h2>
+<p><strong>A project keeps related chats, files and instructions
+together, so you do not re-explain the context every time.</strong>
+Anthropic: "Projects allow you to create self-contained workspaces with
+their own chat histories and knowledge bases" (<a
+href="https://support.claude.com/en/articles/9517075-what-are-projects">Claude
+Help Center</a>, checked 2026-10-28). OpenAI offers <a
+href="https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt">Projects
+in ChatGPT</a> for the same purpose.</p>
+<p><em>Example:</em> a founder keeps a "Pitch deck" project with the
+business plan, last quarter's numbers and the instruction "answer as a
+skeptical investor".</p>
+<h2 id="coding-agents-in-the-terminal">Coding agents in the
+terminal</h2>
+<p><strong>A <a href="Glossary.html#coding-agent">coding agent</a> is an
+<a href="AI-agent.html">agent</a> that works in your code repository: it
+reads files, edits them, runs commands and checks the result.</strong>
+Anthropic describes Claude Code as "an agentic coding tool that reads
+your codebase, edits files, runs commands, and integrates with your
+development tools", available "in your terminal, IDE, desktop app, and
+browser" (<a href="https://code.claude.com/docs/en/overview">Claude Code
+overview</a>, checked 2026-10-28). OpenAI's Codex CLI is a "Lightweight
+coding agent that runs in your terminal" (<a
+href="https://github.com/openai/codex">openai/codex on GitHub</a>).
+Google's Gemini CLI is "An open-source AI agent that brings the power of
+Gemini directly into your terminal" (<a
+href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli
+on GitHub</a>).</p>
+<p>Use one when the task touches many files or needs running and
+testing: "add a CSV export", "upgrade this library and fix what breaks",
+"deploy this to staging". Because it runs commands on your machine, its
+<a href="Security-for-AI-apps.html#tool-permissions">permission
+settings</a> matter.</p>
+<h2 id="ide-integrations-and-extensions">IDE integrations and
+extensions</h2>
+<p><strong>IDE integrations put the model inside your editor:
+autocomplete as you type, a chat panel that sees your open files, and
+increasingly an agent mode.</strong> GitHub describes Copilot as "an AI
+assistant that helps you write, understand, and ship software" (<a
+href="https://docs.github.com/en/copilot/get-started/what-is-github-copilot">GitHub
+docs</a>, checked 2026-10-28). Cursor is an editor built around this,
+which calls itself "your coding agent for building ambitious software"
+(<a href="https://cursor.com/">cursor.com</a>). The terminal agents
+above also ship editor extensions.</p>
+<p>The difference from a CLI agent is mostly ergonomics: you see diffs
+inline and steer as it goes. Under the hood, both are agents with <a
+href="Glossary.html#tool">tools</a>.</p>
+<h2 id="cloud-coding-agents">Cloud coding agents</h2>
+<p><strong>A <a href="Glossary.html#cloud">cloud</a> coding agent works on
+a copy of your repository on the vendor's machines, in the background,
+and returns a pull request.</strong> GitHub: "Copilot can research a
+repository, plan changes, and implement them in the background" (<a
+href="https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent">About
+Copilot cloud agent</a>, checked 2026-10-28). OpenAI's Codex has a web
+version described as "the cloud-based agent from OpenAI" (<a
+href="https://github.com/openai/codex">openai/codex on GitHub</a>).</p>
+<p>Good for well-defined issues you can review afterwards. It runs in a
+sandbox, which limits what it can break, and what it can test.</p>
+<h2 id="apis">APIs</h2>
+<p><strong>An API lets your own program send a <a
+href="Glossary.html#prompt">prompt</a> to a model and get the answer back,
+paying per <a href="Glossary.html#token">token</a>.</strong> This is how
+you put AI inside a product: a support bot, a document summarizer, a
+feature in your app.</p>
+<ul>
+<li>You need an <a href="Glossary.html#api-key">API key</a>, kept on your
+server. See <a
+href="Security-for-AI-apps.html#secrets-and-api-keys">security</a>.</li>
+<li>Answers can be <a href="Glossary.html#streaming">streamed</a> word by
+word.</li>
+<li>You pay for what your users trigger, so set spend limits. See <a
+href="Generative-AI.html#what-it-costs">costs</a>.</li>
+<li>Business and API terms usually differ from consumer terms on
+training and retention. See <a href="Data-protection.html">data
+protection</a>.</li>
+</ul>
+<p>A minimal call, in Python with Anthropic's SDK (other <a
+href="Glossary.html#provider">providers</a>' SDKs look similar):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anthropic</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> anthropic.Anthropic()  <span class="co"># reads ANTHROPIC_API_KEY from the environment</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>reply <span class="op">=</span> client.messages.create(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">&quot;claude-haiku-5-5&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[{<span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>, <span class="st">&quot;content&quot;</span>: <span class="st">&quot;Summarize this ticket in one line: ...&quot;</span>}],</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reply.content[<span class="dv">0</span>].text)</span></code></pre></div>
+<p>Model IDs change; take the current one from the provider's models
+page (<a href="Model-names-and-versions.html">how versions work</a>).</p>
+<h2 id="agent-sdks">Agent SDKs</h2>
+<p><strong>An <a href="Glossary.html#agent-sdk">agent SDK</a> gives you
+the agent loop, tool calling and context handling as a library, so you
+build an agent without writing that plumbing.</strong> Anthropic's
+Claude Agent SDK offers "the same tools, agent loop, and context
+management that power Claude Code, programmable in Python and
+TypeScript" (<a
+href="https://code.claude.com/docs/en/agent-sdk/overview">Claude Agent
+SDK overview</a>, checked 2026-10-28). OpenAI's Agents SDK aims to
+"build agentic AI apps in a lightweight, easy-to-use package with very
+few abstractions" (<a
+href="https://openai.github.io/openai-agents-python/">OpenAI Agents
+SDK</a>). Google's <a href="https://adk.dev/">ADK</a>, Microsoft's <a
+href="https://learn.microsoft.com/en-us/agent-framework/overview/">Agent
+Framework</a>, LangGraph and CrewAI are other options; see <a
+href="Multi-agent-systems.html#frameworks-for-multi-agent-systems">multi-agent
+frameworks</a>.</p>
+<p>Use an SDK when you want an agent that runs as part of <em>your</em>
+system: a nightly agent that triages issues, a support agent with access
+to your order database. It then needs hosting like any other app: see <a
+href="Cloud-for-AI-apps.html">the cloud for AI apps</a>.</p>
+<h2 id="which-one-should-i-use">Which one should I use?</h2>
+<ul>
+<li><strong>I want to think, write or analyse:</strong> chat app; a
+project if it is recurring.</li>
+<li><strong>I want to build an app and I am not a developer:</strong> a
+chat app or an AI app builder for a prototype, then a coding agent for
+anything you will maintain. Read <a
+href="Idea-to-deployed-AI-app.html">from idea to deployed AI app</a>.</li>
+<li><strong>I am a developer working in a codebase:</strong> IDE
+integration for small edits, a coding agent for multi-file tasks, a
+cloud agent for issues you will review.</li>
+<li><strong>My product needs AI for its users:</strong> the API.</li>
+<li><strong>My product needs an agent that acts on its own:</strong> an
+agent SDK, hosted on your infrastructure.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="AI-agent.html">What an AI agent is</a></li>
+<li><a href="AI-providers-and-models.html">Providers and models</a></li>
+<li><a href="Security-for-AI-apps.html">Security</a></li>
+<li><a href="Glossary.html">Glossary</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#agent-sdk">Agent SDK</a>, <a
+href="Glossary.html#api">API</a>, <a href="Glossary.html#api-key">API
+key</a>, <a href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28, except where noted.</p>
+<ul>
+<li>Anthropic, <a
+href="https://support.claude.com/en/articles/9517075-what-are-projects">What
+are projects?</a></li>
+<li>Anthropic, <a href="https://code.claude.com/docs/en/overview">Claude
+Code overview</a></li>
+<li>Anthropic, <a
+href="https://code.claude.com/docs/en/agent-sdk/overview">Claude Agent
+SDK overview</a></li>
+<li>OpenAI, <a
+href="https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt">Projects
+in ChatGPT</a> (the page refused automated access on 2026-10-28;
+existence confirmed through search results only)</li>
+<li>OpenAI, <a href="https://github.com/openai/codex">Codex
+repository</a></li>
+<li>OpenAI, <a
+href="https://openai.github.io/openai-agents-python/">Agents
+SDK</a></li>
+<li>Google, <a href="https://github.com/google-gemini/gemini-cli">Gemini
+CLI repository</a>; <a href="https://adk.dev/">Agent Development
+Kit</a></li>
+<li>GitHub, <a
+href="https://docs.github.com/en/copilot/get-started/what-is-github-copilot">What
+is GitHub Copilot?</a>; <a
+href="https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent">About
+Copilot cloud agent</a></li>
+<li>Cursor, <a href="https://cursor.com/">cursor.com</a></li>
+<li>Microsoft, <a
+href="https://learn.microsoft.com/en-us/agent-framework/overview/">Agent
+Framework overview</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

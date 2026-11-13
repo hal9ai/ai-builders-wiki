@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A login that loops between your app and the sign-in provider · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Problems-solutions.html">Problems &amp; solutions</a> ·
+Tags: <a href="Tag-auth.html">auth</a></p>
+<!-- NAV:END -->
+
+<h1 id="a-login-that-loops-between-your-app-and-the-sign-in-provider">A
+login that loops between your app and the sign-in provider</h1>
+<p><strong>A login that bounces between your app and its sign-in
+provider, forever, almost always means the page the provider redirects
+back to navigates away before the app can exchange the one-time code for
+a session.</strong> The fix is to leave the callback URL alone until the
+app has read it, and to stop the app from starting another login from
+that same page.</p>
+<h2 id="what-it-looks-like">What it looks like</h2>
+<ul>
+<li>You click "Sign in" or a button that needs a signed-in user.</li>
+<li>The provider's page flashes, or never appears because you are
+already signed in there.</li>
+<li>Your own address bar flashes a URL ending in
+<code>?code=...&amp;state=...</code>, often too fast to read.</li>
+<li>It never settles on a page, and you are still signed out when it
+stops.</li>
+</ul>
+<p>That <code>code</code> is the whole point of the round trip: it is
+how the provider hands your app a session. If it is not used, the login
+did not happen.</p>
+<h2 id="how-the-redirect-is-supposed-to-work">How the redirect is
+supposed to work</h2>
+<p>The common pattern for browser apps is the OAuth 2.0 authorization
+code flow:</p>
+<ol type="1">
+<li>Your app sends the browser to the provider, asking for a code. The
+request names a redirect URI, the address the provider may send the user
+back to.</li>
+<li>The user signs in at the provider.</li>
+<li>The provider redirects the browser to that redirect URI with a
+short-lived <code>code</code> and the <code>state</code> value your app
+sent. The code "MUST expire shortly after it is issued", and the client
+"MUST NOT use the authorization code more than once" (<a
+href="https://www.rfc-editor.org/rfc/rfc6749#section-4.1.2">RFC 6749,
+section 4.1.2</a>, checked 2026-11-06).</li>
+<li>Your app POSTs that code to the provider's token endpoint, with the
+same redirect URI, and gets tokens back (<a
+href="https://www.rfc-editor.org/rfc/rfc6749#section-4.1.3">RFC 6749,
+section 4.1.3</a>, checked 2026-11-06). <code>state</code> exists to
+protect step 3 from cross-site request forgery (<a
+href="https://www.rfc-editor.org/rfc/rfc6749#section-4.1.1">RFC 6749,
+section 4.1.1</a>, checked 2026-11-06); browser apps also use PKCE to
+tie the code to the app that asked for it (<a
+href="https://www.rfc-editor.org/rfc/rfc7636">RFC 7636</a>, checked
+2026-11-06).</li>
+</ol>
+<p>Steps 3 and 4 are the fragile part. The code lives only in the URL of
+the page the provider lands on, and it is only good once.</p>
+<h2 id="why-precisely-the-loop-happens">Why, precisely, the loop
+happens</h2>
+<p>Two ordinary pieces of app code collide:</p>
+<ol type="1">
+<li><strong>The callback route redirects.</strong> In a single-page app
+the callback address is a route, and that route is often written to
+bounce visitors onward — to a dashboard, or to a "you are signed in now"
+page. That redirect rewrites the address, and the <code>code</code> and
+<code>state</code> go with it.</li>
+<li><strong>The auth library reads the callback late.</strong> The
+library parses the <code>code</code> from the page's URL when it
+finishes starting up, not at the instant the page paints. Auth0's
+browser library, for example, says <code>handleRedirectCallback</code>
+"must be called in order to complete the login flow" when "the browser
+is redirected from Auth0 back to your SPA" (<a
+href="https://auth0.com/docs/libraries/auth0-single-page-app-sdk">Auth0
+SPA SDK</a>, checked 2026-11-06). If the URL has already been rewritten,
+there is no code left to read.</li>
+</ol>
+<p>So the exchange never happens, the app believes nobody is signed in,
+and its "you must be signed in to see this page" guard sends the user
+back to the provider. Because the user still has a session at the
+provider, it answers instantly with a fresh code, and the same two steps
+fail again. Nothing in that cycle can break out on its own, which is why
+it is so fast.</p>
+<h2 id="how-to-confirm-it-in-a-minute">How to confirm it in a
+minute</h2>
+<p>Open the browser's developer console before clicking sign in, and
+look at the Network panel, filtered to the provider's domain:</p>
+<ul>
+<li><strong>A POST to the provider's token endpoint</strong>
+(<code>/oauth/token</code> at Auth0) means the code was read and the
+exchange was attempted; the loop is then about the exchange failing, not
+about the code being lost.</li>
+<li><strong>No token request at all</strong>, while the address bar
+shows <code>?code=...</code>, means the code was thrown away before the
+library looked for it. That is this bug.</li>
+</ul>
+<p>The console panel usually shows the library's own complaint — often
+an error about an invalid state or a missing transaction — instead of
+anything that names your redirect.</p>
+<h2 id="how-to-fix-it">How to fix it</h2>
+<ul>
+<li><strong>Keep the callback URL intact.</strong> The route that
+receives <code>code</code> and <code>state</code> must not redirect
+while the callback is pending. Let the auth library finish, then
+navigate. In a single-page app, check for the callback parameters in the
+route's own guard before sending the visitor anywhere.</li>
+<li><strong>Never start a login from the callback page.</strong> The
+"not signed in, so redirect to the provider" guard must skip the
+callback route. Without this, one failed exchange turns into an endless
+loop instead of one visible error.</li>
+<li><strong>Let both halves of the app share the session.</strong> If
+the redirect URI belongs to one part of the site and the page you return
+to belongs to another, the second part has to find the tokens the first
+part stored. Auth0's SDK stores tokens in memory by default and only
+keeps them across page loads when <code>cacheLocation</code> is set to
+<code>localstorage</code> (<a
+href="https://auth0.com/docs/libraries/auth0-single-page-app-sdk">Auth0
+SPA SDK</a>, checked 2026-11-06).</li>
+<li><strong>Use the <code>state</code> you were given.</strong> After a
+successful exchange, send the user to the address recorded in it — for
+example the page whose button started the login — rather than to a
+generic home page.</li>
+</ul>
+<h2 id="check-that-it-is-fixed">Check that it is fixed</h2>
+<ul>
+<li>With the Network tab open, sign in once: a single token request
+appears, and the browser settles on the page the login started
+from.</li>
+<li>Sign out and repeat: same result.</li>
+<li>A stale or expired callback link now produces one clear error or a
+plain signed-out page, not a loop. That is the guard from the second
+bullet doing its job.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html#4-deploy">From idea to deployed
+AI app</a>: where sign-in and secrets sit in a deploy</li>
+<li><a href="Security-for-AI-apps.html#secrets-and-api-keys">Security for
+AI apps and agents</a>: why the tokens this flow produces are
+secrets</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#token">Token</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-06.</p>
+<ul>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc6749">RFC 6749: The
+OAuth 2.0 Authorization Framework</a>: sections 4.1.1 (state), 4.1.2
+(authorization response) and 4.1.3 (token request)</li>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc7636">RFC 7636:
+Proof Key for Code Exchange by OAuth Public Clients</a></li>
+<li>Auth0, <a
+href="https://auth0.com/docs/libraries/auth0-single-page-app-sdk">Auth0
+Single Page App SDK</a>: <code>handleRedirectCallback</code> and
+<code>cacheLocation</code></li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a sign-in loop found
+while deploying a web app, and checked against the <a
+href="#sources">sources</a> on 2026-11-06. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

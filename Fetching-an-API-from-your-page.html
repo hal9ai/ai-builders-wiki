@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Problems-solutions.html">Problems &amp; solutions</a> ·
+Tags: <a href="Tag-security.html">security</a>, <a
+href="Tag-hosting.html">hosting</a></p>
+<!-- NAV:END -->
+
+<h1
+id="why-a-page-cant-read-another-sites-api-and-how-to-serve-it-from-your-own">Why
+a page can't read another site's API, and how to serve it from your
+own</h1>
+<p><strong>A browser only lets a page read a response from another
+origin when that server allows it with an
+<code>Access-Control-Allow-Origin</code> header; without the header, the
+page's code gets an error instead of the data, even when the request
+reached the server and it answered.</strong> The fix is a small endpoint
+on your own server that fetches the data and returns it from your own
+domain, because a server is not bound by that rule.</p>
+<p>This is the usual reason a page that shows live numbers — usage,
+prices, a dashboard — works in a tool like <code>curl</code> and shows
+nothing in the browser.</p>
+<h2 id="how-the-block-looks">How the block looks</h2>
+<ul>
+<li>A <code>fetch()</code> call goes to <code>catch</code> with a
+<code>TypeError</code> ("Failed to fetch" in Chrome), and the console
+says something like <em>"blocked by CORS policy: No
+'Access-Control-Allow-Origin' header is present on the requested
+resource"</em>.</li>
+<li>The Network panel still shows the request, often with status 200: it
+was sent, and the browser threw the answer away instead of handing it to
+the page.</li>
+<li><code>curl</code> on the very same URL returns the JSON, which makes
+the API look broken to nobody except the browser.</li>
+<li>Calling the same API from a page on the API's own domain works. The
+difference is not the page's code; it is where the page was loaded
+from.</li>
+</ul>
+<h2 id="why-the-browser-does-this">Why the browser does this</h2>
+<p>Code loaded from one origin may only read responses from other
+origins when those responses say so. As the CORS guide puts it: a web
+application "can only request resources from the same origin the
+application was loaded from unless the response from other origins
+includes the right CORS headers" (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">MDN,
+CORS</a>, checked 2026-11-12). An origin is the scheme, host and port
+together, so <code>https://app.example.com</code> and
+<code>https://api.example.com</code> are two origins even though the
+domain is the same.</p>
+<p>The server opts in per response with one header:</p>
+<ul>
+<li><code>Access-Control-Allow-Origin: https://app.example.com</code> —
+that one page may read it.</li>
+<li><code>Access-Control-Allow-Origin: *</code> — any page may, but only
+for requests without credentials: a request that carries a cookie is
+refused against the wildcard, and the server must name the origin
+instead (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin">MDN,
+Access-Control-Allow-Origin</a>, checked 2026-11-12).</li>
+</ul>
+<p>Some requests are sent directly: a <code>GET</code>,
+<code>HEAD</code> or <code>POST</code> with only the safelisted headers
+and a content type of <code>application/x-www-form-urlencoded</code>,
+<code>multipart/form-data</code> or <code>text/plain</code>. Everything
+else — notably a <code>POST</code> with
+<code>Content-Type: application/json</code> — is preflighted: the
+browser sends an <code>OPTIONS</code> request first and only sends the
+real one if the server approves it (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">MDN,
+CORS</a>, checked 2026-11-12). An API that was never written for browser
+pages usually answers neither.</p>
+<h2 id="check-the-endpoint-from-the-shell">Check the endpoint from the
+shell</h2>
+<p>Ask for the JSON the way a page from another origin would, by sending
+an <code>Origin</code> header and reading the response headers:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sD</span> <span class="at">-</span> <span class="at">-o</span> /dev/null <span class="at">-H</span> <span class="st">&quot;Origin: https://app.example.com&quot;</span> https://api.example.com/stats.json</span></code></pre></div>
+<ul>
+<li>No <code>access-control-allow-origin</code> in the response: a page
+on another domain cannot read it. This is where the question ends.</li>
+<li><code>access-control-allow-origin: *</code>: any page can read it,
+as long as the request sends no cookies.</li>
+<li><code>access-control-allow-origin: https://app.example.com</code>:
+your page can read it, cookies included.</li>
+</ul>
+<h2 id="the-fix-fetch-it-on-your-own-server">The fix: fetch it on your
+own server</h2>
+<p>Your server can make any request it likes; only browsers apply the
+rule. One route that fetches the upstream and answers from your own
+domain is enough, and the page then talks to its own origin, where no
+check happens at all:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// GET /api/stats: the upstream JSON, served from your own domain</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&quot;/api/stats&quot;</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> r <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">&quot;https://api.example.com/stats.json&quot;</span><span class="op">,</span> { <span class="dt">signal</span><span class="op">:</span> AbortSignal<span class="op">.</span><span class="fu">timeout</span>(<span class="dv">6000</span>) })<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> body <span class="op">=</span> <span class="cf">await</span> r<span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">set</span>(<span class="st">&quot;cache-control&quot;</span><span class="op">,</span> <span class="st">&quot;public, max-age=300&quot;</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">json</span>(body)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// In the page: same origin, so nothing to allow</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fetch</span>(<span class="st">&quot;/api/stats&quot;</span>)<span class="op">.</span><span class="fu">then</span>((r) <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">json</span>())<span class="op">.</span><span class="fu">then</span>(render)<span class="op">;</span></span></code></pre></div>
+<p>Two things make the route hold up:</p>
+<ul>
+<li><strong>Cache it.</strong> A five-minute copy in the server (and
+<code>max-age</code> for the browser) means a busy page doesn't forward
+every visitor to the upstream, and the upstream's rate limits stay out
+of the way.</li>
+<li><strong>Keep the last good copy.</strong> If the upstream is down or
+slow, answer with the numbers fetched last time, so the page still shows
+something instead of an error. The page can then say how old they
+are.</li>
+</ul>
+<p>If you also own the API, adding the header there is one line, and
+often simpler than a proxy:
+<code>Access-Control-Allow-Origin: https://app.example.com</code>, or
+<code>*</code> for data that needs no cookies.</p>
+<p>The investor site that explains how Cloudish works reads Cloudish's
+usage numbers this way: the stats come from a registry that doesn't send
+the header, so the site's server fetches them every five minutes and its
+page reads <code>/api/stats</code> from its own domain. (Cloudish is
+made by Hal9, which started this wiki; the example is the reason the
+page exists, not a recommendation.)</p>
+<h2 id="what-not-to-do">What not to do</h2>
+<ul>
+<li><strong>Don't proxy secrets.</strong> Whatever your route returns is
+public to anyone who can load the page. The upstream's API key stays on
+the server, but treat the numbers as published.</li>
+<li><strong>Don't leave CORS disabled in your browser</strong> — a flag
+or an extension that turns the check off — and call it fixed. It works
+on your machine only; the header check above tells you what every
+visitor will get.</li>
+<li><strong>Don't expect a third-party API without the header to work
+from the page at all.</strong> A server route or a copy made at build
+time are the only options. A build-time copy is fine for numbers that
+can be a day old, and useless for a live chart.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Checking-an-AI-built-web-app.html">Checking an AI-built web
+app</a>: what to look at when a page loads but its data doesn't</li>
+<li><a href="Stale-cache-after-a-deploy.html">Stale cache after a
+deploy</a>: the other reason new numbers don't show up</li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>: the
+container that runs your server route</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#api-key">API key</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#rate-limit">Rate
+limit</a>, <a href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-12.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS">Cross-Origin
+Resource Sharing (CORS)</a>: the same-origin policy for
+<code>fetch()</code> and <code>XMLHttpRequest</code>,
+<code>Access-Control-Allow-Origin</code>, and which requests are
+"simple" rather than preflighted</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Access-Control-Allow-Origin">Access-Control-Allow-Origin</a>:
+one origin or the <code>*</code> wildcard, and the wildcard's exclusion
+for requests that carry credentials</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a site that needed
+another domain's live usage numbers and found the endpoint sent no CORS
+header, and checked against the <a href="#sources">sources</a> on
+2026-11-12. Found a mistake? <a href="CONTRIBUTING.html">Fix it or open an
+issue</a>. Text licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

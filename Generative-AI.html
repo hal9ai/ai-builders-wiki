@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What generative AI is, and why people build with it · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Foundations.html">Foundations</a> · Tags: <a
+href="Tag-basics.html">basics</a>, <a href="Tag-costs.html">costs</a></p>
+<!-- NAV:END -->
+
+<h1 id="what-generative-ai-is-and-why-people-build-with-it">What
+generative AI is, and why people build with it</h1>
+<p><strong><a href="Glossary.html#generative-ai">Generative AI</a> is
+software that produces new text, code, images or audio in response to an
+instruction, using a <a href="Glossary.html#model">model</a> trained on
+very large amounts of existing data.</strong> When people say "AI" in
+2026 they usually mean a <a href="Glossary.html#llm">large language model
+(LLM)</a>: a model that reads text and writes text, such as the models
+behind ChatGPT, Claude, Gemini or Le Chat.</p>
+<p>This page explains what these models do, what people actually use
+them for, where they fail, and how you pay for them. For the vocabulary,
+see the <a href="Glossary.html">glossary</a>.</p>
+<h2 id="how-it-works-in-one-paragraph">How it works, in one
+paragraph</h2>
+<p><strong>An LLM continues text: given everything so far, it predicts
+the next small piece, then the next, until it stops.</strong> Anthropic
+describes pretraining as teaching a model "to predict the next word,
+given the previous context of text in the document" (<a
+href="https://platform.claude.com/docs/en/about-claude/glossary">Anthropic
+glossary</a>, checked 2026-10-28). A raw pretrained model is then
+further trained (fine-tuned, often with human feedback) so that it
+follows instructions and behaves like an assistant.</p>
+<p>The pieces it reads and writes are called <a
+href="Glossary.html#token">tokens</a>. OpenAI's rule of thumb: "1 token is
+approximately 4 characters or 0.75 words for English text" (<a
+href="https://developers.openai.com/api/docs/concepts">OpenAI docs</a>,
+checked 2026-10-28). The exact ratio depends on the model and the
+language, so use the <a href="Glossary.html#provider">provider</a>'s token
+counter when it matters.</p>
+<p>Two consequences follow from this design:</p>
+<ul>
+<li><strong>The model has no live connection to the world.</strong> It
+knows what was in its training data, plus whatever you put in the <a
+href="Glossary.html#prompt">prompt</a>. Anything newer, or private to you,
+has to be supplied: pasted in, retrieved from your documents (<a
+href="Glossary.html#rag">RAG</a>), or fetched by a <a
+href="Glossary.html#tool">tool</a>.</li>
+<li><strong>The output is plausible, not guaranteed true.</strong> The
+model writes what is likely to come next. Usually that is right;
+sometimes it is a confident invention.</li>
+</ul>
+<h2 id="what-developers-and-entrepreneurs-use-it-for">What developers
+and entrepreneurs use it for</h2>
+<p><strong>The most common use is writing and checking code.</strong> In
+the 2025 Stack Overflow Developer Survey, "84% of respondents are using
+or planning to use AI tools in their development process" (<a
+href="https://survey.stackoverflow.co/2025/ai">survey, 2025</a>, checked
+2026-10-28). In the 2026 edition, 73% of respondents use coding
+assistants and <a href="Glossary.html#agent">agents</a> daily (<a
+href="https://survey.stackoverflow.co/2026/ai">survey, 2026</a>, checked
+2026-10-28).</p>
+<p>Beyond code, the uses that hold up well in practice share one trait:
+a person or a program can check the result.</p>
+<table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Example</th>
+<th>Why it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drafting</td>
+<td>First version of an email, a product page, a job ad</td>
+<td>A person edits before it goes out</td>
+</tr>
+<tr>
+<td>Summarizing</td>
+<td>A 40-page contract into one page of key clauses</td>
+<td>You can check against the original</td>
+</tr>
+<tr>
+<td>Extracting</td>
+<td>Invoice PDFs into rows: supplier, date, total</td>
+<td>Output is structured and testable</td>
+</tr>
+<tr>
+<td>Classifying</td>
+<td>Routing support tickets to "billing", "bug" or "sales"</td>
+<td>Errors are cheap and measurable</td>
+</tr>
+<tr>
+<td>Answering from your documents</td>
+<td>A help bot that quotes your docs (<a
+href="Glossary.html#rag">RAG</a>)</td>
+<td>Answers can cite their source</td>
+</tr>
+<tr>
+<td>Coding</td>
+<td>Writing a function, a test, a migration script</td>
+<td>Code can be run and tested</td>
+</tr>
+<tr>
+<td>Acting through tools</td>
+<td>An <a href="AI-agent.html">agent</a> that reads an issue, edits code,
+runs tests</td>
+<td>The loop checks its own work, within limits</td>
+</tr>
+</tbody>
+</table>
+<p>For a founder, the pattern is usually one of two:</p>
+<ul>
+<li><strong>AI inside the product:</strong> the app calls a model to do
+part of its job (summarize a call, answer a customer). You pay per use;
+see <a href="#what-it-costs">costs</a> below.</li>
+<li><strong>AI to build the product:</strong> a coding assistant writes
+much of the app. You pay a subscription or per use, and you still own
+the result, its bugs and its security. See <a
+href="Idea-to-deployed-AI-app.html">a typical workflow</a>.</li>
+</ul>
+<h2 id="where-it-fails">Where it fails</h2>
+<p><strong>The main limit is that the model can be wrong without
+warning.</strong> Anthropic's own guide says models "can sometimes
+generate text that is factually incorrect or inconsistent with the given
+context", which is called <a
+href="Glossary.html#hallucination">hallucination</a>, and that mitigation
+techniques "don't eliminate them entirely" (<a
+href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">Anthropic,
+reduce hallucinations</a>, checked 2026-10-28). Developers notice: in
+the 2025 survey, 66% named "AI solutions that are almost right, but not
+quite" as a frustration, and more respondents distrusted AI accuracy
+(46%) than trusted it (33%) (<a
+href="https://survey.stackoverflow.co/2025/ai">survey, 2025</a>).</p>
+<p>Other limits worth knowing before you build:</p>
+<ul>
+<li><strong>Not repeatable.</strong> The same input can give different
+outputs. Even with <a href="Glossary.html#temperature">temperature</a> set
+to 0, Anthropic notes that "results will not be fully deterministic" (<a
+href="https://platform.claude.com/docs/en/about-claude/glossary">Anthropic
+glossary</a>). Tests must check properties ("is it valid JSON with a
+total field?"), not exact strings.</li>
+<li><strong>Limited memory per request.</strong> A model only sees what
+fits in its <a href="Glossary.html#context-window">context window</a>.
+Long histories and big documents must be trimmed, summarized or
+retrieved in pieces.</li>
+<li><strong>Training cutoff.</strong> The model does not know recent
+events unless you give them to it.</li>
+<li><strong>Latency.</strong> A long answer can take many seconds. Apps
+usually <a href="Glossary.html#streaming">stream</a> the answer word by
+word so users see progress, which affects <a
+href="Cloud-for-AI-apps.html#time-limits-and-streaming">where you can host
+the app</a>.</li>
+<li><strong>Data you send leaves your machine.</strong> Prompts go to
+the provider. What it keeps, and whether it trains on them, depends on
+the vendor and the plan: see <a href="Data-protection.html">data
+protection</a>.</li>
+<li><strong>New attack surface.</strong> Text the model reads can
+contain instructions that hijack it. See <a
+href="Security-for-AI-apps.html#prompt-injection">security</a>.</li>
+</ul>
+<p>A practical rule: use generative AI where a wrong answer is cheap to
+spot and fix, and add a check (a person, a test, a schema) where it is
+not.</p>
+<h2 id="what-it-costs">What it costs</h2>
+<p><strong>There are two ways to pay: a monthly subscription for a chat
+app, or per token through an <a
+href="Glossary.html#api">API</a>.</strong></p>
+<ul>
+<li><strong>Subscriptions</strong> (ChatGPT, Claude, Gemini and others)
+give a person a chat app and often a <a
+href="Glossary.html#coding-agent">coding agent</a>, with usage limits.
+They are for people, not for your app's users.</li>
+<li><strong>API pricing</strong> is per million tokens, with separate
+prices for input (what you send) and output (what the model writes).
+Output costs more. Your app pays this every time it calls the
+model.</li>
+</ul>
+<p>An example, using one vendor's list prices. Anthropic lists Claude
+Sonnet 5.5 at $2 per million input tokens and $10 per million output
+tokens (<a
+href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic
+pricing</a>, checked 2026-10-28). Suppose a support bot handles 1,000
+conversations a day, each sending 2,000 tokens and receiving 500:</p>
+<ul>
+<li>input: 1,000 × 2,000 = 2 million tokens → $4 per day</li>
+<li>output: 1,000 × 500 = 0.5 million tokens → $5 per day</li>
+<li>total: about $9 per day, about $270 per month, before any
+discounts</li>
+</ul>
+<p>This is arithmetic on list prices, not a measurement; real
+conversations vary a lot in length. The same page lists ways to pay
+less, for example a Batch API with "a 50 percent discount on both input
+and output tokens" for work that can wait, and lower prices for cached,
+repeated input (<a
+href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic
+pricing</a>). Other providers have similar mechanisms; compare on <a
+href="AI-providers-and-models.html">providers and models</a>.</p>
+<p>Three habits keep the bill predictable:</p>
+<ol type="1">
+<li><strong>Pick the smallest model that does the job.</strong> Prices
+across one vendor's own tiers can differ by more than ten times.</li>
+<li><strong>Set a spend limit</strong> in the provider's console, and
+per-user limits in your app. See <a
+href="Idea-to-deployed-AI-app.html#6-watch-costs">the workflow
+page</a>.</li>
+<li><strong>Count the hosting separately.</strong> Calling a model and
+hosting your app are two different bills. See <a
+href="Cloud-for-AI-apps.html">the cloud for AI apps</a>.</li>
+</ol>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Glossary.html">Glossary</a></li>
+<li><a href="AI-agent.html">What an AI agent is</a></li>
+<li><a href="AI-providers-and-models.html">Providers and models</a></li>
+<li><a href="Ways-to-use-AI.html">Ways to use AI</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#context-window">Context window</a>, <a
+href="Glossary.html#generative-ai">Generative AI</a>, <a
+href="Glossary.html#hallucination">Hallucination</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#llm">LLM</a>, <a
+href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#rag">RAG</a>, <a
+href="Glossary.html#temperature">Temperature</a>, <a
+href="Glossary.html#token">Token</a>, <a href="Glossary.html#tool">Tool</a>,
+<a href="Glossary.html#workflow">Workflow</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>Anthropic, <a
+href="https://platform.claude.com/docs/en/about-claude/glossary">Glossary</a></li>
+<li>Anthropic, <a
+href="https://platform.claude.com/docs/en/about-claude/pricing">Pricing</a></li>
+<li>Anthropic, <a
+href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">Reduce
+hallucinations</a></li>
+<li>OpenAI, <a
+href="https://developers.openai.com/api/docs/concepts">Key
+concepts</a></li>
+<li>Stack Overflow, <a
+href="https://survey.stackoverflow.co/2025/ai">Developer Survey 2025:
+AI</a></li>
+<li>Stack Overflow, <a
+href="https://survey.stackoverflow.co/2026/ai">Developer Survey 2026:
+AI</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

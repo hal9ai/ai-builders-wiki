@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An app that looks fine but its buttons do nothing · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Problems-solutions.html">Problems &amp; solutions</a> ·
+Tags: <a href="Tag-hosting.html">hosting</a></p>
+<!-- NAV:END -->
+
+<h1 id="an-app-that-looks-fine-but-its-buttons-do-nothing">An app that
+looks fine but its buttons do nothing</h1>
+<p><strong>A page that renders but whose buttons, sliders and links do
+nothing is usually a page whose JavaScript never ran.</strong> The HTML
+was already on the page — pre-rendered at build time or server-rendered
+— so it looks complete. The script that makes it interactive was not
+loaded, or was loaded as the wrong kind of file.</p>
+<h2 id="what-it-looks-like">What it looks like</h2>
+<ul>
+<li>The layout, text and images are all there.</li>
+<li>Clicking a button does nothing: no navigation, no spinner, no error
+dialog.</li>
+<li>Controls that the browser itself draws, like a slider, may still
+move — but nothing else on the page reacts.</li>
+<li>The browser console shows a syntax error, and the token it complains
+about is <code>&lt;</code>.</li>
+<li>The Network tab shows the main script request answered with an HTML
+page instead of a script.</li>
+</ul>
+<h2 id="1-read-the-console-first">1. Read the console first</h2>
+<p>Open the browser's developer tools and look at the console.
+"Unexpected token" is the parser saying it met something it cannot read
+at that position (<a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_token">MDN:
+SyntaxError: Unexpected token</a>, checked 2026-11-06). When the first
+character of the file is <code>&lt;</code>, the browser was handed an
+HTML document where it expected JavaScript — for example the site's 404
+page or the home page.</p>
+<p><strong>The error names the script, not the bug.</strong> The bug is
+on the server, in whatever answered that request.</p>
+<h2 id="2-ask-the-server-what-it-returned-for-the-script">2. Ask the
+server what it returned for the script</h2>
+<p>Take the script's URL from the error or from the Network tab, then
+request it directly:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-I</span> https://example.com/assets/app-abc123.js</span></code></pre></div>
+<p>Read two things in the response:</p>
+<ul>
+<li><strong>Status.</strong> A <code>200</code> is what you want. A
+<code>301</code>, <code>302</code> or <code>307</code> means some rule
+is sending the file request somewhere else.</li>
+<li><strong>Content-Type.</strong> For a <code>.js</code> file it should
+be a JavaScript type; the common types table on MDN lists
+<code>text/javascript</code> (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types/Common_types">MDN:
+Common MIME types</a>, checked 2026-11-06). A Content-Type of
+<code>text/html</code> confirms the server answered with a page.</li>
+</ul>
+<p>If the response has <code>X-Content-Type-Options: nosniff</code>, a
+script served with an HTML type is blocked before it is even parsed;
+without that header the browser tries to parse the HTML as JavaScript
+and fails at the first character (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options">MDN:
+X-Content-Type-Options</a>, checked 2026-11-06).</p>
+<h2 id="3-find-the-rule-that-did-it">3. Find the rule that did it</h2>
+<p>The usual causes, in order of how often they turn up:</p>
+<ol type="1">
+<li><strong>A single-page-app fallback.</strong> Every path the static
+server cannot find is answered with <code>index.html</code>. That is
+right for page URLs such as <code>/plans</code> and wrong for
+<code>/assets/app-abc123.js</code>.</li>
+<li><strong>A redirect for old or moved pages.</strong> A rule written
+for a page path that no longer exists can match a folder of the same
+name. A rule for <code>/assets</code> or <code>/static</code> then
+catches every file under it.</li>
+<li><strong>The file is simply missing from the host,</strong> and the
+fallback from point 1 hides the miss behind a <code>200</code>
+page.</li>
+</ol>
+<p>Match rules against the whole path, not just the first segment:
+<code>/assets/app.js</code> is both "under <code>/assets</code>" and "a
+file", and the second fact must win.</p>
+<h2 id="4-fix-it-at-the-server-not-in-the-app">4. Fix it at the server,
+not in the app</h2>
+<ul>
+<li><strong>Serve real files before any fallback.</strong> Check the
+disk (or object storage) first, and only rewrite to
+<code>index.html</code> when nothing was found.</li>
+<li><strong>Only rewrite page URLs.</strong> Skip any request whose last
+path segment contains a dot, since that is a file request, not a
+page.</li>
+<li><strong>Never redirect a file request to an HTML page.</strong> If a
+redirect list is meant for retired pages, apply it only to requests that
+look like pages.</li>
+</ul>
+<p>The same rule applies in reverse proxies, CDN rules and serverless
+rewrites: the asset path has to be excluded from the catch-all before it
+is excluded from anything else.</p>
+<h2 id="5-check-that-it-is-fixed">5. Check that it is fixed</h2>
+<ul>
+<li><code>curl -I</code> on the script returns <code>200</code> and a
+JavaScript Content-Type.</li>
+<li>The console is clean on a hard reload (bypass the cache).</li>
+<li>The buttons, forms and other controls respond.</li>
+</ul>
+<h2 id="why-the-page-looked-fine-all-along">Why the page looked fine all
+along</h2>
+<p>Pre-rendering — turning each page into static HTML at build time — is
+there for speed and for search engines, and it does its job even when
+the JavaScript is broken. The markup arrives complete, so the page
+paints. Only interaction shows the difference.</p>
+<p>Pre-rendered markup can also show browser defaults where an app value
+belongs. A range input with no <code>value</code> attribute shows the
+halfway point between its minimum and maximum (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range">MDN:
+<code>&lt;input type="range"&gt;</code></a>, checked 2026-11-06); a
+slider parked in the middle while the page around it says something else
+is a second clue that no script has run.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html#4-deploy">From idea to deployed
+AI app</a>: where the deploy and its checks fit</li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>: what the
+<a href="Glossary.html#host">host</a> does with static files</li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps and
+agents</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#serverless">Serverless</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-06.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_token">SyntaxError:
+Unexpected token</a></li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types/Common_types">Common
+MIME types</a></li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options">X-Content-Type-Options</a></li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range">&lt;input
+type="range"&gt;</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a deployment bug where
+a redirect rule for retired pages also matched the folder that holds the
+site's JavaScript, and checked against the <a
+href="#sources">sources</a> on 2026-11-06. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

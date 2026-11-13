@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to run an app that keeps its own SQLite database · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a href="Tag-storage.html">storage</a>,
+<a href="Tag-secrets.html">secrets</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-run-an-app-that-keeps-its-own-sqlite-database">How to run
+an app that keeps its own SQLite database</h1>
+<p><strong>Run it as one <a href="Glossary.html#container">container</a>
+with a persistent volume mounted at the directory the app documents for
+its storage, supply its secret key from outside the image, and complete
+the app's first-run setup once.</strong> An app like Campfire — a
+self-hosted team chat — ships its own web server, background worker,
+Redis and database, so the <a href="Glossary.html#host">host</a>'s job is
+to give it one writable directory that outlives the container and the
+configuration it cannot generate itself.</p>
+<p>Campfire is the worked example; the same shape fits any app whose
+documentation says its database and uploads live in one directory.
+Cloudish is one host that exposes these pieces; it appears here as an
+example, not a recommendation.</p>
+<h2 id="1-run-one-container-not-a-replica-set">1. Run one container, not
+a replica set</h2>
+<p><strong>SQLite is a file, so every copy of the app that can write it
+must sit on the same volume, and a block volume attaches to one
+container.</strong> Cloudish's API reference says
+<code>volumeSizeGb</code> must be 1, 5 or 20, that
+<code>volumeMountPath</code> defaults to <code>/data</code>, and that "A
+volume can only attach to one container, so an app with one can't run
+replicas" (<a href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish,
+skill.md</a>, checked 2026-11-12).</p>
+<p>That matches what Campfire asks for: "Campfire keeps all of its
+storage - the database and uploaded file attachments - inside the path
+<code>/rails/storage</code>" (<a
+href="https://github.com/basecamp/once-campfire/blob/main/docs/self-hosting.md">Campfire,
+Self-hosting Campfire</a>, checked 2026-11-12). Mount the volume at that
+path, not at the host's default: a volume at <code>/data</code> leaves
+the database inside the container and loses it on the next deploy.</p>
+<h2 id="2-keep-the-instances-secrets-out-of-the-image">2. Keep the
+instance's secrets out of the image</h2>
+<p><strong>Campfire needs a <code>SECRET_KEY_BASE</code> and a VAPID
+private/public key pair, and its docs say to reuse the same values
+across restarts and upgrades</strong> (<a
+href="https://github.com/basecamp/once-campfire/blob/main/docs/self-hosting.md">Campfire,
+Self-hosting Campfire</a>, checked 2026-11-12). Generate them once,
+store them in the host's <a href="Glossary.html#secret">secret</a> store,
+and let them reach the container as <a
+href="Glossary.html#environment-variable">environment variables</a>.
+Cloudish stores secrets encrypted at rest and merges them into the
+container environment; saving or deleting one restarts a running app,
+and an idle app receives the values when it next starts (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish, skill.md</a>,
+checked 2026-11-12).</p>
+<p>A <code>SECRET_KEY_BASE</code> that changes invalidates signed
+session cookies, so a redeploy that regenerates it signs every user out.
+Keep it stable.</p>
+<h2 id="3-pin-the-process-counts-to-the-containers-size">3. Pin the
+process counts to the container's size</h2>
+<p><strong>An image that sizes its worker pool from the host's CPU count
+can start far more processes than its container's CPU limit, and the
+memory limit is what gets hit.</strong> Campfire's Puma config uses
+<code>workers ENV.fetch("WEB_CONCURRENCY") { worker_count }</code>, and
+its job-pool config is
+<code>default: &lt;%= (Concurrent.processor_count * 0.5).ceil %&gt;</code>
+(<a
+href="https://github.com/basecamp/once-campfire/blob/main/config/puma.rb">config/puma.rb</a>,
+<a
+href="https://github.com/basecamp/once-campfire/blob/main/config/resque-pool.yml">config/resque-pool.yml</a>,
+checked 2026-11-12). Set the web worker count explicitly, and the
+job-pool size too when the image reads one.</p>
+<p>For Campfire the job pool comes from a YAML file rather than an
+environment variable, so the explicit value has to be in the image: a
+one-line wrapper Dockerfile that copies a <code>default: 1</code> config
+over the stock one is enough. The web server is set with
+<code>WEB_CONCURRENCY=1</code>.</p>
+<h2 id="4-decide-where-tls-terminates">4. Decide where TLS
+terminates</h2>
+<p><strong>Either the container terminates TLS (Campfire:
+<code>TLS_DOMAIN</code>) or a proxy in front does; Campfire's docs say
+to set <code>DISABLE_SSL=true</code> in the second case and publish port
+80</strong> (<a
+href="https://github.com/basecamp/once-campfire/blob/main/docs/self-hosting.md">Campfire,
+Self-hosting Campfire</a>, checked 2026-11-12). Whichever you pick,
+check the result: a redirect to the public URL should be
+<code>https</code>, and the session cookie should carry
+<code>Secure</code>.</p>
+<p>Port numbers matter as much as TLS. Campfire's image runs Thruster, a
+proxy that listens on port 80 by default and forwards to Puma on
+<code>TARGET_PORT</code>, default 3000 (<a
+href="https://github.com/basecamp/thruster/blob/main/README.md">Thruster,
+README</a>, checked 2026-11-12). Tell the host port 80, not the port
+Puma listens on inside the container.</p>
+<h2 id="5-finish-the-first-run-setup-once">5. Finish the first-run setup
+once</h2>
+<p><strong>Many self-hosted apps create the first admin account through
+a web form, not an environment variable.</strong> Campfire's docs say
+that when you start it for the first time, "you'll be guided through
+creating an admin account" (<a
+href="https://github.com/basecamp/once-campfire/blob/main/docs/self-hosting.md">Campfire,
+Self-hosting Campfire</a>, checked 2026-11-12). Open the site, complete
+the form, and note the email shown on the sign-in page: it is the
+admin's address, shown as the contact for anyone who forgets a
+password.</p>
+<p>If a script or agent has to complete it, the form may not carry a
+CSRF token. Rails 8.2's <code>:header_only</code> strategy "Uses the
+<code>Sec-Fetch-Site</code> header sent by modern browsers" and "does
+not require authenticity tokens"; requests without a valid
+<code>Sec-Fetch-Site</code> header are rejected (<a
+href="https://github.com/rails/rails/blob/main/actionpack/lib/action_controller/metal/request_forgery_protection.rb">Rails,
+request_forgery_protection.rb</a>, checked 2026-11-12). Send the POST
+with <code>Sec-Fetch-Site: same-origin</code> and an <code>Origin</code>
+equal to the site's base URL, and it is treated like a browser form
+submit.</p>
+<h2 id="6-check-the-app-not-the-deploy-response">6. Check the app, not
+the deploy response</h2>
+<p>Wait for the build, then read the logs: the web server should say it
+is listening, and the job worker should say it started. The health
+endpoint answers when the app is up. Then sign in with the admin
+account: that exercises the database write path and the session cookie
+at once. <a href="Checking-whether-a-deploy-worked.html">How to tell
+whether a deploy actually worked</a> gives the general checklist.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built
+app keeps its data</a></li>
+<li><a href="Checking-whether-a-deploy-worked.html">How to tell whether a
+deploy actually worked</a></li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+<li><a href="Container-image-size.html">How to shrink a container
+image</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#dockerfile">Dockerfile</a>, <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#token">Token</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-12.</p>
+<ul>
+<li>Campfire, <a
+href="https://github.com/basecamp/once-campfire/blob/main/docs/self-hosting.md">Self-hosting
+Campfire</a></li>
+<li>Campfire, <a
+href="https://github.com/basecamp/once-campfire/blob/main/config/puma.rb">config/puma.rb</a>;
+<a
+href="https://github.com/basecamp/once-campfire/blob/main/config/resque-pool.yml">config/resque-pool.yml</a></li>
+<li>Thruster, <a
+href="https://github.com/basecamp/thruster/blob/main/README.md">README</a></li>
+<li>Rails, <a
+href="https://github.com/rails/rails/blob/main/actionpack/lib/action_controller/metal/request_forgery_protection.rb">Action
+Controller Request Forgery Protection</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-12. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

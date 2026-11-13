@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persistent storage for many AI sandboxes · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a href="Tag-storage.html">storage</a>,
+<a href="Tag-costs.html">costs</a></p>
+<!-- NAV:END -->
+
+<h1 id="persistent-storage-for-many-ai-sandboxes">Persistent storage for
+many AI sandboxes</h1>
+<p><strong>Give each AI sandbox a directory on a shared filesystem
+instead of its own block volume once you need more than a handful per
+machine: a block volume attaches to one machine at a time, and hosts cap
+how many attach to each machine.</strong> DigitalOcean, as one example,
+allows 15 volumes per Kubernetes node (<a
+href="https://docs.digitalocean.com/products/volumes/details/limits/">Volume
+limits</a>, checked 2026-11-10), so 16 sandboxes with a disk each cannot
+share that machine no matter how small they are.</p>
+<p>A sandbox here means one <a
+href="Glossary.html#container">container</a> running one user's or task's
+code: a coding agent, generated code, or a preview app. The question is
+how its files outlive the container.</p>
+<h2 id="why-one-disk-per-sandbox-stops-scaling">Why one disk per sandbox
+stops scaling</h2>
+<p><strong>A block volume is attached to a machine, not to a sandbox,
+and the attachment count is per machine.</strong> Kubernetes defines
+<code>ReadWriteOnce</code> as "the volume can be mounted as read-write
+by a single node", and <code>ReadWriteMany</code> as "mounted as
+read-write by many nodes" (<a
+href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes">Persistent
+Volumes</a>, checked 2026-11-10).</p>
+<p>DigitalOcean is a concrete example of the limit (<a
+href="https://docs.digitalocean.com/products/volumes/details/limits/">Volume
+limits</a>, checked 2026-11-10):</p>
+<ul>
+<li>at most <strong>15 volumes</strong> attached to one Droplet or DOKS
+node;</li>
+<li>at most <strong>5,000 volumes</strong> per account;</li>
+<li><code>$0.10 per GiB per month</code>, minimum 1 GiB, and charged
+whether attached or not (<a
+href="https://docs.digitalocean.com/products/volumes/details/pricing/">Volume
+pricing</a>, checked 2026-11-10).</li>
+</ul>
+<p>So 15 is a density ceiling, not a total. Adding machines raises the
+total; it does not let a machine hold more volume-backed sandboxes.
+Other hosts have their own numbers; check theirs.</p>
+<h2 id="what-must-survive-a-stop">What must survive a stop</h2>
+<p><strong>Files, not processes.</strong> Stopping a sandbox ends its
+processes; resuming it means starting a new container on the old files.
+Decide which directory has to outlive the container: the workspace,
+configuration, conversation transcripts or database. If nothing does, no
+volume is needed at all.</p>
+<h2 id="the-options">The options</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Shape</th>
+<th>Scales to</th>
+<th>Main cost or risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Block volume per sandbox</td>
+<td>One disk per container</td>
+<td>The host's per-machine attachment limit</td>
+<td>Idle disks still billed; per-volume minimums</td>
+</tr>
+<tr>
+<td>Shared filesystem</td>
+<td>One NFS share, one directory per sandbox</td>
+<td>Hundreds per share</td>
+<td>Shared throughput; quotas and isolation are yours to enforce</td>
+</tr>
+<tr>
+<td>Object storage with a POSIX layer</td>
+<td>Data in a bucket, metadata in a database</td>
+<td>No per-machine limit</td>
+<td>Metadata service and cache to run; small-file latency</td>
+</tr>
+<tr>
+<td>Distributed storage on local disks</td>
+<td>Replicated volumes across your machines</td>
+<td>Your disks and nodes</td>
+<td>Operational complexity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-a-block-volume-per-sandbox">1. A block volume per sandbox</h3>
+<p>Use this for a dozen or fewer sandboxes per machine, or for a
+database that wants a dedicated device and a hard size limit. Do not
+build a large sandbox fleet on it: you will run out of attachment slots
+while CPU and memory are still mostly free.</p>
+<h3 id="2-a-shared-filesystem">2. A shared filesystem</h3>
+<p><strong>One NFS server exports one filesystem; every sandbox mounts
+it and gets its own directory.</strong> The sandbox count is no longer
+tied to attachment slots.</p>
+<p>A managed example is DigitalOcean's Network File Storage (<a
+href="https://docs.digitalocean.com/products/nfs/details/features/">features</a>,
+<a
+href="https://docs.digitalocean.com/products/nfs/details/limits/">limits</a>,
+<a
+href="https://docs.digitalocean.com/products/nfs/details/pricing/">pricing</a>,
+checked 2026-11-10):</p>
+<ul>
+<li>NFSv4.1, POSIX permissions, VPC-only access;</li>
+<li>Standard tier <code>$0.15 per GiB per month</code>, minimum 50 GiB,
+up to 1 Gbps aggregate, 10,000 read / 7,000 write IOPS;</li>
+<li>up to 32 TiB per share, up to 32 clients per share, up to 5
+snapshots per share;</li>
+<li><strong>access points</strong> pin a client to a subdirectory: each
+gets its own mount IP and VPC, costs nothing extra, and a client "cannot
+navigate above it" (<a
+href="https://docs.digitalocean.com/products/nfs/how-to/manage-access-points/">access
+points</a>, checked 2026-11-10);</li>
+<li><strong>root squash is enforced</strong>, so a workload running as
+root can read but not write; it must run as a non-zero user (<a
+href="https://docs.digitalocean.com/products/kubernetes/how-to/use-nfs-storage/">using
+NFS with DOKS</a>, checked 2026-11-10).</li>
+</ul>
+<p>One trap: the DOKS NFS storage classes create <strong>a new share for
+every PVC</strong>, at the tier minimum (<a
+href="https://docs.digitalocean.com/products/kubernetes/how-to/provision-nfs-storage-dynamically/">dynamic
+provisioning</a>, checked 2026-11-10). Per-sandbox PVCs therefore
+recreate the cost problem at 50 GiB each. Create one share and one
+directory (or access point) per sandbox instead.</p>
+<p>A self-hosted NFS server over a block volume has the same shape and
+no managed minimum. You then own the single point of failure, capacity
+enforcement and snapshots. It is reasonable for reproducible sandboxes;
+durable user data needs a redundant server or replicated storage.</p>
+<h3 id="3-object-storage-with-a-posix-layer">3. Object storage with a
+POSIX layer</h3>
+<p><strong>File data goes to object storage and metadata to a metadata
+engine, and the result is mounted as a POSIX filesystem.</strong>
+JuiceFS, for example, stores "file data ... in object storage" and "the
+corresponding metadata ... in the metadata engine", mounted in a
+POSIX-compatible way through FUSE (<a
+href="https://juicefs.com/docs/community/architecture/">architecture</a>,
+checked 2026-11-10).</p>
+<p>This removes the per-machine attachment limit and suits many small
+files, but adds a metadata service that must stay available and a local
+cache on each machine. If the sandbox does not need a live filesystem, a
+simpler version is a snapshot: archive the workspace to object storage
+when the sandbox stops, restore it into a new sandbox later.</p>
+<h3 id="4-distributed-storage-on-your-own-disks">4. Distributed storage
+on your own disks</h3>
+<p><strong>Replicated block storage on machines you control gives you
+volumes without a cloud volume service.</strong> Longhorn's native
+ReadWriteMany support exports each RWX volume through an in-pod NFSv4
+server, requires an NFSv4 client on every node, and reclaims locks
+within a 90-second grace period after an abnormal share-manager
+termination (<a
+href="https://longhorn.io/docs/1.13.0/nodes-and-volumes/volumes/rwx-volumes/">RWX
+volumes</a>, checked 2026-11-10). It is the option when you own the
+hardware and need replication, not the simplest one.</p>
+<p>On bare-metal Kubernetes, the default <code>local-path</code>
+provisioner creates node directories and, in its own words, has "No
+support for the volume capacity limit currently" (<a
+href="https://github.com/rancher/local-path-provisioner">local-path-provisioner</a>,
+checked 2026-11-10). There is no per-node volume count, but a sandbox's
+data is tied to that node and one sandbox can fill the disk.</p>
+<h2 id="what-to-get-right">What to get right</h2>
+<ul>
+<li><strong>A stable directory per sandbox.</strong>
+<code>/sandboxes/&lt;id&gt;</code>. Stop keeps the directory; resume
+mounts it again. Do not delete the directory when the container
+stops.</li>
+<li><strong>Isolation is a path boundary, not a promise.</strong> On a
+shared filesystem, sandboxes are neighbours. Use an access point, export
+or directory permission that cannot navigate above the sandbox's
+directory, and test it from inside a container.</li>
+<li><strong>Quotas.</strong> A subdirectory has no size limit of its
+own, so one sandbox can fill the share. Use filesystem project quotas or
+per-directory accounting, or accept the risk deliberately.</li>
+<li><strong>Snapshots have a granularity.</strong> On DigitalOcean they
+are per share, not per sandbox (checked 2026-11-10), so plan restores
+accordingly.</li>
+<li><strong>User mapping.</strong> Root squash means root inside the
+container cannot write; run the sandbox as a non-zero user and set
+ownership when the directory is created.</li>
+<li><strong>An id that can resume is a credential.</strong> If an
+unguessable sandbox id grants access to persisted files, give it a time
+limit, require the owner's key, or rotate it.</li>
+<li><strong>Idle data costs money.</strong> A stopped sandbox still
+occupies storage. Set a time to live and delete abandoned
+sandboxes.</li>
+<li><strong>Throughput is shared.</strong> Every sandbox on one share
+competes for its bandwidth; measure a many-small-files workload, which
+coding agents produce, before committing.</li>
+</ul>
+<h2 id="choosing">Choosing</h2>
+<ul>
+<li><strong>A dozen or fewer per machine, or a database:</strong> a
+block volume per sandbox.</li>
+<li><strong>Many sandboxes that need a live POSIX filesystem:</strong>
+one shared filesystem, one directory (or access point) per sandbox.</li>
+<li><strong>Many sandboxes, no live filesystem needed:</strong> snapshot
+the workspace to object storage and restore into a new sandbox.</li>
+<li><strong>Your own hardware and a need for replication:</strong>
+distributed storage such as Longhorn, with the operational work that
+implies.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a></li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps and
+agents</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#snapshot">Snapshot</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-10.</p>
+<ul>
+<li>Kubernetes, <a
+href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes">Persistent
+Volumes: Access Modes</a></li>
+<li>DigitalOcean, <a
+href="https://docs.digitalocean.com/products/volumes/details/limits/">Volume
+limits</a>; <a
+href="https://docs.digitalocean.com/products/volumes/details/pricing/">Volume
+pricing</a></li>
+<li>DigitalOcean, <a
+href="https://docs.digitalocean.com/products/nfs/details/features/">Network
+File Storage features</a>; <a
+href="https://docs.digitalocean.com/products/nfs/details/limits/">limits</a>;
+<a
+href="https://docs.digitalocean.com/products/nfs/details/pricing/">pricing</a>;
+<a
+href="https://docs.digitalocean.com/products/nfs/how-to/manage-access-points/">access
+points</a>; <a
+href="https://docs.digitalocean.com/products/kubernetes/how-to/provision-nfs-storage-dynamically/">dynamically
+provision NFS storage</a>; <a
+href="https://docs.digitalocean.com/products/kubernetes/how-to/use-nfs-storage/">use
+NFS storage with Kubernetes</a></li>
+<li>JuiceFS, <a
+href="https://juicefs.com/docs/community/architecture/">Architecture</a></li>
+<li>Longhorn, <a
+href="https://longhorn.io/docs/1.13.0/nodes-and-volumes/volumes/rwx-volumes/">ReadWriteMany
+volumes</a></li>
+<li>Rancher, <a
+href="https://github.com/rancher/local-path-provisioner">local-path-provisioner</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance from an architecture review
+on 2026-11-10, and checked against the <a href="#sources">sources</a> on
+2026-11-10. Found a mistake? <a href="CONTRIBUTING.html">Fix it or open an
+issue</a>. Text licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

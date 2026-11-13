@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent protocols: MCP and A2A · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Agents.html">Agents</a> · Tags: <a
+href="Tag-agents.html">agents</a>, <a href="Tag-mcp.html">mcp</a></p>
+<!-- NAV:END -->
+
+<h1 id="agent-protocols-mcp-and-a2a">Agent protocols: MCP and A2A</h1>
+<p><strong><a href="Glossary.html#mcp-model-context-protocol">MCP</a>
+connects an <a href="Glossary.html#agent">agent</a> to <a
+href="Glossary.html#tool">tools</a> and data; <a
+href="Glossary.html#a2a-agent2agent">A2A</a> connects an agent to other
+agents.</strong> Both are open specifications now hosted under the Linux
+Foundation, and both change often, so the versions below are dated.</p>
+<p>This page assumes you know <a href="AI-agent.html">what an agent
+is</a>. How agents are combined, with or without these protocols, is on
+<a href="Multi-agent-systems.html">Multi-agent systems</a>.</p>
+<h2 id="mcp-connecting-agents-to-tools">MCP: connecting agents to
+tools</h2>
+<p><strong>The Model Context Protocol (MCP) is an open standard for
+plugging tools and data into an AI app; it connects an agent to tools,
+not to other agents.</strong> The specification calls it "an open
+protocol that enables seamless integration between LLM applications and
+external data sources and tools" (<a
+href="https://modelcontextprotocol.io/specification/latest">MCP
+specification</a>, checked 2026-10-28).</p>
+<ul>
+<li><strong>Origin and governance.</strong> Anthropic open-sourced MCP
+in November 2024 (<a
+href="https://www.anthropic.com/news/model-context-protocol">Anthropic
+announcement</a>). In December 2025, "Anthropic is donating MCP to the
+Agentic AI Foundation, a directed fund under the Linux Foundation" (<a
+href="https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/">MCP
+blog</a>, checked 2026-10-28).</li>
+<li><strong>Versions.</strong> The spec is versioned by date. "The
+current protocol version is 2026-07-28" (<a
+href="https://modelcontextprotocol.io/specification/versioning">MCP
+versioning</a>, checked 2026-10-28).</li>
+<li><strong>Parts.</strong> An MCP <em>server</em> offers tools,
+resources (data) and <a href="Glossary.html#prompt">prompts</a>. An MCP
+<em>client</em>, inside an app such as a chat app or <a
+href="Glossary.html#coding-agent">coding agent</a>, connects to it.
+Messages use JSON-RPC 2.0.</li>
+<li><strong>Transports.</strong> Two ways to connect (<a
+href="https://modelcontextprotocol.io/specification/2026-07-28/basic/transports">MCP
+transports</a>, checked 2026-10-28):
+<ul>
+<li><strong>stdio:</strong> the app starts the server as a local process
+and talks over standard input and output. Good for tools on your own
+machine.</li>
+<li><strong>Streamable HTTP:</strong> "each message is an HTTP POST to a
+single MCP endpoint". This is how a <em>remote</em> MCP server runs,
+hosted like any web service. See <a href="Cloud-for-AI-apps.html">the
+cloud for AI apps</a>.</li>
+</ul></li>
+</ul>
+<p><em>Example:</em> a company runs an MCP server that exposes "search
+our tickets" and "create a ticket". Any MCP-capable assistant its staff
+use can then work with tickets, without a custom integration for each
+assistant.</p>
+<p>One MCP server can itself call a model, so an "agent behind a tool"
+is possible. But MCP's design centres on tools for one agent, and its
+security questions (who may call which tool, with whose <a
+href="Glossary.html#token">token</a>) are covered on the <a
+href="Security-for-AI-apps.html#mcp-servers-and-tool-permissions">security
+page</a>.</p>
+<h2 id="a2a-agents-talking-to-agents">A2A: agents talking to agents</h2>
+<p><strong>Agent2Agent (A2A) is an open protocol for one agent to
+discover another agent, send it a task and follow the task's progress,
+across vendors and organizations.</strong> Its site calls it "an open
+standard for seamless communication and collaboration between AI
+agents", "originally developed by Google and donated to the Linux
+Foundation" (<a href="https://a2a-protocol.org/latest/">A2A</a>, checked
+2026-10-28).</p>
+<ul>
+<li><strong>Agent Card.</strong> Each agent publishes "A JSON metadata
+document … describing its identity, capabilities, skills, service
+endpoint" so others can find out what it does and how to call it (<a
+href="https://a2a-protocol.org/latest/specification/">A2A
+specification</a>, checked 2026-10-28).</li>
+<li><strong>Task.</strong> "The fundamental unit of work managed by A2A,
+identified by a unique ID." Tasks have a lifecycle (submitted, working,
+completed and so on), so long jobs can report progress.</li>
+<li><strong>Version.</strong> The specification page lists 1.0.0 as the
+latest released version (checked 2026-10-28).</li>
+<li><strong>Consolidation.</strong> IBM's Agent Communication Protocol
+(ACP) "is officially merging with the A2A under the Linux Foundation […]
+umbrella" (<a
+href="https://lfaidata.foundation/communityblog/2025/08/29/acp-joins-forces-with-a2a-under-the-linux-foundations-lf-ai-data/">LF
+AI &amp; Data, August 2025</a>, checked 2026-10-28).</li>
+</ul>
+<p><strong>MCP and A2A are complementary:</strong> MCP is how an agent
+uses tools; A2A is how an agent asks another agent, which may use its
+own tools, to do a job.</p>
+<p>A2A is younger than MCP in practice. Most teams today build
+multi-agent systems inside one program with a framework, and use A2A
+only when the other agent belongs to someone else.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Multi-agent-systems.html">Multi-agent systems</a></li>
+<li><a href="AI-agent.html">What an AI agent is</a></li>
+<li><a
+href="Security-for-AI-apps.html#mcp-servers-and-tool-permissions">Security
+for AI apps</a>: MCP risks</li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>: hosting a
+remote MCP server</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#a2a-agent2agent">A2A (Agent2Agent)</a>, <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#llm">LLM</a>, <a
+href="Glossary.html#mcp-model-context-protocol">MCP (Model Context
+Protocol)</a>, <a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>Anthropic, <a
+href="https://www.anthropic.com/news/model-context-protocol">Introducing
+the Model Context Protocol</a> (November 2024)</li>
+<li>Model Context Protocol, <a
+href="https://modelcontextprotocol.io/specification/latest">Specification</a>,
+<a
+href="https://modelcontextprotocol.io/specification/versioning">Versioning</a>,
+<a
+href="https://modelcontextprotocol.io/specification/2026-07-28/basic/transports">Transports</a></li>
+<li>MCP blog, <a
+href="https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/">MCP
+joins the Agentic AI Foundation</a> (December 2025)</li>
+<li>A2A, <a href="https://a2a-protocol.org/latest/">Overview</a>, <a
+href="https://a2a-protocol.org/latest/specification/">Specification</a></li>
+<li>LF AI &amp; Data, <a
+href="https://lfaidata.foundation/communityblog/2025/08/29/acp-joins-forces-with-a2a-under-the-linux-foundations-lf-ai-data/">ACP
+joins forces with A2A</a> (August 2025)</li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

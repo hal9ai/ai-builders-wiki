@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What an AI agent is · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Agents.html">Agents</a> · Tags: <a
+href="Tag-agents.html">agents</a>, <a href="Tag-basics.html">basics</a></p>
+<!-- NAV:END -->
+
+<h1 id="what-an-ai-agent-is">What an AI agent is</h1>
+<p><strong>An AI <a href="Glossary.html#agent">agent</a> is a program in
+which a language <a href="Glossary.html#model">model</a> decides, step by
+step, which actions to take with the tools it has been given, and keeps
+going until the task is done or it is stopped.</strong> A <a
+href="Glossary.html#chatbot">chatbot</a> only answers; an agent acts.</p>
+<p>Definitions vary between vendors, but they agree on the core. OpenAI:
+"Agents are systems that independently accomplish tasks on your behalf"
+(<a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">OpenAI,
+A practical guide to building agents</a>, p. 4, checked 2026-10-28).
+Anthropic's <a href="Glossary.html#agent-sdk">Agent SDK</a> docs: "An
+agent is an application that completes a task by planning its own steps
+and calling tools that read files, run commands, or edit code" (<a
+href="https://code.claude.com/docs/en/agent-sdk/overview">Claude Agent
+SDK overview</a>, checked 2026-10-28).</p>
+<h2 id="chatbot-workflow-agent">Chatbot, workflow, agent</h2>
+<p><strong>The difference is who decides the next step: the person, your
+code, or the model.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Chatbot</th>
+<th>Workflow</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who decides the next step</td>
+<td>The person typing</td>
+<td>Your code, written in advance</td>
+<td>The model, at run time</td>
+</tr>
+<tr>
+<td>Uses tools</td>
+<td>No, or one fixed lookup</td>
+<td>Yes, in a fixed order</td>
+<td>Yes, chosen as it goes</td>
+</tr>
+<tr>
+<td>Number of model calls</td>
+<td>One per message</td>
+<td>A fixed number</td>
+<td>Unknown in advance</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>"Rewrite this email more politely"</td>
+<td>Every new invoice: extract fields → check totals → save to the
+database</td>
+<td>"This test fails; find out why and fix it"</td>
+</tr>
+<tr>
+<td>Main risk</td>
+<td>A wrong answer</td>
+<td>A wrong answer at one step</td>
+<td>Wrong actions, repeated, at your expense</td>
+</tr>
+</tbody>
+</table>
+<p>Anthropic draws the same line. <a
+href="Glossary.html#workflow">Workflows</a> are "systems where LLMs and
+tools are orchestrated through predefined code paths"; agents are
+"systems where LLMs dynamically direct their own processes and tool
+usage" (<a
+href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic,
+Building effective agents</a>, December 2024, checked 2026-10-28).
+OpenAI says that "simple chatbots, single-turn LLMs, or sentiment
+classifiers—are not agents" (<a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">OpenAI
+guide</a>, p. 4).</p>
+<p>Both vendors advise starting with the simplest option. Anthropic
+recommends "finding the simplest solution possible, and only increasing
+complexity when needed" (<a
+href="https://www.anthropic.com/engineering/building-effective-agents">Building
+effective agents</a>). Microsoft is blunter: "If you can write a
+function to handle the task, do that instead of using an AI agent" (<a
+href="https://learn.microsoft.com/en-us/agent-framework/overview/">Microsoft
+Agent Framework overview</a>, checked 2026-10-28).</p>
+<h2 id="the-three-parts-model-tools-instructions">The three parts:
+model, tools, instructions</h2>
+<p><strong>Every agent is a model, a set of tools, and
+instructions.</strong> OpenAI's guide names exactly these three
+components (p. 7).</p>
+<ul>
+<li><strong>Model:</strong> the <a href="Glossary.html#llm">LLM</a> that
+reads the situation and picks the next action. See <a
+href="AI-providers-and-models.html">providers and models</a>.</li>
+<li><strong>Tools:</strong> functions the model may call: search the
+web, read a file, run a shell command, query a database, send an email.
+The model does not run them itself. It asks for a call ("run
+<code>pytest</code>"), your program runs it, and the result goes back to
+the model. This mechanism is called <a href="Glossary.html#tool">tool
+use</a> or function calling. <a
+href="Agent-protocols-MCP-and-A2A.html#mcp-connecting-agents-to-tools">MCP</a>
+is a common standard for plugging tools in.</li>
+<li><strong>Instructions:</strong> the system <a
+href="Glossary.html#prompt">prompt</a> and project files that say what the
+agent is for, what it may do, and when to stop. <a
+href="Glossary.html#coding-agent">Coding agents</a> often read a file in
+the repository, such as <code>AGENTS.md</code> or
+<code>CLAUDE.md</code>, for project rules.</li>
+</ul>
+<h2 id="the-loop">The loop</h2>
+<p><strong>An agent runs in a loop: the model picks an action, the
+program runs it, the model reads the result, and repeats.</strong>
+OpenAI: a run is "typically implemented as a loop that lets agents
+operate until an exit condition is reached" (<a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">OpenAI
+guide</a>, p. 14).</p>
+<p>A concrete run of a coding agent asked to fix a failing test:</p>
+<ol type="1">
+<li>Model: "Run the tests." → program runs <code>npm test</code> → 1
+failure in <code>cart.test.js</code>.</li>
+<li>Model: "Read <code>cart.js</code>." → program returns the file.</li>
+<li>Model: "Edit line 42: the discount is applied twice." → program
+edits the file.</li>
+<li>Model: "Run the tests again." → all pass.</li>
+<li>Model: "Done. Here is what I changed and why." → loop ends.</li>
+</ol>
+<p>Exit conditions are usually: the model says it is done, a step or
+cost limit is reached, an error occurs, or a person stops it. Without
+limits, a confused agent can loop for a long time, and every turn costs
+<a href="Glossary.html#token">tokens</a>. Anthropic measured that its
+agents "typically use about 4× more tokens than chat interactions" (<a
+href="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic,
+multi-agent research system</a>, June 2025, checked 2026-10-28).</p>
+<h2 id="levels-of-autonomy">Levels of autonomy</h2>
+<p><strong>How much an agent may do without asking is a design choice,
+separate from how capable its model is.</strong> A research paper from
+the University of Washington proposes "five levels of escalating agent
+autonomy, characterized by the roles a user can take when interacting
+with an agent: operator, collaborator, consultant, approver, and
+observer" (<a href="https://arxiv.org/abs/2506.12469">Feng, McDonald and
+Zhang, Levels of Autonomy for AI Agents, arXiv 2506.12469</a>, 2025,
+checked 2026-10-28).</p>
+<p>In practice, coding agents expose this as permission settings. A
+simplified ladder, as you will meet it in tools:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What the agent may do alone</th>
+<th>Typical setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suggest</td>
+<td>Nothing; it proposes, you apply</td>
+<td>Chat, autocomplete</td>
+</tr>
+<tr>
+<td>Ask each time</td>
+<td>Read freely; every edit or command needs your approval</td>
+<td>Default in many coding agents</td>
+</tr>
+<tr>
+<td>Allow-listed</td>
+<td>Run approved commands (tests, linters) alone; ask for the rest</td>
+<td>Per-project permission files</td>
+</tr>
+<tr>
+<td>Autonomous in a sandbox</td>
+<td>Anything inside an isolated container or VM, no access to your real
+accounts</td>
+<td>Cloud agents, CI runners</td>
+</tr>
+<tr>
+<td>Autonomous with real credentials</td>
+<td>Deploy, pay, email, change production</td>
+<td>Only with tight scopes and spend limits</td>
+</tr>
+</tbody>
+</table>
+<p>The ladder is our summary, not a standard. Each step up saves human
+time and raises the cost of a mistake, so the right level depends on
+what the tools can reach. The <a
+href="Security-for-AI-apps.html#tool-permissions">security page</a> covers
+how to set it.</p>
+<h2 id="when-an-agent-is-the-wrong-tool">When an agent is the wrong
+tool</h2>
+<ul>
+<li><strong>The steps are known in advance.</strong> Write a workflow:
+cheaper, faster, testable.</li>
+<li><strong>One call is enough.</strong> Summarizing a text or
+classifying a ticket needs no loop.</li>
+<li><strong>Mistakes are expensive and hard to undo.</strong> Keep a
+person as the approver for those actions.</li>
+<li><strong>You cannot check the result.</strong> An agent that "fixed"
+something you cannot test only moved the uncertainty.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Multi-agent-systems.html">Do agents talk to each other?</a>:
+multi-agent patterns, MCP, A2A</li>
+<li><a href="Ways-to-use-AI.html">Ways to use AI</a>: where you meet
+agents (coding CLIs, IDEs, SDKs)</li>
+<li><a href="Security-for-AI-apps.html">Security</a>: prompt injection and
+tool permissions</li>
+<li><a href="Glossary.html">Glossary</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#agent-sdk">Agent SDK</a>, <a
+href="Glossary.html#chatbot">Chatbot</a>, <a
+href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a href="Glossary.html#llm">LLM</a>,
+<a href="Glossary.html#mcp-model-context-protocol">MCP (Model Context
+Protocol)</a>, <a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#token">Token</a>, <a href="Glossary.html#tool">Tool</a>,
+<a href="Glossary.html#workflow">Workflow</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>Anthropic, <a
+href="https://www.anthropic.com/engineering/building-effective-agents">Building
+effective agents</a> (December 2024)</li>
+<li>Anthropic, <a
+href="https://www.anthropic.com/engineering/multi-agent-research-system">How
+we built our multi-agent research system</a> (June 2025)</li>
+<li>Anthropic, <a
+href="https://code.claude.com/docs/en/agent-sdk/overview">Claude Agent
+SDK overview</a></li>
+<li>OpenAI, <a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">A
+practical guide to building agents</a> (PDF)</li>
+<li>Microsoft, <a
+href="https://learn.microsoft.com/en-us/agent-framework/overview/">Agent
+Framework overview</a></li>
+<li>Feng, McDonald, Zhang, <a
+href="https://arxiv.org/abs/2506.12469">Levels of Autonomy for AI
+Agents</a> (arXiv, 2025)</li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

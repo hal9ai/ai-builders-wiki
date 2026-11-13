@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-agent systems: do AI agents work with each other? · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Agents.html">Agents</a> · Tags: <a
+href="Tag-agents.html">agents</a></p>
+<!-- NAV:END -->
+
+<h1
+id="multi-agent-systems-do-ai-agents-work-with-each-other">Multi-agent
+systems: do AI agents work with each other?</h1>
+<p><strong>Yes: <a href="Glossary.html#agent">agents</a> can call other
+agents, hand a task over to them, or exchange messages through a
+protocol, but most production systems that work well still use one
+agent, or one lead agent with helpers.</strong> Splitting work across
+agents helps when the parts are independent. It hurts when the parts
+need the same context.</p>
+<p>This page assumes you know <a href="AI-agent.html">what an agent
+is</a>.</p>
+<h2 id="three-ways-agents-interact">Three ways agents interact</h2>
+<p><strong>1. Manager and helpers ("agents as tools").</strong> A lead
+agent calls other agents as if they were <a
+href="Glossary.html#tool">tools</a>, then combines their answers. OpenAI
+describes this as "A central 'manager' agent coordinates multiple
+specialized agents via tool calls" (<a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">OpenAI,
+A practical guide to building agents</a>, p. 17, checked
+2026-10-28).</p>
+<p><em>Example:</em> a research agent sends three helper agents to
+search three topics in parallel, then writes one report from their
+notes.</p>
+<p><strong>2. Handoffs (peers).</strong> One agent passes the whole
+conversation to another, which takes over. OpenAI: "Multiple agents
+operate as peers, handing off tasks to one another based on their
+specializations" (same guide, p. 17). The OpenAI Agents SDK has this
+built in: handoffs "allow agents to delegate to other agents for
+specific tasks" (<a
+href="https://openai.github.io/openai-agents-python/">OpenAI Agents
+SDK</a>, checked 2026-10-28).</p>
+<p><em>Example:</em> a support triage agent hands a billing question to
+a billing agent that has access to the payments tool, and a bug report
+to a technical agent.</p>
+<p>The difference, in OpenAI's words: "In the manager pattern, edges
+represent tool calls whereas in the decentralized pattern, edges
+represent handoffs that transfer execution between agents" (p. 17).</p>
+<p><strong>3. Across organizations, through a protocol.</strong> An
+agent built by one company calls an agent run by another, over the
+network. This is what <a
+href="Agent-protocols-MCP-and-A2A.html#a2a-agents-talking-to-agents">A2A</a>
+is for.</p>
+<h2 id="what-the-evidence-says">What the evidence says</h2>
+<p><strong>Multi-agent systems can do better on broad, parallel tasks,
+at a much higher <a href="Glossary.html#token">token</a> cost, and they
+fail in characteristic ways.</strong></p>
+<ul>
+<li><strong>It can help.</strong> Anthropic reports that its multi-agent
+research system "outperformed single-agent Claude Opus 4 by 90.2% on our
+internal research eval" (<a
+href="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic,
+How we built our multi-agent research system</a>, June 2025, checked
+2026-10-28). That is an internal evaluation by the vendor, on research
+tasks.</li>
+<li><strong>It costs more.</strong> The same post: "multi-agent systems
+use about 15× more tokens than chats".</li>
+<li><strong>It suits some tasks, not others.</strong> Anthropic: these
+systems "excel at valuable tasks that involve heavy parallelization",
+while "most coding tasks involve fewer truly parallelizable tasks than
+research", and some domains "require all agents to share the same
+context".</li>
+<li><strong>Context is the main problem.</strong> Cognition, which
+builds a <a href="Glossary.html#coding-agent">coding agent</a>, argues
+against multi-agent designs for that reason. Its first principle: "Share
+context, and share full agent traces, not just individual messages"; its
+second: "Actions carry implicit decisions, and conflicting decisions
+carry bad results" (<a
+href="https://cognition.com/blog/dont-build-multi-agents">Cognition,
+Don't Build Multi-Agents</a>, June 2025, checked 2026-10-28).</li>
+<li><strong>Failures are common and classifiable.</strong> A study of
+more than 1,600 annotated traces from 7 multi-agent frameworks found
+that "their performance gains on popular benchmarks are often minimal",
+and grouped 14 failure modes into three categories: system design
+issues, misalignment between agents, and task verification (<a
+href="https://arxiv.org/abs/2503.13657">Cemri et al., Why Do Multi-Agent
+LLM Systems Fail?, arXiv 2503.13657</a>, 2025, checked 2026-10-28).</li>
+</ul>
+<p>Vendors converge on the same advice. OpenAI: "Our general
+recommendation is to maximize a single agent's capabilities first" (<a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">OpenAI
+guide</a>, p. 16).</p>
+<h3 id="works-vs-hype-in-short">Works vs hype, in short</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>What the sources support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Teams of agents beat one agent"</td>
+<td>Sometimes, for parallel research-like tasks, at many times the
+tokens</td>
+</tr>
+<tr>
+<td>"Split a coding task across agents"</td>
+<td>Risky: parts depend on shared decisions</td>
+</tr>
+<tr>
+<td>"Parallel helpers that only read and report"</td>
+<td>Works well: little shared state, the lead decides</td>
+</tr>
+<tr>
+<td>"Agents negotiating freely with each other"</td>
+<td>Little evidence in production; failure studies show coordination is
+the weak point</td>
+</tr>
+<tr>
+<td>"A standard protocol solves interoperability"</td>
+<td>It solves the wire format, not trust, quality or cost</td>
+</tr>
+</tbody>
+</table>
+<h2 id="protocols-mcp-and-a2a">Protocols: MCP and A2A</h2>
+<p><strong>Two open protocols matter here: <a
+href="Glossary.html#mcp-model-context-protocol">MCP</a> connects an agent
+to tools, <a href="Glossary.html#a2a-agent2agent">A2A</a> connects an
+agent to another agent.</strong> Both are explained on <a
+href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and
+A2A</a>.</p>
+<h2 id="frameworks-for-multi-agent-systems">Frameworks for multi-agent
+systems</h2>
+<p><strong>Frameworks handle the loop, tool calls, handoffs and state
+for you; they do not decide whether you need several agents.</strong>
+Each description below is the project's own.</p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>By</th>
+<th>Its own description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://openai.github.io/openai-agents-python/">OpenAI
+Agents SDK</a></td>
+<td>OpenAI</td>
+<td>"build agentic AI apps in a lightweight, easy-to-use package with
+very few abstractions"</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/agent-sdk/overview">Claude
+Agent SDK</a></td>
+<td>Anthropic</td>
+<td>"Build production AI agents with Claude Code as a library"</td>
+</tr>
+<tr>
+<td><a href="https://adk.dev/">Agent Development Kit (ADK)</a></td>
+<td>Google</td>
+<td>"the open-source agent development framework that lets you build,
+debug, and deploy reliable AI agents"</td>
+</tr>
+<tr>
+<td><a
+href="https://learn.microsoft.com/en-us/agent-framework/overview/">Microsoft
+Agent Framework</a></td>
+<td>Microsoft</td>
+<td>"the next generation of both Semantic Kernel and AutoGen"</td>
+</tr>
+<tr>
+<td><a
+href="https://docs.langchain.com/oss/python/langgraph/overview">LangGraph</a></td>
+<td>LangChain</td>
+<td>"a low-level orchestration framework and runtime for building,
+managing, and deploying long-running, stateful" agents</td>
+</tr>
+<tr>
+<td><a href="https://docs.crewai.com/">CrewAI</a></td>
+<td>CrewAI</td>
+<td>"Build collaborative AI agents, crews, and flows"</td>
+</tr>
+</tbody>
+</table>
+<p>All checked 2026-10-28.</p>
+<h2 id="practical-checklist-before-going-multi-agent">Practical
+checklist before going multi-agent</h2>
+<ol type="1">
+<li><strong>Can one agent with better tools do it?</strong> Try that
+first.</li>
+<li><strong>Are the sub-tasks independent?</strong> If they share
+decisions, keep them in one agent.</li>
+<li><strong>Who checks the combined result?</strong> Give the lead
+agent, or a person, an explicit verification step.</li>
+<li><strong>What is the token budget?</strong> Multiply your
+single-agent cost by the number of agents and turns, then set a
+limit.</li>
+<li><strong>What may each agent touch?</strong> Give each the fewest
+tools and narrowest credentials it needs. See <a
+href="Security-for-AI-apps.html#tool-permissions">security</a>.</li>
+</ol>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="AI-agent.html">What an AI agent is</a></li>
+<li><a href="Ways-to-use-AI.html">Ways to use AI</a>: agent SDKs among
+other surfaces</li>
+<li><a href="Security-for-AI-apps.html">Security</a></li>
+<li><a href="Glossary.html">Glossary</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#a2a-agent2agent">A2A (Agent2Agent)</a>, <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#agent-sdk">Agent SDK</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a href="Glossary.html#llm">LLM</a>,
+<a href="Glossary.html#mcp-model-context-protocol">MCP (Model Context
+Protocol)</a>, <a href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>OpenAI, <a
+href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">A
+practical guide to building agents</a> (PDF)</li>
+<li>OpenAI, <a
+href="https://openai.github.io/openai-agents-python/">Agents
+SDK</a></li>
+<li>Anthropic, <a
+href="https://www.anthropic.com/engineering/multi-agent-research-system">How
+we built our multi-agent research system</a> (June 2025)</li>
+<li>Cognition, <a
+href="https://cognition.com/blog/dont-build-multi-agents">Don't Build
+Multi-Agents</a> (June 2025)</li>
+<li>Cemri et al., <a href="https://arxiv.org/abs/2503.13657">Why Do
+Multi-Agent LLM Systems Fail?</a> (arXiv, 2025)</li>
+<li>Framework pages linked in the table above</li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

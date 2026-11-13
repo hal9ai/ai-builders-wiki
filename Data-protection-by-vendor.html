@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data protection by vendor · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Security-and-data.html">Security and data</a> · Tags: <a
+href="Tag-privacy.html">privacy</a>, <a
+href="Tag-providers.html">providers</a></p>
+<!-- NAV:END -->
+
+<h1 id="data-protection-by-vendor">Data protection by vendor</h1>
+<p><strong>This page compares what the main AI vendors do with your
+data, plan by plan, with every answer linked to the vendor's own page as
+checked on 2026-10-28.</strong> For what the questions mean and what to
+do about them, start with <a href="Data-protection.html">Data protection
+when you use AI</a>.</p>
+<p><strong>This is not legal advice.</strong> It summarizes public
+vendor pages to help you ask the right questions. Policies change often,
+your contract may say something different, and laws such as the GDPR put
+obligations on <em>you</em> as the app maker. For a real decision, read
+the current terms and ask a lawyer or your data protection officer.</p>
+<h2 id="comparison-table">Comparison table</h2>
+<p>Short answers; the linked page has the exact wording. "Not stated"
+means we did not find it on the vendor's pages on 2026-10-28, not that
+it does not exist. Pages marked † refused automated access on that day;
+their cells rest on the page text as shown in search results, and need a
+manual check.</p>
+<table>
+<thead>
+<tr>
+<th>Vendor and plan</th>
+<th>Trains on your data by default?</th>
+<th>Opt-out</th>
+<th>Default retention</th>
+<th>Zero data retention</th>
+<th>Location / EU option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anthropic</strong>: Claude Free, Pro, Max</td>
+<td>Only if you allow it; you choose at signup or in settings (<a
+href="https://www.anthropic.com/news/updates-to-our-consumer-terms">news</a>)</td>
+<td>Privacy Settings, any time (<a
+href="https://www.anthropic.com/news/updates-to-our-consumer-terms">news</a>);
+Incognito chats never used (<a
+href="https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training">help</a>)</td>
+<td>30 days if training is off; 5 years if on (<a
+href="https://www.anthropic.com/news/updates-to-our-consumer-terms">news</a>);
+deleted chats removed from back-end within 30 days (<a
+href="https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data">help</a>)</td>
+<td>No (<a
+href="https://privacy.claude.com/en/articles/8956058-i-have-a-zero-data-retention-agreement-with-anthropic-what-products-does-it-apply-to">help</a>)</td>
+<td>Not stated</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong>: API, Claude for Work</td>
+<td>No (<a
+href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training">help</a>)</td>
+<td>Not needed; feedback you submit may be used (same page)</td>
+<td>API inputs and outputs deleted within 30 days (<a
+href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">help</a>)</td>
+<td>Some API and Claude Code for Enterprise customers, on approval (<a
+href="https://privacy.claude.com/en/articles/8956058-i-have-a-zero-data-retention-agreement-with-anthropic-what-products-does-it-apply-to">help</a>)</td>
+<td>Inference "us" or "global" (default); storage US only; no EU option
+(<a
+href="https://platform.claude.com/docs/en/manage-claude/data-residency">docs</a>)</td>
+</tr>
+<tr>
+<td><strong>OpenAI</strong>: ChatGPT Free, Plus, Pro</td>
+<td>Yes (<a
+href="https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance">help</a>
+†)</td>
+<td>"Improve the model for everyone" in Data controls (same page †)</td>
+<td>Deleted chats scheduled for deletion within 30 days (<a
+href="https://help.openai.com/en/articles/8983778-chat-and-file-retention-in-chatgpt">help</a>
+†); Temporary Chat copies up to 30 days (<a
+href="https://help.openai.com/en/articles/8914046-temporary-chat-in-chatgpt">help</a>
+†)</td>
+<td>Not stated for consumer plans</td>
+<td>Not stated</td>
+</tr>
+<tr>
+<td><strong>OpenAI</strong>: ChatGPT Business, Enterprise, Edu</td>
+<td>No, unless the organization agrees otherwise (<a
+href="https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance">help</a>
+†)</td>
+<td>Not needed</td>
+<td>Not stated (page †)</td>
+<td>Not stated</td>
+<td>Not stated</td>
+</tr>
+<tr>
+<td><strong>OpenAI</strong>: API</td>
+<td>No, unless you opt in (<a
+href="https://developers.openai.com/api/docs/guides/your-data">docs</a>)</td>
+<td>Not needed</td>
+<td>Abuse-monitoring logs up to 30 days; Responses API state 30 days by
+default (same page)</td>
+<td>On approval (same page)</td>
+<td>Regions incl. Europe (EEA + Switzerland); non-US regions need
+approval and a contract amendment (same page)</td>
+</tr>
+<tr>
+<td><strong>Google</strong>: Gemini app</td>
+<td>Yes (<a
+href="https://support.google.com/gemini/answer/13594961?hl=en">Privacy
+Hub</a>)</td>
+<td>Turn off Keep Activity (same page)</td>
+<td>Auto-delete after 18 months by default (3, 36 months or never); 72
+hours with Keep Activity off; reviewed chats up to 3 years (same
+page)</td>
+<td>Not applicable</td>
+<td>Provided by Google Ireland in the EEA and Switzerland; storage
+location not stated (same page)</td>
+</tr>
+<tr>
+<td><strong>Google</strong>: Gemini API, unpaid</td>
+<td>Yes; human reviewers may read inputs and outputs (<a
+href="https://ai.google.dev/gemini-api/terms">terms</a>)</td>
+<td>Use the paid tier (same page)</td>
+<td>Abuse monitoring: 55 days (<a
+href="https://ai.google.dev/gemini-api/docs/usage-policies">policy</a>)</td>
+<td>No</td>
+<td>In the EEA, UK and Switzerland, paid terms apply to all use (<a
+href="https://ai.google.dev/gemini-api/terms">terms</a>)</td>
+</tr>
+<tr>
+<td><strong>Google</strong>: Gemini API, paid</td>
+<td>No (<a href="https://ai.google.dev/gemini-api/terms">terms</a>)</td>
+<td>Not needed</td>
+<td>Abuse monitoring: 55 days (<a
+href="https://ai.google.dev/gemini-api/docs/usage-policies">policy</a>);
+logs on by default for projects created since 2026-10-26, kept 55 days
+by default (<a
+href="https://ai.google.dev/gemini-api/docs/logs-policy">logs</a>)</td>
+<td>You configure it by avoiding storing features; some features always
+store (<a href="https://ai.google.dev/gemini-api/docs/zdr">ZDR</a>)</td>
+<td>Not stated</td>
+</tr>
+<tr>
+<td><strong>Google Cloud</strong>: Vertex AI</td>
+<td>No, without your permission (<a
+href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/data-governance">docs</a>)</td>
+<td>Not needed</td>
+<td>Cache deleted within 24 hours; prompts may be logged for abuse
+detection (same page)</td>
+<td>You configure it (disable logging and caching) (same page)</td>
+<td>Choose a region; <code>eu</code> endpoint keeps data in EU member
+states (<a
+href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/data-residency">residency</a>)</td>
+</tr>
+<tr>
+<td><strong>Microsoft</strong>: Azure OpenAI in Foundry</td>
+<td>No, without your permission; not available to OpenAI (<a
+href="https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy">docs</a>)</td>
+<td>Not needed</td>
+<td>Flagged content may be stored for abuse review; period not stated
+(same page)</td>
+<td>Modified abuse monitoring, by application (<a
+href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/abuse-monitoring">docs</a>)</td>
+<td>Your chosen geography, unless Global or DataZone deployment; EU
+DataZone available (<a
+href="https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy">docs</a>)</td>
+</tr>
+<tr>
+<td><strong>Mistral</strong>: Vibe (consumer chat app)</td>
+<td>Yes (<a
+href="https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models">help</a>)</td>
+<td>Toggle in settings or admin panel (<a
+href="https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training">help</a>)</td>
+<td>Until you delete the conversation or account (<a
+href="https://legal.mistral.ai/terms/privacy-policy">privacy
+policy</a>)</td>
+<td>No (<a
+href="https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr">help</a>)</td>
+<td>EU by default (<a
+href="https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data">help</a>)</td>
+</tr>
+<tr>
+<td><strong>Mistral</strong>: Enterprise</td>
+<td>No, opted out by default (<a
+href="https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models">help</a>)</td>
+<td>Not needed</td>
+<td>Not stated</td>
+<td>No; ZDR is for pay-as-you-go API calls only (<a
+href="https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr">help</a>)</td>
+<td>EU by default (<a
+href="https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data">help</a>)</td>
+</tr>
+<tr>
+<td><strong>Mistral</strong>: API</td>
+<td>Free mode: may be used; pay-as-you-go: you can opt out, default not
+stated (<a
+href="https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models">help</a>)</td>
+<td>Admin panel toggle (<a
+href="https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training">help</a>)</td>
+<td>30 rolling days for abuse monitoring, except specific APIs (<a
+href="https://legal.mistral.ai/terms/privacy-policy">privacy
+policy</a>)</td>
+<td>Pay-as-you-go, stateless calls only, at Mistral's discretion (<a
+href="https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr">help</a>)</td>
+<td>EU by default; US endpoint optional (<a
+href="https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data">help</a>)</td>
+</tr>
+<tr>
+<td><strong>Meta</strong>: Meta AI app</td>
+<td>Yes (<a
+href="https://www.meta.com/help/artificial-intelligence/">help</a>)</td>
+<td>In the EU, an objection form (<a
+href="https://about.fb.com/news/2025/04/making-ai-work-harder-for-europeans/">Meta
+newsroom</a>); elsewhere not stated</td>
+<td>Not stated</td>
+<td>Not applicable</td>
+<td>Not stated</td>
+</tr>
+<tr>
+<td><strong>DeepSeek</strong>: app</td>
+<td>Yes, after de-identification (<a
+href="https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html">terms</a>)</td>
+<td>"Improve the model for everyone" setting (same page)</td>
+<td>As long as you have an account (<a
+href="https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html">privacy
+policy</a>)</td>
+<td>Not stated</td>
+<td>Stored in the People's Republic of China (same page)</td>
+</tr>
+<tr>
+<td><strong>DeepSeek</strong>: API</td>
+<td>Not stated (<a
+href="https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html">platform
+terms</a>)</td>
+<td>Not stated</td>
+<td>Not stated</td>
+<td>Not stated</td>
+<td>Not stated</td>
+</tr>
+<tr>
+<td><strong>Any open-weight model you run yourself</strong></td>
+<td>Only what you do</td>
+<td>Not applicable</td>
+<td>What you configure</td>
+<td>Yes, if you store nothing</td>
+<td>Wherever you run it</td>
+</tr>
+</tbody>
+</table>
+<p>All pages checked on 2026-10-28. † = page refused automated access;
+manual check needed.</p>
+<h2 id="details-and-exact-wording-by-vendor">Details and exact wording,
+by vendor</h2>
+<h3 id="anthropic">Anthropic</h3>
+<ul>
+<li><strong>Consumer training is a choice.</strong> The update gives
+"users the choice to allow their data to be used to improve Claude";
+"You're always in control of this setting"; new users "can select your
+preference in the signup process" (<a
+href="https://www.anthropic.com/news/updates-to-our-consumer-terms">news</a>).
+The page does not say which way the switch starts.</li>
+<li><strong>Consumer retention.</strong> If you allow training,
+retention is extended "to five years"; otherwise the "30-day data
+retention period" applies (same page). For conversations flagged by
+safety systems: "We retain inputs and outputs for up to 2 years and
+trust and safety classification scores for up to 7 years" (<a
+href="https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data">help</a>).</li>
+<li><strong>Commercial.</strong> "By default, we will not use your
+inputs or outputs from our commercial products" to train (<a
+href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training">help</a>).
+For the <a href="Glossary.html#api">API</a>, "we automatically delete
+inputs and outputs on our backend within 30 days of receipt or
+generation", with exceptions such as <a
+href="Glossary.html#zero-data-retention-zdr">ZDR</a> agreements and the
+Files API (<a
+href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">help</a>).</li>
+<li><strong>Location.</strong> "Inference geo: Only <code>"us"</code>
+and <code>"global"</code> are available", and "Workspace geo: Only
+<code>"us"</code> is currently available" (<a
+href="https://platform.claude.com/docs/en/manage-claude/data-residency">data
+residency</a>). Through Amazon Bedrock or Google Cloud, those platforms'
+own regional options apply instead.</li>
+</ul>
+<h3 id="openai">OpenAI</h3>
+<ul>
+<li><strong>API.</strong> "data sent to the OpenAI API is not used to
+train or improve OpenAI models", unless "you explicitly opt in"; "abuse
+monitoring logs are generated for all API feature usage and retained for
+up to 30 days"; ZDR and modified abuse monitoring are "subject to prior
+approval by OpenAI" (<a
+href="https://developers.openai.com/api/docs/guides/your-data">Your
+data</a>). Data residency regions include "Europe (EEA + Switzerland)";
+some regions store data at rest only, without regional processing (same
+page).</li>
+<li><strong>ChatGPT consumer and business.</strong> OpenAI's help center
+refused automated access on 2026-10-28. As indexed by search, it says:
+"When you use our services for individuals (Free, Plus, Pro), we may use
+your content to train our models", with an opt-out in Data controls (<a
+href="https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance">help</a>
+†). Check these pages yourself in a browser.</li>
+<li><strong>Court-ordered retention.</strong> OpenAI has published
+statements about a US court case that required it to keep some ChatGPT
+and API data longer than usual. We could not open those pages on
+2026-10-28, so we do not summarize them here. If this matters for you,
+read <a
+href="https://openai.com/index/response-to-nyt-data-demands/">OpenAI's
+statement</a> † directly.</li>
+</ul>
+<h3 id="google">Google</h3>
+<ul>
+<li><strong>Gemini app.</strong> "Google uses your activity to provide,
+develop, and improve its services (including training generative AI
+models)"; "To stop your future chats from being reviewed to improve
+Google services, turn off your Keep Activity setting"; "Temporary chats
+and chats you have when Keep Activity is off are retained with your
+account for 72 hours"; "Reviewed chats are retained for up to three
+years" (<a
+href="https://support.google.com/gemini/answer/13594961?hl=en">Gemini
+Apps Privacy Hub</a>). Work and school accounts "may be subject to
+different data handling terms" (same page).</li>
+<li><strong>Gemini API.</strong> On unpaid services, Google "uses the
+content you submit … to provide, improve, and develop" its products and
+"human reviewers may read, annotate, and process your API input and
+output"; on paid services, "Google doesn't use your prompts … or
+responses to improve our products" (<a
+href="https://ai.google.dev/gemini-api/terms">Gemini API terms</a>). For
+abuse monitoring, "Google retains the following data for fifty-five (55)
+days" (<a
+href="https://ai.google.dev/gemini-api/docs/usage-policies">usage
+policies</a>). "To achieve zero data retention, customers must take
+specific actions or avoid specific features", and grounding with Google
+Search stores data for 30 days (<a
+href="https://ai.google.dev/gemini-api/docs/zdr">ZDR</a>).</li>
+<li><strong>Vertex AI</strong> (Google Cloud's AI platform, now
+presented as Gemini Enterprise Agent Platform). "Google won't use your
+data to train or fine-tune any AI/ML models without your prior
+permission or instruction" (<a
+href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/data-governance">data
+governance</a>). The <code>eu</code> endpoint "strictly covers data
+residency within EU member states"; the global endpoint "may be
+processed in any Google Cloud location around the world" (<a
+href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/data-residency">data
+residency</a>).</li>
+</ul>
+<h3 id="microsoft-azure-openai-in-microsoft-foundry">Microsoft (Azure
+OpenAI in Microsoft Foundry)</h3>
+<ul>
+<li><a href="Glossary.html#prompt">Prompts</a> and completions "are NOT
+available to OpenAI" and "are NOT used to train any generative AI
+foundation models without your permission or instruction"; data is
+"processed within the customer-specified geography (unless you are using
+a Global or DataZone deployment type)" (<a
+href="https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/data-privacy">data
+privacy</a>).</li>
+<li>Customers "who meet additional Limited Access eligibility criteria"
+can "apply to modify abuse monitoring" (<a
+href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/abuse-monitoring">abuse
+monitoring</a>).</li>
+</ul>
+<h3 id="mistral">Mistral</h3>
+<ul>
+<li>Mistral's help pages now call its consumer chat app Vibe. "Input and
+output data are used by default to train our artificial intelligence
+models" on Vibe, while "Enterprise customers are opted out of training
+by default" (<a
+href="https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models">help</a>).
+Opt-out toggles for Vibe and the API are separate (<a
+href="https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training">help</a>).</li>
+<li>API retention: "we keep your Input and Output for the period
+necessary to generate the Output and then for thirty (30) rolling days
+to monitor abuse (unless zero data retention is activated)" (<a
+href="https://legal.mistral.ai/terms/privacy-policy">privacy
+policy</a>). ZDR is "available only with pay-as-you-go and only for
+stateless API calls", and Mistral may "at our discretion, approve or
+deny it" (<a
+href="https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr">help</a>).</li>
+<li>"By default, your data is hosted in the European Union" (<a
+href="https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data">help</a>).</li>
+</ul>
+<h3 id="meta">Meta</h3>
+<ul>
+<li>"Meta uses your interactions with AIs to improve AI at Meta" (<a
+href="https://www.meta.com/help/artificial-intelligence/">Meta
+help</a>). In the EU, interactions with Meta AI "will also be used to
+train and improve our models", with "a link to a form where people can
+object" (<a
+href="https://about.fb.com/news/2025/04/making-ai-work-harder-for-europeans/">Meta
+newsroom</a>).</li>
+<li>Since December 2025, Meta says it will "use your interactions with
+AI at Meta to personalize the content and ads you see" (<a
+href="https://about.fb.com/news/2025/10/improving-your-recommendations-apps-ai-meta/">Meta
+newsroom</a>).</li>
+<li>Meta's <a href="Glossary.html#generative-ai">generative AI</a> privacy
+pages on facebook.com could not be loaded on 2026-10-28, so retention
+and location are not covered here.</li>
+<li>Llama <a href="Glossary.html#model">models</a> are open-weight: if you
+run them yourself, Meta receives nothing.</li>
+</ul>
+<h3 id="deepseek">DeepSeek</h3>
+<ul>
+<li>The app may "use Inputs and Outputs to provide, maintain, operate,
+develop or improve the Services", subject to de-identification, and you
+"can opt out by turning off "Improve the model for everyone"" (<a
+href="https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html">terms
+of use</a>).</li>
+<li>"we directly collect, process and store your Personal Data in
+People's Republic of China"; data is kept "for as long as you have an
+account" (<a
+href="https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html">privacy
+policy</a>).</li>
+<li>The API terms we found do not address training, retention or
+location (<a
+href="https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html">open
+platform terms</a>). DeepSeek's models are also open-weight, and other
+<a href="Glossary.html#provider">providers</a> serve them under their own
+terms.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Data-protection.html">Data protection when you use
+AI</a></li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps</a></li>
+<li><a href="AI-providers-and-models.html#where-you-can-get-them">AI
+providers and models</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#generative-ai">Generative AI</a>, <a
+href="Glossary.html#inference">Inference</a>, <a
+href="Glossary.html#logs">Logs</a>, <a href="Glossary.html#model">Model</a>,
+<a href="Glossary.html#open-weight-model">Open-weight model</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#zero-data-retention-zdr">Zero data retention
+(ZDR)</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All vendor pages are linked in the table and in the details above,
+and were checked on 2026-10-28. Pages marked † refused automated access
+on that date. Corrections with a link to the current vendor page are
+especially welcome.</p>
+<hr />
+<p>First version written with AI assistance and checked against the
+vendor pages listed under <a href="#sources">sources</a> on 2026-10-28.
+Not legal advice. Found a mistake or a policy change? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to check a web app an AI built · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-coding-agents.html">coding-agents</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-check-a-web-app-an-ai-built">How to check a web app an AI
+built</h1>
+<p><strong>A web app an AI built is checked the way any web app is: run
+it, drive it in a headless browser, and keep the evidence — every page
+loaded, every main action clicked, and the console errors, failed
+requests and screenshots that came back.</strong> The code compiling and
+its tests passing only say that the parts the tests cover work; they say
+nothing about the page a user opens.</p>
+<p>The examples here use <a
+href="https://playwright.dev/">Playwright</a>, a browser automation
+library. Any headless-browser tool has the same pieces; the point is not
+the tool but looking at the running app before you share the link.</p>
+<h2 id="1-start-the-app-and-mock-what-is-not-running">1. Start the app,
+and mock what is not running</h2>
+<p><strong>Run the app the way its README says, open the URL it prints,
+and if a page depends on a backend you have not started, mock that
+endpoint inside the check instead of changing the app.</strong> If the
+front end asks for its session or config, gets a connection refused, and
+stops rendering, the page stays blank however good the code is.</p>
+<p>Playwright can answer that request from inside the check without
+touching the app's code: it "provides APIs to mock and modify network
+traffic, both HTTP and HTTPS", and "any requests that a page does,
+including XHRs and fetch requests, can be tracked, modified and mocked"
+(<a href="https://playwright.dev/docs/mock">Playwright, Mock APIs</a>,
+checked 2026-11-05).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// check.mjs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { chromium } <span class="im">from</span> <span class="st">&#39;playwright&#39;</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> browser <span class="op">=</span> <span class="cf">await</span> chromium<span class="op">.</span><span class="fu">launch</span>()<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> page <span class="op">=</span> <span class="cf">await</span> browser<span class="op">.</span><span class="fu">newPage</span>()<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> page<span class="op">.</span><span class="fu">route</span>(<span class="st">&#39;**/session/config&#39;</span><span class="op">,</span> (route) <span class="kw">=&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  route<span class="op">.</span><span class="fu">fulfill</span>({</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">status</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">contentType</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span><span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">body</span><span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({ <span class="dt">enabled</span><span class="op">:</span> <span class="kw">false</span> })<span class="op">,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div>
+<p>Keep the mock in the check script, not in the app: a mock shipped in
+the app makes the page pass a check it would fail in production, and the
+next <a href="Glossary.html#deploy">deploy</a> carries it along.</p>
+<h2 id="2-watch-what-the-browser-reports">2. Watch what the browser
+reports</h2>
+<p><strong>Before the page finishes loading, attach listeners for
+uncaught exceptions, console errors and failed responses, so the reason
+a blank page stayed blank is in the output rather than a guess; none of
+those three shows up in a screenshot.</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>page<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;pageerror&#39;</span><span class="op">,</span> (err) <span class="kw">=&gt;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;page error:&#39;</span><span class="op">,</span> err<span class="op">.</span><span class="at">message</span>))<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>page<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;console&#39;</span><span class="op">,</span> (msg) <span class="kw">=&gt;</span> msg<span class="op">.</span><span class="fu">type</span>() <span class="op">===</span> <span class="st">&#39;error&#39;</span> <span class="op">&amp;&amp;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;console error:&#39;</span><span class="op">,</span> msg<span class="op">.</span><span class="fu">text</span>()))<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>page<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;response&#39;</span><span class="op">,</span> (res) <span class="kw">=&gt;</span> res<span class="op">.</span><span class="fu">status</span>() <span class="op">&gt;=</span> <span class="dv">400</span> <span class="op">&amp;&amp;</span> <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;failed:&#39;</span><span class="op">,</span> res<span class="op">.</span><span class="fu">status</span>()<span class="op">,</span> res<span class="op">.</span><span class="fu">url</span>()))<span class="op">;</span></span></code></pre></div>
+<p>The Page object emits these as they happen: <code>pageerror</code> is
+"emitted when an uncaught exception happens within the page";
+<code>console</code> when JavaScript "calls one of console API methods";
+<code>response</code> "when response status and headers are received for
+a request" (<a
+href="https://playwright.dev/docs/api/class-page">Playwright, Page</a>,
+checked 2026-11-05). A 404 on a favicon or a tracking pixel is noise;
+read the URL before you count a line as a failure. A 5xx from your own
+<a href="Glossary.html#api">API</a> is not noise.</p>
+<p><strong>Do not wait for the network to go quiet.</strong> Playwright
+marks <code>networkidle</code> "<strong>DISCOURAGED</strong>" — "wait
+until there are no network connections for at least <code>500</code> ms"
+— and adds: "Don't use this method for testing, rely on web assertions
+to assess readiness instead" (<a
+href="https://playwright.dev/docs/api/class-page">Playwright, Page</a>,
+checked 2026-11-05). A client-rendered page can arrive, open no
+requests, and still be blank while a large view is built.</p>
+<p>Wait for something that must exist instead — the heading, the first
+card, the button — and let the browser tell you when it is really there.
+Playwright "auto-waits for all the relevant checks to pass and only then
+performs the requested action", and an element is visible when it "has
+non-empty bounding box and does not have <code>visibility:hidden</code>
+computed style" (<a
+href="https://playwright.dev/docs/actionability">Playwright,
+Actionability</a>, checked 2026-11-05).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> page<span class="op">.</span><span class="fu">goto</span>(<span class="st">&#39;http://localhost:3000/&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> page<span class="op">.</span><span class="fu">getByRole</span>(<span class="st">&#39;heading&#39;</span><span class="op">,</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Dashboard&#39;</span> })<span class="op">.</span><span class="fu">waitFor</span>()<span class="op">;</span></span></code></pre></div>
+<p>Locating by role and accessible name, as a person would, also keeps
+the check honest about which control you clicked.</p>
+<h2 id="3-click-the-main-actions">3. Click the main actions</h2>
+<p><strong>List the few things the app is for and do them in the same
+run: submit the form, follow the flow, press the button that generates a
+file.</strong> A page that renders is not an app that works, and the
+failures that matter appear after the click, not before it.</p>
+<p>For a download, wait for the event before clicking, then save the
+file:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> downloadPromise <span class="op">=</span> page<span class="op">.</span><span class="fu">waitForEvent</span>(<span class="st">&#39;download&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> page<span class="op">.</span><span class="fu">getByRole</span>(<span class="st">&#39;button&#39;</span><span class="op">,</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Download PNG&#39;</span> })<span class="op">.</span><span class="fu">click</span>()<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> download <span class="op">=</span> <span class="cf">await</span> downloadPromise<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> download<span class="op">.</span><span class="fu">saveAs</span>(<span class="st">&#39;/tmp/check.png&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<p>The <code>download</code> event is "emitted when attachment download
+started", and the Download instance gives access to "basic file
+operations on downloaded content"; the docs' advice is to "wait for the
+download process to complete and save the downloaded file somewhere" (<a
+href="https://playwright.dev/docs/api/class-page">Playwright, Page</a>;
+<a href="https://playwright.dev/docs/downloads">Playwright,
+Downloads</a>, checked 2026-11-05).</p>
+<h2 id="4-look-at-what-came-out">4. Look at what came out</h2>
+<p><strong>Take a screenshot of each page and each generated file, and
+look at them; a screenshot is the only part of the check that shows what
+a user sees.</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> page<span class="op">.</span><span class="fu">screenshot</span>({ <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/tmp/page.png&#39;</span> })<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> page<span class="op">.</span><span class="fu">locator</span>(<span class="st">&#39;.card&#39;</span>)<span class="op">.</span><span class="fu">first</span>()<span class="op">.</span><span class="fu">screenshot</span>({ <span class="dt">path</span><span class="op">:</span> <span class="st">&#39;/tmp/card.png&#39;</span> })<span class="op">;</span></span></code></pre></div>
+<p><code>page.screenshot({ path: 'screenshot.png' })</code> saves the
+viewport, and "sometimes it is useful to take a screenshot of a single
+element" (<a href="https://playwright.dev/docs/screenshots">Playwright,
+Screenshots</a>, checked 2026-11-05). On a page of repeated cards,
+capture one of each shape rather than every card; the layout is what you
+are checking.</p>
+<p>Set the viewport to the size you care about before the run. A default
+viewport is one fixed size, not your user's screen, and a layout can be
+right at one width and broken at the next.</p>
+<p>Open the images. This is where the check earns its keep: the failures
+that survive a green build are visual — a line that wraps to two rows, a
+label that pushes a number out of its card, an image that never loaded
+and left its alt text in a gray box. None of them throw, and none of
+them appear in the console.</p>
+<p>If the file's size is part of the job — a launch image, a favicon, an
+Open Graph card — check the bytes, not the preview.
+<code>file /tmp/check.png</code> prints the format and the pixel size. A
+page can show a sharp, correctly cropped preview of an image that
+exported at the wrong dimensions.</p>
+<h2 id="5-keep-the-check">5. Keep the check</h2>
+<p><strong>Put the whole run in one script and run it again after every
+deploy and before every link you share; the second run is nearly free
+and catches the change that broke what the first run
+proved.</strong></p>
+<p>A short checklist for the end of a run:</p>
+<ul>
+<li>Every route returned HTML, and its main element had content.</li>
+<li>No uncaught exceptions, and no 4xx or 5xx from the app's own
+API.</li>
+<li>Each main action completed: the form answered, the list grew, the
+file arrived.</li>
+<li>The screenshots match the design at the viewport you care
+about.</li>
+<li>Generated files have the format and size you promised.</li>
+</ul>
+<h2 id="what-this-catches-and-what-it-does-not">What this catches, and
+what it does not</h2>
+<p>A headless run catches a page that does not render, a request that
+fails, a button wired to nothing, an image that 404s and a file that
+exports at the wrong size. It does not catch a slow page on a phone, a
+layout that only breaks at one width, a flow that needs a real login or
+a third-party service, or a logic error the page never shows. Check a
+phone and a narrow window by hand before a launch, and read the <a
+href="Glossary.html#logs">logs</a> for the requests the browser never
+made.</p>
+<p>Screenshots, console messages and downloaded files can contain
+tokens, personal data and private content. Look before you paste one
+into an issue or a pull request, and keep the check's output out of
+public build logs — see <a href="Security-for-AI-apps.html">security</a>
+and <a href="Data-protection.html">data protection</a>.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a
+typical workflow</a></li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps and
+agents</a></li>
+<li><a href="Data-protection.html">Data protection when you use
+AI</a></li>
+<li><a href="Ways-to-use-AI.html">Ways to use AI</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#logs">Logs</a>, <a href="Glossary.html#token">Token</a>,
+<a href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-05.</p>
+<ul>
+<li>Playwright, <a href="https://playwright.dev/docs/mock">Mock
+APIs</a>; <a href="https://playwright.dev/docs/downloads">Downloads</a>;
+<a href="https://playwright.dev/docs/screenshots">Screenshots</a>; <a
+href="https://playwright.dev/docs/api/class-page">Page</a>; <a
+href="https://playwright.dev/docs/actionability">Actionability</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-05. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

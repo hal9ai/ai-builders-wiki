@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to tell whether a deploy actually worked · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-tell-whether-a-deploy-actually-worked">How to tell
+whether a deploy actually worked</h1>
+<p><strong>A <a href="Glossary.html#deploy">deploy</a> has worked when the
+running app answers, not when the deploy call returns.</strong> Most
+deploy APIs answer as soon as they accept the work: deploying a prebuilt
+<a href="Glossary.html#container">container</a> image returns a registered
+app that may still fail to start, and deploying source returns a build
+that has not run yet. Check in this order: the build reached success,
+the app's <a href="Glossary.html#logs">logs</a> show it started and is
+listening, and the URL answers when you can reach it.</p>
+<p>The steps below name no host in particular. Section 6 shows how they
+map onto one.</p>
+<h2 id="1-wait-for-the-build-to-reach-a-terminal-state">1. Wait for the
+build to reach a terminal state</h2>
+<p><strong>A source deploy is finished when its build leaves the
+"running" state — every other value, and a response with no status at
+all, is the end.</strong> A build API in progress usually reports
+<code>status: "running"</code>; a finished one reports success or
+failure. Do not treat "the build has not failed yet" as success, and do
+not keep polling a build that has already stopped.</p>
+<p>While it runs, print only the log lines you have not shown before: in
+the APIs that return a growing log tail, the same lines come back on
+every poll, and repeating them buries the line that matters.</p>
+<h2 id="2-read-the-failure-before-you-change-the-dockerfile">2. Read the
+failure before you change the Dockerfile</h2>
+<p><strong>A build that dies with
+<code>Job has reached the specified backoff limit</code> and nothing
+else has usually hit a resource limit, not a mistake in the
+Dockerfile.</strong> That message comes from Kubernetes: a Job retries
+failed Pods with an exponential back-off, and once the number of retries
+reaches <code>.spec.backoffLimit</code> — 6 by default — "the Job will
+be marked as failed and any running Pods will be terminated" (<a
+href="https://kubernetes.io/docs/concepts/workloads/controllers/job/">Kubernetes,
+Jobs</a>, checked 2026-11-09).</p>
+<p>Memory is the usual limit. A container that allocates more than its
+memory limit "becomes a candidate for termination", and if it keeps
+consuming, it "is terminated"; the pod then shows <code>OOMKilled</code>
+(<a
+href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Kubernetes,
+Assign Memory Resources</a>, checked 2026-11-09). A compile that needs
+more memory than the builder gives it therefore fails the same way every
+retry, with no useful Dockerfile error.</p>
+<p>Before rewriting the Dockerfile, retry the build with more build
+memory and CPU if the host lets you choose them. If it fails the same
+way at the larger size, it is probably the Dockerfile — read the end of
+the build log, which names the layer or the command that failed.</p>
+<h2 id="3-check-the-port-the-app-actually-listens-on">3. Check the port
+the app actually listens on</h2>
+<p><strong>The port you give the host must be the one the process
+listens on, which is not necessarily the one the Dockerfile's
+<code>EXPOSE</code> names.</strong> <code>EXPOSE</code> "informs Docker
+that the container listens on the specified network ports at runtime"
+but "doesn't actually publish the port", and it "functions as a type of
+documentation" (<a
+href="https://docs.docker.com/reference/dockerfile/#expose">Docker,
+Dockerfile reference</a>, checked 2026-11-09). A host that routes
+traffic to its own chosen port will not follow it for you.</p>
+<p>Two cases catch people out:</p>
+<ul>
+<li>an image whose server listens on 80 because that is nginx's default,
+deployed with the host's default of 8080;</li>
+<li>an app that binds to <code>127.0.0.1</code> inside the container
+instead of <code>0.0.0.0</code>, so nothing outside the container can
+reach it even on the right port.</li>
+</ul>
+<p>Both look the same from outside: a build that succeeded and an app
+that never answers, usually with a <code>502</code> or
+<code>503</code>.</p>
+<h2 id="4-read-the-running-apps-logs">4. Read the running app's
+logs</h2>
+<p><strong>The container's own output is what says whether the process
+started, and it often names the problem itself.</strong> Look for the
+line where the server says it is listening, then for the first error
+above it. Connection-refused errors on a database or a model API usually
+mean a secret or an environment variable is missing under the name the
+app expects.</p>
+<p>Logs that come from the running container's stdout and stderr may not
+be kept by the host, so read them before the next deploy replaces them.
+That same view often includes the previous attempt and the platform's
+own events — an image that will not pull, a volume that will not mount —
+which is the only explanation you get when the container died before
+writing a single line.</p>
+<h2 id="5-try-the-url-in-the-right-spirit">5. Try the URL, in the right
+spirit</h2>
+<p><strong>Open the app's public URL and run the same few inputs you ran
+locally; if you cannot reach it, say that, rather than calling the
+deploy a failure.</strong> Some environments can reach the host's API
+but not the app's own domain, so a page that does not load from your
+machine is not by itself evidence that the app is down. Fall back on
+status and logs, and ask someone on a different network to try.</p>
+<h2 id="6-a-disclosed-example-cloudish">6. A disclosed example:
+Cloudish</h2>
+<p><em>Cloudish is made by Hal9, which started this wiki.</em> Its API
+shows the shape above in one place. A source deploy returns
+<code>{"project": …, "build": {"id": …, "status": "running"}}</code>,
+and the build endpoint returns
+<code>{"build": {"status", "logs"}, "image"}</code>; you "poll only
+while <code>status</code> is <code>"running"</code>", since
+<code>"succeeded"</code>, <code>"failed"</code>, or a response with no
+status at all is the end (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish, skill.md</a>,
+last updated 2026-11-07, checked 2026-11-09).</p>
+<p>The same document says the <code>port</code> field "must be the port
+your server listens on, whatever the Dockerfile's <code>EXPOSE</code>
+says", and that a wrong port answers <code>503</code> with "nothing
+accepts connections on port …"; that the build's own resources are
+distinct from the container's and can be raised when a build dies at the
+backoff limit; and that the logs endpoint pulls the container's
+stdout/stderr fresh on every call, "never persisted server-side", along
+with recent Kubernetes events. It also states the URL caveat: an
+environment that reaches cloudish.ai but not the app's domain is not
+seeing a failure.</p>
+<p>Other hosts use different endpoints and field names for the same
+three facts: a build that ended, a process that is listening, and a URL
+that answers.</p>
+<h2 id="checklist">Checklist</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Evidence that answers it</th>
+<th>What it does not tell you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Did the build finish?</td>
+<td>Build status left "running" and reports success</td>
+<td>That the app starts</td>
+</tr>
+<tr>
+<td>Did the process start?</td>
+<td>A log line saying it is listening</td>
+<td>That its port is the one the host routes to</td>
+</tr>
+<tr>
+<td>Is it reachable?</td>
+<td>The URL answers with your own inputs</td>
+<td>That it is reachable from every network</td>
+</tr>
+<tr>
+<td>Is it healthy?</td>
+<td>Logs after a real request, no errors above it</td>
+<td>That it will stay healthy under load</td>
+</tr>
+</tbody>
+</table>
+<h2 id="when-an-agent-does-the-deploy">When an agent does the
+deploy</h2>
+<p><strong>An agent that deploys should report success only after these
+checks, because the deploy call's answer is the easiest thing to mistake
+for a result.</strong> The instruction to the agent is one sentence: do
+not say a deploy succeeded until the build reached success, the logs
+show the app started and is listening, and the URL was tried where it
+can be tried. An agent that stops at the create response reports a
+failure as a success, and the next person to look has to start from the
+build log anyway.</p>
+<p><strong>Check the field names against a live response, not against
+your own wrapper.</strong> A test with the HTTP layer stubbed proves the
+request your client builds; it cannot prove the service returns the
+fields your instructions tell the agent to read. A wrapper written from
+an API reference can pass every test and still send an agent looking for
+a top-level <code>url</code> where the service nests it under
+<code>project.subdomain</code>. Make one real call with a throwaway key,
+read the JSON that came back, and fix the instructions to match it. Then
+delete the test app so it is not billed.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a
+typical workflow</a></li>
+<li><a href="Checking-an-AI-built-web-app.html">How to check a web app an
+AI built</a></li>
+<li><a href="Container-image-size.html">How to shrink a container
+image</a></li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#dockerfile">Dockerfile</a>, <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#secret">Secret</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-09.</p>
+<ul>
+<li>Docker, <a
+href="https://docs.docker.com/reference/dockerfile/#expose">Dockerfile
+reference: EXPOSE</a></li>
+<li>Kubernetes, <a
+href="https://kubernetes.io/docs/concepts/workloads/controllers/job/">Jobs</a>;
+<a
+href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/">Assign
+Memory Resources to Containers and Pods</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a>, last
+updated 2026-11-07</li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-09. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

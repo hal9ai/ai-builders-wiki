@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a deploy looks broken in one browser but fine in another · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Problems-solutions.html">Problems &amp; solutions</a> ·
+Tags: <a href="Tag-hosting.html">hosting</a>, <a
+href="Tag-basics.html">basics</a></p>
+<!-- NAV:END -->
+
+<h1
+id="why-a-deploy-looks-broken-in-one-browser-but-fine-in-another">Why a
+deploy looks broken in one browser but fine in another</h1>
+<p><strong>If a freshly deployed page looks wrong in one browser tab but
+right in a private window, the server is probably fine and the browser
+is running the previous copy of a CSS or JavaScript file.</strong> The
+HTML came from the new deploy; the stylesheet came from the cache the
+browser filled before it. The fix is to serve each file from a URL that
+changes when the file's contents change.</p>
+<p>This is common when a site is assembled by hand — a small server
+rendering templates, a static folder behind a container — rather than by
+a framework or static host that fingerprints assets for you.</p>
+<h2 id="what-the-mismatch-looks-like">What the mismatch looks like</h2>
+<p>The two files arrive from different deployments, so what you see is
+one half of each:</p>
+<ul>
+<li>Text you added at the top of a page pushes the rest of the layout
+around, but the stylesheet still targets the old structure.</li>
+<li>A style change "does not apply", yet the developer tools show the
+new rule, or the old one wins because two rules target the same
+element.</li>
+<li>A layout bug that was fixed is still visible, but only in the window
+that was already open before the deploy.</li>
+</ul>
+<p>The tell is the comparison: the normal window is broken; a private or
+incognito window, which starts with an empty cache, is correct. A hard
+refresh usually fixes the window for now — and that is exactly the trap,
+because the next visitor with an old cache sees the broken version
+again.</p>
+<h2 id="check-what-the-browser-actually-received">Check what the browser
+actually received</h2>
+<ol type="1">
+<li>Open the developer tools' <strong>Network</strong> panel, reload,
+and look at the CSS and JS requests. A request served from the browser's
+disk or memory cache, or answered <code>304 Not Modified</code>, is a
+candidate.</li>
+<li>Compare the two windows side by side, or fetch the files
+directly:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What the server publishes, without any browser cache in the way</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sI</span> https://example.com/styles.css</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask for a URL the browser has never requested</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sI</span> <span class="st">&quot;https://example.com/styles.css?cachecheck=</span><span class="va">$(</span><span class="fu">date</span> +%s<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<p>If the first command's file is the old one, the deploy itself did not
+roll out — check the build status and the running instance's logs before
+changing anything about caching. If the first is new but the page still
+uses an old copy, the browser is holding a copy it was told it could
+keep.</p>
+<ol start="3" type="1">
+<li>Look at <code>Cache-Control</code> in the response.
+<code>max-age=3600</code>, for example, tells the browser it may reuse
+the file for an hour without asking the server (<a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control">MDN,
+Cache-Control</a>, checked 2026-11-09). HTML is often served with a
+short lifetime or revalidated on every request, which is why the page
+can be new while its stylesheet is not.</li>
+</ol>
+<h2 id="the-fix-make-the-url-change-with-the-file">The fix: make the URL
+change with the file</h2>
+<p>A browser can cache <code>styles.css</code> for an hour safely only
+if that URL's contents stay the same. Once the contents change, the URL
+must change too. Every produced file gets a version of its own:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/styles.css?v=20261109-1&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/app.js?v=20261109-1&quot;</span><span class="ot"> defer</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>The version can be a build number, a short commit hash, or the file's
+modification time. The important rule: <strong>the marker changes when
+the file changes, and stays the same when it does not</strong>, so
+unchanged assets keep their long cache. Many build tools instead put a
+content hash in the file name (<code>styles.9f2c1a.css</code>); the
+effect is the same.</p>
+<p>If the server renders the HTML, compute the version once at boot and
+use it in the template, so nobody has to remember to bump it:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> fs <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;fs&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> path <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;path&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> assetVersion <span class="op">=</span> [<span class="st">&#39;styles.css&#39;</span><span class="op">,</span> <span class="st">&#39;app.js&#39;</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>((file) <span class="kw">=&gt;</span> fs<span class="op">.</span><span class="fu">statSync</span>(path<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;public&#39;</span><span class="op">,</span> file))<span class="op">.</span><span class="at">mtimeMs</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">reduce</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(a<span class="op">,</span> b)<span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// in the template:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;link rel=&quot;stylesheet&quot; href=&quot;/styles.css?v=${assetVersion}&quot;&gt;</span></span></code></pre></div>
+<p>Then keep the HTML's own cache short — or revalidate it — so the next
+page load points at the new versions. The HTML is the index that says
+which CSS and JS belong to this deploy; a long-cached index pins
+visitors to an old, internally consistent set.</p>
+<h2 id="after-a-deploy-check-from-a-clean-cache">After a deploy, check
+from a clean cache</h2>
+<ul>
+<li>Open the site in a private window, or empty the cache and disable it
+in the developer tools' Network panel while testing.</li>
+<li>Confirm the HTML references the new asset URL, and that the asset
+URL returns the new file.</li>
+<li>Hard-refresh (or bypass the cache) in the window that looked broken.
+If it still looks wrong, the problem is not caching.</li>
+<li>When the site sits behind a CDN, purge its copy of the HTML as well;
+purging one without the other recreates the same mismatch at the
+CDN.</li>
+</ul>
+<h2 id="when-it-is-not-the-cache">When it is not the cache</h2>
+<ul>
+<li><strong>The deploy did not reach the running instance.</strong> A
+successful build is not the same as a restarted app; check the app's
+status and logs, and that the request is served by the new version.</li>
+<li><strong>A service worker is in control.</strong> A service worker
+can serve old files even after a hard refresh; unregister it for the
+site while testing, and version its cache the same way.</li>
+<li><strong>Two instances are behind the load balancer.</strong> One
+still runs the old image; the page alternates between versions. Finish
+the rollout instead of debugging the browser.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a>: the deploy step, and how to tell a build failure from an app
+failure</li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>:
+containers and what runs inside them</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-09.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control">Cache-Control</a>:
+<code>max-age</code> and how long a response may be reused without
+asking the server</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching">HTTP
+caching</a>: fresh vs stale responses, revalidation, and changing the
+URL as a way to bust a cache</li>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc9111.html">RFC
+9111: HTTP Caching</a>: freshness, validation, and cache keys</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a deploy where the new
+HTML and the browser's old stylesheet combined into an overlapping page
+layout, and checked against the <a href="#sources">sources</a> on
+2026-11-09. Found a mistake? <a href="CONTRIBUTING.html">Fix it or open an
+issue</a>. Text licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

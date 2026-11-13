@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to point a domain at your app, with one record for every subdomain · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a
+href="Tag-basics.html">basics</a></p>
+<!-- NAV:END -->
+
+<h1
+id="how-to-point-a-domain-at-your-app-with-one-record-for-every-subdomain">How
+to point a domain at your app, with one record for every subdomain</h1>
+<p><strong>Point one wildcard DNS record at the server that answers for
+your app, and every <code>{name}.example.com</code> resolves there
+without a record per app.</strong> Add one wildcard certificate for
+HTTPS, and the same record covers every subdomain at that level.</p>
+<p>This is worth writing down when the app hands out a name per user,
+per project, or per region. At that point the number of names is
+unbounded, and a DNS record per name is the wrong shape: it needs a
+write whenever an app appears, and another whenever one moves.</p>
+<h2 id="the-three-records">The three records</h2>
+<p>For one server that answers <code>example.com</code> and every
+<code>{name}.example.com</code>:</p>
+<pre><code>example.com        A       203.0.113.10
+www.example.com    CNAME   example.com
+*.example.com      A       203.0.113.10</code></pre>
+<p><strong>An A record maps a name to an IP address, and a CNAME maps
+one name to another name</strong> (<a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/">Cloudflare,
+DNS record types</a>, checked 2026-11-10). The <code>www</code> CNAME
+follows the apex if the server's address changes; the wildcard points at
+the address itself.</p>
+<p>The <code>*</code> is the point: it is one record, and a new app
+subdomain needs no DNS change at all.</p>
+<p>If the app also gives out names under a region,
+<code>{name}.sea.example.com</code>, create
+<code>*.sea.example.com</code> pointed at that region's server. On
+Cloudflare a wildcard record is multi-level and would answer the deeper
+name anyway (<a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/wildcard-dns-records/">Cloudflare,
+wildcard DNS records</a>, checked 2026-11-10), but HTTPS needs a
+certificate for that level too, so plan one wildcard per level you
+actually serve.</p>
+<h2 id="what-the-wildcard-matches-and-what-wins-over-it">What the
+wildcard matches, and what wins over it</h2>
+<ul>
+<li><strong>Specific records take precedence.</strong> A wildcard
+"applies only when no exact record exists at the queried name", so
+<code>admin.example.com</code> can point elsewhere while everything else
+falls to the wildcard (<a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/wildcard-dns-records/">wildcard
+DNS records</a>, checked 2026-11-10).</li>
+<li><strong>The <code>*</code> occupies one whole first label.</strong>
+"Wildcards are only supported on the first label":
+<code>*.example.com</code> is a wildcard, while
+<code>sub.*.example.com</code> is not, and in
+<code>*.*.example.com</code> only the first asterisk is wild (same
+source).</li>
+<li><strong>Cloudflare's wildcards match several levels.</strong>
+"Wildcards are multi-level by default", so <code>*.example.com</code>
+also answers <code>a.b.example.com</code> unless a more specific record
+exists (same source). A TLS wildcard certificate does not work that way,
+as the next section shows.</li>
+</ul>
+<h2 id="dns-only-or-through-the-providers-proxy">DNS-only, or through
+the provider's proxy</h2>
+<p><strong>Choose DNS-only unless you want the DNS provider to handle
+the traffic as well.</strong> Cloudflare offers two modes for a record:
+proxied, where a lookup "will be answered with Cloudflare anycast IP
+addresses" and Cloudflare "sits between your visitors and your server";
+and DNS-only, where it "will be answered with the actual origin IP
+address" (<a
+href="https://developers.cloudflare.com/dns/proxy-status/">Cloudflare,
+proxy status</a>, checked 2026-11-10). Cloudflare says DNS-only is "only
+recommended for records that do not serve web traffic", because proxying
+is what adds its DDoS protection, caching and rules.</p>
+<p>For an app host the choice is architectural, not cosmetic:</p>
+<ul>
+<li><strong>DNS-only</strong> lets the browser's connection reach your
+server, which presents its own certificate and applies its own limits.
+That is what you want when the server is the thing you are testing, and
+it makes your wildcard certificate the one the browser sees.</li>
+<li><strong>Proxied</strong> has the provider terminate HTTPS and cache,
+filter and limit requests before your server. That can be useful, but
+now two systems must agree on hostnames, certificates and request sizes
+for every app.</li>
+</ul>
+<p>Either mode works for the names above. What matters is choosing one
+on purpose, because the two put different systems in charge of the
+certificate and the request.</p>
+<h2 id="one-certificate-for-every-subdomain">One certificate for every
+subdomain</h2>
+<p><strong>A certificate for <code>*.example.com</code> covers every
+single-label subdomain, but not <code>example.com</code> itself and not
+<code>a.b.example.com</code>.</strong> RFC 6125's matching example is
+that <code>*.example.com</code> "would match foo.example.com but not
+bar.foo.example.com or example.com" (<a
+href="https://www.rfc-editor.org/rfc/rfc6125#section-6.4.3">RFC 6125,
+section 6.4.3</a>, checked 2026-11-10). If the app needs its bare domain
+or a two-level name, put those names on the certificate explicitly, or
+issue a second wildcard for the deeper level.</p>
+<p>A wildcard certificate cannot be validated with the usual HTTP-01
+challenge. Let's Encrypt says wildcard issuance "must use the DNS-01
+challenge" (<a href="https://letsencrypt.org/docs/faq/">Let's Encrypt
+FAQ</a>, checked 2026-11-10); in its list of challenge types, HTTP-01
+"cannot be used to issue wildcard certificates" and TLS-ALPN-01 "cannot
+be used to validate wildcard domains" (<a
+href="https://letsencrypt.org/docs/challenge-types/">Let's Encrypt,
+challenge types</a>, checked 2026-11-10). DNS-01 proves control by
+publishing a TXT record, so the certificate tool needs an API token for
+the DNS provider — often the same account and token that creates the
+records above.</p>
+<p>The payoff is one certificate and one renewal path for every app
+name. Renewal repeats the same DNS-01 exchange, so after the first setup
+nothing is manual.</p>
+<h2 id="a-second-server-or-a-region">A second server, or a region</h2>
+<ol type="1">
+<li>Add <code>sea.example.com</code> A, <code>www.sea.example.com</code>
+CNAME <code>sea.example.com</code>, and <code>*.sea.example.com</code> A
+to the new server. Do it before its first deploy, so the names resolve
+when certificates are requested and when the first request arrives.</li>
+<li>Leave the primary records alone. Each region's wildcard covers its
+own names, and a name outside a region still falls to the global
+wildcard.</li>
+<li>To move the global apps with one edit later, point the global
+wildcard at an alias instead of an address:
+<code>*.example.com CNAME active.example.com</code>, with
+<code>active.example.com</code> an A record at the current server. One
+edit to <code>active</code> moves the fleet. Keep its TTL short, because
+resolvers keep the old answer until it expires; Cloudflare's Auto TTL is
+300 seconds (<a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/">Cloudflare,
+TTL</a>, checked 2026-11-10).</li>
+</ol>
+<h2 id="check-it">Check it</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> h <span class="kw">in</span> example.com www.example.com app.example.com<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">printf</span> <span class="st">&#39;%-24s &#39;</span> <span class="st">&quot;</span><span class="va">$h</span><span class="st">&quot;</span><span class="kw">;</span> <span class="ex">dig</span> +short <span class="st">&quot;</span><span class="va">$h</span><span class="st">&quot;</span> A</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The alias behind www, if you used a CNAME</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> +short www.example.com CNAME</span></code></pre></div>
+<p>Each name should return the server's IP address, and <code>www</code>
+should show its CNAME target followed by that address. A name that
+returns nothing is missing or misspelled in the zone. A name that
+returns an old address is being answered from a cache until its TTL runs
+out.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI
+app</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-10.</p>
+<ul>
+<li>Cloudflare, <a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/wildcard-dns-records/">Wildcard
+DNS records</a>; <a
+href="https://developers.cloudflare.com/dns/proxy-status/">Proxy
+status</a>; <a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/">DNS
+record types</a>; <a
+href="https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/">TTL</a></li>
+<li>Let's Encrypt, <a
+href="https://letsencrypt.org/docs/challenge-types/">Challenge
+types</a>; <a href="https://letsencrypt.org/docs/faq/">FAQ</a></li>
+<li>IETF, RFC 6125, <a
+href="https://www.rfc-editor.org/rfc/rfc6125#section-6.4.3">Representing
+and Matching Domain-Identified Applications</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-10. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

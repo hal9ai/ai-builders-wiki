@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data protection when you use AI · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Security-and-data.html">Security and data</a> · Tags: <a
+href="Tag-privacy.html">privacy</a>, <a
+href="Tag-providers.html">providers</a>, <a
+href="Tag-security.html">security</a></p>
+<!-- NAV:END -->
+
+<h1 id="data-protection-when-you-use-ai">Data protection when you use
+AI</h1>
+<p><strong>What happens to the text you send an AI <a
+href="Glossary.html#model">model</a> depends less on the vendor than on
+the plan: consumer chat apps often train on your conversations unless
+you opt out, while business and <a href="Glossary.html#api">API</a> terms
+usually do not, and keep data for a limited time.</strong> This page
+explains what to ask; <a href="Data-protection-by-vendor.html">Data
+protection by vendor</a> compares the answers, vendor by vendor, with
+sources.</p>
+<p><strong>This is not legal advice.</strong> It summarizes public
+vendor pages to help you ask the right questions. Policies change often,
+your contract may say something different, and laws such as the GDPR put
+obligations on <em>you</em> as the app maker. For a real decision, read
+the current terms and ask a lawyer or your data protection officer.</p>
+<h2 id="the-questions-that-matter">The questions that matter</h2>
+<p>Before you send personal or confidential data to a model, ask five
+questions, for the exact plan you use:</p>
+<ol type="1">
+<li><strong>Training.</strong> Does the vendor use my <a
+href="Glossary.html#prompt">prompts</a> and answers to train its models by
+default?</li>
+<li><strong>Opt-out.</strong> If yes, can I turn it off, and how?</li>
+<li><strong>Retention.</strong> How long does it keep my data, including
+after I delete it, and when content is flagged for abuse review?</li>
+<li><strong><a href="Glossary.html#zero-data-retention-zdr">Zero data
+retention</a> (ZDR).</strong> Can I arrange for nothing to be stored,
+and who qualifies?</li>
+<li><strong>Location.</strong> Where is the data processed and stored?
+Can I keep it in the EU?</li>
+</ol>
+<p>The answers for each major vendor are in the <a
+href="Data-protection-by-vendor.html#comparison-table">comparison
+table</a>.</p>
+<h2 id="consumer-vs-business-terms">Consumer vs business terms</h2>
+<p><strong>The same vendor usually has two sets of rules: consumer terms
+for individual chat-app plans, and commercial terms for business plans
+and the API.</strong> Anthropic, for example, says its 2025
+consumer-terms update applies "to users on our Claude Free, Pro, and Max
+plans" and does "not apply to services under our Commercial Terms",
+which cover Claude for Work, the API and access through Amazon Bedrock
+and Google Cloud (<a
+href="https://www.anthropic.com/news/updates-to-our-consumer-terms">Anthropic,
+Updates to our consumer terms</a>, checked 2026-10-28).</p>
+<p>In practice: if your employees paste customer data into a personal
+chat-app account, the consumer rules apply, whatever your company's API
+contract says.</p>
+<h2 id="what-to-do-in-your-own-app">What to do in your own app</h2>
+<ul>
+<li><strong>Use business or API terms for anything involving other
+people's data</strong>, not a personal chat-app account.</li>
+<li><strong>Check the default, not just the option.</strong> "You can
+opt out" is different from "off by default".</li>
+<li><strong>Retention is not zero just because training is off.</strong>
+Most APIs keep data for abuse monitoring, often around 30 days, unless
+you have a ZDR arrangement.</li>
+<li><strong>Location is a setting, and sometimes a contract.</strong> EU
+processing usually means choosing a region or endpoint, and sometimes an
+approval.</li>
+<li><strong>Same model, different terms.</strong> A model through a
+cloud platform (Bedrock, Vertex AI, Foundry) follows that platform's
+terms. See <a
+href="AI-providers-and-models.html#where-you-can-get-them">providers and
+models</a>.</li>
+<li><strong>Tell your users.</strong> Your privacy notice should say
+which AI <a href="Glossary.html#provider">providers</a> receive their data
+and why.</li>
+<li><strong>Send less.</strong> Strip names, emails and IDs before the
+model call when the task does not need them, and do not log full inputs
+(<a href="Idea-to-deployed-AI-app.html#5-read-the-logs">logs</a>).</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Data-protection-by-vendor.html">Data protection by
+vendor</a>: the comparison table</li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps</a></li>
+<li><a href="AI-providers-and-models.html">AI providers and
+models</a></li>
+<li><a href="Ways-to-use-AI.html">Ways to use AI</a>: chat apps vs
+API</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#cloud">Cloud</a>, <a
+href="Glossary.html#logs">Logs</a>, <a href="Glossary.html#model">Model</a>,
+<a href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#zero-data-retention-zdr">Zero data retention
+(ZDR)</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-10-28.</p>
+<ul>
+<li>Anthropic, <a
+href="https://www.anthropic.com/news/updates-to-our-consumer-terms">Updates
+to our consumer terms</a></li>
+<li>Vendor pages for every other claim: see <a
+href="Data-protection-by-vendor.html#sources">Data protection by
+vendor</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-10-28. Not legal advice. Found a
+mistake? <a href="CONTRIBUTING.html">Fix it or open an issue</a>. Text
+licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

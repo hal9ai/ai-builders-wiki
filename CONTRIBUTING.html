@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What an AI agent is · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><h1 id="contributing">Contributing</h1>
+<p>Thank you for helping. Anyone can contribute: corrections, updates,
+new pages and translations. The wiki was started by the team behind
+Cloudish, at Hal9, who review pull requests; it gets better the more
+people write in it. Because it is only useful if it is correct,
+corrections always come first.</p>
+<h2 id="report-a-mistake">Report a mistake</h2>
+<p>Open an issue. Please include:</p>
+<ul>
+<li>the page and the sentence that is wrong</li>
+<li>what is correct instead</li>
+<li>a link to an official source (the vendor's own docs, policy page or
+announcement), if there is one</li>
+</ul>
+<p>If you are not sure something is wrong, open the issue anyway and say
+so.</p>
+<h2 id="propose-a-change">Propose a change</h2>
+<p>Pull requests are welcome: fixes, updated facts, new pages and
+translations. For a new page, check the index first so each question has
+one page; for a large rewrite, open an issue first so we can agree on
+scope.</p>
+<h2 id="work-locally">Work locally</h2>
+<ol type="1">
+<li>Fork the repository on GitHub, clone your fork, and make a branch:
+<code>git switch -c fix-data-protection-table</code>.</li>
+<li>Edit or add pages. Any Markdown editor works; links between pages
+are relative (<code>AI-agent.md</code>), so they also work in your
+editor's preview.</li>
+<li>Check your links: <code>python3 scripts/build_wiki.py</code> (Python
+3, nothing to install). The script also regenerates the navigation — do
+not commit those changes; the bot regenerates the navigation after your
+pull request merges.</li>
+<li>Optional: see the wiki as a site, with the sidebar:
+<code>scripts/preview.sh</code>, then open
+<code>_preview/index.html</code> in a browser (needs <a
+href="https://pandoc.org/installing.html">pandoc</a>).</li>
+<li>Commit, push to your fork, and open a pull request. Say in it what
+you checked and where (links to the sources).</li>
+</ol>
+<p>On every pull request, a check runs
+<code>scripts/build_wiki.py</code> and fails if a link is broken, or if
+the pull request hand-edits the generated navigation
+(<code>_Sidebar.md</code>, <code>Category-*.md</code>,
+<code>Tags.md</code>, <code>Tag-*.md</code>). After the pull request
+merges, a workflow regenerates the navigation and commits it to
+<code>main</code>. A maintainer then reviews the facts against the
+sources.</p>
+<h2 id="rules-for-pages">Rules for pages</h2>
+<ul>
+<li><strong>Main point first.</strong> The first sentence of a page or
+section answers its question. Context and caveats come after.</li>
+<li><strong>Plain words.</strong> Short paragraphs, examples, and the
+English tech terms people actually use (token, API key, logs,
+deploy).</li>
+<li><strong>Sources for vendor facts.</strong> Every claim about a
+vendor or product links to that vendor's own page, with the date it was
+checked (<code>checked YYYY-MM-DD</code>). No source, no claim.</li>
+<li><strong>No invented numbers.</strong> If a number is not on a source
+page, leave it out.</li>
+<li><strong>Vendor-neutral.</strong> Cloudish (made by Hal9, which
+started this wiki) may appear as a disclosed example where relevant,
+never as a recommendation.</li>
+<li><strong>AI help is fine, checking is yours.</strong> You may draft
+with an AI assistant, but you check every claim against its source
+yourself. Say so in the pull request. When you check a page against its
+sources, add to its footer:
+<code>Last checked against the sources on YYYY-MM-DD.</code></li>
+<li><strong>Nothing personal.</strong> No names of individual people at
+Hal9 or elsewhere, except authors of cited work.</li>
+</ul>
+<h2 id="page-template">Page template</h2>
+<p>Pages are Markdown files at the top level, named in wiki style: words
+separated by hyphens, first letter capital (<code>AI-agent.md</code>,
+<code>Data-protection-by-vendor.md</code>). Keep pages short and
+focused; when a topic grows, split it into linked pages.</p>
+<p>Every page follows the same template:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;What an AI agent is&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> &quot;One line for the index.&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">category:</span><span class="co"> Agents</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span><span class="co"> [agents, basics]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">checked:</span><span class="co"> 2026-10-28</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- NAV:START --&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- NAV:</span><span class="re">END</span><span class="co"> --&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># What an AI agent is</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>**One sentence that answers the question.** Context and caveats after.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>(body)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Related pages</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## See also</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- SEEALSO:START --&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- SEEALSO:</span><span class="re">END</span><span class="co"> --&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sources</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>(footer: how the page was written and when it was last checked against the sources, how to fix it, licence)</span></code></pre></div>
+<p>Categories and tags are descriptive and will change. Reuse an
+existing one when it fits; add a new one when it does not.
+<code>order</code> sets the position within the category.</p>
+<p>Link the first use of a glossary term to its entry in <a
+href="Glossary.html">Glossary.md</a>. The navigation (Home index,
+<code>_Sidebar.md</code>, category and tag pages, breadcrumbs, <em>See
+also</em>) is generated by the bot after your pull request merges — do
+not commit it. To check your links locally:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> scripts/build_wiki.py</span></code></pre></div>
+<p><code>python3 scripts/build_wiki.py --link-terms</code> also links
+the first plain use of each glossary term; review its diff and commit
+only the term links, not the regenerated navigation.</p>
+<h2 id="licence">Licence</h2>
+<p>By contributing, you agree that your text is released under <a
+href="LICENSE">CC BY 4.0</a>. The build script is under the MIT licence
+(see its header).</p>
+</main>
+</div>
+</body>
+</html>

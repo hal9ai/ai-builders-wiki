@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where an AI app&#x27;s terms of service and privacy policy should live · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Security-and-data.html">Security and data</a> · Tags: <a
+href="Tag-privacy.html">privacy</a>, <a
+href="Tag-hosting.html">hosting</a></p>
+<!-- NAV:END -->
+
+<h1
+id="where-an-ai-apps-terms-of-service-and-privacy-policy-should-live">Where
+an AI app's terms of service and privacy policy should live</h1>
+<p><strong>Keep one canonical copy of each legal document — the terms of
+service and the privacy policy — in the service that owns the facts they
+describe, and have every site that shows them render them from that
+copy.</strong> Two copies always drift: the price changes in the code,
+the terms page still quotes the old one, and nobody notices until a
+customer quotes the page back at you.</p>
+<p><strong>This is not legal advice.</strong> This page covers where the
+documents live and how they are served, not what they should say. That
+question belongs to a lawyer.</p>
+<h2 id="one-copy-in-the-place-that-knows-the-facts">One copy, in the
+place that knows the facts</h2>
+<p>The terms describe the product: what it does, what it costs, what
+data it holds, who is responsible for what. The system that knows those
+facts is usually the backend — the <a href="Glossary.html#api">API</a>
+server, the billing ledger, the database — and not the marketing site,
+which is normally a separate repository, deployed separately and edited
+by different people.</p>
+<p>When the same document exists in both places, one of them is stale,
+and it is usually the one a lawyer is reading.</p>
+<p>Put the document where the code it describes lives, in Markdown, at a
+predictable path (<code>terms.md</code>, <code>privacy.md</code>), in
+the same repository as that code. It can then change in the same pull
+request as the behavior it describes, and the record of who changed what
+is the repository's own <a href="Glossary.html#logs">logs</a>.</p>
+<h2 id="serve-it-two-ways-a-page-for-people-markdown-for-agents">Serve
+it two ways: a page for people, Markdown for agents</h2>
+<p><strong>The same source becomes an HTML page for people and search
+engines, and stays Markdown for programs.</strong> Both are the same
+text; neither is a copy of the other.</p>
+<ul>
+<li><code>GET /terms</code> — the page: title, "Last updated" date and
+the document's body, rendered from the Markdown as the page is
+served.</li>
+<li><code>GET /terms.md</code> — the Markdown itself, as
+<code>text/markdown</code>, which is what an <a
+href="Glossary.html#agent">agent</a> should fetch.</li>
+<li>In the page's <code>&lt;head&gt;</code>, a
+<code>&lt;link rel="alternate" type="text/markdown" href="…/terms.html"&gt;</code>
+names the machine copy, so a tool that reads the HTML knows where it
+is.</li>
+</ul>
+<p>Markdown matters for agents because it is plain text: an agent
+answering "how much do credits cost" reads it faster, and for fewer <a
+href="Glossary.html#token">tokens</a>, than it parses a styled page.</p>
+<p>HTML matters because search engines index it. Google's list of the
+file types it can index names plain text (<code>.txt</code>) but not
+Markdown, so a legal page that should be findable needs an HTML version
+(<a
+href="https://developers.google.com/search/docs/crawling-indexing/indexable-file-types">Google
+Search Central, file types indexable by Google</a>, checked
+2026-11-06).</p>
+<p>If the site is served from more than one place — several datacenters,
+or a language mirror — give every copy the same canonical URL, on the
+one host you want in search results. Google calls
+<code>rel="canonical"</code> "a strong signal that the specified URL
+should become canonical" (<a
+href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls">Google
+Search Central, consolidate duplicate URLs</a>, checked 2026-11-06).</p>
+<h2 id="render-at-request-time-without-losing-search-or-speed">Render at
+request time, without losing search or speed</h2>
+<p>The pattern that keeps one source and still serves a fast, indexable
+page has three parts:</p>
+<ol type="1">
+<li><strong>Prerender the page around the document.</strong> At build
+time, render the site's own layout — header, footer, styles, navigation
+— with placeholders where the document's title, date and body go, plus
+an empty <code>&lt;article&gt;</code>. The shell is static, so every
+request shares its assets and layout.</li>
+<li><strong>Fill it in as it is served.</strong> The server fetches the
+canonical Markdown, renders it to HTML, and substitutes the title, date
+and body. The page cannot then show text that the canonical document no
+longer contains.</li>
+<li><strong>Hand the same data to the browser.</strong> Put the rendered
+document in a global (<code>window.__LEGAL_DOC__</code>) and have the
+page pick it up during hydration, so the browser-rendered page matches
+the HTML the server sent. For navigation inside the app, a small JSON
+endpoint (<code>/legal-docs/terms.json</code>) returns the same
+fields.</li>
+</ol>
+<p>Cache the Markdown — an hour in memory is plenty — and keep the last
+good version on disk. When the source can't be reached, serve the copy
+and retry after a few minutes instead of holding the failure for the
+full hour. A deployment that has never fetched the document has nothing
+to fall back on; that is what a 502 and a message naming the document
+are for.</p>
+<h2 id="stand-on-its-own">Stand on its own</h2>
+<p><strong>The legal pages should be the last thing to break, not the
+first.</strong> If they live inside the app whose data handling they
+describe, an outage, a bad <a href="Glossary.html#deploy">deploy</a> or a
+billing problem takes them down with it — and <code>/terms</code> is
+exactly what a customer, a payment processor or a crawler looks for when
+something is wrong.</p>
+<p>Serve them from whatever stays up: a static site, the account site, a
+CDN. Where the page has to fetch from a service that can fail, the
+last-known-good copy above is what makes that acceptable.</p>
+<h2 id="say-when-it-changed">Say when it changed</h2>
+<p>Every legal page shows a "Last updated" date, and the date belongs in
+the document itself — not only in the page's chrome — so the Markdown
+carries it too. Keep a short changelog of substantive changes: pricing,
+what data is collected, who it goes to, what rights a user has. "We may
+change these terms at any time" gives you the flexibility to change a
+price quietly, and costs you the trust that saying "we will tell you"
+earns.</p>
+<h2 id="write-what-the-code-actually-does">Write what the code actually
+does</h2>
+<p>The most common defect on a legal page is not a missing clause. It is
+a sentence copied from a template that the product does not do. "Credits
+expire after one year" — because the generator's template said so — is a
+promise, whether or not anyone could enforce it, and the ledger has
+never had an expiry.</p>
+<p>When you find one, pick one:</p>
+<ul>
+<li><strong>Implement it</strong>, if it is worth implementing.</li>
+<li><strong>State what happens, and promise notice.</strong> That is
+accurate, so it stops being a promise you are breaking. Cloudish's
+terms, for example, now say credits do not currently expire, and that
+introducing expiry would come with at least 30 days' notice, applying
+only to credits added after the policy takes effect (<a
+href="https://cloudish.ai/terms.md?ref=cc-wiki">Cloudish, terms.md</a>,
+checked 2026-11-06).</li>
+</ul>
+<p>Do not leave the unenforced claim in. It is the one sentence on the
+page a user can catch you on.</p>
+<h2 id="clauses-an-ai-app-needs-that-a-plain-website-does-not">Clauses
+an AI app needs that a plain website does not</h2>
+<p>Templates are written for websites selling subscriptions. An app that
+runs <a href="Glossary.html#model">models</a> on users' <a
+href="Glossary.html#api-key">API keys</a>, and lets agents use them,
+describes a different relationship:</p>
+<ul>
+<li><strong>Who acts with a key.</strong> Keys are handed to agents and
+applications, so "you are responsible for activity under your keys" has
+to continue "including actions taken by your agents and applications",
+or a user can reasonably say the agent did it, not them.</li>
+<li><strong>What the output is worth.</strong> Say that model output can
+be wrong — <a href="Glossary.html#hallucination">hallucinated</a> — that
+the user must check it, and who owns it.</li>
+<li><strong>Abuse.</strong> AI apps get used to generate spam at scale
+and to attack other systems. A clause saying you may not host or
+distribute malware or attack other systems, and that you may suspend an
+account for it, is worth having before you need it.</li>
+<li><strong>Age.</strong> Templates usually say 13, the US
+children's-privacy threshold, while a product sold with prepaid credits
+is meant for adults. Cloudish's terms and its privacy policy now both
+say 18, and say what happens if it learns otherwise. Whatever number you
+pick, the two documents should give the same one.</li>
+<li><strong>Money.</strong> Prepaid credits need a price, what happens
+to unused ones, whether they are refundable, and what happens to them on
+termination.</li>
+<li><strong>Changes and termination.</strong> What gets an account
+removed from the service, and how much notice a change to pricing, data
+handling or users' rights gets. Name the jurisdiction whose law governs
+the agreement.</li>
+</ul>
+<h2 id="check-that-it-works">Check that it works</h2>
+<p>Four commands, against the deployed site:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The page, as a browser and a crawler see it</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://www.example.com/terms <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&#39;&lt;h1[^&gt;]*&gt;[^&lt;]*&lt;/h1&gt;&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://www.example.com/terms <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="st">&#39;%&#39;</span>   <span class="co"># no placeholders left behind</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The Markdown, as an agent sees it</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://www.example.com/terms.md <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The link to it, in the page head</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sI</span> https://www.example.com/terms <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="st">&#39;^link:&#39;</span></span></code></pre></div>
+<p>Then break the source on purpose — stop the service, or point the
+fetch at a dead <a href="Glossary.html#host">host</a> — and load
+<code>/terms</code> again. The last-known-good copy should still be
+served, and a document that was never fetched should fail with a message
+naming what could not be loaded, not a blank page.</p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li>one canonical Markdown file per document, in the repository that
+owns the behavior</li>
+<li><code>/{name}</code> as HTML and <code>/{name}.md</code> as
+Markdown, both served from that file</li>
+<li>a canonical URL and a <code>rel="alternate"</code> link to the
+Markdown in the page head</li>
+<li>the "Last updated" date in the document itself</li>
+<li>every promise in the document matching what the code does</li>
+<li>keys, agents, model output and abuse covered</li>
+<li>the legal pages still served when the service behind them is
+down</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Data-protection.html">Data protection when you use AI</a>:
+the questions a privacy policy answers</li>
+<li><a href="Data-protection-by-vendor.html">Data protection by
+vendor</a></li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps and
+agents</a></li>
+<li><a href="Idea-to-deployed-AI-app.html#4-deploy">From idea to deployed
+AI app</a>: where the legal pages fit in a deploy</li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#api-key">API key</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-06.</p>
+<ul>
+<li>Google Search Central, <a
+href="https://developers.google.com/search/docs/crawling-indexing/indexable-file-types">File
+types indexable by Google</a></li>
+<li>Google Search Central, <a
+href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls">Consolidate
+duplicate URLs</a></li>
+<li>Cloudish, <a
+href="https://cloudish.ai/terms.md?ref=cc-wiki">terms.md</a> and <a
+href="https://cloudish.ai/privacy.md?ref=cc-wiki">privacy.md</a>, the
+disclosed example's canonical copies</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a change made while
+building the Cloudish site, and checked against the <a
+href="#sources">sources</a> on 2026-11-06. Not legal advice. Found a
+mistake? <a href="CONTRIBUTING.html">Fix it or open an issue</a>. Text
+licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

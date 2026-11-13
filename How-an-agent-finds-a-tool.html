@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How an agent finds a tool you wrote · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Agents.html">Agents</a> · Tags: <a
+href="Tag-agents.html">agents</a>, <a href="Tag-skills.html">skills</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-an-agent-finds-a-tool-you-wrote">How an agent finds a tool
+you wrote</h1>
+<p><strong>An <a href="Glossary.html#agent">agent</a> finds a tool through
+a file it reads, not through a page you publish: a skill file whose name
+and one-line description it loads up front, and whose body it opens only
+when the job matches.</strong> The description is therefore the part
+that decides whether your tool is ever used, and the rest of the file
+only matters after it has won that match.</p>
+<h2 id="a-skill-is-a-folder-with-a-skillmd">A skill is a folder with a
+<code>SKILL.md</code></h2>
+<p>Anthropic's Agent Skills are "modular capabilities that extend
+Claude's functionality. Each Skill packages instructions, metadata, and
+optional resources (scripts, templates) that Claude uses automatically
+when relevant" (<a
+href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agent
+Skills</a>, checked 2026-11-10). In practice a skill is a directory
+holding a <code>SKILL.md</code> with YAML front matter, plus any scripts
+and reference files it needs. Claude Code looks for them in
+<code>~/.claude/skills/</code> (personal) and
+<code>.claude/skills/</code> (project).</p>
+<p>The file is loaded in stages, which is the whole design:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What it is</th>
+<th>When it loads</th>
+<th>Cost in the context window</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>name</code> and <code>description</code> from the front
+matter</td>
+<td>At startup, for every installed skill</td>
+<td>About 100 <a href="Glossary.html#token">tokens</a> per skill</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The body of <code>SKILL.md</code></td>
+<td>When the description matches the request</td>
+<td>Under 5k tokens</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Bundled files and scripts</td>
+<td>When the instructions point to them</td>
+<td>Nothing until read; a script's code never enters the context</td>
+</tr>
+</tbody>
+</table>
+<p>Two fields are required: <code>name</code>, up to 64 characters of
+lowercase letters, numbers and hyphens, and <code>description</code>, up
+to 1,024 characters. "The <code>description</code> is what Claude
+matches your request against when determining whether to trigger the
+Skill, so it must say both what the Skill does and when to use it" (<a
+href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agent
+Skills</a>, checked 2026-11-10).</p>
+<p>So write the description as the trigger, not as a summary: name the
+thing ("deploy a container", "parse a PDF"), then the situations that
+should wake it ("when the user mentions a Dockerfile or asks for a
+public URL"). The body can be long; the description cannot.</p>
+<h2 id="the-same-shape-shows-up-in-other-agents">The same shape shows up
+in other agents</h2>
+<p>The format is not tied to one vendor. AMD's GAIA keeps its skills in
+the same shape — "a skill is a reusable capability <em>any</em> agent
+composes — a procedure written for a model to follow, plus the tools it
+needs" — as one directory per skill under <code>hub/skills/</code>, with
+a required <code>SKILL.md</code>, an optional <code>tools.py</code>, and
+an optional <code>scripts/</code> (<a
+href="https://github.com/amd/gaia/blob/main/hub/skills/README.md">GAIA
+skills README</a>, checked 2026-11-10). Its front matter carries the
+same kind of identity (<code>name</code>, <code>version</code>,
+<code>description</code>, <code>license</code>) and adds what that
+platform gates on: a security tier, permissions, the tools the skill
+requires and its provenance.</p>
+<p>GAIA also shows the other half of discovery: a way to publish.
+<code>gaia skill publish ./&lt;name&gt;/</code> takes the skill's
+identity from its front matter and ships the directory as the bundle (<a
+href="https://github.com/amd/gaia/blob/main/hub/skills/README.md">GAIA
+skills README</a>, checked 2026-11-10). Writing the folder is step one;
+putting it where an agent's platform lists it is step two, and that step
+is a submission to the platform, not something you publish on your own
+site.</p>
+<h2 id="project-instructions-are-a-different-file">Project instructions
+are a different file</h2>
+<p>An <code>AGENTS.md</code> at the root of a repository is not a tool.
+It is "a README for agents" — "a dedicated, predictable place to provide
+the context and instructions to help AI coding agents work on your
+project" (<a href="https://agents.md/">AGENTS.md</a>, checked
+2026-11-10). It is plain Markdown with no required fields, and the
+nearest file in the directory tree wins, so a monorepo can give each
+package its own. Use it for how the project is built and tested; use a
+skill when you are handing the agent a capability it did not have.</p>
+<p>For tools that live behind a network call rather than a file, the
+other mechanism is a server the agent is given and whose tools it can
+call: see <a href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP
+and A2A</a>.</p>
+<h2 id="a-skill-is-instructions-the-agent-obeys">A skill is instructions
+the agent obeys</h2>
+<p>Because the file changes what the agent does, it is closer to
+installed software than to documentation. Anthropic's own warning: "a
+malicious Skill can direct Claude to call tools or run code in ways that
+don't match the Skill's stated purpose" (<a
+href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agent
+Skills</a>, checked 2026-11-10). Read a skill's scripts before
+installing it from anywhere you do not control, and keep secrets out of
+the file: its text is read into the model's context.</p>
+<p>One more limit worth knowing before you write four copies: custom
+skills do not sync across surfaces. A skill uploaded to one product is
+not automatically available on another, so the same folder may have to
+be installed once per place the agent runs (<a
+href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agent
+Skills</a>, checked 2026-11-10).</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="AI-agent.html">What an AI agent is</a>: tools, the loop, and
+levels of autonomy</li>
+<li><a href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and
+A2A</a>: the network side of the same question</li>
+<li><a href="Where-your-keys-come-from.html">Where your keys come
+from</a>: how to see which channel actually sent the callers</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#a2a-agent2agent">A2A (Agent2Agent)</a>, <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#context-window">Context window</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#dockerfile">Dockerfile</a>, <a
+href="Glossary.html#mcp-model-context-protocol">MCP (Model Context
+Protocol)</a>, <a href="Glossary.html#model">Model</a>, <a
+href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-10.</p>
+<ul>
+<li>Anthropic, <a
+href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">Agent
+Skills</a>: what a skill is, the <code>SKILL.md</code> structure and
+required fields, the three loading levels, where Claude Code looks for
+skills, the cross-surface limit, and the security warning</li>
+<li>AMD, <a
+href="https://github.com/amd/gaia/blob/main/hub/skills/README.md">GAIA
+skills README</a>: the skill package format, the front matter fields,
+and <code>gaia skill publish</code></li>
+<li><a href="https://agents.md/">AGENTS.md</a>: what the file is for,
+the format and the nearest-file rule</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from adding a deploy skill
+to an agent platform's skills directory, and checked against the <a
+href="#sources">sources</a> on 2026-11-10. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>
