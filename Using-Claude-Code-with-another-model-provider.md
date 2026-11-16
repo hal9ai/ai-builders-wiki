@@ -1,14 +1,14 @@
 ---
 title: "Running Claude Code against another model provider"
 description: "Point Claude Code at an Anthropic-compatible endpoint with three environment variables, and keep the provider key out of the agent's shell."
-category: How-to
+category: Models and providers
 tags: [coding-agents, models, providers, security, secrets]
-order: 9
+order: 3
 checked: 2026-11-13
 ---
 
 <!-- NAV:START -->
-[Home](README.md) › [How-to](Category-How-to.md) · Tags: [coding-agents](Tag-coding-agents.md), [models](Tag-models.md), [providers](Tag-providers.md), [security](Tag-security.md), [secrets](Tag-secrets.md)
+[Home](README.md) › [Models and providers](Category-Models-and-providers.md) · Tags: [coding-agents](Tag-coding-agents.md), [models](Tag-models.md), [providers](Tag-providers.md), [security](Tag-security.md), [secrets](Tag-secrets.md)
 <!-- NAV:END -->
 
 # Running Claude Code against another model provider
