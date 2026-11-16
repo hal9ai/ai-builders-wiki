@@ -20,6 +20,7 @@
 
 - [AI providers and models: who makes what, and how to choose](AI-providers-and-models.md)
 - [Model names and versions](Model-names-and-versions.md)
+- [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md)
 
 **[Security and data](Category-Security-and-data.md)**
 
@@ -33,6 +34,7 @@
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md)
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md)
 - [How to shrink a container image](Container-image-size.md)
+- [How to tell whether a page overflows the screen](How-to-tell-whether-a-page-overflows.md)
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md)
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md)
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md)
@@ -43,6 +45,9 @@
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md)
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md)
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md)
+- [How to keep an AI reply running when the browser refreshes](Keeping-an-AI-reply-running-when-the-browser-refreshes.md)
+- [How to serve a single-page app from one container](Serving-a-single-page-app-from-one-container.md)
+- [How to carry a prompt through sign-in into the first chat](Carry-a-prompt-through-sign-in.md)
 
 **[Problems & solutions](Category-Problems-solutions.md)**
 
@@ -50,5 +55,9 @@
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md)
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md)
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md)
+- [A sign-in that lands on another site](A-sign-in-that-lands-on-another-site.md)
 - [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md)
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md)
+- [A page that scrolls sideways on a phone](A-page-that-scrolls-sideways-on-a-phone.md)
+- [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md)
+- [A product demo that pretends to be live](A-product-demo-that-pretends-to-be-live.md)

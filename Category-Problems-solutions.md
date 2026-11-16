@@ -4,14 +4,18 @@
 
 # Category: Problems & solutions
 
-**6 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md).
+**10 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md).
 
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md): The page painted but no JavaScript ran: how to spot a script request that the server answered with an HTML page, and how to fix the rule that caused it.
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md): The provider says the redirect URI does not match, or the callback address comes out as 'https,http://example.com': why a forwarded header can carry a list of values, and how to build the address safely.
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md): A new HTML page paired with an old cached CSS or JS file: how to spot it, and how to give assets a URL that changes when they do.
+- [A sign-in that lands on another site](A-sign-in-that-lands-on-another-site.md): Clicking sign in takes the browser to a page with no login form on it, and your app never hears about the attempt: the sign-in provider's fallback route points at the wrong place, and the fix is to own that route.
 - [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md): A browser only lets a page read another origin's JSON when that server allows it with Access-Control-Allow-Origin; otherwise fetch the data on your own server and serve it from your own domain.
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md): The user is signed in, yet the account is empty: their identity follows them across regions, the account row does not, so create it on first use instead of only reading it.
+- [A page that scrolls sideways on a phone](A-page-that-scrolls-sideways-on-a-phone.md): A phone page wider than the screen is usually one flex or grid item that cannot shrink: find the item, let it shrink with min-width: 0, and keep sideways scrolling for the rows that should have it.
+- [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md): A framed page can refuse to load and the parent page cannot see why: check X-Frame-Options and frame-ancestors, then keep an open-in-a-new-tab fallback.
+- [A product demo that pretends to be live](A-product-demo-that-pretends-to-be-live.md): A scripted demo on a landing page is useful when it says it is scripted, follows the request the visitor can see, and carries their prompt into sign-up.
 
 ---
 

@@ -4,11 +4,12 @@
 
 # Category: How-to
 
-**13 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
+**17 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
 - [How to shrink a container image](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
+- [How to tell whether a page overflows the screen](How-to-tell-whether-a-page-overflows.md): Compare scroll size with client size at the viewport sizes you care about: a larger scroll width or height means something does not fit.
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md): Read Common Crawl's Parquet index and hyperlink graph directly from a small container with DuckDB, without copying the data — and without the big join that runs a 256 MB container out of memory.
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md): Point one wildcard DNS record at your app's server so every app subdomain resolves without its own record, and one wildcard certificate covers them for HTTPS.
@@ -19,6 +20,9 @@
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md): When sign-in cannot finish on http://localhost, sign the session cookie yourself with the app's own secret, on loopback only, to preview the signed-in page.
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md): Run the official image as one container with a volume at the app's storage path, keep its secret keys outside the image, and finish the first-run setup once.
+- [How to keep an AI reply running when the browser refreshes](Keeping-an-AI-reply-running-when-the-browser-refreshes.md): Make the server own the turn, buffer its events and let a reloaded page reattach — instead of tying the model call to one HTTP response.
+- [How to serve a single-page app from one container](Serving-a-single-page-app-from-one-container.md): One HTML file plus its assets in an nginx image, with no build step: hash routes need no rewrite rule, path routes need one, and the build context must not carry your secrets.
+- [How to carry a prompt through sign-in into the first chat](Carry-a-prompt-through-sign-in.md): Save the text a visitor typed before the sign-in redirect, read it back once when the app restarts, and use it as the first message: what survives the redirect, and how to keep the handoff safe.
 
 ---
 

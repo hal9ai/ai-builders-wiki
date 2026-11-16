@@ -8,6 +8,7 @@ checked: 2026-11-15
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [basics](Tag-basics.md)
 <!-- NAV:END -->
 
 # How to keep an AI reply running when the browser refreshes
@@ -82,6 +83,7 @@ Bound the buffer while you are here. Cap the number of events and bytes per run,
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [Agent](Glossary.md#agent), [Deploy](Glossary.md#deploy), [Logs](Glossary.md#logs), [Model](Glossary.md#model), [Streaming](Glossary.md#streaming), [Token](Glossary.md#token), [Tool](Glossary.md#tool).
 <!-- SEEALSO:END -->
 
 ## Sources

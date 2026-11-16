@@ -6,3 +6,4 @@
 
 - [AI providers and models: who makes what, and how to choose](AI-providers-and-models.md) (Models and providers)
 - [Model names and versions](Model-names-and-versions.md) (Models and providers)
+- [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md) (Models and providers)

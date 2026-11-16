@@ -37,6 +37,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 
 - [AI providers and models: who makes what, and how to choose](AI-providers-and-models.md): The main model makers as of October 2026, open-weight vs closed, where to get them, and how to pick one.
 - [Model names and versions](Model-names-and-versions.md): How model families, tiers, snapshots, aliases and retirement dates work, vendor by vendor.
+- [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md): Point Claude Code at an Anthropic-compatible endpoint with three environment variables, and keep the provider key out of the agent's shell.
 
 ### [Security and data](Category-Security-and-data.md)
 
@@ -50,6 +51,7 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
 - [How to shrink a container image](Container-image-size.md): A working web server can fit in a few kilobytes: use a scratch image and a static binary. How to get there, what you give up, and how to measure the stored size.
+- [How to tell whether a page overflows the screen](How-to-tell-whether-a-page-overflows.md): Compare scroll size with client size at the viewport sizes you care about: a larger scroll width or height means something does not fit.
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md): Read Common Crawl's Parquet index and hyperlink graph directly from a small container with DuckDB, without copying the data — and without the big join that runs a 256 MB container out of memory.
 - [Where your keys come from: attribution for AI apps](Where-your-keys-come-from.md): When agents sign up instead of people, record a link ref, the agent and model the caller reports, and its HTTP client family, then count them by day.
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md): Point one wildcard DNS record at your app's server so every app subdomain resolves without its own record, and one wildcard certificate covers them for HTTPS.
@@ -60,6 +62,9 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md): When sign-in cannot finish on http://localhost, sign the session cookie yourself with the app's own secret, on loopback only, to preview the signed-in page.
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md): Run the official image as one container with a volume at the app's storage path, keep its secret keys outside the image, and finish the first-run setup once.
+- [How to keep an AI reply running when the browser refreshes](Keeping-an-AI-reply-running-when-the-browser-refreshes.md): Make the server own the turn, buffer its events and let a reloaded page reattach — instead of tying the model call to one HTTP response.
+- [How to serve a single-page app from one container](Serving-a-single-page-app-from-one-container.md): One HTML file plus its assets in an nginx image, with no build step: hash routes need no rewrite rule, path routes need one, and the build context must not carry your secrets.
+- [How to carry a prompt through sign-in into the first chat](Carry-a-prompt-through-sign-in.md): Save the text a visitor typed before the sign-in redirect, read it back once when the app restarts, and use it as the first message: what survives the redirect, and how to keep the handoff safe.
 
 ### [Problems & solutions](Category-Problems-solutions.md)
 
@@ -67,12 +72,16 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md): The address bar flashes a callback URL with a code in it, over and over: how a page that redirects before the code is exchanged turns a sign-in into an endless loop, and how to fix it.
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md): The provider says the redirect URI does not match, or the callback address comes out as 'https,http://example.com': why a forwarded header can carry a list of values, and how to build the address safely.
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md): A new HTML page paired with an old cached CSS or JS file: how to spot it, and how to give assets a URL that changes when they do.
+- [A sign-in that lands on another site](A-sign-in-that-lands-on-another-site.md): Clicking sign in takes the browser to a page with no login form on it, and your app never hears about the attempt: the sign-in provider's fallback route points at the wrong place, and the fix is to own that route.
 - [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md): A browser only lets a page read another origin's JSON when that server allows it with Access-Control-Allow-Origin; otherwise fetch the data on your own server and serve it from your own domain.
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md): The user is signed in, yet the account is empty: their identity follows them across regions, the account row does not, so create it on first use instead of only reading it.
+- [A page that scrolls sideways on a phone](A-page-that-scrolls-sideways-on-a-phone.md): A phone page wider than the screen is usually one flex or grid item that cannot shrink: find the item, let it shrink with min-width: 0, and keep sideways scrolling for the rows that should have it.
+- [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md): A framed page can refuse to load and the parent page cannot see why: check X-Frame-Options and frame-ancestors, then keep an open-in-a-new-tab fallback.
+- [A product demo that pretends to be live](A-product-demo-that-pretends-to-be-live.md): A scripted demo on a landing page is useful when it says it is scripted, follows the request the visitor can see, and carries their prompt into sign-up.
 
 ### Tags
 
-[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [data](Tag-data.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md) · [skills](Tag-skills.md) · [storage](Tag-storage.md)
+[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [data](Tag-data.md) · [demos](Tag-demos.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [product](Tag-product.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md) · [skills](Tag-skills.md) · [storage](Tag-storage.md)
 
 <!-- INDEX:END -->
 

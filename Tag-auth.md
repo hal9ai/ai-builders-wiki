@@ -6,5 +6,7 @@
 
 - [A login that loops between your app and the sign-in provider](A-login-that-loops.md) (Problems & solutions)
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md) (Problems & solutions)
+- [A sign-in that lands on another site](A-sign-in-that-lands-on-another-site.md) (Problems & solutions)
 - [A signed-in user with no account on another region](A-signed-in-user-with-no-account-on-another-region.md) (Problems & solutions)
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md) (How-to)
+- [How to carry a prompt through sign-in into the first chat](Carry-a-prompt-through-sign-in.md) (How-to)

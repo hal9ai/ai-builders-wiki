@@ -7,3 +7,4 @@
 - [AI providers and models: who makes what, and how to choose](AI-providers-and-models.md) (Models and providers)
 - [Data protection when you use AI](Data-protection.md) (Security and data)
 - [Data protection by vendor](Data-protection-by-vendor.md) (Security and data)
+- [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md) (Models and providers)

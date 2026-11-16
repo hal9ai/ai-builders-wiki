@@ -6,4 +6,6 @@
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md) (How-to)
+- [How to tell whether a page overflows the screen](How-to-tell-whether-a-page-overflows.md) (How-to)
+- [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md) (Models and providers)
 - [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md) (Foundations)

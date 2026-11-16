@@ -6,5 +6,6 @@
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
 - [Security for AI apps and agents](Security-for-AI-apps.md) (Security and data)
+- [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md) (Models and providers)
 - [How to deploy your app on every push](Deploy-on-every-push.md) (How-to)
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md) (How-to)

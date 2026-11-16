@@ -7,3 +7,4 @@
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md) (How-to)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md) (How-to)
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md) (How-to)
+- [How to carry a prompt through sign-in into the first chat](Carry-a-prompt-through-sign-in.md) (How-to)
