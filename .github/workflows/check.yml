@@ -7,6 +7,14 @@ on:
 permissions:
   contents: write
 
+# Serialize the runs that regenerate navigation on main, so a batch of
+# merged PRs doesn't race each other on the bot's "chore: regenerate
+# navigation" push (each run checks out a stale main and gets rejected
+# non-fast-forward). PR runs use their own ref, so they still run in parallel.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   wiki:
     runs-on: ubuntu-latest
@@ -47,10 +55,21 @@ jobs:
         if: github.event_name == 'push'
         run: |
           python3 scripts/build_wiki.py
-          if ! git diff --exit-code --quiet; then
-            git config user.name "wiki-bot"
-            git config user.email "wiki-bot@hal9.ai"
-            git add -A
-            git commit -m "chore: regenerate navigation"
-            git push origin HEAD:refs/heads/main
+          if git diff --exit-code --quiet; then
+            exit 0
           fi
+          git config user.name "wiki-bot"
+          git config user.email "wiki-bot@hal9.ai"
+          git add -A
+          git commit -m "chore: regenerate navigation"
+          # Another push to main can land between checkout and push. Rebase
+          # onto it and retry instead of failing with "non-fast-forward": the
+          # files we regenerate are rebuilt from main, so re-applying them is
+          # always safe.
+          git push origin HEAD:refs/heads/main || {
+            git pull --rebase origin main
+            python3 scripts/build_wiki.py
+            git add -A
+            git commit -m "chore: regenerate navigation" || true
+            git push origin HEAD:refs/heads/main
+          }
