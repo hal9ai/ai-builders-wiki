@@ -4,6 +4,8 @@
 
 **How it is written.** Anyone can propose a change by pull request, written with or without AI help; maintainers review it against the sources before merging. Every claim about a vendor links to that vendor's own page, with the date it was checked, and each page's footer says how it was written and when it was last checked. Facts in this field change monthly, model names especially. Nothing here is legal or security advice.
 
+**Contribute with an AI agent.** The wiki ships a Claude Code skill that walks an agent through this same workflow — install it with `/plugin install aibuilderswiki-contributor --marketplace hal9ai/ai-builders-wiki`, then ask your agent to contribute.
+
 ## Start here
 
 New to the subject? Read in this order:
