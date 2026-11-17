@@ -1,0 +1,6 @@
+{
+  "name": "aibuilderswiki-contributor",
+  "version": "1.0.0",
+  "author": { "name": "Hal9" },
+  "description": "Contribute to the AI Builders Wiki (aibuilderswiki.com) — fix a fact, add a page, or translate one — following the wiki's rules, template, and pull-request workflow."
+}

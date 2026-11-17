@@ -16,6 +16,16 @@ If you are not sure something is wrong, open the issue anyway and say so.
 
 Pull requests are welcome: fixes, updated facts, new pages and translations. For a new page, check the index first so each question has one page; for a large rewrite, open an issue first so we can agree on scope.
 
+## Contribute with an AI agent
+
+The wiki ships a Claude Code skill that walks an agent through this same workflow. Install it once:
+
+```
+/plugin install aibuilderswiki-contributor --marketplace hal9ai/ai-builders-wiki
+```
+
+Then ask your agent to contribute and give it the change; the skill holds it to the rules above, the page template, and the fork → branch → build → pull-request workflow. Every claim is still checked against its source — AI help is fine, checking is yours.
+
 ## Work locally
 
 1. Fork the repository on GitHub, clone your fork, and make a branch: `git switch -c fix-data-protection-table`.
