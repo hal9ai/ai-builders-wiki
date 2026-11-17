@@ -8,6 +8,7 @@ checked: 2026-11-16
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [How-to](Category-How-to.md) · Tags: [hosting](Tag-hosting.md), [basics](Tag-basics.md)
 <!-- NAV:END -->
 
 # What DNS records GitHub Pages needs for a custom domain
@@ -82,6 +83,7 @@ The apex should return all four A addresses, and all four AAAA addresses if you 
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [Provider](Glossary.md#provider), [Workflow](Glossary.md#workflow).
 <!-- SEEALSO:END -->
 
 ## Sources

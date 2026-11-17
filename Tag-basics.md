@@ -11,4 +11,5 @@
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)
 - [How to point a domain at your app, with one record for every subdomain](Pointing-a-domain-at-your-app.md) (How-to)
 - [A page that scrolls sideways on a phone](A-page-that-scrolls-sideways-on-a-phone.md) (Problems & solutions)
+- [What DNS records GitHub Pages needs for a custom domain](What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.md) (How-to)
 - [How to keep an AI reply running when the browser refreshes](Keeping-an-AI-reply-running-when-the-browser-refreshes.md) (How-to)

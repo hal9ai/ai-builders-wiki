@@ -42,6 +42,7 @@
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md)
 - [How to deploy your app on every push](Deploy-on-every-push.md)
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md)
+- [What DNS records GitHub Pages needs for a custom domain](What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.md)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md)
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md)
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md)

@@ -4,7 +4,7 @@
 
 # Category: How-to
 
-**17 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
+**18 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [Problems & solutions](Category-Problems-solutions.md).
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md): One concrete path, end to end: build with an assistant, keys and secrets, deploy, logs, costs, updates.
 - [How to check a web app an AI built](Checking-an-AI-built-web-app.md): Run it in a headless browser: load each page, click the main actions, and keep the console errors, failed requests and screenshots as evidence.
@@ -17,6 +17,7 @@
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md): One hostname for an app that runs in several datacenters: point the domain at one entry point that looks up which datacenter holds each name, and forward the rest with the Host header kept.
 - [How to deploy your app on every push](Deploy-on-every-push.md): Run the same deploy script from CI on every push to main: tests first, the key in the repository's secret store, one deploy at a time, and a check that the app answers.
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md): A block volume per sandbox stops scaling at the host's per-machine limit: give each sandbox a directory on a shared filesystem, and plan isolation, quotas and snapshots.
+- [What DNS records GitHub Pages needs for a custom domain](What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.md): Four A records at the apex, four AAAA records for IPv6, and a www CNAME to ORGANIZATION.github.io — plus the TXT record that proves the domain is yours.
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md): Data that must outlive a visit, a restart or a redeploy belongs on the server, in a database or files on storage that outlives the container — not in the browser or in process memory.
 - [Previewing a signed-in page on localhost](Previewing-a-signed-in-page-on-localhost.md): When sign-in cannot finish on http://localhost, sign the session cookie yourself with the app's own secret, on loopback only, to preview the signed-in page.
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md): Run the official image as one container with a volume at the app's storage path, keep its secret keys outside the image, and finish the first-run setup once.

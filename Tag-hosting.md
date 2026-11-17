@@ -19,6 +19,7 @@
 - [Serve one custom domain from more than one datacenter](Serve-one-domain-from-more-than-one-datacenter.md) (How-to)
 - [How to deploy your app on every push](Deploy-on-every-push.md) (How-to)
 - [Persistent storage for many AI sandboxes](Persistent-storage-for-many-AI-sandboxes.md) (How-to)
+- [What DNS records GitHub Pages needs for a custom domain](What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.md) (How-to)
 - [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md) (Problems & solutions)
 - [Where an AI-built app keeps its data](Where-an-AI-built-app-keeps-its-data.md) (How-to)
 - [How to run an app that keeps its own SQLite database](How-to-run-an-app-that-keeps-its-own-SQLite-database.md) (How-to)
