@@ -5,6 +5,8 @@
 # Tag: costs
 
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
+- [The Cloudish podcast](Cloudish-podcast.md) (Other sources)
+- [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md) (Other sources)
 - [What generative AI is, and why people build with it](Generative-AI.md) (Foundations)
 - [How to shrink a container image](Container-image-size.md) (How-to)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)

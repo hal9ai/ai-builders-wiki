@@ -6,7 +6,10 @@
 
 - [An app that looks fine but its buttons do nothing](App-looks-fine-but-buttons-do-nothing.md) (Problems & solutions)
 - [From idea to deployed AI app: a typical workflow](Idea-to-deployed-AI-app.md) (How-to)
+- [The Cloudish podcast](Cloudish-podcast.md) (Other sources)
+- [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md) (Other sources)
 - [A sign-in that breaks behind a proxy: the redirect URI](A-sign-in-that-breaks-behind-a-proxy.md) (Problems & solutions)
+- [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md) (Other sources)
 - [How to shrink a container image](Container-image-size.md) (How-to)
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md) (How-to)

@@ -62,3 +62,9 @@
 - [A page that scrolls sideways on a phone](A-page-that-scrolls-sideways-on-a-phone.md)
 - [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md)
 - [A product demo that pretends to be live](A-product-demo-that-pretends-to-be-live.md)
+
+**[Other sources](Category-Other-sources.md)**
+
+- [The Cloudish podcast](Cloudish-podcast.md)
+- [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md)
+- [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md)

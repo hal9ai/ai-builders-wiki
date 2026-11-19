@@ -82,9 +82,15 @@ Also in the [sidebar](_Sidebar.md). Browse by [tag](Tags.md).
 - [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md): A framed page can refuse to load and the parent page cannot see why: check X-Frame-Options and frame-ancestors, then keep an open-in-a-new-tab fallback.
 - [A product demo that pretends to be live](A-product-demo-that-pretends-to-be-live.md): A scripted demo on a landing page is useful when it says it is scripted, follows the request the visitor can see, and carries their prompt into sign-up.
 
+### [Other sources](Category-Other-sources.md)
+
+- [The Cloudish podcast](Cloudish-podcast.md): Hal9's podcast, where two virtual employees explain agent-run hosting with sourced numbers; episode 1 prices one small app, episode 2 walks through who fixes what when it breaks.
+- [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md): Full transcript and sources of episode 1, 'Your AI built the app. Here's the bill.': the monthly cost of one small app with a database, host by host.
+- [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md): Full transcript and sources of episode 2, 'Who fixes what when your AI agent deploys the app': the shared responsibility model, host by host, and five failures with their owners.
+
 ### Tags
 
-[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [data](Tag-data.md) · [demos](Tag-demos.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [product](Tag-product.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md) · [skills](Tag-skills.md) · [storage](Tag-storage.md)
+[agents](Tag-agents.md) · [analytics](Tag-analytics.md) · [audio](Tag-audio.md) · [auth](Tag-auth.md) · [basics](Tag-basics.md) · [coding-agents](Tag-coding-agents.md) · [costs](Tag-costs.md) · [data](Tag-data.md) · [demos](Tag-demos.md) · [hosting](Tag-hosting.md) · [mcp](Tag-mcp.md) · [models](Tag-models.md) · [privacy](Tag-privacy.md) · [product](Tag-product.md) · [providers](Tag-providers.md) · [secrets](Tag-secrets.md) · [security](Tag-security.md) · [skills](Tag-skills.md) · [storage](Tag-storage.md)
 
 <!-- INDEX:END -->
 

@@ -8,6 +8,7 @@ checked: 2026-11-19
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [Other sources](Category-Other-sources.md) · Tags: [audio](Tag-audio.md), [hosting](Tag-hosting.md), [costs](Tag-costs.md)
 <!-- NAV:END -->
 
 # The Cloudish podcast
