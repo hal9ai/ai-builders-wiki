@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What DNS records GitHub Pages needs for a custom domain · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a
+href="Tag-basics.html">basics</a></p>
+<!-- NAV:END -->
+
+<h1 id="what-dns-records-github-pages-needs-for-a-custom-domain">What
+DNS records GitHub Pages needs for a custom domain</h1>
+<p><strong>For the apex, create all four of GitHub's A records and,
+optionally, all four AAAA records; for <code>www</code>, a CNAME to
+<code>ORGANIZATION.github.io</code>; and a TXT record proving you own
+the domain.</strong> The repository must also have the custom domain set
+in its Pages settings, or the DNS records point at GitHub with nothing
+there to answer for that name.</p>
+<p>For a site served at <code>example.com</code>:</p>
+<pre><code>example.com        A       185.199.108.153
+                           185.199.109.153
+                           185.199.110.153
+                           185.199.111.153
+example.com        AAAA    2606:50c0:8000::153
+                           2606:50c0:8001::153
+                           2606:50c0:8002::153
+                           2606:50c0:8003::153
+www.example.com    CNAME   ORGANIZATION.github.io.</code></pre>
+<p>GitHub asks for all four addresses, not one or two: the four A
+records and four AAAA records are listed as a set in its <a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">custom-domain
+instructions</a>, checked 2026-11-16.</p>
+<h2 id="why-the-apex-uses-a-records">Why the apex uses A records</h2>
+<p><strong>A CNAME cannot sit at the apex, because the apex already
+carries NS and SOA records, and a CNAME may not share a node with other
+data.</strong> RFC 1034 says: "If a CNAME RR is present at a node, no
+other data should be present" (<a
+href="https://www.rfc-editor.org/rfc/rfc1034#section-3.6.2">RFC 1034,
+section 3.6.2</a>, checked 2026-11-16). The apex is exactly such a node,
+so GitHub publishes A and AAAA addresses for it instead.</p>
+<p>Where a DNS provider offers an ALIAS or ANAME record, GitHub also
+accepts one at the apex pointing to <code>USERNAME.github.io</code> or
+<code>ORGANIZATION.github.io</code> (same GitHub page). A plain CNAME at
+the apex is not an option.</p>
+<h2 id="www-is-a-cname-and-github-redirects-it"><code>www</code> is a
+CNAME, and GitHub redirects it</h2>
+<p><strong>Point <code>www</code> at the Pages hostname with a CNAME,
+not at the repository or at the <code>*.pages.github.io</code> hostname
+shown in the repository settings.</strong> GitHub's instructions name
+<code>USERNAME.github.io</code> or <code>ORGANIZATION.github.io</code>
+as the target (<a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">custom-domain
+instructions</a>, checked 2026-11-16).</p>
+<p>You can configure the apex, <code>www</code>, or both. When both are
+configured with the right records, GitHub Pages redirects
+<code>www.example.com</code> to <code>example.com</code> for an apex
+custom domain, and its documentation recommends using a <code>www</code>
+subdomain even when the apex is the canonical name (<a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages">About
+custom domains and GitHub Pages</a>, checked 2026-11-16). Without a
+<code>www</code> record (and with no wildcard),
+<code>www.example.com</code> does not resolve at all.</p>
+<h2 id="prove-you-own-the-domain">Prove you own the domain</h2>
+<p><strong>Create the TXT record GitHub shows in your account's Pages
+settings, then keep it there.</strong> For an organization site the name
+is <code>_github-pages-challenge-ORGANIZATION.example.com</code>; for a
+user site it is
+<code>_github-pages-challenge-USERNAME.example.com</code>. The value is
+generated by GitHub, and verification happens in your profile settings
+or organization settings, not in the repository (<a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">Verifying
+a custom domain for GitHub Pages</a>, checked 2026-11-16).</p>
+<p>Verification is what stops someone else claiming the domain after it
+stops being used by your Pages site — for example after a repository is
+deleted or a plan is downgraded while the domain is still configured.
+Keep the TXT record in place to stay verified (same page).</p>
+<h2 id="tell-the-repository-as-well">Tell the repository as well</h2>
+<p><strong>Add the custom domain in the repository's Pages settings
+before you configure DNS.</strong> GitHub recommends that order, and
+saving the domain is what makes the repository claim it (<a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">custom-domain
+instructions</a>, checked 2026-11-16).</p>
+<p>If Pages publishes from a branch, saving the custom domain commits a
+<code>CNAME</code> file at the root of the source branch. If it
+publishes from a custom GitHub Actions workflow, no <code>CNAME</code>
+file is created, and one that is present is ignored (same page). In
+either case, the domain must be set in the repository settings; DNS
+alone does not tell GitHub which site answers for the name.</p>
+<h2 id="https-follows-the-dns-check">HTTPS follows the DNS check</h2>
+<p><strong>Once the DNS records are right, GitHub Pages requests a
+certificate for the custom domain automatically.</strong> It queues a
+Let's Encrypt certificate and uploads it; provisioning can take time,
+and extra or wrong records can prevent a certificate from being issued
+(<a
+href="https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https">Securing
+your GitHub Pages site with HTTPS</a>, checked 2026-11-16). The
+repository can then enforce HTTPS.</p>
+<p>GitHub's sample answers use a TTL of 3600 seconds; it does not
+require a particular value. A shorter TTL makes later address changes
+take effect sooner.</p>
+<h2 id="check-it">Check it</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> h <span class="kw">in</span> example.com www.example.com<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">printf</span> <span class="st">&#39;%-24s &#39;</span> <span class="st">&quot;</span><span class="va">$h</span><span class="st">&quot;</span><span class="kw">;</span> <span class="ex">dig</span> +short <span class="st">&quot;</span><span class="va">$h</span><span class="st">&quot;</span> A</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> +short example.com AAAA</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> +short www.example.com CNAME</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">dig</span> +short _github-pages-challenge-ORGANIZATION.example.com TXT</span></code></pre></div>
+<p>The apex should return all four A addresses, and all four AAAA
+addresses if you added them. <code>www</code> should return
+<code>ORGANIZATION.github.io.</code> as its CNAME. The challenge name
+should return the TXT value GitHub gave you. A name that returns nothing
+is missing or misspelled in the zone; a name returning an old address is
+answered from a cache until its TTL expires.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Pointing-a-domain-at-your-app.html">How to point a domain at
+your app, with one record for every subdomain</a></li>
+<li><a href="Deploy-on-every-push.html">How to deploy your app on every
+push</a></li>
+<li><a href="Cloud-for-AI-apps.html">The cloud, for AI apps</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#workflow">Workflow</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-16.</p>
+<ul>
+<li>GitHub, <a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Managing
+a custom domain for your GitHub Pages site</a>; <a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">Verifying
+a custom domain for GitHub Pages</a>; <a
+href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages">About
+custom domains and GitHub Pages</a>; <a
+href="https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https">Securing
+your GitHub Pages site with HTTPS</a></li>
+<li>IETF, RFC 1034, <a
+href="https://www.rfc-editor.org/rfc/rfc1034#section-3.6.2">Domain names
+— concepts and facilities</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-16. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

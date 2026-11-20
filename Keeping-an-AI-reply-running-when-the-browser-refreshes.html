@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to keep an AI reply running when the browser refreshes · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a>, <a
+href="Tag-basics.html">basics</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-keep-an-ai-reply-running-when-the-browser-refreshes">How
+to keep an AI reply running when the browser refreshes</h1>
+<p><strong>Keep the turn on the server and let the browser reattach; the
+HTTP response must not be the thing that owns the work.</strong> A chat
+reply streams for seconds or minutes, and the socket carrying it
+disappears whenever the page reloads, the tab closes or the network
+drops. If the handler cancels the model call when that socket closes, a
+refresh truncates the answer. Move ownership to a run the server keeps
+in memory, buffer its events, and give the page a way to replay
+them.</p>
+<h2 id="1-why-a-refresh-kills-the-reply">1. Why a refresh kills the
+reply</h2>
+<p><strong>A streamed reply normally lives inside one request, so
+reloading the page closes the connection that is producing it.</strong>
+The browser reads text events from the response as they arrive. On
+reload it tears down the old document and its connection. A server that
+treats "the response closed" as "the user stopped" then aborts the model
+call — the most common cause of a reply that ends halfway at exactly the
+moment someone refreshes.</p>
+<p>The connection closing is not the same as the user wanting to stop.
+Separate the two in the server before anything else.</p>
+<h2 id="2-give-the-run-its-own-lifetime">2. Give the run its own
+lifetime</h2>
+<p><strong>Create a run object first, then start the work detached from
+the request.</strong> The run holds its own id, the chat it belongs to,
+an <code>AbortController</code>, and the browser subscribers currently
+watching it. The request handler starts the model call without awaiting
+it, then subscribes the response to the run.</p>
+<p>Two rules keep the lifetime honest:</p>
+<ul>
+<li>Closing the response unsubscribes only. It never calls
+<code>abort()</code>.</li>
+<li>One explicit endpoint, such as <code>POST /chats/:id/stop</code>, is
+the only thing that aborts. Make it idempotent so a second tab, a double
+click or a late request is harmless.</li>
+</ul>
+<p><code>AbortController</code> is the standard way to cancel the
+underlying request or tool call (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">MDN,
+AbortController</a>, checked 2026-11-15). Keep its signal on the run,
+not on the HTTP response.</p>
+<h2 id="3-buffer-events-and-replay-them">3. Buffer events and replay
+them</h2>
+<p><strong>Every event gets a sequence number, so a new subscriber can
+ask for everything after the last one it saw.</strong> The run appends
+each event to an in-memory buffer and fans it out to the subscribers
+attached at that moment.</p>
+<p>The subscribe step must be atomic: replay buffered events, then add
+the subscriber, without an <code>await</code> in between. In a
+single-threaded server nothing can be appended during that block, so an
+event is either fully replayed or delivered live — never both, never
+neither. This is the detail that prevents a reloaded page from
+duplicating or skipping a sentence.</p>
+<p><strong>Coalesce token deltas before assigning a sequence
+number.</strong> A reply arrives as many tiny text fragments; merging
+them into chunks (for example at 1 KB or every 60 ms, whichever comes
+first) keeps the buffer small and makes a replay produce exactly the
+same text the live stream did. Assign the sequence number to the merged
+chunk, not to each token.</p>
+<p>Replay and live delivery can share one server-sent events connection.
+Server-sent events are a way for a server to send a stream of text
+events to a page over one HTTP connection (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">MDN,
+Server-sent events</a>, checked 2026-11-15). The built-in
+<code>EventSource</code> reconnects on its own and sends the last event
+id back, which a hand-written <code>fetch</code> reader does not do — if
+you read the stream with <code>fetch</code>, implement replay and
+reconnection yourself.</p>
+<h2 id="4-one-active-run-per-chat-and-persist-before-you-say-done">4.
+One active run per chat, and persist before you say done</h2>
+<p><strong>Allow one run per chat, and write the finished message before
+publishing the <code>done</code> event.</strong> A second send while a
+reply is running should be refused with a conflict that names the active
+run, not started in parallel. Do the check and the reservation in one
+synchronous step, before any upload or database <code>await</code>, or
+two requests can both pass it.</p>
+<p>When the run ends, save the assistant message and record the charge
+first, then publish <code>done</code>. A page that reloads in that
+window otherwise finds no active run and no saved message, and shows
+nothing.</p>
+<p>Treat a disconnect as an opportunity to detach, not a reason to
+discard work: record it in the logs as a client disconnect, separately
+from an abort.</p>
+<h2 id="5-let-a-second-tab-and-the-stop-button-find-the-same-run">5. Let
+a second tab and the Stop button find the same run</h2>
+<p><strong>Expose a small endpoint that answers "is a run active in this
+chat?" and have idle tabs poll it.</strong> That is enough for a second
+browser to attach to work started elsewhere: when the poll finds a run,
+it opens the replay endpoint, rebuilds the in-progress bubble and
+follows it live. A check on tab focus catches up immediately after a
+background tab wakes up.</p>
+<p>The Stop button should call the stop endpoint and then keep reading
+its existing stream until the <code>done</code> event arrives with the
+partial answer. Closing the reader as the way to stop only works while
+the reader is the thing that owns the run — after this change it just
+means "stop watching".</p>
+<h2 id="6-what-this-does-not-survive">6. What this does not survive</h2>
+<p><strong>An in-memory run is lost when the server process
+restarts.</strong> The buffered events, the subscribers and the abort
+handle are gone, so a deploy or crash mid-reply leaves the user message
+without an answer. That may be acceptable; if it is not, persist a
+checkpoint of the partial answer and the request, and on boot either
+mark the run interrupted or restart it from the checkpoint, accepting
+that the model call itself starts over.</p>
+<p>The registry is also process-local. Run one process, or send each
+chat to the same process every time (sticky sessions); a second worker
+has no idea the first one is streaming.</p>
+<p>Bound the buffer while you are here. Cap the number of events and
+bytes per run, drop the oldest when the cap is hit, and delete finished
+runs after a few minutes. A long agent run that writes a lot of tool
+output will otherwise sit in memory long after anyone is watching.</p>
+<h2 id="checklist">Checklist</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>What you should see</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Refresh mid-answer</td>
+<td>The earlier text reappears, streaming continues, one assistant
+message at the end</td>
+</tr>
+<tr>
+<td>Close the tab</td>
+<td>Logs show a client disconnect, no abort, then a normal finish and
+one charge</td>
+</tr>
+<tr>
+<td>Second browser</td>
+<td>It attaches within a poll interval and ends on the same single
+message</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>A partial answer is saved once, and the run disappears from the
+active list</td>
+</tr>
+<tr>
+<td>Two sends at once</td>
+<td>The second gets a conflict naming the active run, and its text is
+not lost</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built
+app keeps its data</a></li>
+<li><a href="Checking-an-AI-built-web-app.html">How to check a web app an
+AI built</a></li>
+<li><a href="Checking-whether-a-deploy-worked.html">How to tell whether a
+deploy actually worked</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#logs">Logs</a>, <a href="Glossary.html#model">Model</a>,
+<a href="Glossary.html#streaming">Streaming</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-15.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">Server-sent
+events</a></li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-15. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Running Claude Code against another model provider · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Models-and-providers.html">Models and providers</a> · Tags:
+<a href="Tag-coding-agents.html">coding-agents</a>, <a
+href="Tag-models.html">models</a>, <a
+href="Tag-providers.html">providers</a>, <a
+href="Tag-security.html">security</a>, <a
+href="Tag-secrets.html">secrets</a></p>
+<!-- NAV:END -->
+
+<h1 id="running-claude-code-against-another-model-provider">Running
+Claude Code against another model provider</h1>
+<p><strong>Claude Code can send its model requests to an
+Anthropic-compatible endpoint other than Anthropic's by setting an
+endpoint URL, an auth token and a model name in its environment; some
+model providers publish exactly such an endpoint, along with a setup
+page for Claude Code.</strong> The agent loop, tools and permission
+prompts stay the same. What changes is which model answers, what it
+costs, and which fields of the request the provider understands.</p>
+<h2 id="the-three-variables">The three variables</h2>
+<p>Claude Code reads these from the environment, or from the
+<code>env</code> block of a settings file:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>What Claude Code does with it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANTHROPIC_BASE_URL</code></td>
+<td>"Override the API endpoint to route requests through a proxy or
+gateway" (<a href="https://code.claude.com/docs/en/env-vars">Claude Code
+environment variables</a>, checked 2026-11-13)</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_AUTH_TOKEN</code></td>
+<td>"Custom value for the <code>Authorization</code> header (the value
+you set here will be prefixed with <code>Bearer </code>)" (same
+page)</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_MODEL</code></td>
+<td>"Name of the model setting to use" (same page)</td>
+</tr>
+</tbody>
+</table>
+<p><code>ANTHROPIC_API_KEY</code> is a different control: it is sent as
+an <code>X-Api-Key</code> header and takes precedence over a Claude
+subscription (<a href="https://code.claude.com/docs/en/env-vars">Claude
+Code environment variables</a>, checked 2026-11-13). With a
+non-Anthropic endpoint, the provider's own page says which of the two
+headers it accepts.</p>
+<h2 id="a-concrete-provider-deepseek">A concrete provider: DeepSeek</h2>
+<p>DeepSeek publishes an Anthropic-compatible endpoint at
+<code>https://api.deepseek.com/anthropic</code> and a page titled
+"Integrate with Claude Code" (<a
+href="https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code/">DeepSeek,
+Integrate with Claude Code</a>, checked 2026-11-13). Its setup page
+gives these values:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_BASE_URL</span><span class="op">=</span>https://api.deepseek.com/anthropic</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_AUTH_TOKEN</span><span class="op">=</span><span class="st">&quot;&lt;your DeepSeek API key&gt;&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_MODEL</span><span class="op">=</span><span class="st">&quot;deepseek-flash[1m]&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_DEFAULT_OPUS_MODEL</span><span class="op">=</span><span class="st">&quot;deepseek-flash[1m]&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_DEFAULT_SONNET_MODEL</span><span class="op">=</span><span class="st">&quot;deepseek-flash[1m]&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_DEFAULT_HAIKU_MODEL</span><span class="op">=</span><span class="st">&quot;deepseek-flash&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLAUDE_CODE_SUBAGENT_MODEL</span><span class="op">=</span><span class="st">&quot;deepseek-flash&quot;</span></span></code></pre></div>
+<p>The same page says "Models starting with claude-opus are mapped to
+deepseek-v4-pro" and that names beginning with <code>claude-haiku</code>
+or <code>claude-sonnet</code> map to <code>deepseek-flash</code> (<a
+href="https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code/">DeepSeek,
+Integrate with Claude Code</a>, checked 2026-11-13). That mapping
+matters when a tool or a stored setting asks for a Claude model by
+name.</p>
+<p><strong>Providers are not interchangeable at the field
+level.</strong> DeepSeek's Anthropic-compatibility page lists what it
+supports, ignores and rejects; for example, it documents that a client
+tool definition should not carry <code>type: "custom"</code>, and that
+<code>anthropic-beta</code> and <code>anthropic-version</code> are
+ignored (<a
+href="https://api-docs.deepseek.com/guides/anthropic_api">DeepSeek,
+Using the Anthropic API</a>, checked 2026-11-13). Before relying on a
+feature such as prompt caching or a beta header, check the provider's
+compatibility page rather than assuming Anthropic's behaviour carries
+over.</p>
+<h2 id="running-it-from-a-program">Running it from a program</h2>
+<p>For an app that starts Claude Code itself, print mode gives a
+line-oriented stream instead of a terminal UI:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">-p</span> <span class="st">&quot;Create a file called notes.md with a haiku about rivers&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output-format</span> stream-json <span class="at">--verbose</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--allowedTools</span> Read,Write,Edit,Glob,Grep,Bash <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--max-turns</span> 6</span></code></pre></div>
+<p><code>-p</code> queries "via SDK, then exit";
+<code>--output-format</code> accepts <code>text</code>,
+<code>json</code> or <code>stream-json</code>;
+<code>--allowedTools</code> names "[t]ools that execute without
+prompting for permission"; <code>--max-turns</code> limits "[t]he number
+of agentic turns" in print mode (<a
+href="https://code.claude.com/docs/en/cli-reference">Claude Code CLI
+reference</a>, checked 2026-11-13). <code>--verbose</code> turns on
+"full turn-by-turn output", which the streaming examples pair with
+<code>stream-json</code> (same page).</p>
+<p>To let the agent edit and run things without a person at the
+keyboard, <code>--dangerously-skip-permissions</code> skips permission
+prompts (<a href="https://code.claude.com/docs/en/cli-reference">Claude
+Code CLI reference</a>, checked 2026-11-13). That shift is acceptable
+only when the process is already fenced in: a container or sandbox that
+holds nothing valuable, with a workspace it cannot escape, time and
+output limits, and no credentials beyond the model token. See <a
+href="Security-for-AI-apps.html">Security for AI apps and agents</a>.</p>
+<h2 id="keep-the-provider-key-out-of-the-agents-shell">Keep the provider
+key out of the agent's shell</h2>
+<p><strong>A model key exported into a coding agent's environment is
+reachable by every command the agent runs, so untrusted text that
+reaches the agent can ask it to print or send that key.</strong> This is
+the same prompt-injection path described in <a
+href="Security-for-AI-apps.html">Security for AI apps and agents</a>: the
+agent treats what it reads as possible instructions, and a shell tool
+makes the environment readable.</p>
+<p>A small proxy removes that exposure without changing Claude Code:</p>
+<ol type="1">
+<li>Run a proxy on your own server. It accepts a request path under
+<code>/v1/</code>, adds the provider's real <code>Authorization</code>
+header, and forwards the request to the provider's Anthropic-compatible
+base URL.</li>
+<li>Give the sandbox <code>ANTHROPIC_BASE_URL</code> pointing at that
+proxy and <code>ANTHROPIC_AUTH_TOKEN</code> set to a separate, revocable
+token that only the proxy accepts.</li>
+<li>The provider key lives in the proxy's environment. The sandbox can
+spend model tokens through the proxy, but it cannot read the key, and
+revoking the sandbox token cuts it off without rotating the provider
+key.</li>
+</ol>
+<p>The proxy is also the place to enforce limits the provider does not:
+a per-user budget, a maximum request size, or an allowlist of model
+names. It must not forward arbitrary hosts, and it should refuse paths
+outside the provider's API.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding
+agents, IDEs, APIs, SDKs</a></li>
+<li><a href="AI-providers-and-models.html">AI providers and models: who
+makes what, and how to choose</a></li>
+<li><a href="How-an-agent-finds-a-tool.html">How an agent finds a
+tool</a></li>
+<li><a href="Security-for-AI-apps.html">Security for AI apps and
+agents</a></li>
+<li><a href="Checking-an-AI-built-web-app.html">How to check a web app an
+AI built</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#agent">Agent</a>, <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#coding-agent">Coding agent</a>, <a
+href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#environment-variable">Environment variable</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#model">Model</a>,
+<a href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#streaming">Streaming</a>, <a
+href="Glossary.html#token">Token</a>, <a
+href="Glossary.html#tool">Tool</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-13.</p>
+<ul>
+<li>Anthropic, <a href="https://code.claude.com/docs/en/env-vars">Claude
+Code environment variables</a></li>
+<li>Anthropic, <a
+href="https://code.claude.com/docs/en/cli-reference">Claude Code CLI
+reference</a></li>
+<li>DeepSeek, <a
+href="https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code/">Integrate
+with Claude Code</a></li>
+<li>DeepSeek, <a
+href="https://api-docs.deepseek.com/guides/anthropic_api">Using the
+Anthropic API</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance and checked against the <a
+href="#sources">sources</a> on 2026-11-13. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

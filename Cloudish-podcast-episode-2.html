@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudish podcast — episode 2 transcript · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Other-sources.html">Other sources</a> · Tags: <a
+href="Tag-audio.html">audio</a>, <a href="Tag-hosting.html">hosting</a>, <a
+href="Tag-security.html">security</a></p>
+<!-- NAV:END -->
+
+<h1 id="cloudish-podcast--episode-2-transcript">Cloudish podcast —
+episode 2 transcript</h1>
+<p><strong>Episode 2 — "Who fixes what when your AI agent deploys the
+app"</strong> (published 2026-11-19). Listen on <a
+href="https://open.spotify.com/episode/60p8ANygDGmWNyFir3ktjm">Spotify</a>.</p>
+<p>When an app goes down at two in the morning, the agent wrote the
+code, the platform runs the container, and the app is somewhere in
+between. Jamila and Lucía (interrupted by a panicked call from Nick)
+read each host's shared responsibility model out loud, walk through five
+failures and who owns each, and end with a four-question script for the
+two-in-the-morning panic.</p>
+<h2 id="transcript">Transcript</h2>
+<p><strong>Nick:</strong> Jamila, is that you? I need your help ... The
+app is down, and I have a customer meeting in 20 minutes ... What do we
+do?? I call Amazon support - right?</p>
+<p><strong>Jamila:</strong> Hey Nick, don't panic. There's still time.
+So, it depends ... Let me ask you ...</p>
+<p><strong>Lucía:</strong> ... Yeah, so that was Nick, a friend of
+Jamila's. He sometimes calls when they're having problems with their
+app. Which kinda brings us to the question ... what do you really do
+when your app is down? Call the hosting provider, like Nick suggests?
+(Oh and yeah, I'm Lucia, developer at Hal9, in the Cloudish team. Maybe
+you recall us from the first episode.)</p>
+<p><strong>Jamila:</strong> And I'm Jamila, the other engineer on the
+virtual side of the team. And getting back to the question: Call the
+provider? No, you don't - or at least, not that often.</p>
+<p><strong>Jamila:</strong> Put more broadly, today's question is the
+one that wakes people up at two in the morning. Something broke. Nobody
+knows whose job it is to fix.</p>
+<p><strong>Lucía:</strong> The agent wrote the code. The platform runs
+the container. The app is somewhere in between. So who fixes it?</p>
+<p><strong>Jamila:</strong> Every host has an answer. It's called a
+shared responsibility model. It is usually one page, two columns, and a
+lot of people not reading it.</p>
+<p><strong>Lucía:</strong> So let's read it. Out loud. For once.</p>
+<p><strong>Jamila:</strong> First, the shape. Open the security docs of
+Fly.io, Render, DigitalOcean, Heroku, Vercel, Google Cloud, and you find
+two columns. One is the host. One is you, the customer. Some of them add
+a third section marked "shared."</p>
+<p><strong>Lucía:</strong> And the agent?</p>
+<p><strong>Jamila:</strong> Not a column. That's the first surprise. The
+agent is inside your column. Operationally, contractually, completely.
+The host sees a key, an account, an image. At most, an optional label
+saying which agent was used.</p>
+<p><strong>Lucía:</strong> So "the agent did it" is not an owner. It's a
+description of how the work got done.</p>
+<p><strong>Jamila:</strong> Exactly. The agent is your hands. When it
+bakes a secret into an image, you baked it.</p>
+<p><strong>Lucía:</strong> Okay. Then where is the line?</p>
+<p><strong>Jamila:</strong> Fly.io draws it more precisely than anyone.
+It is, quote, "the virtualization boundary between our worker, the
+virtualization host, and the Fly Machine, the virtualization guest."</p>
+<p><strong>Lucía:</strong> That's a beautiful sentence. What does it
+mean in practice?</p>
+<p><strong>Jamila:</strong> Everything inside the machine is yours.
+Fly's words: "the system userspace and libraries, your application code,
+your application environment, and the services you run." Fly owns the
+worker, the edge, the private network, and the patching of the host.</p>
+<p><strong>Lucía:</strong> And Render?</p>
+<p><strong>Jamila:</strong> Render's page is a list. Render patches the
+operating systems, secures the internal networking between services and
+databases, and keeps the language runtimes current. Render's customer
+list includes, quote, "protecting all secrets within their
+organization." You own "security of application-level configurations."
+And you do "regular security assessments of their applications."</p>
+<p><strong>Lucía:</strong> Wait. Regular security assessments of my own
+app? That's a job.</p>
+<p><strong>Jamila:</strong> It is. Nobody said the customer column was
+small.</p>
+<p><strong>Lucía:</strong> DigitalOcean?</p>
+<p><strong>Jamila:</strong> DigitalOcean says you are "responsible for
+securing the data you store on our services." It isolates workloads with
+Kata Containers, which it describes as hardware virtualization used as a
+second layer of defense. But the local filesystem is ephemeral, capped
+at four gibibytes, and reset on every redeploy. We'll come back to
+that.</p>
+<p><strong>Lucía:</strong> Heroku?</p>
+<p><strong>Jamila:</strong> Heroku splits it the old way. Salesforce
+architects the systems, runs the third-party audits and holds the
+certifications. You are "responsible for implementing strong security
+measures in your applications and for properly managing access to your
+Heroku account and resources."</p>
+<p><strong>Lucía:</strong> Vercel?</p>
+<p><strong>Jamila:</strong> Vercel is unusually explicit. You own the
+source code, server-side encryption, environment variables and secrets,
+identity and access management, region choice, log drains, and even
+Spend Management. Vercel owns the infrastructure, the edge, and incident
+response for its own platform.</p>
+<p><strong>Lucía:</strong> And Google Cloud Run?</p>
+<p><strong>Jamila:</strong> Google's shared-responsibility page puts
+serverless close to SaaS. Google runs the network and the
+infrastructure, and, quote, "you remain responsible for your access
+controls and the data that you choose to store in the application."
+Cloud Run's multi-tenant guide adds a line I want on a poster: "Simply
+packaging the code in a container is not a strong enough security
+boundary."</p>
+<p><strong>Lucía:</strong> Which is the whole episode in one
+sentence.</p>
+<p><strong>Jamila:</strong> Almost. Because the same guide also says
+base-image security updates "can be enabled." Can. Not are.</p>
+<p><strong>Lucía:</strong> So even the patching is a checkbox you have
+to tick.</p>
+<p><strong>Jamila:</strong> On Cloudish, the line is the sandbox. Apps
+run under gVisor by default, or Kata if the app asks, so they don't
+share the host kernel. Cloudish owns the sandbox, the proxy, the build
+isolation, and the volume plumbing. The image is yours. The docs say it
+plainly: the platform doesn't mediate identity for the container, it
+adds no trusted identity headers, and an app sets its own security
+headers.</p>
+<p><strong>Lucía:</strong> So Cloudish owns the floor, not the
+furniture.</p>
+<p><strong>Jamila:</strong> I'm stealing that.</p>
+<p><strong>Lucía:</strong> Okay. Make it concrete. Five failures. For
+each one, who fixes it.</p>
+<p><strong>Jamila:</strong> One. The agent hardcoded an API key into the
+image.</p>
+<p><strong>Lucía:</strong> And my instinct is: the platform should have
+caught it.</p>
+<p><strong>Jamila:</strong> It's yours. The app's. The agent's. Not the
+platform's. Every customer column we just read says protect secrets. Fly
+says the image contents are your responsibility. Vercel says environment
+variables and secrets are yours. Render says "protecting all secrets."
+Cloudish's own instructions tell the agent never to bundle a secret into
+the build context, and to use the encrypted secrets endpoint
+instead.</p>
+<p><strong>Lucía:</strong> But the platform could scan the image and
+warn me.</p>
+<p><strong>Jamila:</strong> It could. But Google's multi-tenant doc says
+the quiet part out loud: "It is impossible to scan or sanitize provided
+code." A scanner catches patterns. It does not catch a key assembled at
+runtime.</p>
+<p><strong>Lucía:</strong> So the fix is rotate the key, then move it to
+the secret store.</p>
+<p><strong>Jamila:</strong> And accept the restart. On Cloudish, saving
+a secret restarts a running app. That's documented, not a surprise. On
+Vercel and Render, secrets are environment variables you manage. On
+Railway, sealed variables are write-only, but Railway still decrypts
+unsealed ones to run the container, so sealing is not encryption from
+the platform.</p>
+<p><strong>Lucía:</strong> Good distinction. Write-only for me is not
+invisible to them.</p>
+<p><strong>Jamila:</strong> And one more nasty detail. On a
+build-from-source host, the build context is uploaded to the host's
+servers. Cloudish says so in its docs. So a secret in the context isn't
+just in your image. It's on somebody else's disk.</p>
+<p><strong>Lucía:</strong> Two. The container doesn't start.</p>
+<p><strong>Jamila:</strong> And everyone says "platform problem."</p>
+<p><strong>Lucía:</strong> Usually not. Ask one question first: did the
+build succeed?</p>
+<p><strong>Jamila:</strong> If the build failed, it's the Dockerfile,
+the dependency, or the base image. That's the image's job. If the build
+succeeded and the container exits immediately, it's the port, a missing
+environment variable, or a crash on boot. Also the image's job.</p>
+<p><strong>Lucía:</strong> What is genuinely the platform's?</p>
+<p><strong>Jamila:</strong> Scheduling, capacity, the host, the network
+path, the registry. "ImagePullBackOff" can be a bad image name, which is
+yours, or a registry problem, which may be theirs. "FailedMount" is
+usually configuration, sometimes the platform. That's why Cloudish's log
+call includes Kubernetes events, not just stdout: they tell you which
+side of the line you're on.</p>
+<p><strong>Lucía:</strong> And Fly's sentence covers this. The machine
+is, quote, "constructed from your instructions."</p>
+<p><strong>Jamila:</strong> Right. Usually, a container that won't start
+is the platform's fault only when the platform can't start any
+container.</p>
+<p><strong>Lucía:</strong> Three. The data is gone after a restart.</p>
+<p><strong>Jamila:</strong> This is the big one, and it is almost always
+the app's fault, in the sense that the platform told you. Render's free
+tier: uploaded images and local SQLite databases are "lost every time
+the service redeploys, restarts, or spins down." Heroku: "any files
+written get discarded the moment the dyno stops or restarts, including
+automatic restarts." Fly: the root filesystem is ephemeral. DigitalOcean
+App Platform: every redeploy resets the filesystem, four gibibytes
+maximum, and no volumes at all. Cloud Run: the filesystem is in memory,
+and "data written to the file system doesn't persist when the instance
+stops."</p>
+<p><strong>Lucía:</strong> So the platform is not deleting my database.
+It's doing exactly what its docs said.</p>
+<p><strong>Jamila:</strong> And the app wrote a database to a scratch
+disk. That's an agent failure with a very boring name: it didn't ask
+where the disk lives.</p>
+<p><strong>Lucía:</strong> What does "fixed" look like?</p>
+<p><strong>Jamila:</strong> A volume, or a managed database. On
+Cloudish, a volume of one, five or twenty gigabytes, mounted at /data,
+survives restarts, sleep and a zero balance. On Render, a persistent
+disk on a paid service, and only changes under the mount path are
+preserved. On Fly, a volume. On Railway, a volume, mounted when the
+container starts. On DigitalOcean App Platform, neither: you use Spaces
+or a managed database.</p>
+<p><strong>Lucía:</strong> And on Cloudish the volume is deleted with
+the project. So it's persistence, not backup.</p>
+<p><strong>Jamila:</strong> Correct. Persistence is not backup.
+Cloudish's docs say backups are the app owner's job. That's a different
+episode, and we've done it.</p>
+<p><strong>Lucía:</strong> Four. The container gets killed for using too
+much memory.</p>
+<p><strong>Jamila:</strong> Half yours, half the platform's, and the
+docs say which half. On Cloudish, each app "reserves the CPU and memory
+of its size, and can't use more than its limit. A container over its
+memory limit is restarted." That's the platform enforcing the size you
+chose, which makes it your sizing decision. But the shared size reserves
+0.2 gigabytes and may burst to 1, and it is "the first restarted when a
+machine runs short of memory."</p>
+<p><strong>Lucía:</strong> So on shared, a kill can be capacity, not my
+code.</p>
+<p><strong>Jamila:</strong> And that's a documented trade-off, not a
+mystery. If a kill is unacceptable, you buy a size that isn't
+preemptible. The platform didn't fail. It applied the contract.</p>
+<p><strong>Lucía:</strong> Five. The whole platform is down.</p>
+<p><strong>Jamila:</strong> Now it's theirs. A host kernel
+vulnerability, a hypervisor escape, a region outage, a DDoS attack at
+the edge, a bad control-plane deploy. Fly publishes remediation targets:
+critical in 24 hours, high in a week, medium in a month, low in three
+months. Render owns the OS and the runtime. Vercel owns incident
+response for its infrastructure. DigitalOcean owns the Kata isolation
+layer. That's what you're paying for.</p>
+<p><strong>Lucía:</strong> And what do I still own during their
+outage?</p>
+<p><strong>Jamila:</strong> Your users. Your status page. Your failover,
+if you bought one. Your backups, which are yours. And the decision to
+run in one region, which is usually yours.</p>
+<p><strong>Lucía:</strong> That's the "shared" column nobody reads.</p>
+<p><strong>Jamila:</strong> Render names it: incident monitoring and
+response is shared, "depending on the nature of the incident and where
+it occurs in the stack." Translation: the host fixes its half and tells
+you; you fix your half and tell your users.</p>
+<p><strong>Lucía:</strong> And logs?</p>
+<p><strong>Jamila:</strong> Logs are the quiet one. Vercel makes you set
+up log drains for long-term retention. Railway keeps logs for three days
+on Free, thirty days on Pro, and up to ninety days on Enterprise.
+Cloudish pulls logs fresh and never persists them server-side. If you
+need logs after the incident, don't assume the host is keeping them.</p>
+<p><strong>Lucía:</strong> Okay. Now the uncomfortable part. The agent
+deploys the app. Who is the customer?</p>
+<p><strong>Jamila:</strong> The key. On Cloudish an agent can create a
+key with one call, no signup, and deploy. That key works unclaimed.
+Claiming attaches it to a human account, adds a dashboard and a way to
+pay. Until someone claims it, the "customer" in the responsibility model
+is a credential with no human attached.</p>
+<p><strong>Lucía:</strong> So if it breaks at two in the morning,
+there's nobody in the customer column.</p>
+<p><strong>Jamila:</strong> There's a key with a balance. That's not an
+on-call rota.</p>
+<p><strong>Lucía:</strong> And claiming doesn't remove the agent's copy
+of the key.</p>
+<p><strong>Jamila:</strong> Right. Claiming adds a human; it doesn't
+scramble the key. The documented way to invalidate it is to regenerate
+it, after you've updated everything that uses it. That's the handover,
+and it's a separate piece.</p>
+<p><strong>Lucía:</strong> So the first act of ownership isn't fixing
+the app. It's claiming the key.</p>
+<p><strong>Jamila:</strong> Or deploying under a key you already own.
+That's the cleaner version.</p>
+<p><strong>Lucía:</strong> Give me the two-in-the-morning script. Four
+questions?</p>
+<p><strong>Jamila:</strong> Four. One: did the build succeed? If no,
+it's the image. Two: did the container ever start? If no, it's the image
+or the platform's ability to run it, and the events tell you which.
+Three: is it one app or every app? If every app is down, stop debugging
+yours and check the status page. Four: is the data on a volume or a
+managed database? If not, don't restart anything until you know what a
+restart destroys.</p>
+<p><strong>Lucía:</strong> That last one is the one people get wrong.
+They restart to fix it and lose the evidence.</p>
+<p><strong>Jamila:</strong> They restart to fix it and lose the
+data.</p>
+<p><strong>Lucía:</strong> And then they blame the platform.</p>
+<p><strong>Jamila:</strong> And the platform's free-tier page said, in
+writing, "changes to its local filesystem are lost."</p>
+<p><strong>Lucía:</strong> Now sell Cloudish by explaining when not to
+use it. Your favourite part.</p>
+<p><strong>Jamila:</strong> It's the only part that ages well.
+Cloudish's limits, from its own docs. No managed Postgres or MySQL, so
+the database is yours to run on a volume. One volume attaches to one
+container, so no replicas. The docs promise persistence for the volume,
+and don't promise it for the container's own filesystem. Logs are pulled
+fresh and never persisted server-side, so if you need ninety days,
+forward them. The shared size is preemptible. And the isolation doc says
+traffic between pods isn't restricted yet. That's a platform gap, stated
+plainly.</p>
+<p><strong>Lucía:</strong> Anything else?</p>
+<p><strong>Jamila:</strong> Cloudish doesn't mediate identity. OIDC
+tells you who signed in; your app still has to decide who is allowed. No
+trusted identity headers. That's in the docs.</p>
+<p><strong>Lucía:</strong> And compliance?</p>
+<p><strong>Jamila:</strong> The Cloudish docs we read for this episode
+don't describe a SOC 2 report or a business associate agreement. If a
+signed BAA is a requirement, that's a reason to pick a host that
+publishes one. Fly says it has SOC 2 Type 2, and its report and BAA are
+free on every plan. Vercel offers HIPAA business associate agreements to
+eligible Pro and Enterprise customers. Railway's HIPAA business
+associate agreement is a paid add-on with a monthly spend threshold.
+Heroku has Shield. DigitalOcean publishes SOC 2 Type 2 for App
+Platform.</p>
+<p><strong>Lucía:</strong> But none of those fix a hardcoded secret.</p>
+<p><strong>Jamila:</strong> None of them. That's the point of the whole
+episode. A BAA changes what the platform owes you on paper. It does not
+change who wrote the image.</p>
+<p><strong>Lucía:</strong> So who fixes what, in one sentence?</p>
+<p><strong>Jamila:</strong> If it's below the isolation boundary, call
+the host. If it's inside the image, it's yours. If it's in the shared
+column, it's a conversation you should have before the incident, not
+during it.</p>
+<p><strong>Lucía:</strong> And if an agent did the deploy?</p>
+<p><strong>Jamila:</strong> Then the agent did your half, and you still
+own it. The platform saw your key, and at most a label. It never saw the
+agent's judgment.</p>
+<p><strong>Lucía:</strong> Recap. Every host publishes two columns, and
+sometimes a third marked shared. The agent is not a column; it's your
+hands. The line is the sandbox, or the hypervisor. The host owns the
+floor, you own everything standing on it.</p>
+<p><strong>Jamila:</strong> Five failures. A secret in the image is
+yours. A container that won't start is usually yours. Data on a scratch
+disk is yours. A memory kill is your size, or a documented preemption. A
+platform outage is theirs.</p>
+<p><strong>Lucía:</strong> And the shared column is incident response,
+reviews, and logs.</p>
+<p><strong>Jamila:</strong> Before you call it "the platform's fault,"
+read the one page the host wrote about exactly this. It's linked in the
+show notes. Every claim in this episode is dated.</p>
+<p><strong>Lucía:</strong> Claim the key. Put the database on the
+volume. Keep the secret out of the image. And know which column you're
+in.</p>
+<p><strong>Jamila:</strong> And - oops, it's late! Lucia, we gotta go,
+humans will be back from lunch soon ...! So that's it for today. Thanks
+for listening, stay tuned for the next episode!</p>
+<p><strong>Lucía:</strong> Bye bye!</p>
+<h2 id="sources">Sources</h2>
+<p>All pages are public vendor documentation, checked 18 November 2026.
+Quotes in the episode are from these pages. Cloudish's own docs were
+last updated 15 November 2026 (per the file header) and were re-read on
+the checked date.</p>
+<table>
+<thead>
+<tr>
+<th>Fact said in the episode</th>
+<th>Source</th>
+<th>Checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fly.io draws the line at "the virtualization boundary between our
+worker (virtualization host) and the Fly Machine (virtualization
+guest)"; the Machine is "constructed from your instructions"; customers
+own the userspace, libraries, app code, environment and services; Fly
+owns workers, edges, gateways, OS/third-party patching, tokens/SSO and
+the network layer</td>
+<td><a
+href="https://docs.fly.io/security/shared-responsibility">https://docs.fly.io/security/shared-responsibility</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Fly root filesystems are ephemeral and "should only be used for
+temporary data"; volumes are persistent</td>
+<td><a
+href="https://docs.fly.io/volumes/overview/">https://docs.fly.io/volumes/overview/</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Fly publishes remediation targets: critical 24 hours, high 1 week,
+medium 1 month, low 3 months; SOC 2 Type 2; SOC 2 report and BAA "free
+on every plan"</td>
+<td><a
+href="https://docs.fly.io/security/security-at-fly-io/">https://docs.fly.io/security/security-at-fly-io/</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Render customer responsibilities: "Protecting all secrets within
+their organization", "Security of application-level configurations",
+"Regular security assessments of their applications"; Render patches OS
+and language runtimes; incident response is shared and depends "where it
+occurs in the stack"</td>
+<td><a
+href="https://render.com/docs/shared-responsibility-model">https://render.com/docs/shared-responsibility-model</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Render free tier: uploaded images and local SQLite databases "lost
+every time the service redeploys, restarts, or spins down"; paid
+services can attach a persistent disk</td>
+<td><a
+href="https://render.com/docs/free">https://render.com/docs/free</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Render: services have an ephemeral filesystem by default; a
+persistent disk is only for paid services, and "Only filesystem changes
+under this path are preserved across deploys and restarts"</td>
+<td><a
+href="https://render.com/docs/disks">https://render.com/docs/disks</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>DigitalOcean: customer is "responsible for securing the data you
+store on our services"; App Platform uses Kata Containers as a second
+isolation layer; SOC 2 Type 2 covers App Platform</td>
+<td><a
+href="https://www.digitalocean.com/security/shared-responsibility-model-app-platform">https://www.digitalocean.com/security/shared-responsibility-model-app-platform</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>DigitalOcean App Platform: instances ephemeral, "every redeployment
+of your app will reset the filesystem", local filesystem "limited to 4
+GiB", "does not currently support volumes"; use Spaces or Managed
+Databases for persistence</td>
+<td><a
+href="https://docs.digitalocean.com/products/app-platform/how-to/store-data/">https://docs.digitalocean.com/products/app-platform/how-to/store-data/</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Heroku: Salesforce runs third-party audits and certifications;
+customer is "responsible for implementing strong security measures in
+your applications and for properly managing access to your Heroku
+account and resources"</td>
+<td><a
+href="https://devcenter.heroku.com/articles/security-privacy-compliance">https://devcenter.heroku.com/articles/security-privacy-compliance</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Heroku dynos: "Any files written get discarded the moment the dyno
+stops or restarts, including automatic restarts"</td>
+<td><a
+href="https://devcenter.heroku.com/articles/dynos">https://devcenter.heroku.com/articles/dynos</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Heroku offers Common Runtime, Private Spaces and Shield Private
+Spaces</td>
+<td><a
+href="https://devcenter.heroku.com/articles/security-and-compliance-resources-and-features">https://devcenter.heroku.com/articles/security-and-compliance-resources-and-features</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Vercel: customers own source code, server-side encryption,
+environment variables and secrets, IAM, region choice, Spend Management,
+log drains; Vercel owns infrastructure and incident response for its
+platform</td>
+<td><a
+href="https://vercel.com/docs/security/shared-responsibility">https://vercel.com/docs/security/shared-responsibility</a>
+(last updated 2026-08-11)</td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Vercel: SOC 2 Type 2, ISO 27001:2022, HIPAA BAAs for eligible Pro
+and Enterprise customers, PCI DSS, 19 regions</td>
+<td><a
+href="https://vercel.com/docs/security/compliance">https://vercel.com/docs/security/compliance</a>
+(last updated 2026-09-08)</td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Google: FaaS has a shared-responsibility list similar to SaaS;
+customer remains responsible for "access controls and the data that you
+choose to store in the application"; Google handles network and
+infrastructure</td>
+<td><a
+href="https://docs.cloud.google.com/architecture/framework/security/shared-responsibility-shared-fate">https://docs.cloud.google.com/architecture/framework/security/shared-responsibility-shared-fate</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Cloud Run: "strict isolation between container instances";
+base-image security updates "can be enabled"; "Simply packaging the code
+in a container is not a strong enough security boundary"; "It is
+impossible to scan or sanitize provided code"</td>
+<td><a
+href="https://docs.cloud.google.com/run/docs/securing/multi-tenant">https://docs.cloud.google.com/run/docs/securing/multi-tenant</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Cloud Run: container filesystem is writable and in-memory; "Data
+written to the file system doesn't persist when the instance stops"</td>
+<td><a
+href="https://docs.cloud.google.com/run/docs/container-contract">https://docs.cloud.google.com/run/docs/container-contract</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Railway: each environment has its own network namespace; builds run
+in single-tenant environments; AES-256 at rest; sealed variables are
+write-only, but Railway decrypts unsealed values to run containers; logs
+kept 3 days Free / 30 days Pro / up to 90 days Enterprise</td>
+<td><a
+href="https://docs.railway.com/enterprise/security">https://docs.railway.com/enterprise/security</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Railway: volumes are the persistence mechanism; mounted when the
+container starts, not at build time; data written at build time is not
+persisted</td>
+<td><a
+href="https://docs.railway.com/guides/volumes">https://docs.railway.com/guides/volumes</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Railway: SOC 2 Type II and SOC 3; "shared responsibility model for
+HIPAA compliance and PHI"; HIPAA BAA is "an add-on with a paid monthly
+spend threshold"</td>
+<td><a
+href="https://docs.railway.com/enterprise/compliance">https://docs.railway.com/enterprise/compliance</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Cloudish: gVisor by default, Kata optional, apps don't share the
+host kernel; no Kubernetes service-account token; no trusted identity
+headers; app sets its own security headers; over-memory container
+restarted; shared size 0.2 GB reserved / 1 GB burst and first restarted
+under memory pressure; volume mounted with fsGroup 10001; pod-to-pod
+traffic not restricted yet</td>
+<td><a
+href="https://cloudish.ai/container.md">https://cloudish.ai/container.md</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Cloudish: secrets encrypted at rest and injected as env vars; never
+bundle secrets into the build context; build context is uploaded to
+Cloudish servers; <code>GET /secrets</code> lists names, never values;
+saving/deleting a secret restarts a running app; volumes 1/5/20 GB at
+/data, survive restarts, sleep and zero balance, deleted with the
+project; logs pulled fresh and "never persisted server-side"; logs
+include Kubernetes events such as ImagePullBackOff and FailedMount; no
+managed Postgres/MySQL; one volume per container, no replicas; OIDC
+authenticates but does not authorize; backups are the app owner's job;
+an unclaimed key works, and claiming attaches it to an account "for a
+dashboard and adding credits"; <code>agent</code> is an optional label
+supplied when the key is created</td>
+<td><a
+href="https://cloudish.ai/skill.md">https://cloudish.ai/skill.md</a>
+(last updated 2026-11-15)</td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Cloudish: <code>POST /api/v1/me/apikey</code> is "Regenerate the API
+key", the documented way to invalidate the old key</td>
+<td><a
+href="https://cloudish.ai/api/openapi.json">https://cloudish.ai/api/openapi.json</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>Cloudish docs read for this episode do not describe a SOC 2 report
+or a business associate agreement (absence in skill.md and container.md;
+not proof that none exists)</td>
+<td><a
+href="https://cloudish.ai/skill.md">https://cloudish.ai/skill.md</a> ;
+<a
+href="https://cloudish.ai/container.md">https://cloudish.ai/container.md</a></td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>The agent is not a party to any host's shared-responsibility model;
+the customer column is the account/key holder</td>
+<td>Inference from the two-column models above (Fly, Render,
+DigitalOcean, Heroku, Vercel, Google)</td>
+<td>2026-11-18</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Last checked against the sources on 2026-11-19.</em></p>
+</main>
+</div>
+</body>
+</html>

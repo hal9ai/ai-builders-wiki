@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A sign-in that lands on another site · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Problems-solutions.html">Problems &amp; solutions</a> ·
+Tags: <a href="Tag-auth.html">auth</a></p>
+<!-- NAV:END -->
+
+<h1 id="a-sign-in-that-lands-on-another-site">A sign-in that lands on
+another site</h1>
+<p><strong>If clicking "Sign in" ends on a page that has no login form
+on it, the sign-in provider could not resume the login and redirected
+the browser to a fallback route configured on the provider — so your app
+was never reached, and nothing in your app is wrong.</strong> The fix is
+to point that fallback at a route you own, which starts the sign-in
+again.</p>
+<h2 id="what-it-looks-like">What it looks like</h2>
+<ul>
+<li>You click "Sign in". The browser visits the provider, then lands
+somewhere unexpected: the company's marketing site, a blank page, a
+dashboard that is not signed in.</li>
+<li>The address has a query string you did not write, usually ending in
+<code>?iss=https%3A%2F%2Flogin.example.com%2F</code> — the provider's
+own address, encoded.</li>
+<li>No login form ever appears, and no error is shown. The page looks
+like a normal page of the wrong site.</li>
+<li>Your app's logs show no sign-in attempt at all: no request to the
+callback address.</li>
+<li>It may happen to some people and not others, or on some browsers and
+not others.</li>
+</ul>
+<h2 id="first-rule-out-your-app">First, rule out your app</h2>
+<p>The absence in your logs is the useful signal. If the provider had
+sent the browser back with a <code>code</code>, your callback route
+would have seen a request — even a failing one. If the browser never
+arrives, the break is between the provider and your app, and no change
+to your app's code will fix it:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Follow the provider&#39;s authorize request without cookies and print where it lands.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sL</span> <span class="at">-o</span> /dev/null <span class="at">-w</span> <span class="st">&#39;%{url_effective}\n&#39;</span> <span class="st">&#39;https://login.example.com/authorize?client_id=...&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2Fauth%2Fcallback&amp;response_type=code&amp;scope=openid&amp;state=test&#39;</span></span></code></pre></div>
+<p>If the last URL is a host that is not the provider and not your app,
+the provider itself sent the browser away. A <code>403</code> saying
+"redirect URI mismatch" instead is a different problem: see <a
+href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks
+behind a proxy: the redirect URI</a>.</p>
+<p>Running the same request twice — once with a cookie jar, once without
+— tells you whether the fallback is what users hit. Auth0, for example,
+renders its normal login form when the request carries its
+login-transaction cookie, and falls back when it does not.</p>
+<h2 id="why-the-provider-sends-the-browser-elsewhere">Why the provider
+sends the browser elsewhere</h2>
+<p>OpenID Connect has a section for this, "Initiating Login from a Third
+Party": an initiating party sends the browser to the application's
+login-initiation URL with an <code>iss</code> parameter, "Issuer
+Identifier for the OP that the RP is to send the Authentication Request
+to" (<a
+href="https://openid.net/specs/openid-connect-core-1_0.html#ThirdPartyInitiatedLogin">OpenID
+Connect Core 1.0, Initiating Login from a Third Party</a>, checked
+2026-11-14). The application's job is then to send that Authentication
+Request to the provider named.</p>
+<p>Auth0 points at the same specification for its own fallback: "As per
+the OIDC Third Party Initiated Login specification, the <code>iss</code>
+parameter containing Issuer Identifier … will be added as a query string
+parameter to <code>login_url</code> before redirecting." It calls that
+configured address the default login route, and lists what triggers it:
+<strong>cookies disabled</strong> — "Auth0 redirects the user to the
+application login URI", and "If the application login URI is not set,
+the redirect is sent to the tenant login URI instead" — a bookmarked
+login page whose saved state has expired ("Auth0 will redirect to the
+default client URL if configured, or the tenant level URL if not"; with
+neither, "Auth0 will render an error page"), and returning from a
+password reset, an email verification or an organization invitation. It
+warns that "Sending the user back to the login page can potentially
+cause a redirect loop", and suggests a landing page that checks for
+cookies (<a
+href="https://auth0.com/docs/authenticate/login/auth0-universal-login/configure-default-login-routes">Auth0:
+Configure Default Login Routes</a>, checked 2026-11-14).</p>
+<p>The same shape exists in other providers: one URL is configured to
+receive a browser the provider cannot help, and if that URL is not a
+page that starts a login, the user is stranded.</p>
+<h2 id="why-it-becomes-a-dead-end">Why it becomes a dead end</h2>
+<p>The fallback URL is meant to be one where "<code>login_url</code>
+should point to a route in the application that ends up redirecting to
+Auth0's <code>/authorize</code> endpoint" (same Auth0 page, checked
+2026-11-14). A marketing page or a different product's site ignores
+<code>iss</code> entirely — it has no code to read it, and no login to
+offer — so nothing happens.</p>
+<p>The usual cause is age: the tenant's login route was set when the
+company had one login portal, then the product moved and the setting
+stayed. Because it is tenant- or application-level configuration, it is
+invisible in your repository, your deploy and your app's logs.</p>
+<h2 id="how-to-fix-it">How to fix it</h2>
+<ol type="1">
+<li><strong>Point the fallback at a route you own.</strong> If several
+applications share the tenant, set it <strong>per application</strong>,
+not just tenant-wide, so one product's fix does not move the other's
+fallback.</li>
+<li><strong>Make that route restart the login</strong> — read any
+<code>returnTo</code> the configured URL carries (providers preserve
+query parameters on it) and send the browser back to the provider's
+authorize endpoint.</li>
+<li><strong>Break the loop before it starts.</strong> A browser blocking
+cookies comes straight back to the same route. Park a marker in
+<code>sessionStorage</code> before redirecting, and on a second arrival
+show "your browser is blocking the sign-in cookies; allow them or open
+this in a normal browser" instead of redirecting again.</li>
+<li><strong>Keep the value on your own domain.</strong> The fallback is
+part of the sign-in surface; pointing it at another site is the failure
+this page is about.</li>
+</ol>
+<h2 id="check-that-it-is-fixed">Check that it is fixed</h2>
+<ul>
+<li>Request the authorize URL with no cookies: the redirect chain should
+now end on your own route, not on another site.</li>
+<li>With cookies allowed in a browser, sign-in completes and the
+callback appears in the app's logs.</li>
+<li>With cookies blocked, the second arrival shows the explanation, not
+an endless bounce.</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="A-login-that-loops.html">A login that loops between your app
+and the sign-in provider</a>: the loop happens after the callback
+arrives; this page is about it never arriving</li>
+<li><a href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that
+breaks behind a proxy: the redirect URI</a>: the provider refuses the
+callback address instead</li>
+<li><a href="Checking-whether-a-deploy-worked.html">Checking whether a
+deploy worked</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#host">Host</a>, <a href="Glossary.html#logs">Logs</a>,
+<a href="Glossary.html#provider">Provider</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-14.</p>
+<ul>
+<li>Auth0, <a
+href="https://auth0.com/docs/authenticate/login/auth0-universal-login/configure-default-login-routes">Configure
+Default Login Routes</a>: the <code>iss</code> parameter, application
+versus tenant URI, the scenarios that trigger the redirect, the
+cookies-disabled loop warning, and the requirement that the login URL
+route back to <code>/authorize</code></li>
+<li>OpenID Foundation, <a
+href="https://openid.net/specs/openid-connect-core-1_0.html#ThirdPartyInitiatedLogin">OpenID
+Connect Core 1.0, Initiating Login from a Third Party</a>: the
+<code>iss</code> parameter and its definition ("Issuer Identifier for
+the OP that the RP is to send the Authentication Request to")</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a sign-in that
+dead-ended on a marketing page while debugging a deployed app, and
+checked against the <a href="#sources">sources</a> on 2026-11-14. Found
+a mistake? <a href="CONTRIBUTING.html">Fix it or open an issue</a>. Text
+licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

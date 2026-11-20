@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to carry a prompt through sign-in into the first chat · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-auth.html">auth</a>, <a href="Tag-storage.html">storage</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-carry-a-prompt-through-sign-in-into-the-first-chat">How
+to carry a prompt through sign-in into the first chat</h1>
+<p><strong>A <a href="Glossary.html#prompt">prompt</a> typed on a landing
+page survives the sign-in redirect only if the page saves it in the
+browser before the visitor leaves, and the app reads it back — once —
+after it restarts.</strong> In-memory JavaScript is gone by then: the
+redirect loads new pages, so the natural home for a short, per-tab
+handoff is <code>sessionStorage</code>.</p>
+<h2 id="what-the-redirect-throws-away">What the redirect throws
+away</h2>
+<p><strong>A redirect sign-in is a series of page loads, and each one
+starts the app again with an empty memory.</strong> OpenID Connect
+describes the successful response as an OAuth 2.0 Authorization Response
+"returned from the OP's Authorization Endpoint", whose parameters are
+returned "by adding them as query parameters to the
+<code>redirect_uri</code> specified in the Authorization Request" (<a
+href="https://openid.net/specs/openid-connect-core-1_0.html#AuthResponse">OpenID
+Connect Core 1.0, section 3.1.2.5</a>, checked 2026-11-15). The browser
+leaves your page for the provider, then comes back to the redirect URI —
+your single-page app boots from scratch.</p>
+<p>A variable, a React state value or a module-level cache does not
+survive that trip. The visitor is still the same person, in the same
+tab, but your page is a new instance of the app.</p>
+<h2 id="store-a-small-payload-before-leaving">Store a small payload
+before leaving</h2>
+<p><strong>Save only what the first chat needs: the text, where to
+return, and when it was saved.</strong> <code>sessionStorage</code> has
+the right lifetime — "a page session lasts as long as the tab or the
+browser is open, and survives over page reloads and restores"; closing
+the tab clears it (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">MDN,
+<code>Window.sessionStorage</code></a>, checked 2026-11-15). It is not
+shared with other tabs, which matches a draft the visitor is about to
+send, not a preference that should follow them around.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> KEY <span class="op">=</span> <span class="st">&#39;pending-prompt&#39;</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">savePrompt</span>(text) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> payload <span class="op">=</span> { <span class="dt">text</span><span class="op">:</span> text<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">4000</span>)<span class="op">,</span> <span class="dt">from</span><span class="op">:</span> location<span class="op">.</span><span class="at">pathname</span><span class="op">,</span> <span class="dt">at</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>() }<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    sessionStorage<span class="op">.</span><span class="fu">setItem</span>(KEY<span class="op">,</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(payload))<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Storage can be blocked; the visitor can still sign in without the handoff.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>Keep it short.</strong> Trim the text and check its length
+again when you read it back; do not let whatever is in storage become an
+unbounded request.</li>
+<li><strong>Do not store secrets.</strong> <code>sessionStorage</code>
+is readable by any script on the origin: "A single Cross Site Scripting
+can be used to steal all the data in these objects", and OWASP
+recommends "not to store sensitive information in local storage" (<a
+href="https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html">OWASP
+HTML5 Security Cheat Sheet</a>, checked 2026-11-15). A prompt is user
+text; access <a href="Glossary.html#token">tokens</a> and API keys are
+not.</li>
+<li><strong>Expect it to fail.</strong> Reading
+<code>sessionStorage</code> can throw a <code>SecurityError</code> when,
+for example, "the user has configured the browsers to prevent the page
+from persisting data" (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">MDN</a>,
+checked 2026-11-15). Wrap both read and write, and let the sign-in flow
+work without it.</li>
+</ul>
+<h2 id="read-it-once-after-the-app-knows-who-the-user-is">Read it once,
+after the app knows who the user is</h2>
+<p><strong>Consume the payload only when the app has a signed-in user,
+remove the key as part of reading it, and then pass the text to the
+first chat.</strong> Reading before auth settles wastes the payload on a
+signed-out page; reading without removing it sends the same prompt again
+on the next reload.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">takePrompt</span>() {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> raw<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    raw <span class="op">=</span> sessionStorage<span class="op">.</span><span class="fu">getItem</span>(KEY)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>raw) <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    sessionStorage<span class="op">.</span><span class="fu">removeItem</span>(KEY)<span class="op">;</span> <span class="co">// first read wins, even if the page boots twice</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> payload<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(raw)<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="kw">typeof</span> payload<span class="op">?.</span><span class="at">text</span> <span class="op">!==</span> <span class="st">&#39;string&#39;</span> <span class="op">||</span> <span class="op">!</span>payload<span class="op">.</span><span class="at">text</span><span class="op">.</span><span class="fu">trim</span>()) <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">Number</span><span class="op">.</span><span class="fu">isFinite</span>(payload<span class="op">.</span><span class="at">at</span>) <span class="op">||</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>() <span class="op">-</span> payload<span class="op">.</span><span class="at">at</span> <span class="op">&gt;</span> <span class="dv">30</span> <span class="op">*</span> <span class="dv">60</span> <span class="op">*</span> <span class="dv">1000</span>) <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> payload<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Two details matter more than they look:</p>
+<ul>
+<li><strong>Remove before you validate.</strong> If the page boots
+twice, both runs must not send the same prompt. React's Strict Mode runs
+"one extra setup+cleanup cycle in development for every Effect" (<a
+href="https://react.dev/reference/react/StrictMode">React,
+StrictMode</a>, checked 2026-11-15); the first read takes the payload
+and the second finds nothing. In production the extra cycle does not
+happen, but a reload or a second auth callback can still race the same
+way.</li>
+<li><strong>Let it expire.</strong> A prompt saved on Monday should not
+appear in a chat on Friday. Thirty minutes is arbitrary but explicit;
+pick a window that matches how long a sign-in takes in your app.</li>
+</ul>
+<p>If the visitor abandons sign-in, leave the payload in place: they may
+come back and finish. It disappears with the tab, or when the age check
+rejects it.</p>
+<h2 id="show-the-handoff-on-the-sign-in-page">Show the handoff on the
+sign-in page</h2>
+<p><strong>Echo the saved text on the sign-in page so the visitor sees
+that the prompt was kept, but do not consume it there.</strong> The
+post-sign-in consumer owns the key; the sign-in page only reads and
+displays it.</p>
+<pre><code>Your first task
+Plan a calm week in Kyoto, with two slow mornings.</code></pre>
+<p>Render it as text (React escapes it by default), cap the visible
+length, and read it inside a <code>try/catch</code> for the same storage
+exceptions. If the payload is stale or malformed, show nothing rather
+than an error.</p>
+<h2 id="check-that-it-works">Check that it works</h2>
+<ol type="1">
+<li>Signed out, type a prompt on the landing page and submit. You land
+on sign-in and see the prompt echoed.</li>
+<li>Sign in through the real provider, including the full redirect. The
+first chat opens with that exact text as its first message.</li>
+<li>Reload the app. The prompt is not sent a second time.</li>
+<li>Save a payload with an old timestamp, then sign in: it is ignored
+and removed.</li>
+<li>Block storage for the site and repeat: sign-in still completes,
+without the handoff.</li>
+</ol>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><strong>A new tab is a new page session.</strong> "Opening a page in
+a new tab or window creates a new session" (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">MDN</a>,
+checked 2026-11-15), so a sign-in that finishes in another tab may not
+see the payload. A tab opened by your page starts with a copy of the
+opener's <code>sessionStorage</code>; after that the two are
+separate.</li>
+<li><strong>A URL parameter is the other option, and it leaks.</strong>
+Passing the prompt through the redirect URI puts it in browser history
+and server logs, and long prompts can exceed URL limits. Browser storage
+avoids both; this is a design trade-off, not a rule.</li>
+<li><strong>A server-side draft needs an identity first.</strong> Before
+sign-in there is no account to attach a draft to. After sign-in, storing
+the first message on the server is a reasonable alternative — in a
+database, not process memory (<a
+href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app
+keeps its data</a>).</li>
+</ul>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="A-login-that-loops.html">A login that loops between your app
+and the sign-in provider</a>: keep the callback URL intact until the
+code is exchanged.</li>
+<li><a href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built
+app keeps its data</a>: what belongs in the browser, and what belongs on
+the server.</li>
+<li><a href="Security-for-AI-apps.html#secrets-and-api-keys">Security for
+AI apps and agents</a>: why tokens are secrets, not page state.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#api-key">API key</a>, <a
+href="Glossary.html#logs">Logs</a>, <a
+href="Glossary.html#prompt">Prompt</a>, <a
+href="Glossary.html#provider">Provider</a>, <a
+href="Glossary.html#secret">Secret</a>, <a
+href="Glossary.html#token">Token</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-15.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage"><code>Window.sessionStorage</code></a>:
+page-session lifetime, new tabs, and the <code>SecurityError</code> when
+storage is blocked.</li>
+<li>OpenID Foundation, <a
+href="https://openid.net/specs/openid-connect-core-1_0.html#AuthResponse">OpenID
+Connect Core 1.0, section 3.1.2.5, Successful Authentication
+Response</a></li>
+<li>React, <a
+href="https://react.dev/reference/react/StrictMode">StrictMode</a>: the
+extra setup+cleanup cycle in development.</li>
+<li>OWASP, <a
+href="https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html">HTML5
+Security Cheat Sheet</a>: keeping sensitive data out of Web
+Storage.</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, out of a session that
+implemented this handoff in a React app, and checked against the <a
+href="#sources">sources</a> on 2026-11-15. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to serve a single-page app from one container · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-How-to.html">How-to</a> · Tags: <a
+href="Tag-hosting.html">hosting</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-to-serve-a-single-page-app-from-one-container">How to serve
+a single-page app from one container</h1>
+<p><strong>A single-page app goes online as a folder of static files
+behind a web server: one <code>index.html</code>, its CSS, JavaScript
+and images, copied into the official nginx <a
+href="Glossary.html#container">container</a> image, with no build step and
+no framework.</strong> The page keeps its views in the browser and calls
+the <a href="Glossary.html#api">API</a> from JavaScript, so the server
+only has to hand over files. Two things go wrong in this setup: a view
+address the server cannot find, and a build context that carries files
+the page never uses.</p>
+<h2 id="1-hash-routes-never-reach-the-server">1. Hash routes never reach
+the server</h2>
+<p><strong>A view written after <code>#</code> is not part of the
+address the browser requests, so every view is the same request for
+<code>/</code> and the server needs no rule at all.</strong> The <a
+href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment">fragment</a>
+"is not sent to the server when the URI is requested; it is processed by
+the client (e.g., the browser) after the resource is retrieved" (<a
+href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment">MDN,
+Fragment</a>, checked 2026-11-14).</p>
+<p>That is why so many demos use routes like
+<code>/#profile/amara</code> or <code>/#cameras</code>. The request is
+for <code>/</code>, nginx answers with <code>index.html</code> from its
+default document root, and the page's own JavaScript reads
+<code>location.hash</code> and draws the matching view. Refresh, a
+bookmark and a link pasted into a chat all work, because they all fetch
+the same file.</p>
+<h2 id="2-path-routes-need-one-fallback-rule">2. Path routes need one
+fallback rule</h2>
+<p><strong>A view in the path, such as <code>/profile/amara</code>, is a
+request for a file that does not exist, so a plain file server answers
+<code>404</code> until you tell it to answer with
+<code>index.html</code> instead.</strong> In nginx that is one
+<code>try_files</code> line inside <code>location /</code>: when the
+named file is not there, "an internal redirect to the <em>uri</em>
+specified in the last parameter is made" (<a
+href="https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files">nginx,
+<code>ngx_http_core_module</code></a>, checked 2026-11-14).</p>
+<pre class="nginx"><code>location / {
+  try_files $uri /index.html;
+}</code></pre>
+<p>Use one style and stay with it. Mixing hash links with path links
+gives a page whose deep links work on one host and <code>404</code> on
+another.</p>
+<h2 id="3-copy-only-the-files-the-page-serves">3. Copy only the files
+the page serves</h2>
+<p><strong>The build context of a <a
+href="Glossary.html#deploy">deploy</a> is everything the build can see, so
+a <code>.env</code> file sitting next to <code>index.html</code> is
+uploaded with it unless you exclude it.</strong> Docker defines the
+context as "the set of files that your build can access", and says
+entries in a <code>.dockerignore</code> file are "removed from the build
+context before it's sent to the builder" (<a
+href="https://docs.docker.com/build/building/context/">Docker, Build
+context</a>, checked 2026-11-14).</p>
+<p>Two habits make this hard to get wrong:</p>
+<ul>
+<li>list the files to copy in the Dockerfile
+(<code>COPY index.html styles.css app.js …</code>) and copy a folder of
+assets, rather than <code>COPY . .</code>;</li>
+<li>when you hand the host a tarball instead of a folder, build it from
+that same list, or pass the excludes explicitly.</li>
+</ul>
+<p>A demo page often lives next to the <code>.env</code> that generated
+its images, so this is the common case, not the paranoid one.</p>
+<h2 id="4-give-the-host-the-port-nginx-listens-on">4. Give the host the
+port nginx listens on</h2>
+<p><strong>The port you give the <a href="Glossary.html#host">host</a>
+must be the one the server inside the container listens on, which for
+the official nginx image is 80.</strong> The image's own documentation
+shows it publishing <code>-p 8080:80</code> and copying content to
+<code>/usr/share/nginx/html</code> (<a
+href="https://hub.docker.com/_/nginx">Docker Hub, nginx</a>, checked
+2026-11-14); <code>EXPOSE 80</code> in a Dockerfile documents the port
+but does not choose the one the host routes to (<a
+href="https://docs.docker.com/reference/dockerfile/#expose">Docker,
+Dockerfile reference</a>, checked 2026-11-14). A host that assumes 8080
+for an nginx container that listens on 80 gets no answer back — the
+check in <a href="Checking-whether-a-deploy-worked.html">How to tell
+whether a deploy actually worked</a> covers the rest.</p>
+<h2 id="a-minimal-dockerfile">A minimal Dockerfile</h2>
+<p>This is the shape used by a one-page demo built as
+<code>index.html</code>, <code>styles.css</code>, <code>app.js</code>
+and an <code>assets/</code> folder:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> nginx:1.27-alpine</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> index.html styles.css app.js /usr/share/nginx/html/</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> assets /usr/share/nginx/html/assets</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 80</span></code></pre></div>
+<p>That is the whole build. Adding a custom <code>nginx.conf</code> is
+optional and only needed for things like the <code>try_files</code> rule
+above, gzip, or cache headers; serve the HTML with a short cache and the
+assets with a long one, as <a href="Stale-cache-after-a-deploy.html">Stale
+cache after a deploy</a> explains.</p>
+<h2 id="a-disclosed-example-cloudish">A disclosed example: Cloudish</h2>
+<p><em>Cloudish is made by Hal9, which started this wiki.</em> Its
+server-side build takes a tar.gz context that "must contain a
+<code>Dockerfile</code> at its root", accepts a <code>port</code> field
+which "must be the port your server listens on" — "an nginx image
+listens on <code>80</code>, so send <code>port=80</code> for one" — and
+answers <code>503</code> when the port is wrong. Its example context
+command excludes the risky files up front:
+<code>tar --exclude='.env*' --exclude='.git' -czf context.tar.gz .</code>
+(<a href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish,
+skill.md</a>, checked 2026-11-14).</p>
+<p>Other hosts take the same pieces in different words: a folder or
+archive, a Dockerfile, and a port.</p>
+<h2 id="checklist">Checklist</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>What to do</th>
+<th>What it does not fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Do deep links work?</td>
+<td>Hash routes, or a <code>try_files</code> fallback to
+<code>index.html</code></td>
+<td>A view that needs data the page cannot fetch</td>
+</tr>
+<tr>
+<td>Is anything secret in the image?</td>
+<td>Explicit <code>COPY</code> lines, <code>.dockerignore</code>,
+excludes on the archive</td>
+<td>Secrets the page itself embeds in its JavaScript</td>
+</tr>
+<tr>
+<td>Which port?</td>
+<td>The one the server listens on (80 for nginx)</td>
+<td>A process that died before listening</td>
+</tr>
+<tr>
+<td>Will a redeploy show?</td>
+<td>Short cache on HTML, long cache on assets with changed names</td>
+<td>A browser that kept the old HTML</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="Checking-whether-a-deploy-worked.html">How to tell whether a
+deploy actually worked</a></li>
+<li><a href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in
+one browser but fine in another</a></li>
+<li><a href="Container-image-size.html">How to shrink a container
+image</a></li>
+<li><a href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a
+typical workflow</a></li>
+<li><a href="Checking-an-AI-built-web-app.html">How to check a web app an
+AI built</a></li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="Glossary.html#api">API</a>,
+<a href="Glossary.html#container">Container</a>, <a
+href="Glossary.html#deploy">Deploy</a>, <a
+href="Glossary.html#dockerfile">Dockerfile</a>, <a
+href="Glossary.html#host">Host</a>, <a
+href="Glossary.html#secret">Secret</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-14.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment">URI
+fragment</a></li>
+<li>nginx, <a
+href="https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files"><code>ngx_http_core_module</code>:
+<code>try_files</code></a></li>
+<li>Docker, <a
+href="https://docs.docker.com/build/building/context/">Build
+context</a>; <a
+href="https://docs.docker.com/reference/dockerfile/#expose">Dockerfile
+reference: <code>EXPOSE</code></a></li>
+<li>Docker Hub, <a href="https://hub.docker.com/_/nginx">nginx</a></li>
+<li>Cloudish, <a href="https://cloudish.ai/skill.md">skill.md</a></li>
+</ul>
+<hr />
+<p>First version written with AI assistance, out of a session that built
+and deployed a one-page demo, and checked against the <a
+href="#sources">sources</a> on 2026-11-14. Found a mistake? <a
+href="CONTRIBUTING.html">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

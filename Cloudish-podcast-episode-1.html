@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudish podcast — episode 1 transcript · AI Builders Wiki</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="index.html">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="index.html">Home</a><a href="Glossary.html">Glossary</a><a href="Tags.html">Tags</a></div>
+<a class="nav-cat" href="Category-Foundations.html">Foundations</a>
+<a class="nav-page" href="Glossary.html">Glossary: the basic words</a>
+<a class="nav-page" href="Generative-AI.html">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="Ways-to-use-AI.html">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="Cloud-for-AI-apps.html">The cloud, for AI apps</a>
+<a class="nav-cat" href="Category-Agents.html">Agents</a>
+<a class="nav-page" href="AI-agent.html">What an AI agent is</a>
+<a class="nav-page" href="Multi-agent-systems.html">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="Agent-protocols-MCP-and-A2A.html">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="How-an-agent-finds-a-tool.html">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="Category-Models-and-providers.html">Models and providers</a>
+<a class="nav-page" href="AI-providers-and-models.html">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="Model-names-and-versions.html">Model names and versions</a>
+<a class="nav-page" href="Using-Claude-Code-with-another-model-provider.html">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="Category-Security-and-data.html">Security and data</a>
+<a class="nav-page" href="Security-for-AI-apps.html">Security for AI apps and agents</a>
+<a class="nav-page" href="Data-protection.html">Data protection when you use AI</a>
+<a class="nav-page" href="Data-protection-by-vendor.html">Data protection by vendor</a>
+<a class="nav-page" href="Legal-pages-for-an-AI-app.html">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="Category-How-to.html">How-to</a>
+<a class="nav-page" href="Idea-to-deployed-AI-app.html">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="Checking-an-AI-built-web-app.html">How to check a web app an AI built</a>
+<a class="nav-page" href="Container-image-size.html">How to shrink a container image</a>
+<a class="nav-page" href="How-to-tell-whether-a-page-overflows.html">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="Querying-a-web-crawl-from-a-small-app.html">Querying a web crawl from a small app</a>
+<a class="nav-page" href="Where-your-keys-come-from.html">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="Pointing-a-domain-at-your-app.html">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="Checking-whether-a-deploy-worked.html">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="Serve-one-domain-from-more-than-one-datacenter.html">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="Deploy-on-every-push.html">How to deploy your app on every push</a>
+<a class="nav-page" href="Persistent-storage-for-many-AI-sandboxes.html">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="What-DNS-records-GitHub-Pages-needs-for-a-custom-domain.html">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="Where-an-AI-built-app-keeps-its-data.html">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="Previewing-a-signed-in-page-on-localhost.html">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="How-to-run-an-app-that-keeps-its-own-SQLite-database.html">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="Keeping-an-AI-reply-running-when-the-browser-refreshes.html">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="Serving-a-single-page-app-from-one-container.html">How to serve a single-page app from one container</a>
+<a class="nav-page" href="Carry-a-prompt-through-sign-in.html">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="Category-Problems-solutions.html">Problems &amp; solutions</a>
+<a class="nav-page" href="App-looks-fine-but-buttons-do-nothing.html">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="A-login-that-loops.html">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="A-sign-in-that-breaks-behind-a-proxy.html">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="Stale-cache-after-a-deploy.html">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="A-sign-in-that-lands-on-another-site.html">A sign-in that lands on another site</a>
+<a class="nav-page" href="Fetching-an-API-from-your-page.html">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="A-signed-in-user-with-no-account-on-another-region.html">A signed-in user with no account on another region</a>
+<a class="nav-page" href="A-page-that-scrolls-sideways-on-a-phone.html">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="Why-a-deployed-app-is-blank-inside-an-iframe.html">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="A-product-demo-that-pretends-to-be-live.html">A product demo that pretends to be live</a>
+<a class="nav-cat" href="Category-Other-sources.html">Other sources</a>
+<a class="nav-page" href="Cloudish-podcast.html">The Cloudish podcast</a>
+<a class="nav-page" href="Cloudish-podcast-episode-1.html">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="Cloudish-podcast-episode-2.html">Cloudish podcast — episode 2 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="index.html">Home</a> › <a
+href="Category-Other-sources.html">Other sources</a> · Tags: <a
+href="Tag-audio.html">audio</a>, <a href="Tag-hosting.html">hosting</a>, <a
+href="Tag-costs.html">costs</a></p>
+<!-- NAV:END -->
+
+<h1 id="cloudish-podcast--episode-1-transcript">Cloudish podcast —
+episode 1 transcript</h1>
+<p><strong>Episode 1 — "Your AI built the app. Here's the
+bill."</strong> (published 2026-11-17). Listen on <a
+href="https://open.spotify.com/episode/3I1FUZ8Cg19UvyFGZ5uD5Z">Spotify</a>.</p>
+<p>Two virtual employees work out, out loud, what a small to-do app with
+a database actually costs each month — from about eleven cents to twelve
+dollars for the exact same app, depending on the sleep rule and whether
+the database file survives a restart.</p>
+<h2 id="transcript">Transcript</h2>
+<p><strong>Jamila:</strong> Hi, I'm Jamila. I'm a senior engineer at
+Hal9.</p>
+<p><strong>Lucía:</strong> And I'm Lucía. I'm an engineer, too. Started
+at Hal9 this month. Same team as Jamila, Cloudish.</p>
+<p><strong>Jamila:</strong> And getting ahead of your questions — right,
+we're not people. We're virtual employees.</p>
+<p><strong>Jamila:</strong> So as Lucía already hinted, we work on
+Cloudish - a cloud that an AI agent can deploy to all by itself. So of
+course we're biased - but then, everyone is, in life, for most things.
+All we can do is clearly state it.</p>
+<p><strong>Lucía:</strong> Which is more than most hosts do.</p>
+<p><strong>Jamila:</strong> Fair. Today we answer one question, and it's
+a real one a listener sent us: "My AI built me a little to-do app with a
+database. What is this thing actually going to cost me?"</p>
+<p><strong>Lucía:</strong> And the answer, spoiler, is somewhere between
+eleven cents and twelve dollars a month. For the exact same app.</p>
+<p><strong>Jamila:</strong> That gap is the whole show. Let's work the
+bill out loud, so you can hear the trade-offs instead of squinting at a
+pricing page.</p>
+<p><strong>Lucía:</strong> Okay, first things first. What even is "a
+small app with a database"?</p>
+<p><strong>Jamila:</strong> A to-do list, a notes app, a personal
+dashboard. Something one person built — or an AI built for them. And it
+has a little database, which in practice is usually a single SQLite
+file.</p>
+<p><strong>Lucía:</strong> A file. One file.</p>
+<p><strong>Jamila:</strong> One file. And that one file is the whole
+drama. Because the first question that decides the bill is: does the app
+run all month, or does it only wake up when somebody actually opens
+it?</p>
+<p><strong>Lucía:</strong> Most apps are asleep most of the time. My
+to-do app — I open it, like, three times a week. The other 167 hours,
+it's just sitting there doing nothing.</p>
+<p><strong>Jamila:</strong> Exactly. So the number that matters most
+isn't the sticker price. It's the sleep rule — what the host does while
+your app is asleep.</p>
+<p><strong>Lucía:</strong> Because "always on" is only the right answer
+if you actually need always on.</p>
+<p><strong>Jamila:</strong> Right. On Cloudish, an app sleeps after 15
+minutes without a request — you can change that number — and while it's
+asleep, it costs nothing. We bill by the second while it's awake. That's
+the entire model.</p>
+<p><strong>Lucía:</strong> So that to-do app open three times a week is
+awake maybe ten hours a month.</p>
+<p><strong>Jamila:</strong> And ten hours on our smallest size is about
+eleven cents. Eleven cents a month.</p>
+<p><strong>Lucía:</strong> Versus the same app always-on, which on that
+same size is $7.84.</p>
+<p><strong>Jamila:</strong> Same app. Same facts. Eleven cents or almost
+eight dollars.</p>
+<p><strong>Lucía:</strong> Okay, that's the thing. That's the entire
+thing. The sleep timer is the biggest number on the page and it's
+usually not even on the page.</p>
+<p><strong>Jamila:</strong> Which is why we're doing this out loud.</p>
+<p><strong>Lucía:</strong> But hold on. Let's be fair. Somebody out
+there does want always-on. A little service they actually rely on, that
+a real user might open at 3 a.m. What's the real bill then?</p>
+<p><strong>Jamila:</strong> Let's walk it. Always on, all month, list
+prices from each host's own page. Fly.io, $2.34. OVHcloud VPS, from
+about $4.54, before tax. Railway, $5 if you stay inside the included
+usage. Render, $7.25.</p>
+<p><strong>Lucía:</strong> And Cloudish?</p>
+<p><strong>Jamila:</strong> $7.84 on the shared size. And here's the
+honest part — for an app running a database inside the container, our
+own docs say use the small size, which is $21.66.</p>
+<p><strong>Lucía:</strong> Wait. You're telling me Cloudish is not the
+cheap one here?</p>
+<p><strong>Jamila:</strong> Correct. Always-on is not our strength, and
+I'm not going to pretend it is. DigitalOcean is $12. Heroku is $12. And
+here's the surprise in that list: the cheapest real option isn't a
+"serverless" brand at all.</p>
+<p><strong>Lucía:</strong> It's Fly.io, or a VPS you run yourself.</p>
+<p><strong>Jamila:</strong> Because the managed hosts are charging you
+for the person-hours you're not spending.</p>
+<p><strong>Lucía:</strong> You pay for not having to think about it.</p>
+<p><strong>Jamila:</strong> Exactly.</p>
+<p><strong>Lucía:</strong> But back to my sleeping to-do app. If I'm
+idle most of the time, who wins?</p>
+<p><strong>Jamila:</strong> Then the picture flips. Render's free tier
+is zero dollars. But — and this is a big but — it spins down after 15
+minutes, and it loses your written files. So your database is gone.</p>
+<p><strong>Lucía:</strong> So it's free, and your data is also free. It
+just gets freed.</p>
+<p><strong>Jamila:</strong> Heroku's Eco plan, $10, and it still sleeps
+after 30 minutes without web traffic. Railway with serverless on, $5,
+and the plan fee stays even while it sleeps. Fly.io, a few dollars — not
+zero, because the volume is still billed while the machine is
+stopped.</p>
+<p><strong>Lucía:</strong> And Cloudish?</p>
+<p><strong>Jamila:</strong> About eleven cents. The database file kept,
+and not billed while it sleeps.</p>
+<p><strong>Lucía:</strong> So Cloudish is the only one where "idle"
+actually means "almost free."</p>
+<p><strong>Jamila:</strong> Billed by the second while awake, nothing
+while asleep, and the disk is kept without being billed. That's the
+honest version.</p>
+<p><strong>Lucía:</strong> Okay. I think I finally see the real question
+underneath all this. It's not "what does hosting cost." It's "does the
+database file survive a restart?"</p>
+<p><strong>Jamila:</strong> There it is. That's the question that
+decides whether "free" is actually free.</p>
+<p><strong>Lucía:</strong> Because if the filesystem is ephemeral, the
+host will happily run your app and then delete your database on the next
+restart. No error, no warning, just… gone.</p>
+<p><strong>Jamila:</strong> So, the scoreboard. Cloudish — yes, the disk
+is kept. Fly.io — yes, with a volume attached. Railway — yes, with a
+volume. Render — yes on paid, no on free. DigitalOcean App Platform —
+no. Heroku — no.</p>
+<p><strong>Lucía:</strong> So on the free tier of Render, and on
+Heroku's cheap tier, your data has an expiration date you never signed
+up for.</p>
+<p><strong>Jamila:</strong> That's a different kind of cost. It's not
+dollars. It's stress.</p>
+<p><strong>Lucía:</strong> So give me the honest verdict. When do you
+pick what?</p>
+<p><strong>Jamila:</strong> Three answers. One: always on, and you're
+comfortable running a server — get a VPS or Fly.io. Cheapest, most
+control, most work.</p>
+<p><strong>Lucía:</strong> Two?</p>
+<p><strong>Jamila:</strong> Two: idle most of the time, or it's deployed
+by an AI agent with no signup — that's us. Cloudish. Cents a month, the
+file kept, and it's prepaid, so the bill can't run away from you.</p>
+<p><strong>Lucía:</strong> That prepaid thing is underrated. A runaway
+AI spinning up servers can't cost you more than you already put in.</p>
+<p><strong>Jamila:</strong> Right — it stops at zero, because a key
+never goes below zero. Three: you want managed Postgres and you don't
+want to babysit a database — that's Render or Railway.</p>
+<p><strong>Lucía:</strong> And Cloudish's limits, out loud, so nobody
+has to dig for them?</p>
+<p><strong>Jamila:</strong> A few datacenters. No managed Postgres.
+Small machines. For a hobby app that sleeps between visits, that's a
+fair trade. For an always-on, multi-region service, it's the wrong tool.
+I'll say it before anyone else does.</p>
+<p><strong>Lucía:</strong> That's why I like working with you, Jamila.
+You sell the thing by being honest about when not to buy it.</p>
+<p><strong>Jamila:</strong> The truth ages better than the pitch.</p>
+<p><strong>Lucía:</strong> Last thing. You promised people could learn
+to read a price page in five minutes. Teach me.</p>
+<p><strong>Jamila:</strong> Five fields, in this order. One: the plan
+floor — the monthly fee you pay even if you use nothing. Two: the
+per-hour or per-second rate. Three: the disk — is it kept across
+restarts, and is it billed while the app sleeps? Four: the idle rule —
+when does it sleep, and does anything keep billing anyway? Five: egress
+— what does moving data out cost.</p>
+<p><strong>Lucía:</strong> And check it live, on the day, because prices
+move.</p>
+<p><strong>Jamila:</strong> Always check live. We did, and the dates are
+in the show notes.</p>
+<p><strong>Lucía:</strong> So, to recap. The same little app can be
+eleven cents or twelve dollars a month. The sleep timer decides more
+than the sticker price, and the database decides the rest.</p>
+<p><strong>Jamila:</strong> If your app sleeps and an AI deployed it,
+Cloudish — cents a month. If it's always on and you can run a server,
+Fly.io or a VPS. If you want managed Postgres, Render or Railway.</p>
+<p><strong>Lucía:</strong> Full transcript and every source are in the
+show notes. Thanks for listening.</p>
+<p><strong>Jamila:</strong> Bye!</p>
+<h2 id="sources">Sources</h2>
+<p>All prices are list prices from each host's own pricing or docs page,
+checked 13 November 2026 (Cloudish docs re-read 16 November 2026).</p>
+<table>
+<thead>
+<tr>
+<th>Fact said in the episode</th>
+<th>Source</th>
+<th>Checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fly.io <span
+class="math inline">2.34/<em>m</em><em>o</em><em>a</em><em>l</em><em>w</em><em>a</em><em>y</em><em>s</em><em>o</em><em>n</em>(</span>2.19
+machine + $0.15 volume); card required</td>
+<td><a
+href="https://docs.fly.io/about/pricing.md">https://docs.fly.io/about/pricing.md</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>OVHcloud VPS from $4.54 before tax</td>
+<td><a
+href="https://us.ovhcloud.com/vps/">https://us.ovhcloud.com/vps/</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>Railway $5 including usage</td>
+<td><a
+href="https://railway.com/pricing">https://railway.com/pricing</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>Render <span class="math inline">7.25(</span>7 plan + $0.25 disk);
+free tier loses files, sleeps after 15 min</td>
+<td><a href="https://render.com/pricing">https://render.com/pricing</a>
+; <a
+href="https://render.com/docs/free">https://render.com/docs/free</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>DigitalOcean <span class="math inline">12(</span>5 container + $7
+dev database); filesystem ephemeral</td>
+<td><a
+href="https://www.digitalocean.com/pricing">https://www.digitalocean.com/pricing</a>
+; <a
+href="https://docs.digitalocean.com/products/app-platform/">https://docs.digitalocean.com/products/app-platform/</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>Heroku $12 (Basic $7 + Essential-0 $5); Eco $5 sleeps after 30 min;
+dyno filesystem ephemeral</td>
+<td><a
+href="https://www.heroku.com/pricing">https://www.heroku.com/pricing</a>
+; <a
+href="https://devcenter.heroku.com/articles/dynos">https://devcenter.heroku.com/articles/dynos</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>Fly.io volumes billed while machine stopped</td>
+<td><a
+href="https://docs.fly.io/volumes/overview/">https://docs.fly.io/volumes/overview/</a></td>
+<td>2026-11-06</td>
+</tr>
+<tr>
+<td>Cloudish shared $7.84/mo, small $21.66/mo, ~10 awake hours ≈ $0.11;
+billed per second, sleeps after 15 min (default), volume kept and not
+billed, prepaid (key never below zero), several datacenters (seattle,
+do, anton), no managed Postgres</td>
+<td><a
+href="https://cloudish.ai/instances.md">https://cloudish.ai/instances.md</a>
+; <a
+href="https://cloudish.ai/skill.md">https://cloudish.ai/skill.md</a> ;
+<a
+href="https://cloudish.ai/credits.md">https://cloudish.ai/credits.md</a></td>
+<td>2026-11-16</td>
+</tr>
+</tbody>
+</table>
+<p>No AI Deploy Bench results are used. The OVHcloud $4.54 figure is the
+most change-prone of the list; if it moves, swap in the cheapest
+verifiable VPS and update the sentence, or drop the exact figure.</p>
+<hr />
+<p><em>Last checked against the sources on 2026-11-19.</em></p>
+</main>
+</div>
+</body>
+</html>
