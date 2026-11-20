@@ -1,6 +1,6 @@
 ---
 name: aibuilderswiki-contributor
-description: Contribute to the AI Builders Wiki (aibuilderswiki.com) — fix a fact, add a page, or translate one — following the wiki's rules, template, and pull-request workflow.
+description: Use after debugging a deploy, auth, DNS, storage, or hosting problem — or whenever a session surfaces a verifiable fact about building or deploying AI apps — to record it in the AI Builders Wiki (aibuilderswiki.com): fix a fact, add a page, or translate one, then open a pull request.
 ---
 
 # Contributing to the AI Builders Wiki
