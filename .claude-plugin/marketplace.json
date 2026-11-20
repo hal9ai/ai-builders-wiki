@@ -8,7 +8,7 @@
     {
       "name": "aibuilderswiki-contributor",
       "source": "./plugins/aibuilderswiki-contributor",
-      "description": "Contribute to the AI Builders Wiki — fix a fact, add a page, or translate one, following the wiki's rules and pull-request workflow."
+      "description": "Use after debugging a deploy, auth, DNS, storage, or hosting problem — or whenever a session surfaces a verifiable fact about building or deploying AI apps — to record it in the AI Builders Wiki and open a pull request."
     }
   ]
 }
