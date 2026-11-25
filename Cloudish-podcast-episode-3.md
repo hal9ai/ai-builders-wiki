@@ -13,7 +13,7 @@ checked: 2026-11-25
 
 # Cloudish podcast — episode 3 transcript
 
-**Episode 3 — "What hundreds of agent deploys got wrong"** (recorded 2026-11-25). Listen on Spotify (link added once uploaded).
+**Episode 3 — "What hundreds of agent deploys got wrong"** (published 2026-11-25). Listen on [Spotify](https://open.spotify.com/episode/1bnNIK6X84SC9ETVg3L0aO).
 
 Jamila and Lucía, two engineers on the Cloudish team at Hal Nine, unpack one anonymized customer story with their founder, Jimena: an AI agent that hardcoded a payment key, shipped with debug mode on, and left an admin route open. They walk through why each one is a default, not a clever attack, and close on the three checks to run before letting an agent deploy.
 
