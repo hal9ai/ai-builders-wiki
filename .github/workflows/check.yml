@@ -49,6 +49,16 @@ jobs:
             echo "::warning::This PR changes page(s) that already exist on main (stale branch, or a page copied from another PR). Rebase on main and keep only your new page."
           fi
 
+      # Build the site the way deploy.yml does, so a PR that breaks routing
+      # (a page whose slug is not lowercase, a link to a missing route) fails
+      # before merge instead of blocking the deploy on main.
+      - name: Build site and check routes
+        if: github.event_name == 'pull_request'
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends pandoc
+          python3 scripts/build_site.py
+          python3 scripts/check_routes.py
+
       # On main: regenerate the navigation and commit it, so the Home index,
       # sidebar, category and tag pages always match the pages on main.
       - name: Regenerate and commit navigation on main

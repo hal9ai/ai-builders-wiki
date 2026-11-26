@@ -31,10 +31,10 @@ Then ask your agent to contribute and give it the change; the skill holds it to 
 1. Fork the repository on GitHub, clone your fork, and make a branch: `git switch -c fix-data-protection-table`.
 2. Edit or add pages. Any Markdown editor works; links between pages are relative (`AI-agent.md`), so they also work in your editor's preview.
 3. Check your links: `python3 scripts/build_wiki.py` (Python 3, nothing to install). The script also regenerates the navigation — do not commit those changes; the bot regenerates the navigation after your pull request merges.
-4. Optional: see the wiki as a site, with the sidebar: `scripts/preview.sh`, then open `_preview/index.html` in a browser (needs [pandoc](https://pandoc.org/installing.html)).
+4. Optional: see the wiki as a site, with the sidebar: `scripts/preview.sh`, then `python3 -m http.server 8000 -d _site` and open `http://localhost:8000/` (needs [pandoc](https://pandoc.org/installing.html)). Pages are built at lowercase routes such as `/ai-agent/`.
 5. Commit, push to your fork, and open a pull request. Say in it what you checked and where (links to the sources).
 
-On every pull request, a check runs `scripts/build_wiki.py` and fails if a link is broken, or if the pull request hand-edits the generated navigation (`_Sidebar.md`, `Category-*.md`, `Tags.md`, `Tag-*.md`). After the pull request merges, a workflow regenerates the navigation and commits it to `main`. A maintainer then reviews the facts against the sources.
+On every pull request, a check runs `scripts/build_wiki.py` and builds the site with `scripts/build_site.py`. It fails if a link is broken, if a page route is not lowercase or links to a route that was not built, or if the pull request hand-edits the generated navigation (`_Sidebar.md`, `Category-*.md`, `Tags.md`, `Tag-*.md`). After the pull request merges, a workflow regenerates the navigation and commits it to `main`. A maintainer then reviews the facts against the sources.
 
 ## Rules for pages
 

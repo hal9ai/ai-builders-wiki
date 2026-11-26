@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
 # Build the static site into _site/ for local preview (needs pandoc).
-#   scripts/preview.sh && open _site/index.html
+# Routes are directories, so serve the folder rather than opening a file:
+#   scripts/preview.sh
+#   python3 -m http.server 8000 -d _site
+#   open http://localhost:8000/
 set -e
 cd "$(dirname "$0")/.."
 python3 scripts/build_site.py
-echo "open _site/index.html"
+python3 scripts/check_routes.py
+echo "serve: python3 -m http.server 8000 -d _site"
+echo "open:  http://localhost:8000/"

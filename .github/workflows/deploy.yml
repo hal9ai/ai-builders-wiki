@@ -32,6 +32,9 @@ jobs:
       - name: Build site
         run: python3 scripts/build_site.py
 
+      - name: Check routes are lowercase
+        run: python3 scripts/check_routes.py
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
