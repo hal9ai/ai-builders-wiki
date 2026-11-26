@@ -2,10 +2,15 @@
 # SPDX-License-Identifier: MIT
 """Build the static HTML site into _site/ for GitHub Pages.
 
+Every page is written as <slug>/index.html (README.md becomes index.html), so
+URLs carry no .html extension and are lowercase: /security-for-ai-apps.
 Reuses build_wiki's front-matter parser and category constants so the sidebar
-matches _Sidebar.md. Converts every Markdown page with pandoc (GFM), rewrites
-internal .md links to .html, and wraps each page in site/template.html with the
-generated sidebar and site/style.css.
+matches _Sidebar.md, converts every Markdown page with pandoc (GFM), rewrites
+internal .md links to routes, and wraps each page in site/template.html with
+the generated sidebar and site/style.css.
+
+Links and the stylesheet are relative (../ for a page one directory down), so
+the site works at the domain root and under a path prefix.
 """
 import html
 import re
@@ -33,16 +38,42 @@ def strip_front_matter(md: str) -> str:
     return re.sub(r"^---\n.*?\n---\n", "", md, count=1, flags=re.S)
 
 
-def html_href(md_name: str) -> str:
-    """X.md -> X.html (README.md -> index.html)."""
+def page_slug(md_name: str) -> str:
+    """X.md -> x; README.md -> "" (the site root). Routes are lowercase."""
     if md_name == HOME:
-        return "index.html"
-    return md_name[:-3] + ".html"
+        return ""
+    return md_name[:-3].lower()
 
 
-def rewrite_links(h: str) -> str:
-    h = re.sub(r'href="([^":#]+)\.md(#[^"]*)?"', r'href="\1.html\2"', h)
-    return h.replace('href="README.html', 'href="index.html')
+def output_path(md_name: str) -> Path:
+    """Where a page is written: index.html, or <slug>/index.html."""
+    slug = page_slug(md_name)
+    return Path(slug) / "index.html" if slug else Path("index.html")
+
+
+def href(depth: int, md_name: str) -> str:
+    """Relative link to a page from a page `depth` directories below the root."""
+    up = "../" * depth
+    slug = page_slug(md_name)
+    if not slug:
+        return up or "./"
+    return f"{up}{slug}/"
+
+
+def rewrite_links(h: str, depth: int) -> str:
+    def repl(m):
+        name, anchor = m.group(1), m.group(2) or ""
+        # _Sidebar.md has no page of its own; "all pages" means the Home index.
+        target = HOME if name.lower() in ("readme", "_sidebar") else f"{name}.md"
+        return f'href="{href(depth, target)}{anchor}"'
+
+    # Leave code samples alone: a URL written inside backticks is an example,
+    # not a link the page should follow.
+    parts = re.split(r"(<pre\b[^>]*>.*?</pre>|<code\b[^>]*>.*?</code>)", h, flags=re.S)
+    for i, part in enumerate(parts):
+        if i % 2 == 0:
+            parts[i] = re.sub(r'href="([^":#]+)\.md(#[^"]*)?"', repl, part)
+    return "".join(parts)
 
 
 def title_of(md: str) -> str:
@@ -64,7 +95,7 @@ def content_pages():
     return pages
 
 
-def sidebar_html(pages) -> str:
+def sidebar_html(pages, depth: int) -> str:
     by_cat = {}
     for m in pages:
         by_cat.setdefault(m["category"], []).append(m)
@@ -72,18 +103,18 @@ def sidebar_html(pages) -> str:
     cats += sorted(c for c in by_cat if c not in CATEGORY_ORDER)
 
     parts = [
-        f'<div class="brand"><a href="index.html">{html.escape(WIKI_TITLE)}</a></div>',
+        f'<div class="brand"><a href="{href(depth, HOME)}">{html.escape(WIKI_TITLE)}</a></div>',
         '<nav class="sidenav">',
         '<div class="nav-top">'
-        '<a href="index.html">Home</a>'
-        '<a href="Glossary.html">Glossary</a>'
-        '<a href="Tags.html">Tags</a>'
+        f'<a href="{href(depth, HOME)}">Home</a>'
+        f'<a href="{href(depth, "Glossary.md")}">Glossary</a>'
+        f'<a href="{href(depth, "Tags.md")}">Tags</a>'
         '</div>',
     ]
     for c in cats:
-        parts.append(f'<a class="nav-cat" href="{html_href(cat_file(c))}">{html.escape(c)}</a>')
+        parts.append(f'<a class="nav-cat" href="{href(depth, cat_file(c))}">{html.escape(c)}</a>')
         for m in by_cat[c]:
-            parts.append(f'<a class="nav-page" href="{html_href(m["file"])}">{html.escape(m["title"])}</a>')
+            parts.append(f'<a class="nav-page" href="{href(depth, m["file"])}">{html.escape(m["title"])}</a>')
     parts.append("</nav>")
     return "\n".join(parts)
 
@@ -102,21 +133,36 @@ def main():
     shutil.copy(SITE / "style.css", OUT / "style.css")
 
     template = (SITE / "template.html").read_text(encoding="utf-8")
-    sidebar = sidebar_html(content_pages())
+    pages = content_pages()
+    sidebars = {}
 
     n = 0
+    routes = {}
     for f in sorted(ROOT.glob("*.md")):
         if f.name == "_Sidebar.md":
             continue
+        out = output_path(f.name)
+        if out in routes:
+            raise SystemExit(
+                f"route collision: {f.name} and {routes[out]} both build /{page_slug(f.name)}/. "
+                "Rename one of them: routes are lowercase, so names may differ only by case."
+            )
+        routes[out] = f.name
+
+        depth = len(out.parts) - 1
+        if depth not in sidebars:
+            sidebars[depth] = sidebar_html(pages, depth)
         md = f.read_text(encoding="utf-8")
         title = title_of(md)
-        body = mark_breadcrumb(rewrite_links(pandoc(strip_front_matter(md))))
+        body = mark_breadcrumb(rewrite_links(pandoc(strip_front_matter(md)), depth))
         full_title = title if title == WIKI_TITLE else f"{title} · {WIKI_TITLE}"
         page = (template
                 .replace("{{TITLE}}", html.escape(full_title))
-                .replace("{{SIDEBAR}}", sidebar)
+                .replace("{{PREFIX}}", "../" * depth)
+                .replace("{{SIDEBAR}}", sidebars[depth])
                 .replace("{{CONTENT}}", body))
-        (OUT / html_href(f.name)).write_text(page, encoding="utf-8")
+        (OUT / out).parent.mkdir(parents=True, exist_ok=True)
+        (OUT / out).write_text(page, encoding="utf-8")
         n += 1
     print(f"{n} pages in {OUT}")
 
