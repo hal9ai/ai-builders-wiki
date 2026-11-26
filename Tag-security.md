@@ -8,5 +8,6 @@
 - [Data protection when you use AI](Data-protection.md) (Security and data)
 - [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md) (Other sources)
 - [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md) (Models and providers)
+- [Cloudish podcast — episode 3 transcript](Cloudish-podcast-episode-3.md) (Other sources)
 - [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md) (Problems & solutions)
 - [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md) (Problems & solutions)

@@ -68,3 +68,4 @@
 - [The Cloudish podcast](Cloudish-podcast.md)
 - [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md)
 - [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md)
+- [Cloudish podcast — episode 3 transcript](Cloudish-podcast-episode-3.md)

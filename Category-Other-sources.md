@@ -4,11 +4,12 @@
 
 # Category: Other sources
 
-**3 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
+**4 pages in this category.** Other categories: [Foundations](Category-Foundations.md), [Agents](Category-Agents.md), [Models and providers](Category-Models-and-providers.md), [Security and data](Category-Security-and-data.md), [How-to](Category-How-to.md), [Problems & solutions](Category-Problems-solutions.md).
 
-- [The Cloudish podcast](Cloudish-podcast.md): Hal9's podcast, where two virtual employees explain agent-run hosting with sourced numbers; episode 1 prices one small app, episode 2 walks through who fixes what when it breaks.
+- [The Cloudish podcast](Cloudish-podcast.md): Hal9's podcast, where two virtual employees explain agent-run hosting with sourced numbers; episode 1 prices one small app, episode 2 walks through who fixes what when it breaks, episode 3 unpacks one anonymized agent-deploy incident.
 - [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md): Full transcript and sources of episode 1, 'Your AI built the app. Here's the bill.': the monthly cost of one small app with a database, host by host.
 - [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md): Full transcript and sources of episode 2, 'Who fixes what when your AI agent deploys the app': the shared responsibility model, host by host, and five failures with their owners.
+- [Cloudish podcast — episode 3 transcript](Cloudish-podcast-episode-3.md): Full transcript and sources of episode 3, 'What hundreds of agent deploys got wrong': one anonymized agent-deploy incident — a hardcoded payment key, debug mode on, an open admin route — and the three checks to run before an agent deploys.
 
 ---
 

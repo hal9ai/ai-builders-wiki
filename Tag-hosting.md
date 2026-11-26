@@ -12,6 +12,7 @@
 - [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md) (Other sources)
 - [How to shrink a container image](Container-image-size.md) (How-to)
 - [Why a deploy looks broken in one browser but fine in another](Stale-cache-after-a-deploy.md) (Problems & solutions)
+- [Cloudish podcast — episode 3 transcript](Cloudish-podcast-episode-3.md) (Other sources)
 - [Querying a web crawl from a small app](Querying-a-web-crawl-from-a-small-app.md) (How-to)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md) (Foundations)
 - [Where an AI app's terms of service and privacy policy should live](Legal-pages-for-an-AI-app.md) (Security and data)

@@ -7,3 +7,4 @@
 - [The Cloudish podcast](Cloudish-podcast.md) (Other sources)
 - [Cloudish podcast — episode 1 transcript](Cloudish-podcast-episode-1.md) (Other sources)
 - [Cloudish podcast — episode 2 transcript](Cloudish-podcast-episode-2.md) (Other sources)
+- [Cloudish podcast — episode 3 transcript](Cloudish-podcast-episode-3.md) (Other sources)
