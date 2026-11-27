@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A page that scrolls sideways on a phone · AI Builders Wiki</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="../">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="../">Home</a><a href="../glossary/">Glossary</a><a href="../tags/">Tags</a></div>
+<a class="nav-cat" href="../category-foundations/">Foundations</a>
+<a class="nav-page" href="../glossary/">Glossary: the basic words</a>
+<a class="nav-page" href="../generative-ai/">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="../ways-to-use-ai/">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="../cloud-for-ai-apps/">The cloud, for AI apps</a>
+<a class="nav-page" href="../how-paid-api-calls-work/">How paid API calls work</a>
+<a class="nav-cat" href="../category-agents/">Agents</a>
+<a class="nav-page" href="../ai-agent/">What an AI agent is</a>
+<a class="nav-page" href="../multi-agent-systems/">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="../agent-protocols-mcp-and-a2a/">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="../how-an-agent-finds-a-tool/">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="../category-models-and-providers/">Models and providers</a>
+<a class="nav-page" href="../ai-providers-and-models/">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="../model-names-and-versions/">Model names and versions</a>
+<a class="nav-page" href="../using-claude-code-with-another-model-provider/">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="../category-security-and-data/">Security and data</a>
+<a class="nav-page" href="../security-for-ai-apps/">Security for AI apps and agents</a>
+<a class="nav-page" href="../data-protection/">Data protection when you use AI</a>
+<a class="nav-page" href="../data-protection-by-vendor/">Data protection by vendor</a>
+<a class="nav-page" href="../legal-pages-for-an-ai-app/">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="../category-how-to/">How-to</a>
+<a class="nav-page" href="../idea-to-deployed-ai-app/">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="../checking-an-ai-built-web-app/">How to check a web app an AI built</a>
+<a class="nav-page" href="../container-image-size/">How to shrink a container image</a>
+<a class="nav-page" href="../how-to-tell-whether-a-page-overflows/">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="../querying-a-web-crawl-from-a-small-app/">Querying a web crawl from a small app</a>
+<a class="nav-page" href="../where-your-keys-come-from/">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="../pointing-a-domain-at-your-app/">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="../checking-whether-a-deploy-worked/">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="../serve-one-domain-from-more-than-one-datacenter/">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="../deploy-on-every-push/">How to deploy your app on every push</a>
+<a class="nav-page" href="../persistent-storage-for-many-ai-sandboxes/">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="../what-dns-records-github-pages-needs-for-a-custom-domain/">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="../where-an-ai-built-app-keeps-its-data/">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="../previewing-a-signed-in-page-on-localhost/">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="../how-to-run-an-app-that-keeps-its-own-sqlite-database/">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="../keeping-an-ai-reply-running-when-the-browser-refreshes/">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="../serving-a-single-page-app-from-one-container/">How to serve a single-page app from one container</a>
+<a class="nav-page" href="../carry-a-prompt-through-sign-in/">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="../category-problems-solutions/">Problems &amp; solutions</a>
+<a class="nav-page" href="../app-looks-fine-but-buttons-do-nothing/">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="../a-login-that-loops/">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="../a-sign-in-that-breaks-behind-a-proxy/">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="../stale-cache-after-a-deploy/">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="../a-sign-in-that-lands-on-another-site/">A sign-in that lands on another site</a>
+<a class="nav-page" href="../fetching-an-api-from-your-page/">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="../a-signed-in-user-with-no-account-on-another-region/">A signed-in user with no account on another region</a>
+<a class="nav-page" href="../a-page-that-scrolls-sideways-on-a-phone/">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="../why-a-deployed-app-is-blank-inside-an-iframe/">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="../a-product-demo-that-pretends-to-be-live/">A product demo that pretends to be live</a>
+<a class="nav-cat" href="../category-other-sources/">Other sources</a>
+<a class="nav-page" href="../cloudish-podcast/">The Cloudish podcast</a>
+<a class="nav-page" href="../cloudish-podcast-episode-1/">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="../cloudish-podcast-episode-2/">Cloudish podcast — episode 2 transcript</a>
+<a class="nav-page" href="../cloudish-podcast-episode-3/">Cloudish podcast — episode 3 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="../">Home</a> › <a
+href="../category-problems-solutions/">Problems &amp; solutions</a> ·
+Tags: <a href="../tag-basics/">basics</a></p>
+<!-- NAV:END -->
+
+<h1 id="a-page-that-scrolls-sideways-on-a-phone">A page that scrolls
+sideways on a phone</h1>
+<p><strong>A phone page that scrolls sideways is usually one flex or
+grid item that cannot shrink: its content's minimum width is wider than
+the screen, so it pushes every ancestor wider with it.</strong> On a
+laptop there is room and nothing looks wrong; on a phone the whole page
+slides left and right. The fix is to let that item shrink, and to give a
+sideways scroll only to the rows that should have one.</p>
+<h2 id="what-it-looks-like">What it looks like</h2>
+<ul>
+<li>The page slides sideways under your finger.</li>
+<li>Full-width things — the header, section backgrounds, the footer —
+run past the right edge or end early.</li>
+<li>Text or a button is cut off at the right, or there is a blank band
+on one side.</li>
+<li>Rotating the phone changes how bad it is, but does not fix it.</li>
+</ul>
+<h2 id="1-confirm-the-page-is-wider-than-the-screen">1. Confirm the page
+is wider than the screen</h2>
+<p>Open the browser console with the phone connected, or with device
+emulation set to a phone width such as 390px, and run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="at">documentElement</span><span class="op">.</span><span class="at">scrollWidth</span> <span class="op">-</span> <span class="bu">document</span><span class="op">.</span><span class="at">documentElement</span><span class="op">.</span><span class="at">clientWidth</span></span></code></pre></div>
+<p><code>scrollWidth</code> is the width of the content, including the
+part not visible because of overflow; <code>clientWidth</code> is the
+width you can see (<a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth">MDN:
+Element.scrollWidth</a>, checked 2026-11-15). A result of <code>0</code>
+means the page is not wider than the screen, so the sideways movement is
+coming from something else.</p>
+<h2 id="2-find-the-element-that-sticks-out">2. Find the element that
+sticks out</h2>
+<p>This lists the elements whose right edge is past the visible
+width:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> viewport <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="at">documentElement</span><span class="op">.</span><span class="at">clientWidth</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> insideScroller <span class="op">=</span> (el) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> p <span class="op">=</span> el<span class="op">.</span><span class="at">parentElement</span><span class="op">;</span> p<span class="op">;</span> p <span class="op">=</span> p<span class="op">.</span><span class="at">parentElement</span>) {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> x <span class="op">=</span> <span class="fu">getComputedStyle</span>(p)<span class="op">.</span><span class="at">overflowX</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x <span class="op">===</span> <span class="st">&#39;auto&#39;</span> <span class="op">||</span> x <span class="op">===</span> <span class="st">&#39;scroll&#39;</span>) <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>[<span class="op">...</span><span class="bu">document</span><span class="op">.</span><span class="fu">querySelectorAll</span>(<span class="st">&#39;body *&#39;</span>)]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    (el) <span class="kw">=&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">!</span><span class="fu">insideScroller</span>(el) <span class="op">&amp;&amp;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      el<span class="op">.</span><span class="fu">getBoundingClientRect</span>()<span class="op">.</span><span class="at">right</span> <span class="op">&gt;</span> viewport <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>((el) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> cls <span class="op">=</span> <span class="kw">typeof</span> el<span class="op">.</span><span class="at">className</span> <span class="op">===</span> <span class="st">&#39;string&#39;</span> <span class="op">?</span> el<span class="op">.</span><span class="at">className</span><span class="op">.</span><span class="fu">trim</span>()<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">\s+</span><span class="ss">/g</span><span class="op">,</span> <span class="st">&#39;.&#39;</span>) <span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> el<span class="op">.</span><span class="at">tagName</span><span class="op">.</span><span class="fu">toLowerCase</span>() <span class="op">+</span> (cls <span class="op">?</span> <span class="st">&#39;.&#39;</span> <span class="op">+</span> cls <span class="op">:</span> <span class="st">&#39;&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span></code></pre></div>
+<p>The deepest element in the list is usually the real cause; everything
+above it is wide only because it contains that element. The
+<code>insideScroller</code> filter leaves out the cards inside a row you
+meant to scroll — those sit outside the screen on purpose.</p>
+<h2 id="3-why-the-width-is-there">3. Why the width is there</h2>
+<p>A flex or grid item's minimum width defaults to the minimum width of
+its content: the size the content needs when every line is as short as
+it can be without breaking (<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-width">MDN:
+min-width</a>, checked 2026-11-15). Put a row of chips that must stay on
+one line inside a plain wrapper, put that wrapper in a one-column grid,
+and the column's minimum becomes the width of all chips side by side.
+The grid, and then the page, grows to that width.</p>
+<p>The row can have <code>overflow-x: auto</code> and still cause this.
+Its own box scrolls, but the minimum width of its content still reaches
+the wrapper; the wrapper has to be allowed to shrink. (A flex or grid
+item that is <em>itself</em> the scroll container gets an automatic
+minimum of <code>0</code>, so the usual cause is a plain wrapper around
+the scrolling row.)</p>
+<p>A small reproduction:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;page&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;copy&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;chips&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">button</span><span class="dt">&gt;</span>Plan a trip<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">button</span><span class="dt">&gt;</span>Analyze a spreadsheet<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">button</span><span class="dt">&gt;</span>Build a landing page<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.page</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">grid-template-columns</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">fr</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">.chips</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">overflow-x</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">white-space</span><span class="ch">:</span> <span class="dv">nowrap</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The fix is one line on the item that contains the row:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.copy</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">min-width</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>At the track level, the same thing is written
+<code>grid-template-columns: minmax(0, 1fr)</code>: the track's minimum
+is explicitly zero instead of the items' content width (<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/minmax">MDN:
+minmax()</a>, checked 2026-11-15). If there are several nested flex or
+grid items between the row and the page, each one needs
+<code>min-width: 0</code> on the path up.</p>
+<h2 id="4-keep-the-sideways-scroll-on-the-row">4. Keep the sideways
+scroll, on the row</h2>
+<p>Once the page fits, give the row its own scrolling and snapping:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.chips</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gap</span><span class="ch">:</span> <span class="dv">8</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">overflow-x</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">scroll-snap-type</span><span class="ch">:</span> <span class="dv">x mandatory</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">scroll-padding-inline</span><span class="ch">:</span> <span class="dv">18</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">padding-inline</span><span class="ch">:</span> <span class="dv">18</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.chips</span> <span class="op">&gt;</span> <span class="op">*</span> {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">flex</span><span class="ch">:</span> <span class="dv">0</span> <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">scroll-snap-align</span><span class="ch">:</span> <span class="dv">start</span><span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><code>overflow-x: auto</code> makes this box the scroll container,
+so it scrolls instead of widening the page.</li>
+<li><code>scroll-snap-type: x mandatory</code> opts the container into
+horizontal scroll snapping (<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type">MDN:
+scroll-snap-type</a>, checked 2026-11-15); each child sets
+<code>scroll-snap-align: start</code>.</li>
+<li><code>scroll-padding-inline</code> insets the region the browser
+snaps into, so the first card lands at the page gutter instead of flush
+against the screen edge (<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding-inline">MDN:
+scroll-padding-inline</a>, checked 2026-11-15).</li>
+<li><code>flex: 0 0 auto</code> stops the cards from shrinking to fit
+the row.</li>
+</ul>
+<p>On a wide screen, turn the row back into a normal grid so it does not
+look like a carousel with nothing to scroll to.</p>
+<h2 id="5-if-the-culprit-is-one-element-not-a-row">5. If the culprit is
+one element, not a row</h2>
+<ul>
+<li><strong>A long URL, token or code line.</strong> Let it break with
+<code>overflow-wrap: anywhere</code>, or give the code block its own
+<code>overflow-x: auto</code> (<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap">MDN:
+overflow-wrap</a>, checked 2026-11-15).</li>
+<li><strong>A wide table.</strong> Wrap it in a <code>div</code> with
+<code>overflow-x: auto</code>, and make sure that wrapper is allowed to
+shrink like any other item.</li>
+<li><strong>A decorative glow, shape or illustration positioned outside
+its section.</strong> Clipping it at the section that owns it is the
+right use of hidden overflow: <code>overflow: hidden</code> on that
+section (or <code>overflow: clip</code>, which clips without creating a
+scroll container) (<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">MDN:
+overflow</a>, checked 2026-11-15).</li>
+</ul>
+<h2 id="6-check-it-at-phone-widths">6. Check it at phone widths</h2>
+<ul>
+<li>Load the page at 320px and 390px wide; the difference from step 1
+should be <code>0</code> at both.</li>
+<li>Scroll to the bottom and check again. A section lower down can be
+the only one that is too wide.</li>
+<li>Run the list from step 2 on a few sections, not just the top of the
+page.</li>
+<li>Swipe each sideways row: it should stop at its ends, with the first
+and last card fully visible.</li>
+</ul>
+<h2 id="do-not-hide-it-on-body">Do not hide it on <code>body</code></h2>
+<p><code>body { overflow-x: hidden }</code> hides the scrollbar but not
+the layout: the page is still wider than the screen, so content can be
+clipped, and an element that receives keyboard focus can still scroll
+the page sideways. Use hidden overflow only on the section that owns a
+deliberately clipped decoration, and fix the width where it is
+created.</p>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="../checking-an-ai-built-web-app/">How to check a web app an
+AI built</a>: run each page in a headless browser, keep screenshots and
+console errors, and catch a layout that only breaks at phone width</li>
+<li><a href="../idea-to-deployed-ai-app/">From idea to deployed AI
+app</a>: where the build, deploy and checks fit</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a
+href="../glossary/#container">Container</a>, <a
+href="../glossary/#token">Token</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-15.</p>
+<ul>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-width">min-width</a>:
+the automatic minimum of a flex or grid item, and when it is
+<code>0</code></li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/minmax">minmax()</a>:
+the track minimum and the <code>&lt;flex&gt;</code> value</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth">Element.scrollWidth</a>:
+content width including overflow</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type">scroll-snap-type</a>:
+opting a scroll container into snapping</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding-inline">scroll-padding-inline</a>:
+insets for the region used to place things in view</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap">overflow-wrap</a>:
+breaking an otherwise unbreakable string</li>
+<li>MDN, <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">overflow</a>:
+clipping and scrolling</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a landing page whose
+suggestion chips made the page wider than a 390px phone screen, and
+checked against the <a href="#sources">sources</a> on 2026-11-15. Found
+a mistake? <a href="../contributing/">Fix it or open an issue</a>. Text
+licensed under <a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

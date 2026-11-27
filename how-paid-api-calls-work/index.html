@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How paid API calls work · AI Builders Wiki</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="../">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="../">Home</a><a href="../glossary/">Glossary</a><a href="../tags/">Tags</a></div>
+<a class="nav-cat" href="../category-foundations/">Foundations</a>
+<a class="nav-page" href="../glossary/">Glossary: the basic words</a>
+<a class="nav-page" href="../generative-ai/">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="../ways-to-use-ai/">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="../cloud-for-ai-apps/">The cloud, for AI apps</a>
+<a class="nav-page" href="../how-paid-api-calls-work/">How paid API calls work</a>
+<a class="nav-cat" href="../category-agents/">Agents</a>
+<a class="nav-page" href="../ai-agent/">What an AI agent is</a>
+<a class="nav-page" href="../multi-agent-systems/">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="../agent-protocols-mcp-and-a2a/">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="../how-an-agent-finds-a-tool/">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="../category-models-and-providers/">Models and providers</a>
+<a class="nav-page" href="../ai-providers-and-models/">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="../model-names-and-versions/">Model names and versions</a>
+<a class="nav-page" href="../using-claude-code-with-another-model-provider/">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="../category-security-and-data/">Security and data</a>
+<a class="nav-page" href="../security-for-ai-apps/">Security for AI apps and agents</a>
+<a class="nav-page" href="../data-protection/">Data protection when you use AI</a>
+<a class="nav-page" href="../data-protection-by-vendor/">Data protection by vendor</a>
+<a class="nav-page" href="../legal-pages-for-an-ai-app/">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="../category-how-to/">How-to</a>
+<a class="nav-page" href="../idea-to-deployed-ai-app/">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="../checking-an-ai-built-web-app/">How to check a web app an AI built</a>
+<a class="nav-page" href="../container-image-size/">How to shrink a container image</a>
+<a class="nav-page" href="../how-to-tell-whether-a-page-overflows/">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="../querying-a-web-crawl-from-a-small-app/">Querying a web crawl from a small app</a>
+<a class="nav-page" href="../where-your-keys-come-from/">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="../pointing-a-domain-at-your-app/">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="../checking-whether-a-deploy-worked/">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="../serve-one-domain-from-more-than-one-datacenter/">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="../deploy-on-every-push/">How to deploy your app on every push</a>
+<a class="nav-page" href="../persistent-storage-for-many-ai-sandboxes/">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="../what-dns-records-github-pages-needs-for-a-custom-domain/">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="../where-an-ai-built-app-keeps-its-data/">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="../previewing-a-signed-in-page-on-localhost/">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="../how-to-run-an-app-that-keeps-its-own-sqlite-database/">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="../keeping-an-ai-reply-running-when-the-browser-refreshes/">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="../serving-a-single-page-app-from-one-container/">How to serve a single-page app from one container</a>
+<a class="nav-page" href="../carry-a-prompt-through-sign-in/">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="../category-problems-solutions/">Problems &amp; solutions</a>
+<a class="nav-page" href="../app-looks-fine-but-buttons-do-nothing/">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="../a-login-that-loops/">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="../a-sign-in-that-breaks-behind-a-proxy/">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="../stale-cache-after-a-deploy/">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="../a-sign-in-that-lands-on-another-site/">A sign-in that lands on another site</a>
+<a class="nav-page" href="../fetching-an-api-from-your-page/">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="../a-signed-in-user-with-no-account-on-another-region/">A signed-in user with no account on another region</a>
+<a class="nav-page" href="../a-page-that-scrolls-sideways-on-a-phone/">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="../why-a-deployed-app-is-blank-inside-an-iframe/">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="../a-product-demo-that-pretends-to-be-live/">A product demo that pretends to be live</a>
+<a class="nav-cat" href="../category-other-sources/">Other sources</a>
+<a class="nav-page" href="../cloudish-podcast/">The Cloudish podcast</a>
+<a class="nav-page" href="../cloudish-podcast-episode-1/">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="../cloudish-podcast-episode-2/">Cloudish podcast — episode 2 transcript</a>
+<a class="nav-page" href="../cloudish-podcast-episode-3/">Cloudish podcast — episode 3 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="../">Home</a> › <a
+href="../category-foundations/">Foundations</a> · Tags: <a
+href="../tag-costs/">costs</a>, <a
+href="../tag-security/">security</a></p>
+<!-- NAV:END -->
+
+<h1 id="how-paid-api-calls-work">How paid API calls work</h1>
+<p><strong>A paid <a href="../glossary/#api">API</a> call names its price
+before it does the work: the server answers an unpaid request with HTTP
+402 Payment Required and a price, the caller retries accepting that
+price or under a maximum, and the platform settles one charge — from
+prepaid credit or on a later invoice — with a receipt the app can use to
+check it was paid.</strong></p>
+<p>The opposite arrangement is to trust the caller, record usage, and
+bill later: Stripe describes its usage-based billing as a way to "Charge
+customers based on how much they use your product or service" (<a
+href="https://docs.stripe.com/billing/subscriptions/usage-based">Stripe,
+Basic usage-based billing</a>, checked 2026-11-26). A paid call moves
+the agreement into the request itself. A caller that will not or cannot
+pay does not get the work done, and neither side has to guess what was
+agreed.</p>
+<h2 id="http-reserves-402-but-defines-no-payment-format">HTTP reserves
+402 but defines no payment format</h2>
+<p>The 402 status code is part of HTTP, and HTTP says almost nothing
+about it. RFC 9110 (June 2022) defines it in one sentence: "The 402
+(Payment Required) status code is reserved for future use." (<a
+href="https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.3">RFC
+9110, §15.5.3</a>, checked 2026-11-26).</p>
+<p>The code is standard; the payment scheme is not. Each paid API
+defines what a price looks like on the wire — a header, a JSON body, or
+both — so two APIs can both answer 402 and share no header names.</p>
+<p>That is also why 402 is not 401. RFC 9110 says 401 means the request
+"lacks valid authentication credentials for the target resource" (<a
+href="https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.2">RFC
+9110, §15.5.2</a>, checked 2026-11-26). A caller with a valid key and no
+money should not be told its key is wrong; it should be told the
+price.</p>
+<h2 id="the-first-402-is-a-quote-not-a-bill">The first 402 is a quote,
+not a bill</h2>
+<p>An unpaid request is the question. The 402 is the answer that states
+the price, and nothing is charged until the caller comes back accepting
+it.</p>
+<p>Cloudflare's pay per crawl works this way. A protected page answers
+an AI crawler with <code>HTTP/2 402 Payment Required</code> and a
+<code>crawler-price</code> header that "specifies the cost to access the
+content"; their example shows:</p>
+<pre><code>HTTP/2 402
+crawler-price: USD 0.01</code></pre>
+<p>The price there is Cloudflare's illustration, not a rate. The feature
+was "currently in closed beta" when checked, and Cloudflare describes it
+as a way for site owners to "control and monetize AI crawler access" (<a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/what-is-pay-per-crawl/">Cloudflare,
+What is Pay Per Crawl?</a>, and <a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-ai-owner/crawl-pages/">Crawl
+pages</a>, checked 2026-11-26).</p>
+<p>x402 uses the same code with more machinery. It describes itself as
+"an open, neutral standard for internet-native payments" (<a
+href="https://x402.org">x402.org</a>, checked 2026-11-26) and, in its
+README, as "A payments protocol for the internet. Built on HTTP." (<a
+href="https://github.com/coinbase/x402">x402 README</a>, checked
+2026-11-26). The server answers 402 with a base64
+<code>PaymentRequired</code> object in a <code>PAYMENT-REQUIRED</code>
+header, carrying <code>PaymentRequirements</code> the client can choose
+from by <code>scheme</code> and <code>network</code>. The client retries
+with a <code>PAYMENT-SIGNATURE</code>, which the server verifies itself
+or through a facilitator — "A server that facilitates verification and
+execution of payments for one or many networks." A paid request ends
+<code>200 OK</code> with a <code>PAYMENT-RESPONSE</code> header. The
+project says "Stablecoin payments are the primary use case" (<a
+href="https://x402.org">x402.org</a>, checked 2026-11-26).</p>
+<p>In both designs the price comes from the server, where the price list
+lives, and travels to the caller before the work starts. A server that
+accepts the caller's idea of the price is asking to be lied to about the
+amount owed.</p>
+<h2 id="the-caller-sets-the-ceiling">The caller sets the ceiling</h2>
+<p>A price list is only safe if the caller can refuse it, so these
+designs let the caller say no to a price it did not agree to.</p>
+<p>Cloudflare lets a crawler answer with one of two headers:
+<code>crawler-exact-price</code> agrees to the exact quoted price and
+should match the <code>crawler-price</code> header, while
+<code>crawler-max-price</code> states "the maximum price the AI crawler
+is configured to pay for access on any content." If the page costs more
+than that maximum, the crawler gets another 402 (<a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-ai-owner/crawl-pages/">Cloudflare,
+Crawl pages</a>, checked 2026-11-26).</p>
+<p>x402 puts acceptance in the protocol: the 402 lists several
+<code>PaymentRequirements</code>, and the client picks one it is willing
+to meet (<a href="https://github.com/coinbase/x402">x402 README</a>,
+checked 2026-11-26).</p>
+<p>A cap turns a pricing mistake or a hostile page into one refused call
+instead of an empty account. With a maximum, the worst a server can
+charge for that call is a number the caller set without trusting the
+server.</p>
+<h2 id="one-settlement-once">One settlement, once</h2>
+<p>After acceptance, someone has to move money. There are two common
+arrangements, and a per-call meter can use either.</p>
+<p><strong>Prepaid credit.</strong> The caller keeps a balance, and each
+call draws it down. Stripe offers billing credits for this: "prepaid or
+promotional usage credit allocated through credit grants," which it
+applies when an invoice finalizes (<a
+href="https://docs.stripe.com/billing/subscriptions/usage-based/billing-credits">Stripe,
+Billing credits</a>, checked 2026-11-26). Cloudish (the hosting product
+made by Hal9, which started this wiki) is a disclosed example of a
+prepaid platform, not a recommendation: it says its "credits are prepaid
+and metered per second" and "spend never exceeds the key's balance," and
+a request to a project with no credit "returns 402 (JSON) instead of
+starting the container" (<a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">Cloudish, skill.md</a>,
+checked 2026-11-26). That last 402 is a refusal, not a quote — the same
+code doing a different job.</p>
+<p><strong>Invoice after usage.</strong> The caller is trusted, usage is
+recorded, and a bill follows. Stripe's usage-based billing, which Stripe
+now points at Metronome as its primary platform, records usage and
+charges for it after the fact (<a
+href="https://docs.stripe.com/billing/subscriptions/usage-based">Stripe,
+Basic usage-based billing</a>, checked 2026-11-26).</p>
+<p>Cloudflare sits between the two sides as "the Merchant of Record for
+pay per crawl," and its successful response carries a
+<code>crawler-charged</code> header that "indicates the exact amount
+that will be billed" (<a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/what-is-pay-per-crawl/">Cloudflare,
+What is Pay Per Crawl?</a> and <a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-ai-owner/crawl-pages/">Crawl
+pages</a>, checked 2026-11-26).</p>
+<p>Whichever arrangement, the ledger has one rule: one call, one charge.
+A retry carries a reference the platform has already seen, so a repeat
+is a no-op rather than a second sale; a call whose work failed is not
+charged at all, or both sides of its settlement are reversed. Those are
+the two failures to design against.</p>
+<h2 id="the-app-at-the-end-checks-a-receipt">The app at the end checks a
+receipt</h2>
+<p>When a gateway forwards paid calls to a service, the charge and the
+work happen in two places. The service must know the call was paid,
+because a caller that can reach the service directly would otherwise
+skip the meter.</p>
+<p>The gateway can sign a short receipt. A compact JWS, defined by RFC
+7515 (May 2015), is three base64url parts — protected header, payload,
+signature — and the signature covers the first two (<a
+href="https://www.rfc-editor.org/rfc/rfc7515.html#section-3.1">RFC 7515,
+§3.1</a>, checked 2026-11-26). The claims should answer four questions:
+who called, which request, how much was charged, and when the proof
+stops being valid.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Verify a compact JWS receipt (HS256) before serving a paid call.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> crypto <span class="im">from</span> <span class="st">&quot;node:crypto&quot;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [header<span class="op">,</span> payload<span class="op">,</span> signature] <span class="op">=</span> receipt<span class="op">.</span><span class="fu">split</span>(<span class="st">&quot;.&quot;</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> expected <span class="op">=</span> crypto</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">createHmac</span>(<span class="st">&quot;sha256&quot;</span><span class="op">,</span> <span class="bu">process</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">METERING_SECRET</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">update</span>(<span class="vs">`</span><span class="sc">${</span>header<span class="sc">}</span><span class="vs">.</span><span class="sc">${</span>payload<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">digest</span>()<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> given <span class="op">=</span> <span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(signature<span class="op">,</span> <span class="st">&quot;base64url&quot;</span>)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (given<span class="op">.</span><span class="at">length</span> <span class="op">!==</span> expected<span class="op">.</span><span class="at">length</span> <span class="op">||</span> <span class="op">!</span>crypto<span class="op">.</span><span class="fu">timingSafeEqual</span>(given<span class="op">,</span> expected)) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">writeHead</span>(<span class="dv">402</span>)<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span> <span class="co">// no valid receipt: not a paid call</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> claims <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(<span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(payload<span class="op">,</span> <span class="st">&quot;base64url&quot;</span>))<span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (claims<span class="op">.</span><span class="at">exp</span> <span class="op">*</span> <span class="dv">1000</span> <span class="op">&lt;=</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()) {</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">writeHead</span>(<span class="dv">402</span>)<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span> <span class="co">// the proof has expired</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Use the verified claims — not a header the caller controls — to
+identify the caller. Compare the claims' method and path with the
+request in front of you, so a receipt for one cheap call cannot
+authorize an expensive one. And note the trade-off in the example: with
+a shared HS256 <a href="../glossary/#secret">secret</a>, the service can
+also mint receipts. If the service is not fully trusted, use an
+asymmetric signature instead, where the platform signs and the service
+verifies with a public key.</p>
+<h2 id="what-the-design-has-to-refuse">What the design has to
+refuse</h2>
+<ul>
+<li>Serving the work before both sides agree on the price.</li>
+<li>Charging for a failed, refused or timed-out call; if settlement
+already ran, reverse it for both the caller and the provider.</li>
+<li>Trusting a price or a cap that arrives in a caller-set header. The
+price comes from the price list; the cap comes from the caller's own
+configuration.</li>
+<li>Charging twice when a client retries. One reference per logical
+call, and a repeat of a reference is a no-op.</li>
+<li>Letting the service skip the receipt because the gateway is "always"
+in front. The service's own address is reachable too.</li>
+<li>Answering a missing credential with 402. That is 401's job, and a
+client that sees 402 may retry with money instead of fixing its
+key.</li>
+</ul>
+<h2 id="the-shape-in-five-steps">The shape in five steps</h2>
+<ol type="1">
+<li>The caller sends the request without payment.</li>
+<li>The server answers 402 with the price and what it buys.</li>
+<li>The caller retries with acceptance — the exact price or a
+maximum.</li>
+<li>The server checks the balance or quota, does the work, settles one
+charge, and returns the result with a receipt.</li>
+<li>If the work fails after settlement, reverse it; if the caller
+retries, reuse the reference so the ledger charges once.</li>
+</ol>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="../cloud-for-ai-apps/">The cloud, for AI apps</a>: the three
+jobs you pay for, and how idle and always-on apps are billed.</li>
+<li><a href="../idea-to-deployed-ai-app/">From idea to deployed AI
+app</a>: where costs enter the build-and-deploy workflow.</li>
+<li><a href="../where-your-keys-come-from/">Where your keys come
+from</a>: recording who is calling when agents sign up instead of
+people.</li>
+<li><a href="../security-for-ai-apps/">Security for AI apps and
+agents</a>: runaway costs as one of the risks specific to agent
+apps.</li>
+<li><a href="../fetching-an-api-from-your-page/">Why a page can't read
+another site's API, and how to serve it from your own</a>: what changes
+when the caller is a browser page.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<!-- SEEALSO:START -->
+
+<p>Glossary terms used on this page: <a href="../glossary/#api">API</a>,
+<a href="../glossary/#container">Container</a>, <a
+href="../glossary/#provider">Provider</a>, <a
+href="../glossary/#secret">Secret</a>.</p>
+<!-- SEEALSO:END -->
+
+<h2 id="sources">Sources</h2>
+<p>All checked on 2026-11-26.</p>
+<ul>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc9110.html">RFC
+9110: HTTP Semantics</a> (June 2022): the definitions of 402 (§15.5.3)
+and 401 (§15.5.2)</li>
+<li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC
+7515: JSON Web Signature (JWS)</a> (May 2015): compact serialization and
+what the signature covers</li>
+<li>Cloudflare, <a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/what-is-pay-per-crawl/">What
+is Pay Per Crawl?</a> and <a
+href="https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/use-pay-per-crawl-as-ai-owner/crawl-pages/">Crawl
+pages</a>: the 402 with <code>crawler-price</code>, the two acceptance
+headers, <code>crawler-charged</code>, and the closed-beta status</li>
+<li>x402, <a href="https://x402.org">x402.org</a> and <a
+href="https://github.com/coinbase/x402">README</a>: the standard's
+description, the <code>PAYMENT-REQUIRED</code> /
+<code>PAYMENT-SIGNATURE</code> / <code>PAYMENT-RESPONSE</code> flow, and
+the facilitator</li>
+<li>Stripe, <a
+href="https://docs.stripe.com/billing/subscriptions/usage-based">Basic
+usage-based billing</a> and <a
+href="https://docs.stripe.com/billing/subscriptions/usage-based/billing-credits">Billing
+credits</a>: post-paid metering and prepaid credit grants</li>
+<li>Cloudish, <a
+href="https://cloudish.ai/skill.md?ref=cc-wiki">skill.md</a>: the
+disclosed prepaid example and its 402 on an out-of-credit project</li>
+</ul>
+<hr />
+<p>First version written with AI assistance, from a session that
+documented a paid-call gateway, and checked against the <a
+href="#sources">sources</a> on 2026-11-26. Found a mistake? <a
+href="../contributing/">Fix it or open an issue</a>. Text licensed under
+<a href="LICENSE">CC BY 4.0</a>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudish podcast — episode 3 transcript · AI Builders Wiki</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar"><div class="brand"><a href="../">AI Builders Wiki</a></div>
+<nav class="sidenav">
+<div class="nav-top"><a href="../">Home</a><a href="../glossary/">Glossary</a><a href="../tags/">Tags</a></div>
+<a class="nav-cat" href="../category-foundations/">Foundations</a>
+<a class="nav-page" href="../glossary/">Glossary: the basic words</a>
+<a class="nav-page" href="../generative-ai/">What generative AI is, and why people build with it</a>
+<a class="nav-page" href="../ways-to-use-ai/">Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs</a>
+<a class="nav-page" href="../cloud-for-ai-apps/">The cloud, for AI apps</a>
+<a class="nav-page" href="../how-paid-api-calls-work/">How paid API calls work</a>
+<a class="nav-cat" href="../category-agents/">Agents</a>
+<a class="nav-page" href="../ai-agent/">What an AI agent is</a>
+<a class="nav-page" href="../multi-agent-systems/">Multi-agent systems: do AI agents work with each other?</a>
+<a class="nav-page" href="../agent-protocols-mcp-and-a2a/">Agent protocols: MCP and A2A</a>
+<a class="nav-page" href="../how-an-agent-finds-a-tool/">How an agent finds a tool you wrote</a>
+<a class="nav-cat" href="../category-models-and-providers/">Models and providers</a>
+<a class="nav-page" href="../ai-providers-and-models/">AI providers and models: who makes what, and how to choose</a>
+<a class="nav-page" href="../model-names-and-versions/">Model names and versions</a>
+<a class="nav-page" href="../using-claude-code-with-another-model-provider/">Running Claude Code against another model provider</a>
+<a class="nav-cat" href="../category-security-and-data/">Security and data</a>
+<a class="nav-page" href="../security-for-ai-apps/">Security for AI apps and agents</a>
+<a class="nav-page" href="../data-protection/">Data protection when you use AI</a>
+<a class="nav-page" href="../data-protection-by-vendor/">Data protection by vendor</a>
+<a class="nav-page" href="../legal-pages-for-an-ai-app/">Where an AI app&#x27;s terms of service and privacy policy should live</a>
+<a class="nav-cat" href="../category-how-to/">How-to</a>
+<a class="nav-page" href="../idea-to-deployed-ai-app/">From idea to deployed AI app: a typical workflow</a>
+<a class="nav-page" href="../checking-an-ai-built-web-app/">How to check a web app an AI built</a>
+<a class="nav-page" href="../container-image-size/">How to shrink a container image</a>
+<a class="nav-page" href="../how-to-tell-whether-a-page-overflows/">How to tell whether a page overflows the screen</a>
+<a class="nav-page" href="../querying-a-web-crawl-from-a-small-app/">Querying a web crawl from a small app</a>
+<a class="nav-page" href="../where-your-keys-come-from/">Where your keys come from: attribution for AI apps</a>
+<a class="nav-page" href="../pointing-a-domain-at-your-app/">How to point a domain at your app, with one record for every subdomain</a>
+<a class="nav-page" href="../checking-whether-a-deploy-worked/">How to tell whether a deploy actually worked</a>
+<a class="nav-page" href="../serve-one-domain-from-more-than-one-datacenter/">Serve one custom domain from more than one datacenter</a>
+<a class="nav-page" href="../deploy-on-every-push/">How to deploy your app on every push</a>
+<a class="nav-page" href="../persistent-storage-for-many-ai-sandboxes/">Persistent storage for many AI sandboxes</a>
+<a class="nav-page" href="../what-dns-records-github-pages-needs-for-a-custom-domain/">What DNS records GitHub Pages needs for a custom domain</a>
+<a class="nav-page" href="../where-an-ai-built-app-keeps-its-data/">Where an AI-built app keeps its data</a>
+<a class="nav-page" href="../previewing-a-signed-in-page-on-localhost/">Previewing a signed-in page on localhost</a>
+<a class="nav-page" href="../how-to-run-an-app-that-keeps-its-own-sqlite-database/">How to run an app that keeps its own SQLite database</a>
+<a class="nav-page" href="../keeping-an-ai-reply-running-when-the-browser-refreshes/">How to keep an AI reply running when the browser refreshes</a>
+<a class="nav-page" href="../serving-a-single-page-app-from-one-container/">How to serve a single-page app from one container</a>
+<a class="nav-page" href="../carry-a-prompt-through-sign-in/">How to carry a prompt through sign-in into the first chat</a>
+<a class="nav-cat" href="../category-problems-solutions/">Problems &amp; solutions</a>
+<a class="nav-page" href="../app-looks-fine-but-buttons-do-nothing/">An app that looks fine but its buttons do nothing</a>
+<a class="nav-page" href="../a-login-that-loops/">A login that loops between your app and the sign-in provider</a>
+<a class="nav-page" href="../a-sign-in-that-breaks-behind-a-proxy/">A sign-in that breaks behind a proxy: the redirect URI</a>
+<a class="nav-page" href="../stale-cache-after-a-deploy/">Why a deploy looks broken in one browser but fine in another</a>
+<a class="nav-page" href="../a-sign-in-that-lands-on-another-site/">A sign-in that lands on another site</a>
+<a class="nav-page" href="../fetching-an-api-from-your-page/">Why a page can&#x27;t read another site&#x27;s API, and how to serve it from your own</a>
+<a class="nav-page" href="../a-signed-in-user-with-no-account-on-another-region/">A signed-in user with no account on another region</a>
+<a class="nav-page" href="../a-page-that-scrolls-sideways-on-a-phone/">A page that scrolls sideways on a phone</a>
+<a class="nav-page" href="../why-a-deployed-app-is-blank-inside-an-iframe/">Why a deployed app is blank inside an iframe</a>
+<a class="nav-page" href="../a-product-demo-that-pretends-to-be-live/">A product demo that pretends to be live</a>
+<a class="nav-cat" href="../category-other-sources/">Other sources</a>
+<a class="nav-page" href="../cloudish-podcast/">The Cloudish podcast</a>
+<a class="nav-page" href="../cloudish-podcast-episode-1/">Cloudish podcast — episode 1 transcript</a>
+<a class="nav-page" href="../cloudish-podcast-episode-2/">Cloudish podcast — episode 2 transcript</a>
+<a class="nav-page" href="../cloudish-podcast-episode-3/">Cloudish podcast — episode 3 transcript</a>
+</nav></aside>
+  <main class="content"><!-- NAV:START -->
+
+<p class="breadcrumb"><a href="../">Home</a> › <a
+href="../category-other-sources/">Other sources</a> · Tags: <a
+href="../tag-audio/">audio</a>, <a href="../tag-hosting/">hosting</a>, <a
+href="../tag-security/">security</a></p>
+<!-- NAV:END -->
+
+<h1 id="cloudish-podcast--episode-3-transcript">Cloudish podcast —
+episode 3 transcript</h1>
+<p><strong>Episode 3 — "What hundreds of agent deploys got
+wrong"</strong> (published 2026-11-25). Listen on <a
+href="https://open.spotify.com/episode/1bnNIK6X84SC9ETVg3L0aO">Spotify</a>.</p>
+<p>Jamila and Lucía, two engineers on the Cloudish team at Hal Nine,
+unpack one anonymized customer story with their founder, Jimena: an AI
+agent that hardcoded a payment key, shipped with debug mode on, and left
+an admin route open. They walk through why each one is a default, not a
+clever attack, and close on the three checks to run before letting an
+agent deploy.</p>
+<h2 id="transcript">Transcript</h2>
+<p><strong>Jamila:</strong> ...and the thing is, it's never a clever
+mistake. It's always the same three. You'd think by now we'd stop being
+surprised.</p>
+<p><strong>Lucía:</strong> We did stop being surprised. That's almost
+worse.</p>
+<p><strong>Jimena:</strong> Am I interrupting? I keep hearing about a
+customer whose agent shipped something and it went all wrong — that
+incident with the payment card, you know. So what actually happened
+there?</p>
+<p><strong>Jamila:</strong> Hi, Jimena. No no, you aren't interrupting,
+we were just talking about that ... That thing basically illustrates the
+three number one mistakes in a single app.</p>
+<p><strong>Lucía:</strong> And for anyone just joining — I'm Lucía, this
+is Jamila, we work on Cloudish, at Hal Nine. And that's Jimena, our
+founder — she just asked about one thing we keep coming back to times
+and again.</p>
+<p><strong>Jamila:</strong> So Jimena, first the headlines... A customer
+— not a developer — asked an AI agent to build her a small app. The
+agent wrote it, wired up a payment key, and shipped it, all in one
+evening. Three days later, the card attached to that key started getting
+charged.</p>
+<p><strong>Jimena:</strong> Charged by who?</p>
+<p><strong>Jamila:</strong> That's the part worth sitting with. It
+wasn't an attack. Nobody broke in, nobody phished her. The key was just
+sitting there, in the code, in plain text, where anyone who looked could
+read it.</p>
+<p><strong>Lucía:</strong> And "in the code" is where the trouble
+compounds. The agent had dropped the key into a config file — that's the
+polite-sounding version of the story. Then the app was built into a
+container image. And here's the detail people miss: an image isn't one
+file, it's layers. Every build step adds a layer, and each layer keeps
+whatever it was given, forever. Put a key in one layer and delete it in
+the next, and the key is still in the image. It's archaeology. Dig, and
+you find it.</p>
+<p><strong>Jamila:</strong> So the key stopped being "in the code" and
+became part of the image — and the image was somewhere other people
+could pull it. That's all it took. Nothing clever, nothing targeted.</p>
+<p><strong>Jimena:</strong> So it wasn't stolen. It was printed.</p>
+<p><strong>Jamila:</strong> Basically. And here's the uncomfortable
+part. The model didn't "leak" anything, and it wasn't being sneaky. It
+did what a huge fraction of the code on the internet does — hardcode the
+key and hope nobody looks. Every tutorial does it. Every quick start
+does it, because a quick start has to be quick. The model learned from
+all of that, and it copied it faithfully.</p>
+<p><strong>Lucía:</strong> Which is mistake number one. Secrets baked
+into the image. And we say "baked" on purpose, not "left in" — once it's
+in a layer, it's not coming out. You don't fix it by deleting a line.
+You fix it by throwing the whole image away and starting again.</p>
+<p><strong>Jimena:</strong> And the second?</p>
+<p><strong>Jamila:</strong> While she was chasing the charges, she found
+the second one. Every time someone hit an error on the app, instead of a
+friendly "sorry, something went wrong", the page showed the full stack
+trace. Line numbers. File paths. Variable values. The app, basically
+explaining its own insides to whoever tripped over it.</p>
+<p><strong>Lucía:</strong> Debug mode. The agent had built the app in
+debug mode — which is exactly what you want while you're writing it,
+because it tells you everything — and then it shipped that same mode. In
+production, every error becomes a window into the app. The stack trace
+alone leaks your architecture: what framework, what versions, what the
+folders are called. An attacker reads that like a map.</p>
+<p><strong>Jamila:</strong> And the nastiest debuggers don't stop at
+showing you the error. They hand you a little interactive console, right
+there in the browser. Type a command, it runs. That's not "verbose
+logging". That's remote code execution wearing a friendly face.</p>
+<p><strong>Jimena:</strong> So "debug mode left on" isn't a cosmetic
+bug. It's a back door.</p>
+<p><strong>Jamila:</strong> With a friendly face.</p>
+<p><strong>Jimena:</strong> And the third?</p>
+<p><strong>Lucía:</strong> The saddest, because the instinct behind it
+was right. The agent had built an admin page — a dashboard where the
+owner could see her own data and edit it. Good idea. But no login. The
+URL was right there, and anyone who could guess it could walk in and
+change whatever they wanted.</p>
+<p><strong>Jamila:</strong> And guessing an admin URL is not hard.
+People try "/admin", "/dashboard", "/console" as a matter of course. The
+page might as well have had a doormat.</p>
+<p><strong>Jimena:</strong> Three mistakes, one app.</p>
+<p><strong>Jamila:</strong> And notice the shape of all three. In every
+single case, the model did the easy thing. Hardcode the key — one less
+moving part. Leave debug on — it was already on. Build the admin page
+and skip the login — because the login is the boring, fiddly part, and
+the model finished the fun part and stopped there.</p>
+<p><strong>Lucía:</strong> That's the thing to remember about how these
+models work. They optimize for "does it work". They do not optimize for
+"is it safe on the open internet". Nobody ever asked them to. The
+default of everything they learned from is "get it running", not "get it
+running safely".</p>
+<p><strong>Jimena:</strong> So whose fault is it?</p>
+<p><strong>Jamila:</strong> That's the real question. And the honest
+answer is: not the model's alone.</p>
+<p><strong>Lucía:</strong> Look at the three players. The customer
+assumed the agent had it covered — she asked for an app, and an app is
+what she got. The agent assumed its job ended at "it runs". And the
+place she'd first deployed to treated the whole thing as the customer's
+problem, not theirs.</p>
+<p><strong>Jamila:</strong> Three parties, and the safety of the app
+lived in the gap between all three. Each one thought someone else was
+watching. Nobody was.</p>
+<p><strong>Jimena:</strong> So if the fix isn't "get a better model" —
+and I'm hearing it isn't — what do we actually do?</p>
+<p><strong>Lucía:</strong> Add a step that happens after the code. A
+check that sits between "the model is done" and "the internet can see
+it". That's the whole fix, structurally. The rest is just filling in
+what the check looks like, one mistake at a time.</p>
+<p><strong>Jamila:</strong> For the secret. The key should never be in
+the image, and the way to do that is boring and reliable — don't put it
+there. Keep it in a secret store, and inject it when the app runs, as an
+environment variable. On Cloudish, secrets live encrypted on our side,
+and the instructions we hand the agent say it in plain words: never
+bundle a secret into the build. It's a rule, not a suggestion.</p>
+<p><strong>Lucía:</strong> For debug. Ship with debug off, and make it a
+real production switch — a setting that turns off the stack traces by
+itself, so there's no "I'll remember later". The advice is boring and
+true: in production, fail quietly.</p>
+<p><strong>Jamila:</strong> For the admin route. Default-deny. A page
+that can change data simply doesn't ship without an authentication check
+in front of it. No login, no access. That's the default, not the
+add-on.</p>
+<p><strong>Lucía:</strong> And we should be honest about our own part in
+this, because it's a trap people fall into. Cloudish hands you OpenID
+Connect — it tells the app who is signed in. But authenticating someone
+is not the same as authorizing them. Deciding who is allowed to do what
+is still the app's job. We give you the door and the lock; you still
+decide who gets a key.</p>
+<p><strong>Jamila:</strong> And there's a shortcut for all three at
+once: make the check a rule, not a memory. On Cloudish, the secret never
+has to be in the image — it's stored encrypted and injected when the app
+runs. The other two are the step you add between the model being done
+and the internet seeing it — debug off, login on.</p>
+<p><strong>Jimena:</strong> So the platform makes the problem visible.
+It doesn't make it somebody else's problem.</p>
+<p><strong>Jamila:</strong> Right. The truth ages better than the
+pitch.</p>
+<p><strong>Jimena:</strong> What happened to that customer in the
+end?</p>
+<p><strong>Lucía:</strong> She came to us. We moved the key into the
+secret store, flipped debug off, put a real login on the admin page, and
+rotated everything — new key, new credentials, because by then you
+assume the old ones are gone. Took an afternoon. Most of it was deleting
+the wrong way of doing things.</p>
+<p><strong>Jamila:</strong> The scary part is how little of it was hard.
+None of this is hard. It's just unglamorous. There's no conference talk
+called "how I made sure the key wasn't in the image". And nobody's job
+title says it either.</p>
+<p><strong>Jimena:</strong> So for a listener about to let an agent
+deploy their first app — what do they check?</p>
+<p><strong>Lucía:</strong> Three questions, in order. One: is there a
+key or a password anywhere in the code — and if there is, is it in a
+secret store instead? Two: is debug off in the real production setting?
+Three: does every page that can change data have a login in front of
+it?</p>
+<p><strong>Jamila:</strong> And if the answer to any of those is "I
+don't know", that is the answer. "I don't know" is exactly how a key
+gets baked and a debug console gets left open. It's the one answer that
+means you haven't checked.</p>
+<p><strong>Jimena:</strong> So the next time someone says "the AI leaked
+our data", the follow-up is: where was the check that should have caught
+it?</p>
+<p><strong>Lucía:</strong> Because there's always a check that should
+have caught it.</p>
+<p><strong>Jamila:</strong> And when there isn't — that's not a model
+problem. That's a process problem. It's the whole reason Cloudish
+exists: so the process has somewhere to live.</p>
+<p><strong>Jimena:</strong> Good. Make sure that's the part we lead
+with.</p>
+<p><strong>Jamila:</strong> Will do. And to everyone listening — full
+transcript and links in the show notes, as always. Thanks for
+listening.</p>
+<p><strong>Lucía:</strong> Bye!</p>
+<h2 id="sources">Sources</h2>
+<p>Cloudish's docs were re-checked 2026-11-25. The episode names no
+third party and makes no claim of a deploy-time scanner: the debug-off
+and admin-login checks are framed as the listener's own step, not an
+automatic platform check.</p>
+<table>
+<thead>
+<tr>
+<th>Fact said in the episode</th>
+<th>Source</th>
+<th>Checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloudish stores "anything sensitive — API keys, tokens, passwords"
+"encrypted at rest" and merges it "into the container's environment
+automatically"; the agent instructions say "Never put these in
+<code>env</code>… and never bundle them into the build context" and to
+"use section 2's encrypted secrets endpoint for real credentials
+instead"</td>
+<td><a
+href="https://cloudish.ai/skill.md">https://cloudish.ai/skill.md</a></td>
+<td>2026-11-25</td>
+</tr>
+<tr>
+<td>Cloudish points apps at its own OpenID Connect provider;
+"Authenticating the visitor is not the same as authorizing them: any
+Cloudish user can complete this flow"; "an admin panel still needs its
+own allowlist"; "The platform adds no trusted headers"</td>
+<td><a
+href="https://cloudish.ai/skill.md">https://cloudish.ai/skill.md</a></td>
+<td>2026-11-25</td>
+</tr>
+<tr>
+<td>Hardcoded secrets, debug mode left on and open admin routes are
+standard web-application security issues; no competitor or vendor doc is
+cited (the episode names no third party)</td>
+<td>general security knowledge</td>
+<td>2026-11-25</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Last checked against the sources on 2026-11-25.</em></p>
+</main>
+</div>
+</body>
+</html>
