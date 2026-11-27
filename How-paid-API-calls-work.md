@@ -8,6 +8,7 @@ checked: 2026-11-26
 ---
 
 <!-- NAV:START -->
+[Home](README.md) › [Foundations](Category-Foundations.md) · Tags: [costs](Tag-costs.md), [security](Tag-security.md)
 <!-- NAV:END -->
 
 # How paid API calls work
@@ -122,6 +123,7 @@ Use the verified claims — not a header the caller controls — to identify the
 ## See also
 
 <!-- SEEALSO:START -->
+Glossary terms used on this page: [API](Glossary.md#api), [Container](Glossary.md#container), [Provider](Glossary.md#provider), [Secret](Glossary.md#secret).
 <!-- SEEALSO:END -->
 
 ## Sources

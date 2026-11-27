@@ -8,6 +8,7 @@
 - [What generative AI is, and why people build with it](Generative-AI.md)
 - [Ways to use AI: chat, projects, coding agents, IDEs, APIs, SDKs](Ways-to-use-AI.md)
 - [The cloud, for AI apps](Cloud-for-AI-apps.md)
+- [How paid API calls work](How-paid-API-calls-work.md)
 
 **[Agents](Category-Agents.md)**
 

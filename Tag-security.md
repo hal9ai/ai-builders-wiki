@@ -10,4 +10,5 @@
 - [Running Claude Code against another model provider](Using-Claude-Code-with-another-model-provider.md) (Models and providers)
 - [Cloudish podcast — episode 3 transcript](Cloudish-podcast-episode-3.md) (Other sources)
 - [Why a page can't read another site's API, and how to serve it from your own](Fetching-an-API-from-your-page.md) (Problems & solutions)
+- [How paid API calls work](How-paid-API-calls-work.md) (Foundations)
 - [Why a deployed app is blank inside an iframe](Why-a-deployed-app-is-blank-inside-an-iframe.md) (Problems & solutions)
