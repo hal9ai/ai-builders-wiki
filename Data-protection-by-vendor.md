@@ -13,13 +13,13 @@ checked: 2026-10-28
 
 # Data protection by vendor
 
-**This page compares what the main AI vendors do with your data, plan by plan, with every answer linked to the vendor's own page as checked on 2026-10-28.** For what the questions mean and what to do about them, start with [Data protection when you use AI](Data-protection.md).
+**This page compares what the main AI vendors do with your data, plan by plan, with every answer linked to the vendor's own page as checked on 2026-10-28, except the Cohere, Groq, xAI and DeepSeek API rows, checked on 2026-11-27.** For what the questions mean and what to do about them, start with [Data protection when you use AI](Data-protection.md).
 
 **This is not legal advice.** It summarizes public vendor pages to help you ask the right questions. Policies change often, your contract may say something different, and laws such as the GDPR put obligations on *you* as the app maker. For a real decision, read the current terms and ask a lawyer or your data protection officer.
 
 ## Comparison table
 
-Short answers; the linked page has the exact wording. "Not stated" means we did not find it on the vendor's pages on 2026-10-28, not that it does not exist. Pages marked † refused automated access on that day; their cells rest on the page text as shown in search results, and need a manual check.
+Short answers; the linked page has the exact wording. "Not stated" means we did not find it on the vendor's pages on the check date, not that it does not exist. Pages marked † refused automated access on 2026-10-28; their cells rest on the page text as shown in search results, and need a manual check.
 
 | Vendor and plan | Trains on your data by default? | Opt-out | Default retention | Zero data retention | Location / EU option |
 |---|---|---|---|---|---|
@@ -36,12 +36,15 @@ Short answers; the linked page has the exact wording. "Not stated" means we did 
 | **Mistral**: Vibe (consumer chat app) | Yes ([help](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)) | Toggle in settings or admin panel ([help](https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training)) | Until you delete the conversation or account ([privacy policy](https://legal.mistral.ai/terms/privacy-policy)) | No ([help](https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr)) | EU by default ([help](https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data)) |
 | **Mistral**: Enterprise | No, opted out by default ([help](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)) | Not needed | Not stated | No; ZDR is for pay-as-you-go API calls only ([help](https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr)) | EU by default ([help](https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data)) |
 | **Mistral**: API | Free mode: may be used; pay-as-you-go: you can opt out, default not stated ([help](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)) | Admin panel toggle ([help](https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training)) | 30 rolling days for abuse monitoring, except specific APIs ([privacy policy](https://legal.mistral.ai/terms/privacy-policy)) | Pay-as-you-go, stateless calls only, at Mistral's discretion ([help](https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr)) | EU by default; US endpoint optional ([help](https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data)) |
+| **Cohere**: SaaS Platform | Unless you opt out: the page describes a Data Controls opt-out, not a default, and the commitments cover "enterprise data of our commercial, paying customers" ([commitments](https://cohere.com/enterprise-data-commitments)) | Settings → Data Controls: "Adjust the toggle to 'Off' to opt out"; the change applies to data created afterwards (same page) | Logged prompts and generations are automatically deleted after 30 days, with exceptions (same page) | Approved enterprise customers: "we do not log any prompts or generations" (same page) | Not stated |
+| **Groq**: API | No: Groq is "not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models" unless the customer permits it ([agreement §4.2](https://console.groq.com/docs/legal/services-agreement)) | Not needed | "By default, Groq does not retain customer data for inference requests"; inputs and outputs may be logged "up to 30 days" for reliability or abuse investigations ([your data](https://console.groq.com/docs/your-data)) | Self-serve for all customers; features that need stored data are disabled ([your data](https://console.groq.com/docs/your-data)) | Not stated |
+| **xAI**: API | No: "SpaceXSI never trains on your API inputs or outputs without your explicit permission" ([security FAQ](https://docs.x.ai/developers/faq/security)) | Not needed | API requests and responses stored encrypted at rest for 30 days, then deleted (same page) | Team-wide, self-serve where available; prompts and outputs are "never persisted to disk" (same page) | Not stated |
 | **Meta**: Meta AI app | Yes ([help](https://www.meta.com/help/artificial-intelligence/)) | In the EU, an objection form ([Meta newsroom](https://about.fb.com/news/2025/04/making-ai-work-harder-for-europeans/)); elsewhere not stated | Not stated | Not applicable | Not stated |
 | **DeepSeek**: app | Yes, after de-identification ([terms](https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html)) | "Improve the model for everyone" setting (same page) | As long as you have an account ([privacy policy](https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html)) | Not stated | Stored in the People's Republic of China (same page) |
-| **DeepSeek**: API | Not stated ([platform terms](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html)) | Not stated | Not stated | Not stated | Not stated |
+| **DeepSeek**: API | Yes by default: DeepSeek says it may use inputs and outputs to develop, train, evaluate and improve its models unless a separate written agreement says otherwise ([Open Platform privacy policy](https://cdn.deepseek.com/policies/zh-CN/deepseek-open-platform-privacy-policy.html), effective 2026-11-11; the English page returned 404) | No self-service API opt-out; a separate written agreement is the stated exception (same page) | No fixed period; network logs kept at least six months (same page) | Not offered (same page) | Stored in mainland China (same page) |
 | **Any open-weight model you run yourself** | Only what you do | Not applicable | What you configure | Yes, if you store nothing | Wherever you run it |
 
-All pages checked on 2026-10-28. † = page refused automated access; manual check needed.
+All vendor pages were checked on 2026-10-28, except the Cohere, Groq, xAI and DeepSeek API rows, checked on 2026-11-27. † = page refused automated access; manual check needed.
 
 ## Details and exact wording, by vendor
 
@@ -75,6 +78,24 @@ All pages checked on 2026-10-28. † = page refused automated access; manual che
 - API retention: "we keep your Input and Output for the period necessary to generate the Output and then for thirty (30) rolling days to monitor abuse (unless zero data retention is activated)" ([privacy policy](https://legal.mistral.ai/terms/privacy-policy)). ZDR is "available only with pay-as-you-go and only for stateless API calls", and Mistral may "at our discretion, approve or deny it" ([help](https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr)).
 - "By default, your data is hosted in the European Union" ([help](https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data)).
 
+### Cohere
+
+- **Training is opt-out.** Cohere's commitments cover "enterprise data of our commercial, paying customers". Once opted out, "prompts and generations will not be used to train Cohere models"; to opt out, go to Settings → Data Controls and "Adjust the toggle to 'Off' to opt out". The change is forward-looking: "Your change in settings will apply to data created after you make that change". The page describes the opt-out and does not explicitly say which way the default is set; treat training as on until the toggle is off ([Enterprise Data Commitments](https://cohere.com/enterprise-data-commitments), checked 2026-11-27).
+- **Retention.** Cohere will "automatically delete logged prompts and generations after 30 days", unless it needs them for a legal requirement, a customer contract, or flagged usage. "Deleting your account does not delete prompts or generations" (same page).
+- **ZDR.** For approved enterprise customers, "we do not log any prompts or generations"; ZDR is limited to customers "who can make additional commitments", and usage metadata is still received (same page).
+
+### Groq
+
+- **No training.** The Services Agreement §4.2 says Groq is "not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models" unless the customer explicitly permits or instructs it ([agreement](https://console.groq.com/docs/legal/services-agreement), checked 2026-11-27).
+- **Retention.** "By default, Groq does not retain customer data for inference requests." For reliability or abuse investigations, "We may temporarily log inputs and outputs" and keep them "up to 30 days, unless legally required to retain longer" ([Your data in GroqCloud](https://console.groq.com/docs/your-data), checked 2026-11-27).
+- **ZDR.** Self-serve for all customers. "When ZDR is enabled, Groq will not retain customer data for system reliability and abuse monitoring", and features that need stored data are disabled (same page).
+
+### xAI
+
+- **No training.** "SpaceXSI never trains on your API inputs or outputs without your explicit permission" ([API security FAQ](https://docs.x.ai/developers/faq/security), checked 2026-11-27). The developer documentation currently brands the company "SpaceXSI"; if a contract matters, confirm the legal entity.
+- **Retention.** "all API requests and responses are stored on our servers (encrypted at rest) for 30 days" for abuse auditing, and "it is automatically deleted after 30 days" (same page).
+- **ZDR.** Available and team-wide: "If enabled, ZDR is team-wide", prompts and generated tokens are "never persisted to disk", and the 30-day audit retention does not apply. It disables stateful features such as the Files and Batch APIs (same page).
+
 ### Meta
 
 - "Meta uses your interactions with AIs to improve AI at Meta" ([Meta help](https://www.meta.com/help/artificial-intelligence/)). In the EU, interactions with Meta AI "will also be used to train and improve our models", with "a link to a form where people can object" ([Meta newsroom](https://about.fb.com/news/2025/04/making-ai-work-harder-for-europeans/)).
@@ -86,7 +107,8 @@ All pages checked on 2026-10-28. † = page refused automated access; manual che
 
 - The app may "use Inputs and Outputs to provide, maintain, operate, develop or improve the Services", subject to de-identification, and you "can opt out by turning off "Improve the model for everyone"" ([terms of use](https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html)).
 - "we directly collect, process and store your Personal Data in People's Republic of China"; data is kept "for as long as you have an account" ([privacy policy](https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html)).
-- The API terms we found do not address training, retention or location ([open platform terms](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html)). DeepSeek's models are also open-weight, and other [providers](Glossary.md#provider) serve them under their own terms.
+- **The API policy is different from what the separate open-platform terms say.** The Open Platform Privacy Policy (effective 2026-11-11) says that, unless there is a separate written agreement, DeepSeek may use inputs and outputs submitted through the Open Platform to develop, train, evaluate and improve its models, algorithms, safety systems and related technology. It describes no self-service API opt-out, says personal information is stored in mainland China, and says network logs are kept at least six months ([Open Platform privacy policy](https://cdn.deepseek.com/policies/zh-CN/deepseek-open-platform-privacy-policy.html), checked 2026-11-27; the English page returned 404 that day). The separate [open platform terms](https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html) do not mention training, retention or location.
+- DeepSeek's models are also open-weight, and other [providers](Glossary.md#provider) serve them under their own terms.
 
 ## Related pages
 
@@ -102,8 +124,8 @@ Glossary terms used on this page: [Agent](Glossary.md#agent), [API](Glossary.md#
 
 ## Sources
 
-All vendor pages are linked in the table and in the details above, and were checked on 2026-10-28. Pages marked † refused automated access on that date. Corrections with a link to the current vendor page are especially welcome.
+All vendor pages are linked in the table and in the details above. Most were checked on 2026-10-28; the Cohere, Groq, xAI and DeepSeek API sources were checked on 2026-11-27. Pages marked † refused automated access on 2026-10-28. Corrections with a link to the current vendor page are especially welcome.
 
 ---
 
-First version written with AI assistance and checked against the vendor pages listed under [sources](#sources) on 2026-10-28. Not legal advice. Found a mistake or a policy change? [Fix it or open an issue](CONTRIBUTING.md). Text licensed under [CC BY 4.0](LICENSE).
+First version written with AI assistance and checked against the vendor pages listed under [sources](#sources) on 2026-10-28. Updated on 2026-11-27 with Cohere, Groq, xAI and the DeepSeek API policy. Not legal advice. Found a mistake or a policy change? [Fix it or open an issue](CONTRIBUTING.md). Text licensed under [CC BY 4.0](LICENSE).
